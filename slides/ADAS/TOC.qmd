@@ -19,7 +19,7 @@ author: "Paolo Bosetti"
 :::callout-important
 ## Aggornamenti continui!
 
-Le slide qui presentate possono essere frequentemente aggiornate per correzioni e piccole aggiunte: assicuratevi di verificare sempre l'ultima versionne (basta ricaricare la pagina!)
+Le slide qui presentate possono essere frequentemente aggiornate per correzioni e piccole aggiunte: assicuratevi di verificare sempre l'ultima versione (basta ricaricare la pagina!)
 :::
 
 
