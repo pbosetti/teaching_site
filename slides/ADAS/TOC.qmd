@@ -15,6 +15,14 @@ author: "Paolo Bosetti"
 6.  [*Design of Experiments*](adas-6){target="\"_blank"}
 7.  [Serie temporali](adas-8){target="_blank"}
 
+
+:::callout-important
+## Aggornamenti continui!
+
+Le slide qui presentate possono essere frequentemente aggiornate per correzioni e piccole aggiunte: assicuratevi di verificare sempre l'ultima versionne (basta ricaricare la pagina!)
+:::
+
+
 # Uso
 
 Le slide sono interattive. I comandi più utili sono:

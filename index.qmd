@@ -12,8 +12,18 @@ At the [Department of Industrial Engineering of the University of Trento](https:
 - *Analisi dei Dati e Statistica* (ADAS), in Italian
   - [Slide del corso](slides/ADAS/TOC){target="_blank"}
   - [Taratura di una bilancia a due piatti](slides/ADAS/bilancia){target="_blank"}
+  
 
----
+:::callout-note
+If you are a student of the University of Trento, note that this is NOT the main support site: look at the [Moodle platform](https://didatticaonline.unitn.it/dol/) instead.
+:::
+
+:::callout-important
+## Continuous updates!
+
+Please note that the material is **constantly updated**. If you are interested in a specific topic, please check the last update date (i.e., refresh your browser!)
+:::
+
 
 # License
 

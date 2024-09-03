@@ -16,9 +16,11 @@ Course offered to students of Space and Science Technology PhD programme.
 4. [K-fold cross validation](4-kfold){target="_blank"}
 5. [DoE](5-DoE){target="_blank"}
 
-## Code Repository:
+:::callout-note
+## Code Repository
 
-The code is made available on GitHub: <https://github.com/pbosetti/DESAnED>
+The code is also made available on GitHub: <https://github.com/pbosetti/DESAnED>
+:::
 
 ## Bibliography
 

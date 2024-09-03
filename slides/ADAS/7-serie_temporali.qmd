@@ -16,7 +16,7 @@ format:
     preview-links: auto
     theme: [default, style.scss]
     chalkboard: true
-    footer: "paolo.bosetti@unitn.it --- [https://paolobosetti.quarto.pub/adas/](https://paolobosetti.quarto.pub/adas/)"
+    footer: "paolo.bosetti@unitn.it --- [https://paolobosetti.quarto.pub](https://paolobosetti.quarto.pub)"
     fig-width: 5
     fig-height: 4
     fig-dpi: 300
