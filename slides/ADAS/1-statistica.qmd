@@ -1,0 +1,1568 @@
+---
+title: "Statistica Descrittiva e Inferenziale"
+subtitle: |
+  Analisi Dati e Statistica, 2023--24 \
+  ![](images/by-nc-sa.png){height=30}
+author: "Paolo Bosetti"
+institute: "Università di Trento, Dipartimento di Ingegneria Industriale"
+format: 
+  revealjs:
+    width: 1280
+    height: 700
+    margin: 0.1
+    slide-number: true
+    code-line-numbers: true
+    code-annotations: below
+    preview-links: auto
+    theme: [default, style.scss]
+    chalkboard: true
+    footer: "paolo.bosetti@unitn.it --- [https://paolobosetti.quarto.pub/adas/](https://paolobosetti.quarto.pub/adas/)"
+    fig-width: 5
+    fig-height: 4
+    fig-dpi: 300
+    touch: true
+    email-obfuscation: javascript
+    pdf-separate-fragments: true
+    link-external-icon: true
+execute: 
+  cache: true
+---
+
+```{r}
+options(width = 60)
+set.seed(0)
+library(latex2exp)
+library(glue)
+library(tidyverse)
+theme_set(theme_gray()+theme(legend.position = "bottom"))
+```
+
+# Statistica descrittiva
+
+La Statistica Descrittiva serve a descrivere il comportamento di variabili aleatorie
+
+## Variabili aleatorie (o stocastiche)
+
+Una variabile stocastica è una variabile che assume valori casuali ad ogni osservazione, cioè tali per cui non è possibile prevedere il valore esatto della prossima osservazione, nemmeno conoscendo le osservazioni precedenti
+
+. . .
+
+La **misurazione** è il processo che porta alla valutazione oggettiva del **misurando**. Il risultato di una misurazione è chiamato **misura**
+
+. . .
+
+Le variabili stocastiche sono di particolare interesse per l'ingegneria e per l'industria in genere, dato che ogni **misurazione** produce, come risultato, un valore che ha un contenuto casuale ed è quindi rappresentabile come una variabile stocastica
+
+. . .
+
+A sua volta, il contributo casuale ad una misura è chiamato **incertezza**
+
+. . .
+
+Dato che ogni attività produttiva è indissolubilmente legata a delle misurazioni, è quindi evidente quanto sia fondamentale trattare in maniera coerente e robusta i contributi casuali alle misure
+
+
+## Effetto scala {auto-animate="true"}
+:::{style="text-align: center;"}
+```{r}
+#| fig-width: 6
+#| fig-height: 3
+N <- 30
+m <- 25
+df <- tibble(i=1:N, x=rnorm(N, m, 0.01))
+df %>% ggplot(aes(x=i, y=x)) +
+  geom_point() +
+  coord_cartesian(ylim=c(0, 50)) +
+  labs(x="indice", y="misura (mm)")
+```
+:::
+
+## Effetto scala {auto-animate="true"}
+:::{style="text-align: center;"}
+```{r}
+#| fig-width: 6
+#| fig-height: 3
+df %>% ggplot(aes(x=i, y=x)) +
+  geom_point() +
+  labs(x="indice", y="misura (mm)")
+```
+:::
+
+## Effetto scala
+
+In altre parole, la componente stocastica di una misura è affetta da un effetto scala: tanto più piccolo è il rapporto tra il **valore medio** misurato e la **variabilità** tipica dello strumento (cioè la sua **precisione**), tanto meno sarà apprezzabile l'effetto di casualità
+
+È quindi essenziale definire in maniera precisa ed efficace concetti intuitivi come **variabilità** e **valore medio** che abbiamo sopra espresso
+
+## Popolazioni
+
+In statistica, una **popolazione** è un insieme di valori, oggetti o eventi di interesse per una qualche analisi o esperimento.
+
+Per studiare la statura dei residenti nella città di Trento, la **popolazione** di interesse è l'intero insieme degli abitanti di Trento.
+
+Per studiare il comportamento meccanico della lega d'Alluminio prodotta da un certo impianto, la **popolazione di interesse** può essere l'intera quantità di lega prodotta da un certo lotto di materia prima
+
+Ma per studiare anche gli effetti di variabilità delle materie prime (tra un lotto e l'altro), delle condizioni ambientali, ecc., sarebbe più opportuno **definire come popolazione un insieme più ampio**
+
+Quindi spesso la definizione della popolazione di interesse è **arbitraria**
+
+## Popolazioni
+
+Quindi:
+
+-   la definizione della popolazione dipende **dall'obiettivo dell'analisi**
+
+-   la dimensione di una popolazione è **generalmente molto ampia e potenzialmente non limitata**
+
+-   di conseguenza è **spesso impraticabile** considerare l'intera popolazione
+
+-   si lavora quindi su **sottoinsiemi estratti casualmente** dalla popolazione, chiamati **campioni**
+
+-   essendo estratti casualmente, i **campioni approssimano la popolazione**, tanto meglio quanto più sono numerosi
+
+## Popolazione
+
+Osservando una popolazione possiamo identificare un **valore centrale** e una **variabilità**
+
+```{r}
+N <- 300
+m <- 25
+df <- tibble(i=1:N, x=rnorm(N, m, 0.01))
+df %>% ggplot(aes(x=i, y=x)) +
+  geom_point() +
+  geom_hline(yintercept=mean(df$x), color="red") +
+  geom_hline(yintercept = mean(df$x) + c(-1, 1) * sd(df$x) * 3, color="blue") +
+  coord_cartesian(ylim=c(-0.05,0.05)+m) +
+  labs(x="indice", y="misura (mm)")
+```
+
+## Momenti di una popolazione
+
+Il valore centrale è chiamato **valore atteso** e la variabilità è chiamata **varianza**
+
+-   Valore atteso:
+
+    -   per v.a. discrete: $\mu = E(x) := \sum_{i = 1}^N x_i p(x_i)$
+
+    -   per v.a. continue: $\mu = E(x) := \int_{-\infty}^{+\infty} x f(x)~\mathrm{d}x$
+
+-   Varianza:
+
+    -   per v.a. discrete: $\sigma^2 = V(x) := \sum_{i = 1}^N (x_i -\mu)^2 p(x_i)$
+    -   per v.a. continue: $\sigma^2 = V(x) := \int_{-\infty}^{+\infty} (x - \mu)^2 f(x)~\mathrm{d}x$
+
+dove $E()$ e $V()$ sono gli **operatori valore atteso e varianza**, rispettivamente; $x_i$ (e $x$) è la generica osservazione della v.a., e $p(x_i)$ e $f(x)$ sono la **probabilità** e la **densità di probabilità** di riscontrare un dato valore
+
+Le proprietà di una popolazione si indicano con lettere greche: $\mu$ e $\sigma^2$
+
+**NOTA**: Risulta $\sigma^2 = E\left[(x-\mu)^2\right]$
+
+## Probabilità e densità di probabilità
+
+-   **Probabilità** (o **frequenza**): per una v.a. discreta, corrisponde al rapporto tra il numero di osservazioni di un dato valore e il numero totale di osservazioni
+
+-   **Densità di probabilità**: per una v.a. continua, la probabilità di riscontrare esattamente un dato valore è nulla, quindi ci si riferisce ad una probabilità di riscontrare un valore all'interno di un dato intervallo. La densità di probabilità è la derivata di tale valore
+
+::: columns
+::: {.column width="45%"}
+```{r}
+lim <- c(-1,1) * 3
+ggplot() + 
+  geom_function(fun=pnorm, aes(color="CDF"), xlim=lim) + 
+  geom_function(fun=dnorm, aes(color="PDF"), xlim=lim) + 
+  labs(x=TeX("x"), y=TeX("p(x)"), color="funzione")
+```
+:::
+
+:::{.column width="55%"}
+-   **Probabilità cumulata** (*Cumulated Distribution Function*): $p(x_0) = P(x\leq x_0)$
+-   [Densità di probabilità]{.bgreen} (*Probability Density Function*): $f(x) = \frac{d}{dx} p(x)$
+-   Vale anche $p(x_0) = \int_{-\infty}^{x_0}f(x) \mathrm d x$
+:::
+:::
+
+## Probabilità e densità di probabilità
+
+Inoltre, si noti che probabilità e frequenza devono **sommare a 1**: rispettivamente: 
+$$
+\begin{array}{l} \sum_i p(x_i) = 1 \\
+\int_{-\infty}^\infty f(x)~\mathrm{d}x = 1 \end{array}
+$$
+
+Questo perché ovviamente la probabilità di riscontrare un qualsiasi valore deve essere certa, cioè 1
+
+## Proprietà degli operatori
+
+Gli operatori valore atteso e varianza godono delle seguenti proprietà:
+
+$$ 
+\begin{array}{l}
+E(c)&=&c\\
+E(x)&=&\mu\\
+E(cx)&=&cE(x)=c\mu\\
+V(c)&=&0\\
+V(x)&=&\sigma^2\\
+V(cx)&=&c^2V(x)=c^2\sigma^2\\
+E(x+y)&=&E(x)+E(y)=\mu_x+\mu_y\\
+\mathrm{Cov}(x,y)&=&E[(x-\mu_x)(y-\mu_y)] \label{eq:cov}\\
+V(x+y)&=&V(x)+V(y)+2\textrm{ Cov}(x,y)\\
+V(x-y)&=&V(x)+V(y)-2\textrm{ Cov}(x,y) 
+\end{array}
+$$
+
+dove $c$ indica una costante
+
+## Correlazione e covarianza
+
+L'operatore **covarianza** è un indice di quanto due variabili stocastiche siano interdipendenti
+
+Più utile della covarianza (che non è limitata) è la **correlazione** che ha il vantaggio di essere compresa nell'intervallo $[-1,1]$:
+
+$$
+\mathrm{Corr}(x, y) = \frac{E[(x-\mu_x)(y-\mu_y)]}{\sigma_x\sigma_y} = \frac{\mathrm{Cov}(x,y)}{\sigma_x\sigma_y}
+$$
+
+-   vicina a zero significa nessuna correlazione
+-   vicina a 1 significa forte correlazione [positiva]{.bgreen} (se aumenta $x$ aumenta anche $y$)
+-   vicina a -1 significa forte correlazione **negativa** (se aumenta $x$ diminuisce $y$).
+
+Covarianza e correlazione sono anche indicate come $\sigma_{xy}^2$ e $\rho_{xy}$, rispettivamente.
+
+## Campioni
+
+Una popolazioni può essere eccessivamente numerosa per essere analizzata direttamente
+
+Quindi si analizzano dei sottoinsiemi ottenuti per campionatura, cioè estrazione casuale
+
+L'estrazione casuale di un campione **sufficientemente grande** non altera le **proprietà di distribuzione** della popolazione
+
+Da una popolazione di $N$ elementi è possibile estrarre un numero di campioni di dimensione $n$ **differenti** descritto dal **coefficiente binomiale**: $$\binom{N}{n}=\frac{N!}{(N-n)!n!},~N>n$$
+
+## Stimatori
+
+Per ogni proprietà della popolazione è possibile definire uno **stimatore**, o **statistica**, costruito sul campione
+
+Si definiscono **media e varianza campionarie** 
+
+$$
+\begin{eqnarray} \bar x &=& \frac{1}{n}\sum_{i=1}^n x_i\\
+S^2 &=& \frac{\sum_{i=1}^n (x_i - \bar x)^2}{n-1} 
+\end{eqnarray}
+$$
+
+Un particolare valore assunto da uno stimatore è detto **stima**
+
+Al posto della varianza $S^2$ si usa spesso la **deviazione standard** $S$ (stesse unità di misura)
+
+## Stime
+
+Dato che ogni campione è estratto casualmente, **ogni stima è una variabile aleatoria**
+
+Più grande è il campione, più la stima si avvicina alla proprietà corrispondente: si ha **convergenza in distribuzione**
+
+```{r}
+N <- 5000
+n <- c(20, 500)
+mu <- 10
+ns <- 50
+set.seed(123)
+pop <- rnorm(N, mu, 0.1)
+samples <- 1:ns
+m1 <- c()
+m2 <- c()
+for (i in samples) {
+  m1 <- c(m1, mean(sample(pop, n[1])))
+  m2 <- c(m2, mean(sample(pop, n[2])))
+}
+tibble(i=samples, m=m) %>% ggplot() +
+  geom_point(aes(x=i, y=m1, fill="20"), shape=22, size=3) +
+  geom_point(aes(x=i, y=m2, fill="500"), shape=21, size=3) +
+  geom_hline(yintercept=mu) + 
+  labs(x="# campione", y=TeX("$\\bar{x}_i$"), fill="Dimensione campione")
+```
+
+## Valore atteso e varianza della media campionaria
+
+Valore atteso della media: 
+
+$$
+\begin{eqnarray} \mathrm E(\bar x) &=& \mathrm E(\frac{x_1+x_2+\dots+x_n}{n}) = \frac{1}{n}\left[\mathrm E(x_1+x_2+\dots+x_n) \right]\\
+&=& \frac{1}{n}\left[\mathrm E(x_1)+\mathrm E(x_2)+\dots+\mathrm E(x_n) \right] = \frac{1}{n} n\mathrm E(x) \\
+\mathrm E(\bar x)&=& \mu 
+\end{eqnarray}
+$$ 
+
+Varianza della media: 
+
+$$
+\begin{eqnarray} 
+\mathrm V(\bar x) &=& \mathrm V(\frac{x_1+x_2+\dots+x_n}{n}) = \frac{1}{n^2}\left[\mathrm V(x_1+x_2+\dots+x_n) \right]\\
+&=& \frac{1}{n^2}\left[\mathrm V(x_1)+\mathrm V(x_2)+\dots+\mathrm V(x_n) \right] = \frac{n\mathrm V(x)}{n^2} = \frac{\mathrm V(x)}{n} \\
+\mathrm V(\bar x) &=& \frac{\sigma^2}{n}
+\end{eqnarray}
+$$
+
+## Gradi di libertà
+
+I gradi di libertà di una statistica (GdF o *DoF*) sono il numero di elementi **indipendenti** che compaiono nella sua definizione. Dalla definizione della varianza risulta che 
+
+$$
+\sigma^2=E\left(\frac{\sum(x_i - \bar x)^2}{n-1}\right)=E\left(\frac{SS}{\nu}\right) 
+$$ 
+
+Cioè la varianza è il valore atteso della **somma quadratica** (*Sum of Squares*) divisa per il suo numero di gradi di libertà $\nu$, cioè di elementi indipendenti.
+
+Che questi ultimi siano $n-1$ è dimostrato dalla seguente relazione: 
+$$ 
+\sum_{i=1}^n(x_i-\bar x) = \sum_{i=1}^n(x_i)-n\bar x=:0 
+$$ 
+quindi non tutti gli $n$ elementi nella definizione di $SS$ possono essere indipendenti, dato che il valore di uno di essi è prevedibile dai restanti $n-1$ grazie alla definizione di $\bar x$
+
+# Distribuzioni
+
+Valore atteso e varianza non sono le uniche due proprietà di una popolazione.
+
+Due popolazioni possono avere gli stessi parametri valore atteso e varianza ma avere **forme** differenti. La *forma* di una popolazione si chiama **distribuzione**
+
+::: columns
+::: column
+```{r}
+N <- 1000
+k <- 20
+a <- -sqrt(6*k) + k
+b <- sqrt(6*k) + k
+
+tibble(pop1=runif(N, a, b), pop2=rchisq(N, k)) %>%
+  pivot_longer(cols=1:2, names_to="pop", values_to="value") %>% 
+  add_column(i=1:(2*N), .before="pop") %>%
+  arrange(pop) %>%
+  add_column(ig=1:(2*N), .after="i") %>%
+  ggplot() + 
+  geom_point(aes(x=ig, y=value, col=pop, shape=pop)) +
+  labs(x="indice", y="valore", color="popolazione") +
+  scale_shape(name="popolazione") 
+```
+:::
+
+::: column
+-   **pop1** mostra la stessa probabilità tra 9 e 31 circa
+-   [pop2]{.bgreen} mostra maggiore probabilità attorno a 20 che dirada verso l'alto e verso il basso
+:::
+:::
+
+## Distribuzioni
+
+::: columns
+::: column
+Distribuzioni discrete
+
+```{r}
+tibble(q=0:20, p=dgeom(q, 0.1)) %>%
+  ggplot(aes(x=q, y=p)) + 
+  geom_col(width=0.1) +
+  geom_point() +
+  labs(x="x", y="p(x)")
+```
+:::
+
+::: column
+Distribuzioni continue
+
+```{r}
+tibble(x=seq(-3.5,3.5,0.01), p=dnorm(x, 0, 1)) %>%
+  ggplot(aes(x=x, y=p)) +
+  geom_area(fill=gray(0.75)) +
+  geom_step(direction = "mid") +
+  labs(x=TeX("x"), y=TeX("PDF(x)"))
+```
+:::
+:::
+
+# Distribuzioni discrete
+
+## Distribuzione binomiale o di Bernoulli
+
+::: columns
+::: column
+::: panel-tabset
+### Descrizione
+
+Un **processo di Bernoulli** è una serie di $n$ eventi con risultati $z_1, z_2, \dots, z_n$ tali per cui:
+
+-   gli eventi $z_i$ sono tutti *indipendenti*
+-   ogni $z_i$ è rappresentabile con 0 o con 1
+-   la probabilità di successo $p_s\in[0,1]$ di ciascun evento è costante
+
+La distribuzione binomiale descrive la probabilità di ottenere $x\in[0, n]$ successi in $n$ eventi
+
+### Definizioni
+
+-   Si dice che $x\sim\mathrm{Binom}(n,p_s)$ o anche $x\sim\mathcal{B}(n,p_s)$ quando la PDF è: 
+$$
+p(x)=\binom{n}{x}p_s^x(1-p_s)^{n-x},~~~x\in{0,1\dots,n}
+$$
+-   Momenti: 
+$$
+\mu=np_s,~~~\sigma^2=np_s(1-p_s)
+$$
+
+### Esempi
+
+-   probabilità di ottenere 8 volte testa lanciando 10 volte una moneta
+:::
+:::
+
+::: column
+```{r}
+tibble(q=0:20, p=dbinom(q, 20, 0.5)) %>%
+  ggplot(aes(x=q, y=p)) + 
+  geom_col(width=0.1) +
+  geom_point() +
+  labs(x=TeX("x"), y=TeX("p(x)")) + 
+  labs(title="Binom(20, 0.5)")
+```
+:::
+:::
+
+
+## Distribuzione di Poisson
+
+::: columns
+::: column
+::: panel-tabset
+### Descrizione
+
+-   Probabilità di avere un numero $x\in\mathbb{N}^+$ di eventi che si verificano successivamente ed indipendentemente in un dato intervallo di tempo (o spazio...)
+-   Mediamente si verificano $\lambda\in\mathbb{R}^+$ eventi nello stesso intervallo
+-   È nota anche come **legge degli eventi rari**
+
+### Definizioni
+
+-   Si dice che $x\sim\mathrm{Poisson}(\lambda)$ oppure $x\sim\mathcal{P}(\lambda)$ quando la PDF è: 
+$$
+p(x)=\frac{e^{-\lambda}\lambda^x}{x!},~~~\forall x\in\mathbb{N}^+
+$$
+-   Momenti: 
+$$
+\mu=\lambda,~~~\sigma^2=\lambda
+$$
+
+### Esempi
+
+-   probabilità di riscontrare un difetto su 1 m di filo, quando ci sono mediamente 9 difetti ogni 100 m
+-   probabilità di ricevere una telefonata nei prossimi 10' in un centralino che ne riceve mediamente 250 al giorno
+:::
+:::
+
+::: column
+```{r}
+tibble(q=0:20, p=dpois(q, 5)) %>%
+  ggplot(aes(x=q, y=p)) + 
+  geom_col(width=0.1) +
+  geom_point() +
+  labs(x=TeX("x"), y=TeX("p(x)")) + 
+  labs(title="Poisson(5)")
+```
+:::
+:::
+
+## Distribuzione geometrica
+
+::: columns
+::: column
+::: panel-tabset
+### Descrizione
+
+È la distribuzione di probabilità di ottenere in un processo di Bernoulli un successo dopo $x \in \mathbb{N}^+$ fallimenti
+
+### Definizioni
+
+-   Si dice che $x\sim\mathrm{Geom}(p_s)$ oppure $x\sim\mathcal{G}(p_s)$ quando la PDF è: 
+$$
+p(x)=p_s(1-p_s)^{x-1},~~~x \in\mathbb{N}^+
+$$
+-   Momenti: 
+$$
+\mu=(1-p_s)/p_s,~~~\sigma^2=(1-p_s)/p_s^2
+$$
+
+### Esempi
+
+-   La probabilità di ottenere per la prima volta un dato numero dopo $x$ lanci di un dado a sei facce ($p_s=1/6$)
+:::
+:::
+
+::: column
+```{r}
+tibble(q=0:20, p=dgeom(q, 1/6)) %>%
+  ggplot(aes(x=q, y=p)) + 
+  geom_col(width=0.1) +
+  geom_point() +
+  labs(x=TeX("x"), y=TeX("p(x)")) + 
+  labs(title="Geom(1/6)")
+```
+:::
+:::
+
+# Distribuzioni continue
+
+## Distribuzione Uniforme
+
+::: columns
+::: column
+::: panel-tabset
+### Descrizione
+
+-   distribuzione in cui tutti i valori della v.a. hanno la stessa probabilità
+-   può essere sia discreta che continua
+
+### Definizioni
+
+-   Si dice $x\sim\mathcal{U}(a,b)$ quando la PDF è: 
+$$
+f(x)=\begin{cases} 1/(b-a),&x\in[a, b] \\
+0,&\textrm{altrimenti} \end{cases}
+$$
+-   Momenti: 
+$$ 
+\mu=(b+a)/2,~~~\sigma^2=\frac{(b-a)^2}{12}
+$$
+
+### Esempi
+
+-   Il lancio di un dado a 6 facce (discreta)
+-   L'estrazione di un numero della tombola (discreta)
+-   L'angolo di arresto di una ruota in rotazione libera (continua)
+:::
+:::
+
+::: column
+```{r}
+tibble(q=0:20, p=dunif(q, 1, 6)) %>%
+  ggplot(aes(x=q, y=p)) + 
+  geom_col(width=0.1) +
+  geom_point() +
+  labs(x=TeX("x"), y=TeX("p(x)")) + 
+  labs(title="Unif(0,1) Discreta")
+```
+:::
+:::
+
+## Distribuzione normale o gaussiana
+
+::: columns
+::: column
+::: panel-tabset
+### Descrizione
+
+-   Rappresenta il caso in cui la probabilità di riscontrare valori via via più lontani dal valore atteso decresce asintoticamente a 0
+-   La probabilità di un qualsiasi valore **non è mai nulla**
+
+### Definizioni
+
+-   Si dice che $x\sim\mathrm{Norm}(\mu,\sigma^2)$ oppure $x\sim\mathcal{N}(\mu,\sigma^2)$ quando la PDF è: 
+$$
+    f(x) =\frac{1}{\sigma \sqrt{2 \pi}}e^{-\frac{1}{2}\left[\frac{x-\mu}{\sigma}\right]^2}
+$$
+
+-   Momenti: coincidono con i due parametri $\mu$ e $\sigma^2$
+
+### Nota
+
+Se $x\sim\mathcal{N}(\mu, \sigma^2)$ allora 
+$$
+\frac{x-\mu}{\sigma}\sim\mathcal{N}(0,1)
+$$ 
+e la distribuzione $\mathcal{N}(0,1)$ è detta **normale standard**.
+:::
+:::
+
+::: column
+```{r}
+tibble(q=seq(-3.5,3.5,0.01), p=dnorm(q, 0, 1)) %>%
+  ggplot(aes(x=q, y=p)) +
+  geom_area(fill=gray(0.75)) +
+  geom_step(direction = "mid") +
+  labs(x=TeX("x"), y=TeX("f(x)")) +
+  labs(title="Norm(0,1)")
+```
+:::
+:::
+
+::: aside
+È una distribuzione che gioca un ruolo centrale, in virtù del **teorema del limite centrale**
+:::
+
+## Teorema del limite centrale (enunciato)
+
+Se $x_1, x_2, \dots,x_n$ sono $n$ variabili aleatorie **indipendenti e identicamente distribuite** (IID) con $E(x_i)=\mu$ e $V(x_i)=\sigma^2~~\forall i=1,2,\dots,n$ (entrambi finiti), e $y=x_1+x_2+\dots+x_n$, allora: 
+$$
+z_n=\frac{y-n\mu}{\sqrt{n\sigma^2}}
+$$ 
+approssima una distribuzione $\mathcal{N}(0,1)$, nel senso che se $F_n(z)$ è la funzione di distribuzione di $z_n$ e $\Phi(z)$ è la funzione di distribuzione di $\mathcal{N}(0,1)$, allora: 
+$$
+\lim_{n\rightarrow+\infty}\frac{F_n(z)}{\Phi(z)}=1
+$$
+
+## Teorema del limite centrale (significato)
+
+-   Fondamentale nel **campo delle misure**:
+    -   una misura è somma di una serie di eventi
+    -   ogni evento può avere una distribuzione ignota
+    -   sommando molte distribuzioni il risultato converge alla normale
+    -   quindi il risultato di una misura è **spesso** normale
+-   La convergenza è spesso molto rapida (una decina di elementi)
+-   **Nota**: sommando o moltiplicando una distribuzione per una costante cambiano i suoi momenti ma la distribuzione rimane la stessa. Invece, operazioni tra v.a. **cambiano la distribuzione risultante!**
+
+## Distribuzione Chi-quadro
+
+::: columns
+::: column
+::: panel-tabset
+### Descrizione
+
+-   È la distribuzione di una somma di distribuzioni **normali standard**
+-   Cioè, sia $x = z_1^2+z_2^2+\dots+z_k^2$, con $z_i\sim\mathcal{N}(0,1)~~\forall i=1, 2, \dots,k$, allora la distribuzione di $x$ è una Chi-quadro
+-   Il numero di normali sommate $k$ è il **numero di gradi di libertà** della distribuzione
+
+### Definizioni
+
+-   Si dice che $x\sim\chi^2_k$ quando la PDF è: 
+$$
+    f(x)=\frac{1}{2^{k/2}\Gamma(k/2)}x^{k/2-1}e^{-y/2}
+$$
+-   Momenti: 
+$$
+    \mu=k,~~~\sigma^2=2k
+$$
+
+### Nota
+
+Considerando la somma quadratica di un campione di $k$ elementi $y_i$, ciascuno proveniente da una distribuzione $\mathcal{N}(\mu, \sigma^2)$, risulta che: 
+$$
+\frac{(y_i-\bar y)}{\sigma}\sim \mathcal{N}(0,1)~~\forall i=1,2,\dots,k
+$$ 
+e quindi: 
+$$
+\frac{\mathit{SS}}{\sigma^2}=\frac{\sum_{i=1}^k(y_i-\bar y)^2}{\sigma^2} \sim \mathcal{X}^2_{k-1}
+$$
+:::
+:::
+
+::: column
+```{r}
+tibble(q=seq(-0,40,0.1), p=dchisq(q, 10)) %>%
+  ggplot(aes(x=q, y=p)) +
+  geom_area(fill=gray(0.75)) +
+  geom_line() +
+  labs(x=TeX("x"), y=TeX("f(x)")) + 
+  labs(title=TeX("$\\chi^2_{10}$"))
+```
+:::
+:::
+
+## Distribuzione T di Student
+
+::: columns
+::: column
+::: panel-tabset
+### Descrizione
+
+Siano due v.a. $$
+z\sim\mathcal{N}(0,1),~x\sim\mathcal{X}^2_k
+$$ allora la loro combinazione $$
+x=\frac{z}{\sqrt{x/k}}
+$$ è distribuita come una T di Student
+
+### Definizioni
+
+-   Si dice che $x\sim\mathrm{T}_k$ oppure $x\sim\mathcal{T}_k$ quando la PDF è: 
+$$
+f(x)=\frac{\Gamma\left((k-1)/2\right)}{\sqrt{k\pi}\Gamma(k/2)}\frac{1}{((x^2/k)+1)^{(k+1)/2}}
+$$
+
+-   Momenti: 
+$$
+\mu = 0,~~~ \sigma^2=k/(k-2)
+$$
+
+### Nota
+
+La T di Student è un caso particolare della $\mathcal{N}(0,1)$: $$
+\lim_{k\rightarrow+\infty}t_k=\mathcal{N}(0,1)
+$$ La convergenza è **molto rapida**: già per $k>30$ la differenza tra le due funzioni di distribuzione diventa trascurabile
+:::
+:::
+
+::: column
+```{r}
+tibble(q=seq(-3.5,3.5,0.1), p=dt(q, 3), n=dnorm(q, 0, 1)) %>%
+  ggplot(aes(x=q, y=p)) +
+  geom_area(fill=gray(0.75)) +
+  geom_line() +
+  geom_line(aes(x=q, y=n),lty=2) +
+  labs(x=TeX("x"), y=TeX("f(x)")) + 
+  labs(title=TeX("$T_3$"))
+```
+:::
+:::
+
+::: aside
+La figura confronta la T di Student con la normale standard (tratteggiata)
+:::
+
+## Distribuzione F di Snedecor
+
+::: columns
+::: column
+::: panel-tabset
+### Descrizione
+
+Siano due v.a. $$
+x_u\sim\mathcal{X}^2_u,~~~x_v\sim\mathcal{X}^2_v
+$$ e si definisce $x$ come: $$x=\frac{x_u/u}{x_v/v}$$ allora $x$ è una v.a. distribuita come una F di Snedecor
+
+### Definizioni
+
+-   Si dice che $x\sim\mathrm{F}_{u,v}$ oppure $x\sim\mathcal{F}_{u,v}$ quando la PDF è: 
+$$
+f(x)=\frac{\Gamma\left(\frac{u+v}{2}\right)\left(\frac{u}{v}\right)^{u/2}x^{(u/2)-1}}{\Gamma\left( \frac{u}{2} \right)\Gamma\left( \frac{v}{2} \right) \left(\frac{u}{v}x+1\right)^{(u+v)/2}}
+$$
+
+-   Momenti: 
+$$
+\mu = \frac{v}{v-2},~~~\sigma^2=\frac{2v^2(u+v-2)}{u(v-2)^2(v-4)}
+$$
+:::
+:::
+
+::: column
+```{r}
+tibble(q=seq(0,5,0.01), p=df(q, 10,10)) %>%
+  ggplot(aes(x=q, y=p)) +
+  geom_area(fill=gray(0.75)) +
+  geom_line() +
+  labs(x=TeX("x"), y=TeX("f(x)")) + 
+  labs(title=TeX("$F_{10,10}$"))
+```
+:::
+:::
+
+## Funzioni di distribuzione
+
+::: columns
+::: column
+Una distribuzione è descritta da tre funzioni, tra loro correlate:
+
+-   **funzione di densità di distribuzione**, PDF
+-   **funzione di distribuzione cumulata**, CDF, è l'integrale progressivo della PDF: $$
+    \begin{array}{rcl}
+    \mathrm{CDF}^-(x) &=& \int_{-\infty}^x \mathrm{PDF}(x)~\mathrm{d}x \\
+    \mathrm{CDF}^+(x) &=& \int^{+\infty}_x \mathrm{PDF}(x)~\mathrm{d}x
+    \end{array}
+    $$
+-   **funzione quantile**, è l'inversa della CDF; è definita solo in $[0,1]$
+:::
+
+::: column
+::: panel-tabset
+### PDF
+
+```{r}
+ggplot() +
+  geom_function(fun=dnorm, args=list(mean=0, sd=1), xlim=c(-3,3)) +
+  labs(x=TeX("x"), y=TeX("PDF(x)")) +
+  labs(title="Norm(0,1)")
+```
+
+### CDF
+
+```{r}
+ggplot() +
+  geom_function(aes(color="bassa"), fun=pnorm, args=list(mean=0, sd=1), xlim=c(-3,3)) +
+  geom_function(aes(color="alta"), fun=pnorm, args=list(mean=0, sd=1, lower.tail=F), xlim=c(-3,3)) +
+  labs(x=TeX("x"), y=TeX("CDF(x)"), color="coda:") +
+  labs(title="Norm(0,1)")
+```
+
+### Quantile
+
+```{r}
+ggplot() +
+  geom_function(aes(color="alta"), fun=qnorm, args=list(mean=0, sd=1), xlim=c(0,1), n=1001) +
+  geom_function(aes(color="bassa"), fun=qnorm, args=list(mean=0, sd=1, lower.tail=F), xlim=c(0,1), n=1001) +
+  labs(x=TeX("x"), y=TeX("CDF(x)"), color="coda:") +
+  labs(title="Norm(0,1)")
+```
+:::
+:::
+:::
+
+# Statistica inferenziale
+
+Studia le operazioni di **inferenza**, cioè ricavare informazioni sulla popolazione a partire da un suo campione
+
+## Ipotesi statistiche
+
+-   Si è visto che media e varianza campionaria sono due **stimatori** e rappresentano della **variabili aleatorie**
+-   Quindi prelevando due campioni da una popolazione le due **stime** di media e varianza saranno sempre differenti
+-   Come faccio a sapere se due campioni con media diversa provengono dalla stessa popolazione?
+-   Posso formulare una **coppia di ipotesi alternative**: 
+$$
+\begin{eqnarray}
+H_0:~&\mu_1 = \mu_2 \\
+H_1:~&\mu_1 \neq \mu_2 \\
+\end{eqnarray}
+$$
+
+::: aside
+$H_0$ è detta **ipotesi nulla**, o debole; $H_1$ è detta **ipotesi alternativa**, o forte
+:::
+
+## Matrice di confusione
+
+::: columns
+::: column
+Un **test di ipotesi** può avere due tipi di errore:
+
+-   Errore di tipo I: falso positivo, o falso allarme
+-   Errore di tipo II: falso negativo, o mancato allarme
+
+Lo scopo della statistica inferenziale è associare una probabilità a questi errori
+:::
+
+::: column
+```{r}
+tribble(
+  ~"Ipotesi nulla", ~vera, ~falsa,
+  "accettata", "OK", "Errore tipo II",
+  "rifiutata", "Errore tipo I", "OK"
+) %>%
+  knitr::kable()
+```
+:::
+:::
+
+La probabilità di un Errore di tipo I è $\alpha$, la probabilità di un Errore di tipo II è $\beta$.
+
+Il valore $1-\beta$ è la **potenza** $P$ del test
+
+::: aside
+**Nota**: $\alpha \neq 1-\beta$
+:::
+
+## Test di Student
+
+::: columns
+::: {.column width="30%"}
+![William S. Gosset](images/Gosset.jpg){fig-align="center" width="200"}
+:::
+
+::: {.column width="70%"}
+-   **William S. Gosset**, detto *Student*, mastro birraio Guinness a Dublino, \~1900
+-   **Problema**: come capire se due medie diverse su campioni di processo indicano due diversi processi?
+-   Siano i due campioni **normali e indipendenti** $y_{1,i},~i=1, 2, \dots, n_1$ e $y_{2,i},~i=1, 2, \dots, n_2$, sarà ovviamente $\bar{y_1}\neq\bar{y_2}$, quindi come faccio a capire se vale $H_0$ o $H_1$?
+:::
+:::
+
+Ovviamente la risposta è **probabilistica**: posso solo associare una probabilità d'errore $\alpha$ al test di ipotesi 
+$$
+\begin{eqnarray}
+H_0:~&\mu_1 = \mu_2 \\
+H_1:~&\mu_1 \neq \mu_2 \\
+\end{eqnarray}
+$$
+
+## Test di Student
+:::{.columns}
+:::{.column width="50%"}
+* I campioni C1 e C3 non avranno valori comuni: è molto probabile che vengano da popolazioni differenti
+* I campioni C1 e C2 invece sono più difficili da distinguere
+* Intuitivamente, $H_1$ è tanto più probabile quanto più le medie sono distanti e le varianze strette
+
+:::
+
+:::{.column width="50%"}
+```{r}
+set.seed(0)
+mu <-  c(5.1, 5.25, 4.2)
+sd <-  0.1
+N <- 15
+c <- tibble(
+  c1=rnorm(N, mu[1], sd),
+  c2=rnorm(N, mu[2], sd),
+  c3=rnorm(N, mu[3], sd),
+)
+tibble(
+  x=seq(3.5, 6.5, length.out=200), 
+  p1=dnorm(x, mu[1], sd), 
+  p2=dnorm(x, mu[2], sd),
+  p3=dnorm(x, mu[3], sd)) %>%
+ggplot(aes(x=x)) + 
+  geom_line(aes(y=p1, color="C1")) +
+  geom_line(aes(y=p2, color="C2")) +
+  geom_line(aes(y=p3, color="C3")) +
+  geom_rug(aes(x=c1, color="C1"), length=unit(0.05, "npc"), data=c) +
+  geom_rug(aes(x=c2, color="C2"), data=c) +
+  geom_rug(aes(x=c3, color="C3"), data=c) +
+  labs(x="grado alcolico (%)", y="PDF(x)", color="popolazione:")
+```
+:::
+
+:::
+
+:::aside
+Nel grafico, i **trattini verticali in basso** rappresentano i valori di 10 campioni casuali estratti dalle rispettive popolazioni
+:::
+
+
+## Test di Student
+
+Per i due campioni $y_{1,1}$ e $y_{2,i}$ è possibile definire la variabile:
+$$
+t_0 = \frac{\bar{y_2} - \bar{y_1}}{S_p\sqrt{\frac{1}{n_1} + \frac{1}{n_s} }}
+$$
+dove $S_p^2$ è chiamata **varianza comune** (*pooled variance*) e vale:
+$$
+S_p^2 = \frac{(n_1-1)S_1^2 + (n_2-1)S_2^2}{n_1+n_2-2}
+$$
+La $t_0$ è il rapporto tra una v.a. normale al numeratore e una v.a. $\chi^2$ al denominatore. Di conseguenza è essa stessa una v.a. ed è definita come una T di Student.
+
+* Il **numero di gradi di libertà** è lo stesso della $\chi^2$ ed è $n_1+n_2-2$
+
+* $t_0$ è detta **statistica di test** e vale che $t_0\sim t_{n_1+n_2-2}$
+
+## Test di Student
+
+* È evidente che casi come **C1 vs. C3** nel grafico precedente avranno un valore di $|t_0|$ più alto che casi come **C1 vs. C2** (rapporto tra distanza e varianza)
+
+* Ma data una coppia di campioni provenienti dalla stessa popolazione la probabilità di valori elevati di $|t_0|$ è molto bassa
+
+* Dato che conosciamo la **distribuzione** di $t_0$ possiamo quindi calcolare la probabilità di riscontrare un dato valore **assumendo che valga $H_1$**
+
+* In altre parole, la probabilità di rifiutare $H_0$ quando essa è vera è pari alla probabilità di riscontrare un valore pari o superiore a $t_0$ nella distribuzione di Student
+
+* In realtà, il segno di $t_0$ è arbitrario, quindi bisogna verificare la probabilità di riscontrare un valore **esterno all'intervallo $[-|t_0|, |t_0|]$**
+
+## Test di Student
+In definitiva, la probabilità di un errore di tipo I nel test di Student risulta:
+$$
+p\mathrm{-value} = 2\mathrm{CDF}^+_t(|t_0|,n_1+n_2-2)
+$$
+dove $\mathrm{CDF}^{+}_{t}$ è la **distribuzione cumulata, coda alta**, di una T di Student con $n_1+n_2-2$ g.d.l, e dove il fattore 2 tiene in considerazione l'ultimo punto della pagina precedente
+
+La probabilità d'errore di un qualunque test statistico è chiamata ***p*-value**
+
+* Più piccolo è il *p*-value, più siamo spinti a rifiutare $H_0$
+* Tipicamente, si tende a rifiutare $H_0$ quando il *p*-value diventa minore del 5%
+
+## Test di Student
+Spesso nei test statistici si accetta o rifiuta $H_0$ sulla base di una soglia di probabilità d'errore di tipo I, indicata con $\alpha$
+
+1. Si fissa un $\alpha$ a priori in funzione del **rischio associato** al test
+1. Si calcola il valore di $t_{0,\mathrm{max}}$ che corrisponde a $\alpha$
+1. Se risulta $|t_0| \geq t_{0,\mathrm{max}}$ **si rifiuta $H_0$** con una probabilità d'errore **minore di $\alpha$**
+
+Il valore di soglia si calcola mediante la **funzione quantile** e si rifiuta $H_0$ quando:
+$$
+|t_0| \geq t_{0,\mathrm{max}} = t_{\alpha/2, n_1+n_2-2}
+$$
+dove $t_{\alpha/2, n_1+n_2-2}$ è appunto la funzione quantile, coda alta, della T di Student valutata per la probabilità $\alpha/2$ e per $n_1+n_2-2$ g.d.l.
+
+## Test di Student
+```{r}
+N <- 15
+a <- 0.1
+t0 <- qt(a/2, N, lower.tail=F)
+df <- tibble(
+  x=seq(-4,4,length.out=101),
+  d=dt(x, N),
+  p=pt(x, N, lower.tail=F)
+) 
+df %>%
+ggplot(aes(x=x)) +
+  geom_hline(yintercept=a/2, color=gray(1/3), lty=2) + 
+  geom_vline(xintercept=t0, color=gray(1/3), lty=2) +
+  geom_area(aes(y=d), data=filter(df, x > t0), fill=gray(2/3), alpha=0.5) +
+  geom_area(aes(y=d), data=filter(df, x < -t0), fill=gray(2/3), alpha=0.5) +
+  geom_line(aes(y=d, color="PDF")) +
+  geom_line(aes(y=p, color="CDF+")) +
+  geom_label(aes(x=t0, y=0.5), label=TeX("$t_0$")) +
+  geom_label(aes(x=0, y=a/2), label=TeX("$\\alpha/2$")) +
+  labs(x="t", y="p", color="curva:")
+
+```
+
+## Tabella dei quantili {.smaller}
+In assenza dei calcolatori, il Test di Student veniva effettuato predeterminando $\alpha$ e decidendo se rifiutare $H_0$ sulla base della **tabella dei quantili**:
+
+:::{style="margin-top: 50px; margin-bottom: 50px;"}
+```{r}
+N <- 30
+df <- tibble(dof=1:N)
+for (i in c(0.1, 0.05, 0.025, 0.01, 0.005, 0.0025, 0.001)) {
+  df[,as.character(i)] <- qt(i, df$dof, lower.tail=F)
+}
+knitr::kable(head(df, n=10), digits=3)
+```
+:::
+Ad esempio, per un campione con 8 g.d.l. e $\alpha=10%$ risulta un valore critico di $t_0=`r round(qt(0.05, 8, lower.tail=F), 3)`$: ogni valore di $t_0$ calcolato superiore a tale valore (in modulo) comporta il rifiuto di $H_0$ con una probabilità d'errore inferiore al 10%
+
+
+## Varianti del test di Student
+Il test di Student sopra visto vale per il caso più generico. Esistono varianti del test per le seguenti condizioni, che possono combinarsi per dare luogo a 4 diversi test:
+
+* test a uno o due campioni
+* test a uno o due lati (in $H_1$ la disuguaglianza è sostituita con un $>$ o un $<$)
+
+Inoltre, nel caso di test a due campioni è possibile assumere che i campioni siano **omoschedastici** oppure no
+
+:::aside
+Due campioni sono detti **omoschedastici** quando provengono da popolazioni con **identica varianza**
+:::
+
+## Varianti del test di Student
+
+:::{.columns}
+:::{.column}
+* Test a un campione:
+$$
+\begin{eqnarray}
+H_0:~& \mu = \mu_0 \\
+H_1:~& \mu \neq \mu_0
+\end{eqnarray}
+$$
+$$
+t_0 = \frac{\mu_0 - \bar y}{S/\sqrt{n}}
+$$
+:::
+
+:::{.column}
+* Test a un lato:
+$$
+\begin{eqnarray}
+H_0:~& \mu_1 = \mu_2 \\
+H_1:~& \mu_1 \gtrless \mu_2
+\end{eqnarray}
+$$
+$$
+\begin{eqnarray}
+t_0 &\gtrless& \pm t_{\alpha, k} \\
+p\mathrm{-value} &=& CDF_t^{\pm}(t_0, k)
+\end{eqnarray}
+$$
+
+:::
+
+:::
+
+**Nota**: il test a un lato, a pari valore di $t_0$, ha una soglia di rifiuto di $H_0$ più bassa, ed è quindi **più potente**
+
+## Omoschedasticità
+Il test a due campioni sopra visto assume che i due campioni siano **omoschedastici**. Se non lo sono, è necessario rivedere la definizione di $t_0$ come segue (**Test di Welch**):
+$$
+t_0 = \frac{\bar{y_1} - \bar{y_2}}{\sqrt{S_1^2/n_1 + S_2^2/n_2}};~~~\nu=\frac{(S_1^2/n_1 + S_2^2/n_2)^2}{\frac{(S_1^2/n_1)^2}{n_1-1}+\frac{(S_2^2/n_2)^2}{n_2-1}}
+$$
+L'ipotesi di omoschedasticità va preliminarmente verificata con un **test della varianza**:
+$$
+\begin{eqnarray}
+H_0 :~& \sigma^2_1 = \sigma^2_2 \\
+H_1 :~& \sigma^2_1 \neq \sigma^2_2
+\end{eqnarray},~~~F_0=\frac{S_1}{S_2}\sim\mathcal{F}_{n_1-1, n_2-1}
+$$
+Cioè se il *p*-value associato a $F_0$ è piccolo, si assume che i campioni non siano omoschedastici e quindi si effettua il test di Welch; altrimenti vale il test di Student
+
+
+## Il test di Student accoppiato
+Nel caso di test di Student a due campioni, quando essi **hanno la stessa dimensione e sono raccolti due a due in condizioni molto simili**, è opportuno accoppiarli e effettuare il test di Student accoppiato
+
+Ogni misura è esprimibile come:
+$$
+y_{ij}=\mu_i+\beta_j+\varepsilon_{ij};\hspace{9pt} \left\{ \begin{array}{l}i=1,2\\j=1,2,\dots ,n\end{array} \right.
+$$
+Se definisco $d_j=y_{1j} - y_{2j}$, ricordando le proprietà dell'operatore $E(\cdot)$, risulta $\mu_d = \mu_1 - \mu_2$. Quindi posso riformulare una coppia di ipotesi equivalenti:
+$$
+\begin{eqnarray}
+H_0 :~& \mu_d = 0 \\
+H_1 :~& \mu_d \neq 0
+\end{eqnarray}
+$$
+Quindi il test accoppiato è un test a un campione, con il vantaggio che **gli effetti casuali tra coppie di osservazioni non influiscono sul risultato del test**
+
+
+## L'intervallo di confidenza
+Dato parametro ignoto $\vartheta$, vogliamo definire due statistiche $L$ e $U$, tali per cui la probabilità: $P(L\leq\vartheta\leq U)= 1-\alpha$. 
+In questo caso l'intervallo $[L,U]$ è detto **intervallo di confidenza** per il parametro $\vartheta$.
+
+Consideriamo un T-test ad un campione. Sappiamo che:
+$$
+t_0=\frac{\bar x - \mu}{S/\sqrt{n}}\sim t_{n-1}
+$$
+Se $c$ è $t_{\alpha/2, n-1}$, allora, per definizione: $P(-c\leq t_0\leq c) = 1-\alpha$
+
+Sostituendo $t_0$ otteniamo:
+$$
+P(\bar x - cS/\sqrt{n} \leq \mu \leq \bar x + cS/\sqrt{n}) = 1-\alpha
+$$
+
+## Intervallo di confidenza
+
+In pratica, significa che il valore atteso della popolazione (che è ignoto!) ha la probabilità $1-\alpha$ di ricadere nell'**intervallo $[\bar x - cS/\sqrt{n}, \bar x + cS/\sqrt{n}]$, detto di confidenza** 
+
+Se il $\mu_0$ del corrispondente test sta al di fuori dell'intervallo di confidenza, allora possiamo rifiutare $H_0$ con un errore inferiore a $\alpha$.
+
+Per un **test a due campioni** risulta:
+$$
+P\left( -t_{\alpha/2,n_1+n_2-2}\leqslant\frac{(\bar y_1-\bar y_2)-(\mu_1-\mu_2)}{S_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}\leqslant t_{\alpha/2,n_1+n_2-2} \right)=1-\alpha
+$$
+Quindi l'intervallo di confidenza $[L,U]$ è definito da:
+$$
+\left[(\bar y_1-\bar y_2)-t_{\alpha/2,n_1+n_2-2}S_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}},~
+(\bar y_1-\bar y_2)+t_{\alpha/2,n_1+n_2-2}S_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}~\right]
+$$
+
+
+## Anomalie
+La raccolta dei dati relativi ad un campione può essere **affetta da errori**:
+
+* nell'operazione di misura
+* nell'operazione di trascrittura del dato
+
+Questi errori ovviamente hanno un'elevata probabilità di **non concordare con il resto dei dati**, cioè di essere troppo lontani dalla media in rapporto alla varianza tipica del processo.
+
+Questi errori sono chiamati **anomalie** ed è buona norma identificarli ed eliminarli **immediatamente dopo aver concluso la raccolta dei dati**
+
+:::aside
+In Inglese le anomalie sono note come *outlier*
+:::
+
+## Anomalie: metodo grafico
+Il più comune metodo grafico per individuare le anomalie è il ***box-plot***
+
+```{r}
+set.seed(0)
+tibble(
+  d1=c(rnorm(10, 3, 0.5), 5),
+  d2=c(rnorm(10, 4.8, 0.8), 5)
+) %>%
+  pivot_longer(d1:d2) %>%
+ggplot(aes(x=name, y=value)) +
+  geom_boxplot() +
+  coord_flip() +
+  labs(y="valore", x="campione")
+```
+
+
+## Anomalie: test statistici
+:::{.panel-tabset}
+### Criterio di Chauvenet
+Non è un vero test ma un criterio in base al quale eliminare il punto più lontano dalla media (**uno solo!**)
+
+Dati $\left<x_1, x_2,\dots,x_n\right>$ con **distribuzione normale**, si calcola la massima differenza assoluta $s_0=\underset{i=1,\dots,n}{\max}\left(\frac{|x_i - \bar x|}{S_x}\right)$
+
+Per via della normalità degli $x_i$ è evidente che $|x_i-\bar x|/S_x\sim\mathcal{N}(0,1)$. Possiamo quindi calcolare la probabilità di un valore maggiore o uguale a $s_0$ dalla funzione di ripartizione, coda superiore:
+$$
+P_s=CDF_{\mathcal{N}}^+(s_0)
+$$
+Su $n$ osservazioni normali ci aspettiamo $nP_s$ valori più grandi di $s_0$. Quindi, se risulta $nP_s < 0.5$, mentre noi abbiamo **un** punto sospetto, allora possiamo scartare l'anomalia
+
+
+### Test di Grubb
+Il test di Grubb è un vero e proprio **test statistico**, basato su una coppia di ipotesi ($H_1$ porta allo scarto della sospetta anomalia), su una statistica di test e sul calcolo di un ***p*-value**. 
+
+In breve:
+$$
+\begin{eqnarray}
+G_0 &=& \frac{\underset{i=1,\dots,n}{\max}|y_i-\bar y|}{S_x}\\
+G_0 &>& \frac{n-1}{n}\sqrt{\frac{t^2_{\alpha/(2n),n-2}}{n-2+t^2_{\alpha/(2n),n-2}}} \Rightarrow \neg H_0
+\end{eqnarray}
+$$
+:::
+
+
+## Analisi di normalità
+I test visti fin qui assumono sempre che i campioni su cui si opera **derivino da una distribuzione normale**, per quanto a parametri incogniti
+
+**Prima di effettuare un qualsiasi test**, quindi, è necessario verificare l'ipotesi di normalità
+
+Come per l'analisi delle anomalie, anche in questo caso è possibile utilizzare sia metodi grafici che test statistici
+
+In generale, i test statistici sono sempre preferibili, perché 
+
+* sono meno soggetti a interpretazione personale
+* consentono l'**automazione** della scelta all'interno di **algoritmi**
+
+
+## Analisi di normalità: istogramma
+```{r}
+#| layout-ncol: 2
+set.seed(0)
+N <- 3000
+df <- tibble(
+  c=rnorm(N, 10, 3)
+) 
+df %>% ggplot() +
+  geom_histogram(aes(x=c, y=after_stat(density)), bins=nclass.Sturges(df$c), alpha=0.5, color="black") +
+  geom_function(fun=dnorm, args=list(mean=mean(df$c), sd=sd(df$c))) +
+  labs(x="valore", y="densità di probabilità", title="3000 elementi")
+df[1:100,] %>% ggplot() +
+  geom_histogram(aes(x=c, y=after_stat(density)), bins=nclass.Sturges(1:100), alpha=0.5, color="black") +
+  geom_function(fun=dnorm, args=list(mean=mean(df$c), sd=sd(df$c))) +
+  labs(x="valore", y="densità di probabilità", title="100 elementi")
+  
+```
+Per il numero di canne, o *bin*, si usa la **formula di Sturges**: $K = \lceil\log_2 n \rceil + 1$ o la **formula di Scott**: $K=3.49 s / \sqrt[3]{n}$
+
+
+## Analisi di normalità: grafico quantile-quantile {.smaller}
+```{r}
+#| layout-ncol: 2
+set.seed(0)
+N <- 10
+df <- tibble(
+  i = 1:N,
+  x = sort(rnorm(N)),
+  f = (i-3/8)/(N+1-3/4),
+  q = qnorm(f)
+)
+knitr::kable(df, digits=3)
+x <- qnorm(c(0.25, 0.75))
+y <- as.vector(quantile(df$x, probs = c(0.25, 0.75), names = FALSE, na.rm = TRUE))
+slope <- diff(y)/diff(x)
+int <- y[1] - slope * x[1]
+df %>% ggplot(aes(x=q, y=x)) +
+  geom_point() +
+  geom_abline(slope=slope, intercept=int) +
+  labs(y="quantili reali (x)", x="quantili teorici (q)")
+```
+
+La colonna `x` sono le osservazioni ordinate; la ripartizione dei punti, colonna `f`, è corretta con la **formula di Bloom**: $f=(1-3/8)/(n+1-3/4)$; la colonna `q` rappresenta i quantili normali standard di `f`.
+
+La diagonale sul grafico passa per i due punti del primo e terzo quartile
+
+## Analisi di normalità: grafico quantile-quantile
+```{r}
+set.seed(0)
+N <- 100
+tibble(
+  n=rnorm(N, mean=5),
+  u=runif(N,2,8)
+) %>% ggplot() +
+  geom_qq(aes(sample=n, color="normale")) +
+  geom_qq_line(aes(sample=n, color="normale")) +
+  geom_qq(aes(sample=u, color="uniforme")) +
+  geom_qq_line(aes(sample=u, color="uniforme")) +
+  labs(color="distribuzione:", y="quantili reali", x="quantili teorici")
+```
+
+
+## Analisi di normalità: test del Chi-Quadro
+È un test statistico per verificare l'ipotesi nulla che un dato campione provenga da una data (a scelta!) distribuzione
+
+* Raggruppiamo $\left<x_1, x_2, \dots, x_n\right>$ in $k$ classi, t.c ogni classe abbia almeno 4--5 elementi. La largezza di ciascun intervallo può essere diversa
+
+* Sia $O_i,~i=1,2,\dots,k$ il numero di osservazioni in ogni classe, e $E_i$ il numero di osservazioni attese (*expected*) in ogni classe per la distribuzione ipotizzata
+
+* Le differenze tra $O_i$ e $E_i$ saranno tanti più grandi quanto più varrà $H_1$. Quindi si definisce la statistica di test:
+
+$$
+X_0^2 = \sum_{i=1}^k \frac{(O_i-E_i)^2}{E_i} \sim \chi_{k-p-1}^2
+$$
+dove $p$ è il numero di parametri della distribuzione ipotizzata (2 per la normale)
+
+## Analisi di normalità: test di Shapiro-Wilk
+Tra i test di **normalità** è quello con la **potenza** maggiore per un dato livello di significatività
+
+La statistica di test è basata su una **distribuzione anonima** e nota solo numericamente
+
+Per campioni **sufficientemente grandi**, il test è così potente da evidenziare anche piccole deviazioni dalla normalità, dovute ad esempio a anomalie. In questi casi è opportuno accompagnarlo con un grafico Quantile-Quantile per discriminare questi effetti 
+
+## Verifica di correlazione
+:::{.columns}
+:::{.column}
+* Il T-test vale per campioni **normali e indipendentemente distribuiti** (*IID*)
+* È necessario **verificare questa ipotesi**
+* Se riporto in un grafico i valori dei due campioni nell'ordine in cui sono stati acquisiti posso osservare correlazione (s1 vs. s3) o mancanza di correlazione (s1 vs. s2)
+:::
+
+:::{.column}
+```{r}
+set.seed(0)
+N <- 50
+df <- tibble(s1 = rnorm(N, 3, 1),
+             s2 = rnorm(N, 5, 1),
+             s3 = 2 + s1 + rnorm(N, 0, 0.5))
+df %>% ggplot(aes(x=s1, y=s2)) +
+  geom_point(aes(x=s1, y=s2, color="s2", shape="s2"), size=3) +
+  geom_point(aes(x=s1, y=s3, color="s3", shape="s3"), size=3) +
+  labs(y="s2, s3", color="campione", shape="campione")
+```
+:::
+:::
+È evidente che $\rho_{s_1s_2}$ sarà vicina a 0, mentre $\rho_{s_1s_3}$ sarà vicina a 1
+
+Esiste un **test di correlazione di Pearson** che fornisce un *p*-value associato all'ipotesi alternativa che i due campioni **siano correlati**.
+
+
+
+# Analisi della Varianza
+Il Test di Student considera un unico **fattore** con uno o due livelli.
+
+Cosa succede se abbiamo più di due livelli o più di un fattore?
+
+## Fattori
+
+* Un **fattore** è un parametro che determina il risultato di un processo
+* È possibile avere fattori **quantitativi** o **qualitativi**
+  - Fattori quantitativi assumono livelli rappresentabili da numeri reali
+  - Fattori qualitativi assumono livelli non ordinati e non misurabili
+* I livelli di un fattore sono chiamati **trattamenti**
+* Il valore misurato come uscita del processo è chiamato **resa** (*yield*)
+
+
+##  Esperimenti a un fattore e più livelli
+**Esempio**: resistenza a trazione di un filato in funzione della percentuale di fibre di cotone (fattore quantitativo)
+
+* Ogni trattamento è ripetuto 5 volte
+* Il boxplot è utile come orientamento ma per campioni così piccoli l'indicazione delle anomalie non è affidabile
+
+:::{.columns}
+:::{.column}
+```{r}
+df <- expand.grid(Cotton=seq(15,35,5), Run=1:5) %>% tibble()
+df$Strength <- c(
+  7, 12, 14, 19, 7,
+  7, 17, 18, 25, 10, 
+  15, 12, 18, 22, 11,
+  11, 18, 19, 19, 15,
+  9, 18, 19, 23, 11
+)
+df %>% 
+  select("% Cotone"=Cotton, Run, Strength) %>%
+  pivot_wider(names_from = Run, names_prefix="#", values_from = Strength) %>%
+  knitr::kable()
+```
+:::
+
+:::{.column}
+```{r}
+#| fig-width: 5
+#| fig-height: 3
+df %>% ggplot(aes(x=factor(Cotton), y=Strength)) + 
+  geom_boxplot() + 
+  labs(x="Contenuto in cotone (%)", 
+       y="Resistenza a trazione (N)", title="Boxplot")
+```
+:::
+:::
+
+## Esperimenti a un fattore e più livelli
+La domanda è: i trattamenti producono variazioni di resa **statisticamente significative**?
+
+Ogni singolo valore di resa può essere espresso come (**modello delle medie**):
+$$
+y_{ij}=\mu_i+\varepsilon_{ij},~~\left\{\begin{array}{rcl}
+i &=& 1, 2, \dots, a \\
+j &=& 1, 2, \dots, n
+\end{array}\right.
+$$
+dove $i$ sono i trattamenti, $j$ sono le ripetizioni, $\varepsilon_{ij}$ sono i **residui**, cioè la componente puramente stocastica e a media nulla della variabile aleatoria $y_{ij}$, mentre $\mu_i$ è la componente deterministica
+
+Possiamo separare $\mu_i = \mu + \tau_i$, dove $\tau_i$ è il contributo del trattamento alla media complessiva $\mu$ (**modello degli effetti**):
+$$
+y_{ij}=\mu + \tau_i+\varepsilon_{ij},~~\left\{\begin{array}{rcl}
+i &=& 1, 2, \dots, a \\
+j &=& 1, 2, \dots, n
+\end{array}\right.
+$$
+
+
+## Esperimenti a un fattore e più livelli
+
+* Possiamo sfruttare i modelli precedenti per studiare la **significatività** del fattore
+* Usando il **modello delle medie** abbiamo la coppia di ipotesi:
+
+$$
+\begin{eqnarray}
+H_0&:&~\mu_1=\mu_2=\dots =\mu_a \\
+H_1&:&~\mu_i\neq\mu_j~~~\textrm{per almeno una coppia }(i, j)
+\end{eqnarray}
+$$
+
+* Equivalentemente, usando il **modello degli effetti**:
+
+$$
+\begin{eqnarray}
+H_0&:&~\tau_1=\tau_2=\dots =\tau_a = 0 \\
+H_1&:&~\tau_i\neq0~~~\textrm{per almeno un }i
+\end{eqnarray}
+$$
+
+* Per sciogliere l'ipotesi dobbiamo formulare una **statistica di test appropriata**
+
+
+## Decomposizione della varianza
+**Definizioni**:
+
+* Notazione abbreviata per le somme:
+
+$$
+\begin{eqnarray}
+y_{i.}&=&\sum_{j=1}^n y_{ij},~\bar y_{i.}=y_{i.}/n,~i=1, 2, \dots, a \\
+y_{..}&=&\sum_{i=1}^a\sum_{j=1}^n y_{ij},~\bar y_{..}=y_{..}/N,~N=na
+\end{eqnarray}
+$$
+
+* Introduciamo la **somma quadratica totale corretta**:
+$$
+\begin{equation}
+SS_T=\sum_{i=1}^a\sum_{j=1}^n (y_{ij}-\bar y_{..})^2 = (N-1)V(y_{ij})
+\end{equation}
+$$
+
+
+## Decomposizione della varianza
+
+Considerando che:
+$$
+SS_T=\sum_{i=1}^a\sum_{j=1}^n (y_{ij}-\bar y_{..})^2 = \sum_{i=1}^a\sum_{j=1}^n [(\bar y_{i.}-\bar y_{..})+(y_{ij}-\bar y_{i.})]^2
+$$
+
+ovvero:
+
+$$
+SS_T= n\sum_{i=1}^a(\bar y_{i.}-\bar y_{..})^2 + \sum_{i=1}^a\sum_{j=1}^n (y_{ij}-\bar y_{i.})^2 + 2\sum_{i=1}^a\sum_{j=1}^n(\bar y_{i.}-\bar y_{..})(y_{ij}-\bar y_{i.})
+$$
+
+e siccome $\sum_{j=1}^n (y_{ij}-\bar y_{i.})=y_{i.}-n\bar y_{i.}=0$, ne consegue che la $SS_T$ può essere decomposta come:
+
+$$
+SS_T=\sum_{i=1}^a\sum_{j=1}^n (y_{ij}-\bar y_{..})^2=n\sum_{i=1}^a(\bar y_{i.}-\bar y_{..})^2 + \sum_{i=1}^a\sum_{j=1}^n (y_{ij}-\bar y_{i.})^2=SS_{tr}+SS_E
+$$
+
+
+## Decomposizione della varianza
+Abbiamo decomposto la $SS_T$ (che è parente stretta della varianza) nelle **somme quadratiche medie**:
+
+* $SS_{tr}$, che misura la variabilità tra un trattamento e l'altro
+* $SS_E$, che misura la variabilità all'interno dei trattamenti
+
+Ricordando quanto detto nella definizione della distribuzione $\mathcal{X}^2$:
+
+$$
+\frac{\mathit{SS}}{\sigma^2}=\frac{\sum_{i=1}^n(y_i-\bar y)^2}{\sigma^2} \sim \mathcal{X}^2_{n-1}
+$$ 
+
+risulta che:
+
+$$
+\sum_{i=1}^{a}\sum_{j=1}^{n}\frac{(y_{ij}-\bar y_{..})^2}{\sigma^2} = \frac{SS_T}{\sigma^2} \sim \chi^2_{N-1},~~~\frac{SS_E}{\sigma^2} \sim \chi^2_{N-a},~~~\frac{SS_{tr}}{\sigma^2} \sim \chi^2_{a-1}
+$$
+
+## Decomposizione della varianza
+
+* Il rapporto tra una somma quadratica e il relativo numero di g.d.l. è uguale alla varianza
+* Quindi, **se vale $H_0$** deve essere $E(SS_{tr}/(a-1)) = E(SS_E/(N-a))$, dato che si tratta del valore atteso di diversi campioni tratti dallo stesso gruppo di osservazioni, tutte provenienti dalla stessa popolazione ($H_0$ significa che i trattamenti **non sono significativi**)
+* Ma allora possiamo scrivere:
+
+$$
+F_0 = \frac{SS_{tr}/(a-1)}{SS_E/(N-a)}=\frac{MS_{tr}}{MS_E} \sim F_{a-1,N-a}
+$$
+Dove $MS_\cdot$ sono dette **somme quadratiche medie**
+
+Sulla base dell'ultima equazione possiamo calcolare il *p*-value associato all'ipotesi $H_1$: per valori piccoli possiamo affermare che **almeno un trattamento ha effetto statisticamente significativo**
+
+
+## Teorema di Cochran
+La definizione di $F_0$ presuppone che $MS_{tr}$ e $MS_E$ **siano indipendenti**. Dato che sono il risultato della decomposizione di $$SS_T$$ ciò non è scontato. Vale però il **teorema**:
+
+Siano $Z_i\sim \mathcal{N}(0,1),~i=1,2,\dots,\nu$ **campioni indipendenti**, con
+$\sum_{i=1}^\nu Z_i^2=Q_1+Q_2+\dots+Q_s$
+dove $s\leqslant \nu$ e $Q_i$ ha $\nu_i$ gradi di libertà ($i=1, 2,\dots,s$). 
+
+Allora, $Q_1,Q_2,\dots,Q_s$ sono **variabili casuali indipendenti** distribuite come $\mathcal{X}^2$ con $\nu_1,\nu_2,\dots,\nu_s$ gradi di libertà, se e soltanto se
+$$
+\nu=\nu_1+\nu_2+\dots+\nu_s
+$$
+
+Siccome $(N-a)+(a-1)=(N-1)$, consegue che $SS_{tr}/\sigma^2$ e $SS_E/\sigma^2$ sono variabili casuali indipendenti distribuite come $\mathcal{X}^2_{a-1}$ e $\mathcal{X}^2_{N-a}$, rispettivamente.
+
+## ANOVA (*ANalysis Of VAriance*)
+Tornando all'esempio della resistenza dei filati misti, possiamo applicare la decomposizione della varianza ottenendo:
+
+```{r}
+df <- df %>% mutate(Cotton=factor(Cotton))
+df.lm <- lm(Strength~Cotton, data=df)
+knitr::kable(anova(df.lm))
+```
+La tabella soprastante è detta **tabella ANOVA**
+
+Il *p*-value molto basso ci consente di rifiutare l'ipotesi nulla e affermare che **almeno un trattamento ha effetti statisticamente significativi**
+
+Non sappiamo comunque quanti e quali trattamenti siano significativi. Per studiare questo aspetto si utilizza il **Test di Tukey**
+
+
+## Test di Tukey
+Il test valuta **contemporaneamente** tutte le seguenti coppie di ipotesi:
+$$
+\left.
+\begin{eqnarray}
+H_0&:&~\mu_i=\mu_j \\
+H_1&:&~\mu_i\neq \mu_j
+\end{eqnarray}
+\right\} ~~\forall i\neq j
+$$
+Per ogni coppia $(i,j),~i\neq j$ si ha la statistica di test:
+$$
+q_{0,ij}=\frac{|\bar y_{i.}-\bar y_{j.}|}{S_{p,ij}\sqrt{2/n}}\sim\mathcal{Q}_{a,k}
+$$
+dove $n$ è la dimensione dei campioni, uguale per tutti, $a$ è il numero di trattamenti e $k$ è il numero di gradi di libertà di $MS_E$, cioè $N-a=an-a$.
+
+Per ogni coppia si calcola quindi il *p*-value dalla CDF della **distribuzione dell'intervallo studentizzato** $\mathcal{Q}$ e si calcola l'intervallo di confidenza:
+$$
+\bar y_{i.}-\bar y_{j.}-q_{\alpha,a,N-a}\frac{S_{p,ij}}{\sqrt{n}} \leqslant \mu_i-\mu_j 
+\leqslant \bar y_{i.}-\bar y_{j.}+q_{\alpha,a,N-a}\frac{S_{p,ij}}{\sqrt{n}}
+$$
+
+
+## Test di Tukey
+:::{.columns}
+:::{.column}
+Generalmente, il risultato viene riportato in un grafico come a fianco
+
+Le coppie per cui l'intervallo di confidenza è a cavallo di 0 non hanno differenze significative, e viceversa
+
+**Nota**: compiere altrettanti test di Student separati aumenterebbe la probabilità d'errore complessivo, che risulterebbe dalla combinazione delle probabilità d'errore dei singoli test
+:::
+
+:::{.column}
+```{r}
+GGTukey<-function(Tukey){
+  A<-require("tidyverse")
+  if(A==TRUE){
+    library(tidyverse)
+  } else {
+    install.packages("tidyverse")
+    library(tidyverse)
+  }
+  B<-as.data.frame(Tukey[1])
+  colnames(B)[1:3]<-c("diff", "min", "max")
+  B$id <- row.names(B)
+  
+  D <- B %>% ggplot(aes(x=id)) +
+    geom_point(aes(y=diff)) +
+    geom_errorbar(aes(ymin=min, ymax=max), width=0.2) +
+    geom_hline(yintercept=0, color="red") +
+    coord_flip()
+  return(D)
+}
+tk <- TukeyHSD(aov(Strength~Cotton, data=df))
+GGTukey(tk) +
+  labs(y="Differenza tra le medie", x="Coppia di trattamenti", title="Tukey plot, intervallo di confidenza al 95%")
+```
+:::
+:::
+
+:::aside
+Cosa succede agli intervalli di confidenza passando da un intervallo al 95% ad un intervallo al 99%?
+:::

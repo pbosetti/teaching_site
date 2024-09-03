@@ -1,0 +1,384 @@
+---
+title: "K-Fold Cross Validation"
+subtitle: |
+  Design of Experiments and Statistical Analysis of Experimental Data, 2024 \
+  ![](images/by-nc-sa.png){height=30}
+author: "Paolo Bosetti"
+institute: "Dpt. of Industrial Engineering, University of Trento"
+format: 
+  revealjs:
+    width: 1280
+    height: 700
+    margin: 0.1
+    slide-number: true
+    code-line-numbers: true
+    code-annotations: below
+    preview-links: auto
+    theme: [default, style.scss]
+    chalkboard: true
+    footer: "paolo.bosetti@unitn.it --- [https://paolobosetti.quarto.pub/desaned/](https://paolobosetti.quarto.pub/desaned/)"
+    fig-width: 5
+    fig-height: 4
+    fig-dpi: 150
+execute: 
+  cache: true
+params:
+  debug: false
+---
+
+```{r setup}
+options(width = 60)
+set.seed(0)
+library(latex2exp)
+library(ggpubr)
+library(glue)
+library(tidyverse)
+library(ggfortify)
+library(modelr)
+library(tsbox)
+library(xts)
+library(astsa)
+library(patchwork)
+library(caret)
+theme_set(theme_gray()+theme(legend.position = "bottom"))
+```
+
+
+
+```{r include=params$debug}
+set.seed(0)
+y=c(-3, 5, 11.5, 17, 21, 23, 23, 24, 26, 29.5, 37, 48, 62)
+
+df <- tibble(
+  x=seq(0,100, 2),
+  ytn=splinefun(seq(0, 100, length.out=length(y)), y)(x),
+  yt = ytn + rnorm(length(x), 0, 2)
+) 
+
+df.lm <- lm(yt~poly(x, 3, raw=T), data=df)
+summary(df.lm)
+
+df <- df %>% 
+  add_residuals(df.lm) %>% 
+  add_predictions(df.lm, var="yn") %>% 
+  mutate(y=yn + rnorm(n(), 0, 2))
+```
+
+
+```{r include=params$debug}
+s <- 3
+prop <- 0.5
+set.seed(s)
+df %>% 
+  slice_sample(prop=prop) %>% 
+  ggplot(aes(x=x, y=y)) +
+  geom_line(data=df, aes(y=yn), color=grey(0.8)) + 
+  geom_point()
+
+set.seed(s)
+df %>%
+  slice_sample(prop=prop) %>% 
+  select(x, y) %>% 
+  mutate(y=y %>% round(2)) %>% 
+  write_csv("kfold.csv")
+
+```
+
+# The trouble with over-fitting
+
+
+
+## Loading the data
+
+:::columns
+
+:::column
+We load some data and make a quick plot
+
+* The relationship seems coarsely proportional
+* There seems to be a flex in the middle
+* Let's try first with a linear model with degree 1
+
+
+:::
+:::column
+```{r}
+data <- read_csv("kfold.csv", 
+                 show_col_types = FALSE)
+data %>% ggplot(aes(x=x, y=y)) + geom_point()
+```
+:::
+:::
+
+## Linear model regression
+
+The regression of a linear model is performed with the `lm()` function. It takes two arguments:
+
+* a **formula**, i.e. a description of the regression model
+* a **data table**, containing the data set to use for regression. The columns of the data set must have the same names used for the predictors
+
+The formula is expressed in the **formula notation**, which is a map from an analytical regression model, as $y_i = a + bx_i + cx_i^2 + \varepsilon_i$ to a formula object as `y~x + I(x^2)`
+
+## Linear model regression
+
+To build a formula from a model you typically:
+
+* drop the **grand average** $a$ and the residuals $\varepsilon_i$
+* when you need the power of a term (or any mathematical function applied to a term like a logarithm), you have to **protect it with the identity function** `I()`
+* if you have more than one predictor, you can combine them as:
+  - `y~x1 + x2`, which corresponds to $y_i = a + bx_{1,i} + cx_{2,1} + \varepsilon_i$
+  - `y~x1 + x2 + x1:x2`, which corresponds to $y_i = a + bx_{1,i} + cx_{2,1} + dx_{1,i}x_{2,i} +\varepsilon_i$
+* the notation `y~x1 + x2 + x1:x2` can be abbreviated as `y~x1*x2`
+
+:::aside
+To remove from the model the grand average (called *intercept*), subtract 1: $y_i = bx_i + cx_i^2 + \varepsilon_i$ becomes `y~x + I(x^2) - 1`
+:::
+
+## Linear model regression
+
+So let's build a linear model of degree 1 and plot the data with the regression line:
+
+```{r echo=TRUE}
+#| output-location: column
+data.lm <-lm(y~x - 1, data=data)
+data %>% 
+  add_predictions(data.lm) %>%
+  ggplot(aes(x=x)) +
+  geom_point(aes(y=y)) +
+  geom_line(aes(y=pred))
+```
+
+## Linear model regression
+
+* It is important to look at the residuals. They show a rather **strong pattern**, meaning that the linear relationship is **underfitting** the data
+
+* Thus we need to increase the degree of the fitting polynomial. But **how much so**?
+
+```{r echo=TRUE}
+#| output-location: column
+data %>% 
+  add_residuals(data.lm) %>% 
+  ggplot(aes(x=x, y=resid)) +
+  geom_point()
+```
+
+## Hyper-parameters
+
+The degree of the fitting polynomial is a **hyper-parameter**
+
+* Regression **parameters** are the coefficients of the polynomial, to be calculated typically by minimizing the root mean square of the residuals
+
+* The **degree** of the polynomial is a parameter that defines the **number** of regression parameters, and that  is why it is named a **hyper-parameter**
+
+* Identifying the best hyper-parameter(s) is the aim of **validation** and **cross-validation** strategies
+
+## Multiple regressions
+
+In our case we want to compare polynomial fits up to degree 12
+
+We use `modelr::fit_with()` to automate the building of many models together: The function needs two arguments:
+
+1. the modeling function, typically `lm()`
+2. the results of a call to `formulas()`, which in turn takes a list of formulas to be used 
+
+:::aside
+**NOTE**: The list of formulas needs to have **only right hand side formulas**, being the first the response variable, the others are the model part combining the predictors
+:::
+
+## Multiple regression
+
+Let's see how it works. We first build a list of arguments:
+
+```{r echo=TRUE}
+deg <- 2:12
+args <- list(
+  ~y, ~x,
+  map(deg, ~as.formula(paste0("~poly(x,", ., ")")))
+) %>% 
+  unlist()
+```
+
+Now `args` is a list of formulas like `~y`, `~x`, `~poly(x, 2)`, `~poly(x, 3)`, etc.
+
+:::aside
+**NOTE**: the usage of `unlist()` at the end: the previous command returns a nested list (a list of lists), and `unlist()` flattens it into a simple plain list of formulas.
+:::
+
+## Multiple regression
+
+Now the `formulas()` function wants `n` parameters, each being a formula, while we have a list of formulas. We can solve this problem by using `do.call()` function, which calls a given function passing each element of a list as a separate argument:
+
+```{r echo=TRUE}
+fits <- data %>% fit_with(
+  lm, 
+  .formulas=do.call(formulas, args)
+)
+```
+
+Now `fits` is a list or regression results, with polynomials from degree 1 to 12
+
+
+## Quality of regression
+
+Quality of a regression can be verified with different metrics:
+
+* $R^2=1-\frac{\sum (x_i - \hat x_i)^2}{\sum (x_i - \bar x_i)^2}$
+* $\mathrm{MSE}=\frac{\sum(x_i - \hat x_i)^2}{N}$
+* $\mathrm{RMSE}=\sqrt{\frac{\sum(x_i - \hat x_i)^2}{N}}$
+* $\mathrm{MAE}=\frac{\sum |x_i - \hat x_i|}{N}$
+* $\mathrm{MAPE}=\frac{1}{N}\sum \left|\frac{x_i - \hat x_i}{x_i}\right|$
+
+Typically, the **root means square of error** (RMSE) and the **mean absolute error** (MAE) are the most commonly used metrics
+
+## Quality of regression
+
+Let's see how the RMSE and the $R^2$ metrics change when the polynomial degree increases. To do that we build a table with three columns:
+ 
+1. the degree of the polynomial
+2. the $R^2$ value
+3. the RMSE value
+
+We extract these data from the list of linear models above created, `fits`
+
+For each fitted linear model (an entry in `fits`), the $R^2$ and RMSE can be extracted with the functions `rsquare()` and `rmse()`, respectively
+
+
+## Quality of regression
+
+We use `map_dbl()` to map these functions over the list of polynomial degrees. The resulting table is then used to make a plot:
+
+```{r echo=TRUE}
+#| output-location: slide
+tibble(
+  degree=c(1,deg), # deg starts from 2!
+  rsquare=fits %>% map_dbl(~rsquare(., data)),
+  rmse=fits %>% map_dbl(~rmse(., data))
+) %>% 
+  ggplot(aes(x=degree)) +
+  geom_line(aes(y=rmse), color="blue") +
+  geom_line(aes(y=rsquare*4), color="red") +
+  scale_y_continuous(sec.axis = sec_axis(
+    \(x) scales::rescale(x, from=c(0,4), to=c(0,1)),
+    breaks=seq(0, 1, 0.1),
+    name="R squared"))
+```
+
+The $R^2$ increases pretty quickly and saturates after degree 3. The RMSE decreases sharply and monothonically. It's hard to figure out the point where overfitting starts
+
+# K-fold cross-validation
+
+To avoid overfitting we want to stop increasing the degree when the model **starts loosing generality**.
+
+We monitor generality by training on a subset of data, and estimating the quality indicator on a different subset, **not used for training**. This is called cross-validation
+
+## Intro
+
+To solve the problem we use K-fold cross validation. It is a regression strategy where we split the dataset into $k$ subsets, or *folds*, with roughly the same amount of observations. Then:
+
+- we train the model over all the folds together **except the first fold**, and then we validate the model on the first model, i.e. we calculate one or more metrics on the validation data
+- we repeat the previous step setting aside each fold, one at a time, and using it for validation, while the remaining folds are used for training
+- each fold is used exactly once for validation, exactly $k-1$ times for training
+- we calculate the overall metrics, by calculating the average of the $k$ metrics evaluated for each validation step, or --- equivalently --- by appliying the above reported equations to the whole set of validation values
+
+## In R
+
+In R, we use the `caret` library to simplify this process. The `caret::train()` function performs the folding for a given model: it takes as arguments the model formula, the regression function (in our case `lm()`), the dataset, and a list of parameters that can be created with the supporting `trainControl()` function.
+
+The `trainControl()` function is used to define the details on the cross validation strategy to use. In our case we use the **repeated** K-fold cross validation, named `"repeatedcv"`, which repeates a K-fold a given number of times.
+
+## In R
+
+In fact, the folds are defined by randomly sampling the initial dataset, so that the resulting RMSE (or any other metric) is also a random variable. Repeating the K-fold 100 times makes the whole process more robust:
+
+```{r echo=TRUE}
+ctrl <- trainControl(method = "repeatedcv", number=5, repeats=100)
+model <- train(y~poly(x,8), data=data, method="lm", trControl=ctrl)
+
+model
+```
+
+
+## Evaluate the results
+
+The `model` object contains a field named `model$results` that is a table with all the available performance metrics:
+
+```{r echo=FALSE}
+model$results %>% knitr::kable()
+```
+
+
+Now we want to repeat the K-fold validation over the list of formulas corresponding to the set of polynomials with degrees from 1 to 12. We use again the `map()` function:
+
+
+```{r warning=FALSE, echo=TRUE}
+fit_quality <- tibble(
+  degree=c(1,deg),
+  results=map(degree, function(n) {
+    fm <- paste0("y~poly(x,", n, ")") %>% as.formula()
+    train(fm, data=data, method="lm", trControl=ctrl)$results
+    })
+) %>% 
+  unnest(cols=results)
+```
+
+:::smaller
+Note the `unnest()` function at the end: the model field `$results` is actualy a table, so without that function in `fit_quality` we would get a column `results` that contains a list of tables. The `unnest()` function flattens this list of tables in place.
+:::
+
+## Evaluate the results
+
+Now we can finally make a plot of the metrics as a function of the polynomial degree:
+
+```{r echo=TRUE}
+#| output-location: column
+fit_quality %>% 
+  select(-intercept, -starts_with("Rsquared")) %>% 
+  pivot_longer(-degree, names_to = "metric") %>% 
+  ggplot(aes(x=degree, y=value, group=metric, color=metric)) + 
+  geom_line() +
+  geom_point() +
+  scale_y_log10() +
+  scale_x_continuous(breaks=c(1,deg))
+```
+
+
+## Regression
+
+:::columns
+:::column
+From the previous plot we observe that the minima of any metric happens at degree 3:
+
+* below that value we have underfitting
+* above we have overfitting (i.e. the model is loosing generality)
+
+So we can finally accept the model $y_i=a + bx_i + cx_i^2 + dx_i^3 + \varepsilon_i$ (a degree 3 polynomial in $x_i$):
+:::
+:::column
+
+:::panel-tabset
+### Regression
+```{r}
+data.lm <- lm(y~poly(x, 3), data=data)
+
+data %>% 
+  add_predictions(data.lm) %>% 
+  ggplot(aes(x=x, y=y)) +
+  geom_point() +
+  geom_line(aes(y=pred)) +
+  geom_smooth(method="lm", formula=y~poly(x, 3))
+```
+
+### Residuals
+```{r}
+data %>% 
+  add_residuals(data.lm) %>% 
+  ggplot(aes(x=x, y=resid)) +
+  geom_point()
+```
+:::
+:::
+:::
+
+:::aside
+**NOTE**: The regression plot also includes 95% confidence intervals
+:::

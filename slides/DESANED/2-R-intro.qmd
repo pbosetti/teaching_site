@@ -1,0 +1,578 @@
+---
+title: "Introduction to R language"
+subtitle: |
+  Design of Experiments and Statistical Analysis of Experimental Data, 2024 \
+  ![](images/by-nc-sa.png){height=30}
+author: "Paolo Bosetti"
+institute: "University of Trento, Department of Industrial Engineering"
+format: 
+  revealjs:
+    width: 1280
+    height: 700
+    margin: 0.1
+    slide-number: true
+    code-line-numbers: true
+    code-annotations: below
+    preview-links: auto
+    theme: [default, style.scss]
+    chalkboard: true
+    footer: "paolo.bosetti@unitn.it --- [https://paolobosetti.quarto.pub/desaned/](https://paolobosetti.quarto.pub/desaned/)"
+    fig-width: 5
+    fig-height: 4
+    fig-dpi: 300
+    touch: true
+    email-obfuscation: javascript
+    pdf-separate-fragments: true
+    link-external-icon: true
+
+---
+
+```{r}
+options(width = 60)
+set.seed(0)
+```
+
+
+# Introduction to R language
+Statistical analysis requires the use of specific software
+
+Today the two most used software/languages in this field are Python and R, followed by Matlab
+
+We will use R because it is specific for statistics, graphics-oriented and open source
+
+
+## Useful links
+* GNU-R: [https://cran.mirror.garr.it/CRAN/](https://cran.mirror.garr.it/CRAN/)
+* RStudio: [https://posit.co/downloads/](https://posit.co/downloads/)
+* Cheat sheet: [https://posit.co/resources/cheatsheets/](https://posit.co/resources/cheatsheets/)
+* Tidyverse: [https://tidyverse.org](https://tidyverse.org)
+
+
+## RStudio environment
+* Installation: [first R](http://www.r-project.org), [then RStudio](https://posit.co/downloads/)
+* RStudio works on folders or (better) **projects** (`.Rproj`)
+* A project also contains settings that are specific and common to files in the folder
+* An RStudio **session** can operate on a single project
+* Multiple sessions can be opened at the same time
+* RStudio is a very powerful and complex environment, also suitable for compiling technical *reports*, articles, books and presentations (like this one)
+
+## The R language
+* R is a high-level, declarative, interpreted language with C-like syntax
+* R is both a language and an interpreter
+* R is a *dynamically typed language*
+* R is used in both **script mode** and **interactive mode**
+* R began as an open source GNU version of S, a proprietary language for statistical analysis
+* RStudio is a proprietary (but free) IDE for R
+
+## Assignments
+Every language uses **variables** to store values and objects through an **assignment** operation:
+
+```r
+a <- 1
+# but also
+b = 2
+# however arrow notation is preferred,
+# because it also works like this:
+3 -> c
+# to display the value of a variable:
+c
+# in one fell swoop, assignment and display:
+(d <- "string")
+```
+Executing a command directly provides a result:
+```{r echo=T}
+12*12
+```
+
+:::aside
+Note the text `[1]` at the beginning of the output line --- it will be clear later
+:::
+
+
+
+## Types, or native classes
+* R has 6+1 native types or *classes*
+   * character: `"a"`, `"string"`, `'my text'`
+   * numeric: `1`, `3.1415`
+   * integer: `1L`
+   * logical: `TRUE`, `FALSE` (or `T` and `F`)
+   * complex: `1+4i`
+   * function: a *function*
+   * (raw: bit sequence)
+* Each instance is intrinsically a vector
+* A scalar is simply a vector of length 1
+
+## Special values
+* The following special values are defined:
+   * `NA`: missing value
+   * `NULL`: nothing
+   * `Inf`: Infinite
+   * `NaN`: Not a Number (example `0/0`)
+  
+## Coercion
+* When mixing different types, e.g. into a vector, R transforms them into a common type:
+```{r echo=TRUE}
+c(1L, 7, "2")
+c(T, 0)
+as.numeric(c("a", "1"))
+as.character(c(1, 1.7))
+```
+  
+## Vectors
+```r
+# They are constructed with the c() operator/function:
+v1 <- c(10, 2, 7.5, 3)
+# or with a sequence:
+v2 <- 1:10
+# also with specified pitch:
+v3 <- seq(1, 10, 0.5)
+# Functions are called with parentheses,
+# separating arguments with ,
+```
+```{r}
+v1 <- c(10, 2, 7.5, 3)
+v2 <- 1:10
+v3 <- seq(1, 10, 0.5)
+```
+
+Note the output for `v3` in this case:
+```{r}
+(v3 <- seq(1, 10, 0.5))
+```
+The first element of the first row is the `[1]` element of the vector, while the first element of the second row is the `[12]` element. In all, the vector `v3` has `r length(v3)` elements
+
+## Vectors
+Variables are natively vectors. Scalars are just vectors of dimension 1:
+```{r echo=T}
+a <- 10
+length(a)
+length(v3)
+```
+
+Functions therefore always act on vectors:
+```{r echo=T}
+a * 2
+v3 + 2
+```
+
+## Introspection
+* Useful functions for inspecting objects:
+   * `mode()`: *storage mode*
+   * `class()`: class (high level, same as `mode()` for basic types)
+   * `typeof()`: type (low level)
+   * `length()`: vector length
+   * `attributes()`: metadata
+  
+## Matrices
+* They are constructed with the `matrix()` function
+```r
+(m1 <- matrix(1:10, 2, 5))
+```
+* the `array()` function constructs *n*-dimensional arrays
+* A matrix is a vector with `dim` attribute:
+```r
+attr(m1, "dim")
+v <- 1:4
+attr(v, "dim") <- c(2,2) # is equivalent to dim(m) <- c(2,2)
+v
+```
+```{r}
+m1 <- matrix(1:10, 2, 5)
+```
+
+
+## Factors
+* An additional (non-base) but very common class is `factor`
+* Represents categorical variables (ordered or unordered)
+```{r echo=T}
+(vf <- factor(LETTERS[1:5], levels=LETTERS[c(2, 1, 3, 5, 4)], ordered=T))
+class(vf)
+typeof(vf)
+vf[1] < vf[3]
+```
+
+## Strings
+A string can be thought of as an array of characters with a length greater than 1.
+
+The most common string manipulation functions are `cat()`, `paste()`, and `paste0()`. The first is used to print the string as it is:
+```{r echo=T}
+cat("Hello!")
+```
+The two functions `paste()` and `paste0()` are used to join two or more strings, the first inserting a space in between, the second without space:
+
+```{r echo=T}
+paste("Hello,", "World!")
+paste0("Hello,", "World!")
+```
+
+
+
+## Indexing
+* R's indexing syntax is very flexible and powerful
+* as for vectors, square brackets `[r,c]` are used, the **base is 1**
+* if an index is missing, it means "all rows|columns"
+
+```{r echo=T}
+v3[3]
+m1[1,1]
+m1[2,]
+m1[,]
+```
+
+## Indexing
+* An index can also be a vector of positions or a vector of Boolean values
+
+```{r echo=T}
+v1[c(2,4,1)] # extracts only elements 2, 4, and 1
+v2[v2 %% 2 == 0] # extract elements divisible by 2
+```
+
+The second case works thanks to the **modulus operator**:
+
+```{r echo=T}
+v2 %% 2 == 0 # modulus operator (remainder)
+```
+
+:::aside
+**Note**: `TRUE` and `FALSE` can be abbreviated to `T` and `F`
+:::
+
+## Functions
+* Functions are *first class objects*, that is, they are valid **types**
+* can be **assigned to variables** and passed to other functions
+```{r echo=T}
+my_fun <- function(x) x^2
+my_fun(1:5)
+your_fun <- my_fun
+your_fun(6)
+my_apply <- function(x, f) f(x)
+my_apply(10, my_fun)
+```
+* If the definition requires multiple lines, a **block** is used between `{}`
+* Each function **always** returns the last evaluated expression
+* Or explicitly via `return()`
+
+## Arrow functions (*replacement functions*)
+* We've seen things like `dim(v) <- c(2,3)`: how do you declare them?
+```{r echo=T}
+`pwr<-` <- function(obj, value) obj ** value
+a <- 2
+pwr(a) <- 10
+a
+```
+* The last argument **must** be called `value` and represents the right side of the assignment!
+
+## Flow control
+R supports typical flow control instructions
+
+* for conditional statements:
+   * `if(cond) expr`
+   * `if(cond) true.expr else false.expr`
+   * `iffelse(cond, true.expr, false.expr)`
+* and for cycles:
+   * `for(var in seq) expr`
+   * `while(cond) expr`
+   * `repeat expr`
+   * `break`
+   * `next`
+  
+## Function arguments
+* Topics can be indicated by position or name
+* Named topics can appear in any order
+* Arguments may have a default, in which case they are optional
+```{r echo=T}
+f <- function(x, y, n=10, test=F) {
+   ifelse(test, 0, x^y + n)
+}
+f(2, 10)
+f(test=F, y=10, x=2)
+f(test=T)
+```
+
+## Difference between `<-` and `=`
+* The `=` operator as an assignment is valid only at the *top-level*
+* The `<-` operator is valid everywhere, even as a function argument:
+```{r echo=T}
+system.time(m <- mean(1:1E6))
+m
+```
+
+## Dataframes
+* In R, `dataframes` are used rather than matrices
+* These are tables organized by columns, internally homogeneous but potentially of different types
+```{r echo=T}
+df <- data.frame(A=1:10, B=letters[1:10])
+head(df)
+```
+
+## Dataframes
+* A dataframe can be indexed as an array (two indices)
+* Or by selecting a column with the notation `$`
+```{r echo=T}
+df[2,2]
+df$B[2]
+```
+Also in assignment:
+```{r echo=T}
+df$C <- LETTERS[1:10]
+head(df, 3)
+```
+
+## Lists {.scrollable}
+A list is a sequence of key-value pairs, that is, a sequence of values identified by a name, or key.
+
+Unlike vectors (which are **always** homogeneous) they can contain heterogeneous values.
+
+```{r echo=T}
+(l <- list(A="one", B="two", C=1:4))
+```
+A list can be indexed in three ways:
+
+* with the `$` operator: extracts a single element by name
+* with the `[]` operator: extract elements by position **and obtain a list**
+* with the `[[]]` operator: extracts a single element per position
+
+
+## Commonly used algorithms
+* Sorting: `sort`, `rev`, `order`
+* Sampling: `sample`, `expand.grid`
+* Aggregation: `by`, `aggregate`
+* Contingency tables: `table`
+
+## Sorting vectors
+To sort a vector you use the `sort` function:
+```{r echo=T}
+v <- runif(5, 1, 10)
+sort(v)
+rev(sort(v))
+sort(v, decreasing = T)
+```
+
+## Sorting dataframes
+To reorder a data frame, the ordered indices are extracted:
+```{r echo=T}
+df <- data.frame(A=1:5, B=runif(5))
+df[order(df$B),]
+```
+The `order` function returns the indices of a vector ordered according to the values:
+```{r echo=TRUE}
+order(df$B)
+```
+where the first is the index of the smallest value of `df$B` and the last is the index of the largest
+
+
+## Sampling
+*Sampling* a set of data (a vector) means extracting a subset (called **sample**) of values randomly. This is done with the `sample` function:
+```{r echo=T}
+sample(1:10) # without reinsertion
+sample(1:10, replace = T) # with reinsertion
+```
+
+The sample size can be equal (case above) or smaller than the initial set:
+```{r echo=T}
+sample(1:10, size = 5)
+sample(10) # random integer generation without repetition
+```
+
+## Grids
+A **grid** is a matrix that contains all (ordered) combinations between $n$ vectors of possibly different sizes. In R it is represented as a data frame and constructed with the `expand.grid` function:
+```{r echo=T}
+(df <- expand.grid(A=1:2, B=c("-", "+"), D=c("a", "b", "c")))
+```
+
+## Aggregation
+Aggregation means grouping rows having common elements in a data frame and applying a given function to each group. It is useful for example for calculating sub-totals.
+
+In R it can be done using the `by` function or the `aggregate` function (changes the output type):
+```{r echo=T}
+by(df$A, INDICES = df$B, FUN=sum)
+aggregate(A~B, data = df, FUN = sum)
+```
+
+## Contingency tables
+A contingency table counts the occurrences between a pair of columns in a data frame:
+```{r echo=T}
+head(airquality, n = 3)
+with(airquality, table(OzHi = Ozone > 80, Month,
+                        useNA = "ifany"))
+```
+
+**NOTE**: `with()` is to save you from typing `airquality$Ozone` and `airquality$Month`
+
+
+## Contingency tables
+* Also useful is `tapply()`, which operates on a table similarly to aggregate functions:
+
+```{r echo=T}
+round(with(airquality,
+            tapply(Ozone, Month, mean, na.rm=T)), 1)
+```
+
+With `aggregate()` you would do:
+```{r echo=T}
+aggregate(Ozone~Month, data=airquality, FUN=mean, ra.rm=T)
+```
+
+## Input/output to file
+
+Since statistics generally deals with large quantities of data, it is essential to be able to import and export data in generic formats.
+
+Data is generally presented in tabular form (by rows and columns)
+
+The simplest and most common formats are:
+
+* *Flat File*: an ASCII text file containing row and column values; columns can be separated
+   - fixed length
+   - using separator characters
+* CSV (*Comma-Separated Values*): a special version of FF where column fields are separated by commas
+
+## Input from file
+A **flat file** with fields separated by spaces can look like this:
+```
+# Data collected on 8/10/2023
+x y z
+1.2 3.7 2.7
+2.1 2.5 3.9
+3.8 2.2 6.8
+```
+
+Such a file can be imported as a data frame like this:
+```r
+df <- read.table("data_file.txt", header=T, sep=" ", comment.char="#")
+```
+The `read.table()` function has numerous options that allow you to handle all possible cases in which files contain fields separated by specific characters (spaces or other)
+
+## Input from file
+A **flat file** with fixed width fields can look like this:
+```
+# Data collected on 8/10/2023
+x y z
+1.2 3.7 2.7
+2.1 2.5 3.9
+3.8 2.2 6.8
+```
+
+Such a file can be imported as a data frame like this:
+```r
+df <- read.fwf("data_file.txt", widths=5, header=T, skip=1)
+```
+The `skip=1` parameter requires skipping the first line (comment)
+
+## Input from CSV file
+CSV files are special FFs where the field separator is the comma. In these cases we use the `read.csv()` function which works similarly to `read.table()` but does not require specifying the separator.
+
+A CSV looks like this:
+```
+# Data collected on 8/10/2023
+x,y,z
+1.2,3.7,2.7
+2.1,2.5,3.9
+3.8,2.2,6.8
+```
+
+Software that uses Latin languages (Italian, Spanish, Portuguese and French) adopts the comma as decimal separator. Consequently, when these software (e.g. MS Excel) generate CSVs they use the semicolon as a field separator.
+
+In this case from R it is necessary to use the `read.csv2()` function, which takes the comma as decimal separator and the semicolon as field separator.
+
+## Output to file
+The opposite of importing a file to a data frame is exporting a data frame to a file.
+
+This operation is performed with the opposite functions to the previous ones:
+
+* `write.table()`
+* `write.fwf()`
+* `write.csv()` and `write.csv2()`
+
+All these functions have two mandatory arguments: the data frame to save and the destination file:
+```r
+write.csv(df, "data.csv")
+```
+
+Other optional arguments are used to customize the result.
+
+
+## Tidyverse
+Along with RStudio, a *new wave* of R libraries has emerged that radically changes the approach. They go by the collective name of [`tidyverse`](https://www.tidyverse.org)
+
+* `ggplot2`: plots
+* `purrr`: functional programming
+* `dplyr`: data manipulation
+* `stringr`: string manipulation
+
+
+## Tidyverse
+Along with RStudio, a *new wave* of R libraries has emerged that radically changes the approach. They go by the collective name of [`tidyverse`](https://www.tidyverse.org)
+
+* `tibble`: Improved data frames
+* `readr`: import data
+* `tidyr`: data preparation
+* `lubridate`: date manipulation
+
+## Tidyverse
+The `tidyverse` approach has some common characteristics:
+
+* data in **tidy** format (one observation per row, one variable, or observing, per column)
+* composition of graph functions with `+` (`ggplot(...) + geom_line()`), each function is a layer
+* prefix notation with `%>%` (`a %>% str()` instead of `str(a)`)
+
+It is useful to consult the cheat sheets: [https://posit.co/resources/cheatsheets/](https://posit.co/resources/cheatsheets/)
+
+## Infix notation {auto-animate=true}
+```r
+# I create the histogram of a sample of 10 elements from 100 random numbers
+# infix:
+hist(sample(rnorm(100), 10))
+```
+Hardly readable, the first step of the algorithm is the internal one
+
+## Infix notation, sequenced {auto-animate=true}
+```r
+# I create the histogram of a sample of 10 elements from 100 random numbers
+# infix:
+hist(sample(rnorm(100), 10))
+
+# sequenced infix:
+s <- rnorm(100)
+c <- sample(s, 10)
+hist(c)
+```
+More readable, the algorithm is more obvious, but requires the creation of intermediate variables
+
+## Prefix notation {auto-animate=true}
+```r
+# I create the histogram of a sample of 10 elements from 100 random numbers
+# infix:
+hist(sample(rnorm(100), 10))
+
+# sequenced infix:
+s <- rnorm(100)
+c <- sample(s, 10)
+hist(c)
+
+# prefix with pipe:
+rnorm(100) %>% sample(10) %>% hist()
+```
+Much more readable, the sequential algorithm is obvious, no intermediate variables are needed
+
+
+## Prefix notation {auto-animate=true}
+```r
+# I create the histogram of a sample of 10 elements from 100 random numbers
+# infix:
+hist(sample(rnorm(100), 10))
+
+# sequenced infix:
+s <- rnorm(100)
+c <- sample(s, 10)
+hist(c)
+
+# prefix with pipe:
+rnorm(100) %>% sample(10) %>% hist()
+
+# even on multiple lines:
+rnorm(100) %>%
+   sample(10) %>% # <1>
+   hist # <2>
+```
+1. the lines following the first must be **indented**
+2. only when using pipe, if there are no arguments the parentheses are optional

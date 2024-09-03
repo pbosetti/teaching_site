@@ -1,0 +1,848 @@
+---
+title: "Misura, Incertezza, Taratura"
+subtitle: |
+  Analisi Dati e Statistica, 2023--24 \
+  ![](images/by-nc-sa.png){height=30}
+author: "Paolo Bosetti"
+institute: "Università di Trento, Dipartimento di Ingegneria Industriale"
+format: 
+  revealjs:
+    width: 1280
+    height: 700
+    margin: 0.1
+    slide-number: true
+    code-line-numbers: true
+    code-annotations: below
+    preview-links: auto
+    theme: [default, style.scss]
+    chalkboard: true
+    footer: "paolo.bosetti@unitn.it --- [https://paolobosetti.quarto.pub/adas/](https://paolobosetti.quarto.pub/adas/)"
+    fig-width: 5
+    fig-height: 4
+    fig-dpi: 300
+execute: 
+  cache: true
+---
+
+```{r}
+options(width = 60)
+set.seed(0)
+library(latex2exp)
+library(glue)
+library(tidyverse)
+library(modelr)
+theme_set(theme_gray()+theme(legend.position = "bottom"))
+```
+
+# Misura
+
+Un'operazione di **misura** è alla base di qualsiasi **creazione di valore** ed è fondamentale in qualsiasi ambito scientifico e ingegneristico
+
+Una **misurazione** può essere ottenuta con uno strumento più o meno "buono"
+
+La "bontà" di uno strumento è precisamente definita come la sua **incertezza**, che è un termine statistico
+
+## Incertezza
+
+::: columns
+::: column
+Incertezza, precisione, accuratezza
+
+-   L'incertezza è l'inverso della **precisione**, a sua volta sinonimo di **ripetibilità**
+-   L'**accuratezza** è sinonimo di mancata polarizzazione
+
+È meglio avere uno strumento preciso o accurato?
+:::
+
+::: {.column style="text-align: right"}
+![](images/bulls_eye.png){width="500"}
+:::
+:::
+
+## Norma UNI4546
+
+Introdotta nel 1984, dà alcune **definizioni**:
+
+-   **Misurazione**: l'atto del misurare, assegnare valori numerici a grandezze fisiche
+-   **Parametro**: grandezza di un sistema fisico alla quale assegnare valori numerici
+-   **Misurando**: un parametro sottoposto a misurazione
+-   **Misura**: il risultato di una misurazione
+-   **Metrologia**: disciplina che riguarda la **qualità** delle misure
+
+## Norma UNI4546
+
+Una **misura**, che è il risultato di una **misurazione**, rappresenta un parametro di un sistema considerato **in un determinato stato**
+
+È una terna costituita da:
+
+1.  un [valore]{.bgreen}
+2.  un'[incertezza]{.bblue}
+3.  un'**unità di misura**
+
+Ad esempio: la mia statura è [183]{.bgreen}[±0.5]{.bblue} **cm**
+
+Esistono due tipi di grandezze: 
+
+* **estensive**, per cui vale la somma (lunghezze, correnti elettriche, velocità)
+* **intensive**, esprimono un ordine e non vale la somma (pressioni, temperatura)
+
+::: aside
+L'incertezza è parte integrante di una misura; senza incertezza la misura non è valida
+:::
+
+
+## Norma UNI4546
+
+* Misurazione **diretta**: ottenuta per confronto diretto con un campione noto
+* Misurazione **indiretta**: si misurano grandezze secondarie collegate a quella di interesse mediante un **modello**
+
+Nel caso di misurazione indiretta, lo strumento di misura è basato su un **trasduttore**: un dispositivo che trasforma una grandezza fisica in ingresso in un'altra grandezza (es. forza in carica elettrica)
+
+Un **modello** è un insieme di relazioni tra parametri descrivente le interazioni (m. **statico**) e possibilmente l'evoluzione nel tempo (m. [dinamico]{.bgreen}) di un sistema
+
+Un modello può essere **analitico** o **numerico**
+
+:::aside
+Il modello di misura deve essere costruito sulla base della misura stessa: non deve essere necessariamente esaustivo né basato sulla comprensione fisica del sistema (cioè può anche essere **empirico**)
+:::
+
+## Norma GUM (ISO/IEC 98-3:2008)
+
+***Guide to the expression of Uncertainty in Measurement*** è il riferimento normativo per la terminologia e i metodi di calcolo dell'incertezza nelle misurazioni
+
+Secondo la GUM il risultato di una misurazione è una **variabile aleatoria** e va trattato in quanto tale
+
+La GUM ha abolito i termini di **errore** (sostituito con [incertezza]{.bgreen}) e di **valore vero** (sostituito con [stima]{.bgreen})
+
+Cioè si assume che il valore vero di una grandezza **non sia conoscibile**: anche aumentando all'infinito la precisione di uno strumento, prima o poi si arriva a livello atomico, per cui vale il **principio di indeterminazione di Pauli**
+
+Quindi, se non ha senso parlare di valore vero, allora non ha senso nemmeno parlare di errore di misura
+
+
+## Norma GUM (ISO/IEC 98-3:2008)
+La GUM definisce:
+
+* L'**incertezza standard** (*standard uncertainty*) $u_x$ della variabile $x$ come la deviazione standard del valor medio di $x$:
+$$
+u_x=\frac{s_x}{\sqrt{n}}=\sqrt{\frac{\sum_{i=1}^n(x_i-\bar x)^2}{n(n-1)}}
+$$
+* L'**incertezza relativa** come rapporto tra l'incertezza standard e la media della variabile; è adimensionale e utile per confronti:
+$$
+u_{x\mathrm{rel}}=\frac{u_x}{|\bar x|}
+$$
+
+## Norma GUM (ISO/IEC 98-3:2008)
+Ricordando che l'**intervallo di confidenza** è definito come
+$$
+P\left(-t_{n-1,\alpha/2}\leq\frac{|\bar x - \mu_0|}{s_x/\sqrt{n}}\leq t_{n-1,\alpha/2}\right) = 1-\alpha
+$$
+risulta che l'intervallo $\bar x \pm t_{\alpha/2,n-1}u_x$ contiene il valore atteso di $x$ con una confidenza $1-\alpha$
+
+Quindi la GUM definisce anche:
+
+* L'**incertezza estesa** come la semi-ampiezza dell'intervallo di confidenza su $\bar x$:
+
+$$
+U_x=t_{\alpha/2,n-1}\frac{s_x}{\sqrt{n}}=t_{\alpha/2,n-1}u_x = k_{n-1}u_x
+$$
+
+Il termine $k_{n-1}$ è chiamato **fattore di copertura**, e dipende solo dalla dimensione del campione (è il quantile della distribuzione T di Student). 
+
+
+## Fattore di copertura
+:::columns
+:::column
+**Ricordare** che per $n>50$ i quantili della normale e della T di Student sono indistinguibili a livello pratico
+
+Per questo motivo, per campioni sufficientemente grandi la GUM consente di adottare i  fattori di copertura ricavati dai quantili di $\mathcal{N}(0,1)$
+
+Salvo indicazioni, per esprimere una misura si usa sempre l'**incertezza standard** (27.5±0.1mm, in cui $u_x=0.1$)
+
+:::
+
+:::column
+```{r}
+tibble(
+  conf=c(0.6827, 0.9, 0.95, 0.9545, 0.99, 0.9973),
+  alpha = 1-conf,
+  k=qnorm(alpha/2, lower.tail = F)
+) %>% 
+  mutate(conf = paste0(as.character(conf*100), "%")) %>% 
+  knitr::kable(col.names=c("Livello di confidenza", 
+                           "$\\alpha$",  
+                           "Fattore di copertura"),
+               align=c("r", "r", "r"),
+               digits=4)
+```
+:::
+:::
+
+Se si usa l'**incertezza estesa** è necessario accompagnarla dal **livello di confidenza** (27.5±0.1mm al 95%)
+
+:::aside
+Per campioni con meno di 50 elementi è opportuno calcolare il fattore di copertura come $t_{\alpha/2,n-1}$
+:::
+
+
+## Modello statico di uno strumento di misura
+
+Nel caso di **misurazioni indirette**, è fondamentale disporre di un modello che descriva il comportamento del trasduttore, cioè la relazione tra uscita e ingresso
+
+Ogni modello dipende da uno o più parametri numerici che devono essere identificati
+
+Questa operazione di identificazione dei parametri del modello di misura si chiama **taratura**
+
+La taratura punta a definire la correlazione $y=f(m)$ tra l'ingresso misurando $m$ e l'uscita del trasduttore $y$, e la relativa **incertezza**. La $f(\cdot)$ è detta **caratteristica statica dello strumento**
+
+D'ora in avanti considereremo solo il caso di **sistemi statici**, cioè in stato stazionario, per i quali **il tempo non è una variabile di modello**
+
+I **sistemi dinamici** verranno presi in considerazione nel secondo modulo di questo corso
+
+::: aside
+Si parla di **taratura statica o dinamica** per una operazione di misurazione statica o dinamica, rispettivamente
+:::
+
+
+## Taratura
+
+:::columns
+:::column
+Uno strumento fornisce la misura mediante **inversione della caratteristica statica**: $m=f^{-1}(y)$
+
+Perché la $f(\cdot)$ sia nota è necessario identificarne i parametri mediante **regressione**
+
+La regressione viene effettuata a partire da una serie di coppie $(m_i, y_i)$ ottenute: 
+
+* da una serie di **misurandi noti** $m_i$
+* da una serie di misurazioni $y_i$ ottenute con uno strumento di qualità migliore di quello in taratura
+:::
+
+:::column
+:::panel-tabset
+### Misurazione
+```{r}
+#| fig-height: 3.5
+df <- tibble(
+  i=1:100,
+  x=seq(0,10,length.out=length(i)),
+  y=sqrt(x),
+  s=F
+)
+df[df$i%%10==0,]$s <- T
+
+p1 <- df %>% ggplot(aes(x=x, y=y)) + 
+  geom_line() + 
+  labs(x="misurando (ignoto)", y="uscita osservata")
+
+point <- filter(df, i==30)
+arw <- arrow(angle=20, type="closed", length=unit(0.2, "inches"))
+p1 +
+  geom_segment(xend=point$x, yend=0, x=point$x, y=point$y, arrow=arw, color=gray(0.5)) +
+  geom_segment(xend=point$x, yend=point$y, x=0, y=point$y, arrow=arw, color=gray(0.5)) + 
+  geom_point(data=point, size=3, color="black", fill="blue", shape=21)
+```
+
+### Taratura
+```{r}
+#| fig-height: 3.5
+point <- filter(df, i==30)
+p1 +
+  geom_segment(x=point$x, y=0, xend=point$x, yend=point$y, arrow=arw, color=gray(0.5)) +
+  geom_segment(xend=point$x, yend=point$y, x=0, y=point$y, arrow=arw, color=gray(0.5)) + 
+  geom_point(data=filter(df, s), size=3, color="black", fill="blue", shape=21) +
+  labs(x="misurando (noto)", y="uscita osservata")
+```
+
+:::
+:::
+:::
+
+:::aside
+Per "strumento migliore" si intende uno strumento con una precisione migliore di almeno un ordine di grandezza
+:::
+
+## Taratura
+
+Una **taratura statica** si sviluppa quindi su quattro passaggi:
+
+1. **sviluppo del modello dello strumento**: mediante analisi dei principi fisici si definisce la caratteristica statica come relazione (analitica, numerica o mista) tra ingresso e uscita. Idealmente, un modello completo comprende anche gli **ingressi di disturbo**
+2. **raccolta dei dati di taratura**: una campagna sperimentale fornisce le coppie $(m_i, y_i)$, che **vanno raccolte con $m$ in ordine casuale**
+3. **regressione**: si identificano i parametri del modello
+4. **validazione del modello**: si verifica l'adeguatezza del modello regredito mediante analisi dei residui
+
+La taratura deve anche definire l'**incertezza** dello strumento, dovuta:
+
+* al modello (la *forma* della caratteristica statica)
+* ai parametri del modello
+* alla stima del misurando (dovuta a ingressi di disturbo)
+
+
+## Ingressi di disturbo
+
+:::columns
+:::column
+Gli ingressi fonte di incertezza possono essere:
+
+* **ingressi modificanti**: modificano la caratteristica statica, per cui ad uno stesso valore di $m$ possono corrispondere diversi valori di $y$ per via di un cambiamento della **forma** di $f(\cdot)$  o del valore dei parametri (ad es. effetto della temperatura)
+* **ingressi interferenti**: si sommano direttamente all'uscita dello strumento, per cui $y=f(m)+y_d$, e hanno tipicamente un carattere stocastico (ad es. vibrazioni, disturbi elettrici)
+:::
+
+:::column
+![](images/modellomisura.png)
+:::
+:::
+
+:::aside
+L'incertezza si riferisce solo alla componente aleatoria e non prevedibile della misura; si assume che ogni componente di deviazione sistematica sia già stato corretto
+:::
+
+
+## Esempio: dinamometro a mensola
+
+:::columns
+:::column
+È uno strumento per la misura della **forza peso** che sfrutta:
+
+* l'elasticità di una trave snella per convertire una forza in una deformazione
+* un estensimetro per convertire una deformazione in una variazione di resistenza
+* un circuito elettrico con voltmetro per convertire la variazione di resistenza in variazione di corrente, mediante **amplificazione**
+
+Il modello dello strumento fornisce:
+:::
+
+:::column
+:::{.panel-tabset style="text-align: center;"}
+### Dinamometro
+![](images/cantilever.jpg){width="500px"}
+
+### Amplificatore
+![](images/amplifier.jpg){width="500px"}
+:::
+:::
+:::
+
+$$
+V=3/2GV_i\frac{lG_F}{EBH^2}F+V_0 = V_0+ KF
+$$
+
+## Esempio: dinamometro a mensola
+
+La caratteristica statica dello strumento dipende, oltre che dal misurando $F$, da altri 8 parametri
+
+Per effettuare la taratura si tengono il più possibile costanti tutti i parametri, eccetto il misurando
+
+I parametri che non è possibile mantenere costanti si accetta che fluttuino, ripetendo le misurazioni e mediando i risultati: si parla di **controllo statistico del processo di taratura**, che mitiga l'effetto degli **ingressi interferenti**
+
+È la condizione in cui si applica il **teorema del limite centrale**
+
+Gli **ingressi modificanti** sono più complessi da trattare e richiedono una modifica del modello e il passaggio da uno strumento di misura a un **sistema di misura** 
+
+Ad esempio, **la temperatura** può influire su tutti i parametri della caratteristica statica: se affianco uno strumento di misura della temperatura e arricchisco il modello con la dipendenza dalla temperatura, posso **compensare l'effetto** degli ingressi modificanti
+
+:::aside
+Un **sistema di misura** è costituito da più strumenti che lavorano assieme
+:::
+
+
+## Casualizzazione della sequenza di taratura
+
+Compensare l'effetto degli ingressi modificanti durante la taratura può non essere semplice o economico
+
+Se però raccolgo le coppie $(m_y, y_i)$ in ordine casuale anziché in ordine di $m_i$, ottengo il risultato di **distribuire casualmente** l'effetto degli ingressi modificanti
+
+In questo modo trasformo gli ingressi modificanti in **ingressi interferenti**, dei quali posso mitigare l'effetto mediante **controllo statistico**
+
+Confrontiamo ora la taratura del dinamometro a mensola effettuata **senza casualizzazione** e [con casualizzazione]{.bgreen}, nel caso di un ingresso modificante (la temperatura) non preso in considerazione dall'operatore
+
+## Taratura del dinamometro (senza casualizzazione)
+:::columns
+:::column
+Nel laboratorio di taratura, dopo 4 ore dall'inizio del processo di taratura, il termostato viene modificato e la temperatura comincia a variare tra 20°C e 25°C
+
+L'addetto alla calibrazione **non si accorge** del cambiamento **né registra la temperatura**
+:::
+
+:::column
+```{r}
+set.seed(120)
+parameters <- list(
+  G=10,
+  Vi=12,
+  l=300,
+  E=200,
+  B=20,
+  H=2,
+  V0=1
+)
+Gf <- function(Temp, G0=0.05, T0=20, k=0.01) G0 + k*(Temp-T0) 
+K <- function(Temp, params) with(params, 3/2*G*Vi*(l*Gf(Temp))/(E*B*H^2))
+model <- function(F, Temp, params) K(Temp, params) * F + params$V0
+temp <- function(time, t0=4, T0=20, dT=5, tau=2) ifelse(time<t0, T0, T0+dT*(1-exp(-(time-t0)/tau)))
+N <- 50
+duration <- 8
+data <- tibble(
+  t = seq(0, duration, length.out=N),
+  Temp = temp(t),
+  Gf = Gf(Temp),
+  Force = seq(10, 100, length.out=N),
+  Vn = model(Force, Temp, parameters),
+  V=Vn+rnorm(length(t), 0, 0.5)
+)
+data.lm <- lm(V~Force, data=data)
+data <- add_predictions(data, data.lm, var="pred.nr1")
+data <- add_residuals(data, model=data.lm, var="res.nr1")
+```
+
+
+```{r}
+tibble(x=seq(0, 20, length.out=100)) %>% ggplot(aes(x)) +
+  geom_function(fun=temp) +
+  labs(x="Tempo (h)", y="Temperatura (°C)")
+```
+:::
+:::
+
+
+## Taratura del dinamometro (senza casualizzazione)
+:::columns
+:::column
+L'addetto registra la tensione in uscita in corrispondenza di `r N` valori di forza applicati, variabili tra `r min(data$Force)` N e `r max(data$Force)` N, **in ordine crescente della forza**
+
+Dato che il modello dello strumento prevede una relazione lineare $V=V_0+KF$, l'addetto effettua una regressione lineare
+
+Lo studio dei residui però evidenzia un *pattern* con un minimo, per cui l'addetto **sospetta un sotto-adattamento** e quindi tenta una seconda regressione con un modello quadratico
+
+:::
+
+:::column
+:::panel-tabset
+### Regressione
+```{r}
+#| fig-height: 3.5
+data %>% ggplot(aes(x=Force)) +
+  geom_point(aes(y=V)) + 
+  geom_hline(yintercept=parameters$V0, linetype=2) +
+  geom_line(aes(y=pred.nr1), color="red") +
+  labs(x="Forza (N)", y="Tensione (V)")
+```
+### Residui
+```{r}
+#| fig-height: 3.5
+data %>%
+  ggplot(aes(x=Force, y=res.nr1)) +
+  geom_point() +
+  labs(x="Forza (N)", y="Residui (V)")
+```
+:::
+:::
+:::
+
+
+## Taratura del dinamometro (senza casualizzazione)
+:::columns
+:::column
+L'addetto verifica quindi una regressione con un modello di secondo grado
+
+L'analisi dei residui lo soddisfa e quindi accetta la nuova caratteristica statica tarata come un polinomio di secondo grado
+
+**Nota**: questa caratteristica ha perso la relazione con la fisica del problema ed è quindi **puramente empirica**
+
+Tuttavia, dato che la variazione di temperatura **non è stata registrata né notata**, l'addetto non ha modo di accorgersi che la caratteristica così tarata è ovviamente sbagliata e in pratica inutilizzabile
+
+:::
+
+:::column
+:::panel-tabset
+### Regressione
+```{r}
+#| fig-height: 3.5
+data.lm2 <- lm(V~poly(Force, degree=2, raw=T), data=data)
+data <- add_predictions(data, data.lm2, var="pred.nr2")
+data <- add_residuals(data, model=data.lm2, var="res.nr2")
+
+data %>% ggplot(aes(x=Force)) +
+  geom_point(aes(y=V)) + 
+  geom_hline(yintercept=parameters$V0, linetype=2) +
+  geom_line(aes(y=pred.nr2), color="red") +
+  labs(x="Forza (N)", y="Tensione (V)")
+```
+### Residui
+```{r}
+#| fig-height: 3.5
+data %>%
+  ggplot(aes(x=Force, y=res.nr2)) +
+  geom_point() +
+  labs(x="Forza (N)", y="Residui (V)")
+```
+:::
+:::
+:::
+
+:::aside
+I residui non sono del tutto privi di pattern (andamento a "M"). Tuttavia, aumentando il grado della regressione si può raggiungere un livello (grado 6) in cui i residui sono effettivamente privi di pattern, ma ciò tuttavia non invalida quanto sopra detto
+:::
+
+
+
+## Taratura del dinamometro [(con casualizzazione)]{.bgreen}
+:::columns
+:::column
+Rivediamo cosa sarebbe successo raccogliendo le coppie $(m_i,y_i)$ in **ordine casuale**
+
+In questo caso l'effetto di aumento della temperatura è nullo sulle coppie raccolte (con valori casuali di $m_i$!) prima di 4 ore; successivamente questo effetto si distribuisce casualmente su tutti i valori del misurando (diventa un ingresso interferente)
+
+La regressione lineare di primo grado questa volta è adatta, anche se la varianza non è costante
+
+Tuttavia, osservando i **residui in funzione del tempo** si nota che a circa 4 ore inizia a succedere qualcosa che fa aumentare i residui
+:::
+
+:::column
+:::panel-tabset
+### Regressione
+```{r}
+#| fig-height: 3.5
+set.seed(120)
+data <- data %>% mutate(
+  Force = sample(Force),
+  Vn = model(Force, Temp, parameters),
+  V=Vn+rnorm(length(t), 0, 0.5) 
+)
+data.lm3 <- lm(V~Force, data=data)
+data <- add_predictions(data, data.lm3, var="pred.r")
+data <- add_residuals(data, data.lm3, var="res.r")
+
+data %>% ggplot(aes(x=Force)) +
+  geom_point(aes(y=V)) + 
+  geom_line(aes(y=pred.r), color="red") +
+  geom_hline(yintercept=parameters$V0, linetype=2) +
+  labs(x="Forza (N)", y="Tensione (V)")
+```
+### Residui (F)
+```{r}
+#| fig-height: 3.5
+data %>%
+  ggplot(aes(x=Force, y=res.r)) +
+  geom_point() +
+  labs(x="Forza (N)", y="Residui (V)")
+```
+### Residui (t)
+```{r}
+#| fig-height: 3.5
+data %>%
+  ggplot(aes(x=t, y=res.r)) +
+  geom_point() +
+  labs(x="Tempo (h)", y="Residui (V)")
+```
+:::
+:::
+:::
+
+
+## Taratura del dinamometro [(con casualizzazione)]{.bgreen}
+:::columns
+:::column
+Se variamo il colore dei punti in funzione del tempo in cui sono state effettuate le singole prove, osserviamo che c'è una fascia di punti in basso con **andamento lineare e varianza costante**, tutti raccolti a meno di 4 ore dall'inizio
+
+Scartando dalla regressione tutti i punti raccolti dopo 4 ore, otteniamo una regressione lineare con residui stretti e regolari
+
+La caratteristica statica così identificata rappresenta correttamente il comportamento dello strumento a 20°C
+:::
+
+:::column
+:::panel-tabset
+### Regressione
+```{r}
+#| fig-height: 3.5
+set.seed(120)
+data <- data %>% mutate(
+  Force = sample(Force),
+  Vn = model(Force, Temp, parameters),
+  V=Vn+rnorm(length(t), 0, 0.5) 
+)
+data.lm3 <- lm(V~Force, data=data)
+data <- add_predictions(data, data.lm3, var="pred.r")
+data <- add_residuals(data, data.lm3, var="res.r")
+
+data %>% ggplot(aes(x=Force)) +
+  geom_point(aes(y=V, color=t)) + 
+  geom_line(aes(y=pred.r), color="red") +
+  geom_hline(yintercept=parameters$V0, linetype=2) +
+  scale_color_viridis_c() +
+  labs(x="Forza (N)", y="Tensione (V)", color="t (h)")
+```
+### Regressione $t<4~\mathrm{h}$
+```{r}
+#| fig-height: 3.5
+data.lm4 <- lm(V~Force, data=data %>% filter(t<4))
+data <- add_predictions(data, data.lm4, var="pred.r4")
+data <- add_residuals(data, data.lm4, var="res.r4")
+
+data %>% ggplot(aes(x=Force)) +
+  geom_point(aes(y=V, color=t)) + 
+  geom_line(aes(y=pred.r4)) +
+  geom_hline(yintercept=parameters$V0, linetype=2) +
+  scale_color_viridis_c() +
+  labs(x="Forza (N)", y="Tensione (V)", color="t (h)")
+```
+
+:::
+:::
+:::
+
+:::aside
+Secondo la **Norma ISO 1**, tutte le misure vanno riferite alla temperatura di 20°C
+:::
+
+
+# Propagazione dell'incertezza
+In certi casi è necessario valutare l'incertezza di una **misura derivata**, cioè costruita per combinazione di altre misure
+
+
+## Basi
+Supponiamo di voler misurare la velocità media di un veicolo in un tratto di strada
+
+Possiamo esprimere la velocità come rapporto tra la distanza percorsa $d$ e il tempo impiegato $t$:
+$$
+v=\frac{d}{t}
+$$
+Sia la misura di distanza che quella di tempo sono accompagnate da una loro incertezza standard
+
+Qual è l'**incertezza standard sulla misura indiretta** di velocità?
+
+Secondo la GUM può essere determinata in due modi:
+
+* analitico, mediante la **legge di propagazione dell'incertezza**
+* numerico, mediante il **metodo Monte Carlo**
+
+
+
+## Metodo analitico
+Sia $y=f(x_1,x_2,\dots,x_n)$: vogliamo esprimere l'**incertezza tipo combinata** note che siano le $u_1,u_2,\dots,u_n$
+
+Esprimiamo la variazione di $y$ in un intorno di $x_0$ mediante **sviluppo in serie di Taylor** per una sola variabile $x$:
+$$
+f(x_0+\Delta x)=f(x_0)+\frac{df}{dx}\Delta x + \frac{d^2f}{dx^2}\frac{\Delta x^2}{2!} + \frac{d^3f}{dx^3}\frac{\Delta x^2}{3!}+o(\Delta x^3)
+$$
+Nel caso di $n$ variabili, e **arrestandosi al termine di primo grado**:
+$$
+\begin{align}
+y =&f(x_1,x_2,\dots,x_n) \\
+\simeq&f\left( \bar x_1 + \frac{\partial f}{\partial x_1}\Delta x_1 + \frac{\partial f}{\partial x_2}\Delta x_2 + \cdots + \frac{\partial f}{\partial x_n}\Delta x_n \right) \\
+=& f(\bar x_1, \bar x_2,\dots,\bar x_n) + \sum_{i=1}^n \frac{\partial f}{\partial x_i}(x_i-\bar x_i)
+\end{align}
+$$
+
+## Metodo analitico
+
+Si noti che:
+$$
+\begin{align}
+E(y) &= E\left(f(\bar x_1, \bar x_2, \dots, \bar x_k) + \sum_{i=1}^k \frac{\partial f}{\partial x_i} (x_i - \bar x_i)\right) \\
+&= E(f(\bar x_1, \bar x_2, \dots, \bar x_k)) + \sum_{i=1}^k \frac{\partial f}{\partial x_i} E(x_i - \bar x_i) \\
+&= f(\bar x_1, \bar x_2, \dots, \bar x_k)
+\end{align}
+$$
+cioè il valore medio di $f(\cdot)$ è la stessa funzione applicata ai valori medi: $\bar y=f(\bar x_1, \bar x_2,\dots,\bar x_k)$
+
+## Metodo analitico
+
+Possiamo quindi scrivere che:
+$$
+\begin{align}
+E(y - f(\bar x_1, \bar x_2, \dots, \bar x_k)) &= E\left(\sum_{i=1}^k \frac{\partial f}{\partial x_i} (x_i - \bar x_i) \right) \\
+u^2_y=E((y-\bar y)^2) &= E\left(\left(\sum_{i=1}^k \frac{\partial f}{\partial x_i}(x_i - \bar x_i)\right)^2\right) \\
+u_y^2 &= \sum_{j=1}^k\sum_{i=1}^k \frac{\partial f}{\partial x_i}\frac{\partial f}{\partial x_j}u_{i,j}^2  \label{eq:inccomb}
+\end{align}
+$$
+dove $u_{i,j}$ è la **covarianza** $u_{i,j}=\textrm{Cov}(x_i, x_j)=E((x_i-\bar x_j)(x_j - \bar x_i))$
+
+
+## Metodo analitico
+Nel caso in cui le $x_i$ siano tutte indipendenti, cioè $u_{i,j}=0~\forall i\neq j$, vale la relazione semplificata:
+$$
+u_y = \sqrt{\sum_{i=1}^n \left(\frac{\partial f}{\partial x_i}\right)^2 u_i^2}
+$$
+nota come **legge di propagazione delle incertezze**
+
+Le derivate parziali che compaiono nella LPI sono dette **coefficienti di sensibilità** e vanno valutati nel valore medio della rispettiva variabile $x_i$.
+
+Il valore dei coefficienti di sensibilità consente di determinare quale delle misure combinande contribuisce maggiormente all'incertezza della misura combinata
+
+**Volendo migliorare la misura combinata** conviene investire soprattutto sulle misure combinande con un maggiore coefficiente di sensibilità
+
+:::aside
+L'ipotesi che le $x_i$ siano indipendenti **va verificata**, ad esempio con un test di correlazione
+:::
+
+
+## Esempio: volume di un cilindro
+Siccome $V=\pi r^2l$ vogliamo calcolare l'incertezza standard sul volume di un cilindro, note che siano le incertezze standard su raggio, $u_r$, e lunghezza, $u_l$
+
+Entrambe le incertezze sono calcolate da un campione di 20 elementi, entrambi con deviazione standard 2.24 mm: $u=s/\sqrt{n} = 2.24/\sqrt{20} = `r round(2.24/sqrt(20), 2)`$
+
+$$
+u_V=\sqrt{\left(\frac{\partial V}{\partial r}\right)^2u_r^2 + \left(\frac{\partial V}{\partial l}\right)^2u_l^2 }=
+\pi \bar r \sqrt{4\bar l^2 u_r^2+\bar r^2 u_l^2}
+$$
+
+Nel caso in cui sia $r=$ 120.0±0.5 mm e $l=$ 450.0±0.5, l'incertezza tipo combinata risulta pari a:
+$$
+\begin{align}
+u_V&=&\pi 120\sqrt{4\cdot 450^2\cdot 0.5^2+120^2\cdot 0.5^2} \\
+&=&171\times10^3~\mathrm{ mm^3}\simeq2 \times 10^5~\mathrm{mm^3}
+\end{align}
+$$
+e quindi il volume misurato è:
+$$
+V=\pi \cdot 120^2 \cdot 450 = (20.4\pm0.2)\times 10^6~\mathrm{mm^3}= (20.4\pm0.2)~\mathrm{l}
+$$
+
+
+
+
+## Metodo Monte Carlo
+Se la relazione $y=f(x_1,x_2,\dots, x_n)$ **non è differenziabile** oppure non è nota in forma analitica (ma solo numerica), allora la LPI non è applicabile
+
+In questo caso la GUM prevede l'applicazione di un metodo numerico noto come *Monte Carlo*, perché, come alla roulette, prevede la generazione di numeri casuali **per simulare una distribuzione**:
+
+1. si genera un elevato ($\geq10000$) numero di *n*-uple $x_1,x_2,\dots, x_n$, generando per ogni $x_i$ un numero casuale da una distribuzione **rappresentativa del caso reale**
+2. si applica la $y=f(x_1,x_2,\dots, x_n)$ a ciascuna *n*-upla, generando altrettanti valori di $y$
+3. si studia la distribuzione empirica delle $y$ così generate, calcolando l'intervallo di confidenza mediante il metodo dei quantili
+
+:::aside
+**Nota**: il metodo non fa alcuna assunzione sulla distribuzione delle $x_i$, anzi, la sua efficacia sta proprio nel prescindere da qualsiasi ipotesi di normalità
+:::
+
+## Esempio: volume di un cilindro
+```{r}
+library(PearsonDS)
+set.seed(0)
+N <- 10000
+rbar = 120
+ur = 0.5
+lbar = 450
+ul = 0.5
+moments <- list(
+  mean = lbar, 
+  variance = ul^2, 
+  skewness = 1, 
+  kurtosis = 4
+)
+data <- tibble(
+  r = rnorm(N, rbar, ur),
+  l = rpearson(N, moments = moments)
+)
+```
+:::columns
+:::column
+**Primo passo**: generazione dei campioni delle misure di raggio e lunghezza
+
+Dopo uno studio della tecnologia di produzione del cilindro, si accerta che 
+
+* la distribuzione del raggio è simmetrica, con media 120.0 mm e deviazione standard 0.5 mm
+* la distribuzione della lunghezza è gobba, con media 450.0 mm e deviazione standard 0.5 mm
+
+Si generano due campioni da 10 000 elementi ciascuno
+:::
+
+:::column
+:::panel-tabset
+### Raggio
+```{r}
+#| fig-height: 3.5
+m <- round(mean(data$r),2)
+s <- round(sd(data$r),2)
+data %>% ggplot(aes(x=r, y=after_stat(density))) +
+  geom_histogram(binwidth=ur/5, fill=gray(0.8), color=gray(0.2)) + 
+  geom_density() +
+  geom_vline(xintercept = mean(data$r), color="red") +
+  geom_vline(xintercept = quantile(data$r, c(0.25, 0.5, 0.75)), 
+             color="blue", linetype=2)  +
+  labs(x="Raggio (mm)", y="Densità", 
+       title=glue("Raggio: media={m}, dev.st.={s}"))
+```
+
+### Lunghezza
+```{r}
+#| fig-height: 3.5
+m <- round(mean(data$l),2)
+s <- round(sd(data$l),2)
+data %>% ggplot(aes(x=l, y=after_stat(density))) +
+  geom_histogram(binwidth=ur/5, fill=gray(0.8), color=gray(0.2)) + 
+  geom_density() +
+  geom_vline(xintercept = mean(data$l), color="red") +
+  geom_vline(xintercept = quantile(data$l, c(0.25, 0.5, 0.75)), 
+             color="blue", linetype=2) +
+  labs(x="Lunghezza (mm)", y="Densità", 
+       title=glue("Lunghezza: media={m}, dev.st.={s}"))
+```
+
+:::
+:::
+:::
+
+Dato che generiamo un'elevata quantità di campioni, secondo la GUM assumiamo che **l'incertezza standard coincida con la deviazione standard**
+
+
+## Esempio: volume di un cilindro
+
+:::columns
+:::column
+**Secondo passo**: calcolo del campione di misure derivate di volume
+
+Si applica semplicemente la $V=\pi r^2l$ a ciascuna coppia $(r,l)$ generando altrettanti valori di $V$
+:::
+
+:::column
+```{r}
+data <- data %>% mutate(V=pi*r^2*l/1E6)
+m <- round(mean(data$V), 2)
+s <- round(sd(data$V), 2)
+data %>% ggplot(aes(x=V, y=after_stat(density))) +
+  geom_histogram(binwidth=s/5, fill=gray(0.8), color=gray(0.2)) + 
+  geom_density() +
+  labs(x=TeX("Volume (l)"), y="Densità", title="Distribuzione empirica del volume")
+```
+
+:::
+:::
+
+:::aside
+Si noti, nuovamente, come la composizione di più distribuzioni, anche differenti, porti sempre a distribuzioni tendenti alla normale
+:::
+
+## Esempio: volume di un cilindro
+
+:::columns
+:::column
+**Terzo passo**: valutazione della distribuzione e calcolo dell'incertezza derivata
+
+La media e la deviazione standard dei volumi calcolati corrispondono al valore atteso e all'incertezza standard sulla misura di volume
+
+Considerando un'unica cifra significativa per l'incertezza e arrotondando la media alla stessa risoluzione, si ottiene
+$$
+V=(20.4\pm0.2)~\mathrm{l}
+$$
+
+:::
+
+:::column
+```{r}
+data <- data %>% mutate(V=pi*r^2*l/1E6)
+m <- round(mean(data$V), 2)
+s <- round(sd(data$V), 2)
+data %>% ggplot(aes(x=V, y=after_stat(density))) +
+  geom_histogram(binwidth=s/5, fill=gray(0.8), color=gray(0.2)) + 
+  geom_density() +
+  geom_vline(xintercept = mean(data$V), color="red") +
+  geom_vline(xintercept = quantile(data$V, c(0.25, 0.5, 1-0.25)), 
+             color="blue", linetype=2) +
+  labs(x=TeX("Volume (l)"), y="Densità", 
+       title=glue("Lunghezza: media={m}, dev.st={s}"))
+```
+:::
+:::
+
+:::aside
+**Nota**: un ulteriore vantaggio del metodo Monte Carlo è che consente di analizzare anche la **forma** della distribuzione della misura derivata (ad esempio mediante un diagramma Q-Q)
+:::

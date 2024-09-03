@@ -8,3 +8,6 @@
 /_publish.yml
 /renv/*
 /_site/*
+
+*_cache
+*_files

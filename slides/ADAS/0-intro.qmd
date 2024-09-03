@@ -1,0 +1,104 @@
+---
+title: "Introduzione al Corso"
+subtitle: |
+  Analisi Dati e Statistica, 2023--24 \
+  ![](images/by-nc-sa.png){height=30}
+author: "Paolo Bosetti"
+institute: "Università di Trento, Dipartimento di Ingegneria Industriale"
+format: 
+  revealjs:
+    width: 1280
+    height: 700
+    margin: 0.1
+    slide-number: true
+    code-line-numbers: true
+    code-annotations: below
+    preview-links: auto
+    theme: [default, style.scss]
+    chalkboard: true
+    footer: "paolo.bosetti@unitn.it --- [https://paolobosetti.quarto.pub/adas/](https://paolobosetti.quarto.pub/adas/)"
+    fig-width: 5
+    fig-height: 4
+    fig-dpi: 300
+    touch: true
+    email-obfuscation: javascript
+    pdf-separate-fragments: true
+    link-external-icon: true
+---
+
+```{r}
+options(width = 60)
+set.seed(0)
+```
+
+
+# Introduzione al corso
+
+Di cosa ci occuperemo per le prossime 60 ore assieme
+
+## Analisi statistica dei dati
+
+Questo corso fornisce le competenze essenziali perché un ingegnere sia in grado di analizzare e visualizzare correttamente i dati risultanti da **esperimenti scientifici** (cioè condotti in laboratorio) o **industriali** (cioè condotti sul campo, ottenendo dati direttamente da un sistema di produzione)
+
+## Analisi statistica dei dati
+
+Ogni esperimento è basato su un'operazione di misura, la quale produce **dati quantitativi** che contengono un **contributo deterministico** e un **contributo aleatorio**, cioè casuale
+
+-   Il primo è proprio del fenomeno in analisi
+-   il secondo deriva dal contesto: condizioni operative, sistema di misura, materie prime, condizioni ambientali, operatore, ecc.
+
+Un bravo sperimentatore ha le competenze che gli consentono di isolare il primo contributo dal secondo, ottenendo quindi informazioni più affidabili e ripetibili
+
+## Analisi statistica dei dati
+
+Dato che l'analisi dei dati richiede capacità di calcolo, il corso legherà strettamente sia gli aspetti teorici che quelli implementativi, integrando cioè la teoria con la pratica di eseguire al calcolatore gli stessi concetti
+
+Gli **esercizi** sono quindi parte integrante del corso
+
+Imparare l'uso di un **linguaggio e software di analisi dati** (R + RStudio) è parte integrante del corso
+
+## Modalità d'esame
+L'esame è in due parti, tipicamente nello stesso giorno
+
+-   **prova pratica** (mattina): sulla piattaforma Moodle esamionline vengono proposti una serie di esercizi in R. 
+  * Gli esercizi vengono corretti automaticamente con revisione manuale per quelli non corretti. Il voto massimo è **26/30**.
+  * Ogni esercizio ha un punteggio prefissato. In caso di errore viene corretto manualmente ma il punteggio non può superare la metà del punteggio massimo
+-   **prova orale** (pomeriggio): per chi desidera migliorare il voto (fino al massimo di 30/30L). L'orale può anche peggiorare il voto della prova pratica
+
+:::{.fragment .highlight-red style="font-size: 125%; margin-top: 50px;"}
+Non è possibile sostenere l'orale in una sessione differente dalla prova pratica
+:::
+
+## Modalità d'esame
+**ATTENZIONE**: questo corso è il primo di due moduli: l'esame è quindi solo una prova parziale e **non viene verbalizzato**
+
+Il voto finale verrà verbalizzato **solo dopo aver superato** anche la prova parziale del secondo modulo (prof. De Cecco).
+
+:::{.fragment .highlight-red style="font-size: 125%; margin-top: 50px;"}
+Ricordarsi di iscriversi anche all'appello di registrazione!
+:::
+
+## Argomenti del corso 
+:::{.incremental}
+1.   **Statistica descrittiva e inferenziale**: descrivere il comportamento di variabili aleatorie e effettuare previsioni probabilistiche
+1.   Introduzione a **R e RStudio**
+1.   **Regressione**: adattare un modello analitico ad una serie di dati sperimentali
+1.   Tecniche di **Bootstrap**: analisi dell'incertezza
+1.   **Taratura** di sistemi di misura e stima dell'**incertezza**
+1.   ***Design of Experiments***: progettazione efficiente delle campagne sperimentali
+1.   **Serie temporali**: analisi e previsione di variabili aleatorie tempo-dipendenti
+:::
+
+## Materiale didattico
+
+* **Moodle**
+
+* **Testo di riferimento**:
+
+  * Paolo Bosetti, *Fondamenti di Statistica per le misure e l'analisi dati in ambito industriale. Con esempi in GNU-R*, Libreria Universitaria Edisioni, 2022
+  
+    * Biblioteca (BUP): [https://strutture-provincia.primo.exlibrisgroup.com/permalink/39SBT_INST/ghkipk/alma991021678989206186](https://strutture-provincia.primo.exlibrisgroup.com/permalink/39SBT_INST/ghkipk/alma991021678989206186)
+    * Amazon: [https://www.amazon.it/Fondamenti-statistica-misure-lanalisi-industriale/dp](https://www.amazon.it/Fondamenti-statistica-misure-lanalisi-industriale/dp)
+    * eBook: [https://www.libreriauniversitaria.it/ebook/9788833595238/autore-paolo-bosetti/ebook-fondamenti-di-statistica-per-le-misure-e-l-analisi-dati-in-ambito-industriale-con-esempi-in-gnu-r.htm](https://www.libreriauniversitaria.it/ebook/9788833595238/autore-paolo-bosetti/ebook-fondamenti-di-statistica-per-le-misure-e-l-analisi-dati-in-ambito-industriale-con-esempi-in-gnu-r.htm)
+
+* **Codice sviluppato in classe**: Il codice R sarà gradualmente pubblicato e aggiornato su GitHub: [https://github.com/pbosetti/ADAS-23](https://github.com/pbosetti/ADAS-23){target="_blank"}

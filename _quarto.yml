@@ -8,6 +8,40 @@ website:
     left:
       - href: index.qmd
         text: Home
+      - text: ADAS
+        menu:
+          - href: slides/ADAS/TOC.qmd
+            text: Contenuti
+          - href: slides/ADAS/0-intro.qmd
+            text: Intro
+          - href: slides/ADAS/1-statistica.qmd
+            text: Statistica
+          - href: slides/ADAS/2-R-intro.qmd
+            text: Linguaggio R
+          - href: slides/ADAS/3-regressione.qmd
+            text: Regressione
+          - href: slides/ADAS/4-bootstrap.qmd
+            text: Bootstrap
+          - href: slides/ADAS/5-misura.qmd
+            text: Misura
+          - href: slides/ADAS/6-DoE.qmd
+            text: Design of Experiments
+          - href: slides/ADAS/7-serie_temporali.qmd
+            text: Serie temporali
+      - text: DESAnED
+        menu:
+          - href: slides/DESANED/TOC.qmd
+            text: Table of Contents
+          - href: slides/DESANED/1-statistics.qmd
+            text: Statistics
+          - href: slides/DESANED/2-R-intro.qmd
+            text: Intro to R language
+          - href: slides/DESANED/3-regression.qmd
+            text: Regression
+          - href: slides/DESANED/4-kfold.qmd
+            text: K-Fold validation
+          - href: slides/DESANED/5-DoE.qmd
+            text: Design of Experiments
       - various.qmd
       - about.qmd
   repo-url: https://github.com/pbosetti/teaching_site

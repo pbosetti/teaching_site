@@ -2,6 +2,10 @@
 title: "About"
 ---
 
-I am Paolo Bosetti, Associate professor at [Department of Industrial Engineering, University of Trento](https://dii.unitn.it).
+:::column-margin
+![](images/PBBW.jpg)
+:::
+
+These pages present supporting material for lessons given by Paolo Bosetti, Associate Professor at [Department of Industrial Engineering, University of Trento](https://dii.unitn.it).
 
 Contact: paolo [dot] bosetti [at] unitn [dot] it

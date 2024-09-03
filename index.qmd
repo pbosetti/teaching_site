@@ -4,33 +4,16 @@ title: "Teaching Stuff"
 
 At the [Department of Industrial Engineering of the University of Trento](https://dii.unitn.it), I am teaching master courses (in English) and undergraduate courses (in Italian). Some of the teaching material used in these courses is available here.
 
-## Master course, *Design of Precision Systems*
+# Courses
 
-- *K-Fold Cross Validation*: [slides](/../kfold){target="_blank"}
+- *Design of Precision Systems* (DPS), master course, in English
+  - *K-Fold Cross Validation*: [slides](slides/ADAS/kfold){target="_blank"}
+- *[Design of Experiments and Statistical Analysis of Experimental Data](slides/DESANED/TOC.html)* (DESAnED), in English
+- *Analisi dei Dati e Statistica* (ADAS), in Italian
+  - [Slide del corso](slides/ADAS/TOC){target="_blank"}
+  - [Taratura di una bilancia a due piatti](slides/ADAS/bilancia){target="_blank"}
 
-## PhD course, *Design of Experiments and Statistical Analysis of Experimental Data*
-
-1. [Intro to Statistics](/../desaned-1){target="_blank"}
-2. [Intro to R language](/../desaned-2){target="_blank"}
-3. [Regression](/../desaned-3){target="_blank"}
-4. [K-fold cross validation](/../desaned-4){target="_blank"}
-5. [DoE](/../desaned-5){target="_blank"}
-
-## Corso triennale, *Analisi dei Dati e Statistica*
-
-0.  [Introduzione al corso](/../adas-0){target="_blank"}
-1.  [Statistica descrittiva e inferenziale](/../adas-1){target="_blank"}
-2.  [Introduzione a R](/../adas-2){target="_blank"}
-3.  [Regressione](/../adas-3){target="_blank"}
-4.  [Bootstrap](/../adas-4){target="_blank"}
-5.  [Misura, incertezza, taratura](/../adas-5){target="\_blank"}
-6.  [*Design of Experiments*](/../adas-6){target="\_blank"}
-7.  [Serie temporali](/../adas-8){target="_blank"}
-
-Materiale aggiuntivo:
-
-* Esperimento virtuale: [taratura di una bilancia a due piatti](/../bilancia){target="_blank"}
-
+---
 
 # License
 

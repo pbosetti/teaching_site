@@ -1,0 +1,391 @@
+---
+title: "Esperimenti di taratura"
+subtitle: "Progetto del corso Analisi Dati e Statistica, A.A. 2023--24"
+author: "Paolo Bosetti"
+institute: "Università di Trento, Dipartimento di Ingegneria Industriale"
+date: "`r Sys.Date()`"
+format: 
+  revealjs:
+    width: 1280
+    height: 700
+    margin: 0.1
+    slide-number: true
+    chalkboard: true
+    theme: [default, style.scss]
+---
+
+```{r}
+library(tidyverse)
+library(latex2exp)
+library(modelr)
+source("bilancia/bilancia.R")
+```
+
+# Primo caso
+
+Taratura di una bilancia a due piatti, condotta in simulazione.
+
+L'esperimento è **individuale**.
+
+## Schema
+
+:::columns
+:::{.column width="60%"}
+Consideriamo una bilancia a due piatti come in figura
+
+Il piatto sinistro è caricato con un peso noto $F_1$ simile alla massa da pesare $F_2$
+
+L'angolo dell'ago all'equilibrio $\delta$ è funzione della differenza tra i pesi
+
+Siano:
+
+* $l$ la lunghezza dei bracci
+* $h$ la distanza verticale all'equilibrio tra il centro di massa del bilanciere e il fulcro
+* $F_M$ il peso del bilancere
+
+:::
+:::{.column width="40%"}
+![](images/bilancia.png){fig-align="center" width="75%"}
+:::
+:::
+
+
+## Formule {.scrollable}
+
+:::columns
+:::{.column width="45%"}
+Bracci delle forze:
+$$
+\begin{align}
+b_1 =& \left(\frac{l}{2}+h\tan\delta\right) \\
+b_2 =& l\cos\delta-b_1 = \left(\frac{l}{2}-h\tan\delta\right)\cos\delta \\
+b_M =& h\tan\delta\cos\delta
+\end{align}
+$$
+:::
+:::{.column width="55%"}
+Equilibrio dei momenti:
+$$
+\begin{align}
+0 =& F_1b_1 +F_Mb_M - F_2b_2 \\
+0 =& F_1(b_1-b_2) +F_Mb_M -\Delta Fb_2 \\
+0 =& F_1(2h\tan\delta)+F_Mh\tan\delta + \\
+   & -\Delta F(l/2-h\tan\delta)
+\end{align}
+$$
+:::
+:::
+
+Quindi:
+$$
+\tan\delta = \frac{l}{2h}\frac{\Delta F}{2F_1+F_M+\Delta F} = a\frac{\Delta F}{2F_1+F_M+\Delta F}
+$$
+
+# Taratura statica
+
+```{r}
+set.seed(1)
+
+df <- expand.grid(
+  deltaF=seq(5,50,5),
+  F=seq(100,500,50)
+)
+
+df <- df %>% mutate(
+  time=seq(0, by=60, length.out=n()),
+  time_r = sample(time),
+  angle_n=scale_angle(F, deltaF),
+  angle = angle_n + noise(time, p=max(time), w=0.2, sd=0.2),
+  angle_r = angle_n + noise(time_r, p=max(time), w=0.2, sd=0.2),
+) %>% tibble()
+```
+
+Raccogliamo l'angolo di equilibrio per carichi sul piatto sinistro pari a $F_1=100, 150, \dots, 500$ g e sul piatto destro un valore uguale al piatto sinistro più $\Delta F=5, 10, \dots, 50$ g
+
+In totale effettuiamo **`r length(df$time)` prove**
+
+Simuliamo la raccolta dati sia in ordine regolare che in ordine casuale
+
+
+## Dati raccolti in ordine regolare
+
+:::columns
+:::column
+
+Grafico $\delta$ vs. $F_1$
+```{r}
+#| fig-width: 6
+#| fig-height: 5
+df %>% ggplot(aes(x=F, y=angle_n, group=deltaF, color=deltaF)) +
+  geom_line() +
+  geom_point(aes(y=angle)) +
+  labs(x=TeX("$F_1$ (g)"),
+       y=TeX("$\\delta$ ($^\\circ$)"),
+       color=TeX("$\\Delta F$ (g)")) +
+  coord_cartesian(ylim=c(0, 10)) +
+  scale_color_viridis_b() +
+  theme(legend.position = "bottom")
+```
+:::
+:::column
+
+Grafico $\delta$ vs. $\Delta F$
+
+```{r}
+#| fig-width: 6
+#| fig-height: 5
+df %>% ggplot(aes(x=deltaF, y=angle_n, group=F, color=F)) +
+  geom_line() +
+  geom_point(aes(y=angle)) +
+  labs(x=TeX("$\\Delta F$ (g)"),
+       y=TeX("$\\delta$ ($^\\circ$)"),
+       color="F (g)") +
+  coord_cartesian(ylim=c(0, 10)) +
+  scale_color_viridis_b() +
+  theme(legend.position = "bottom")
+```
+:::
+:::
+
+## Dati raccolti in ordine casuale
+:::columns
+:::column
+
+Grafico $\delta$ vs. $F_1$
+```{r}
+#| fig-width: 6
+#| fig-height: 5
+df %>% ggplot(aes(x=F, y=angle_n, group=deltaF, color=deltaF)) +
+  geom_line() +
+  geom_point(aes(y=angle_r)) +
+  labs(x=TeX("$F_1$ (g)"),
+       y=TeX("$\\delta$ ($^\\circ$)"),
+       color=TeX("$\\Delta F$ (g)")) +
+  coord_cartesian(ylim=c(0, 10)) +
+  scale_color_viridis_b()+
+  theme(legend.position = "bottom")
+```
+:::
+:::column
+
+Grafico $\delta$ vs. $\Delta F$
+```{r}
+#| fig-width: 6
+#| fig-height: 5
+df %>% ggplot(aes(x=deltaF, y=angle_n, group=F, color=F)) +
+  geom_line() +
+  geom_point(aes(y=angle_r)) +
+  labs(x=TeX("$\\Delta F$ (g)"),
+       y=TeX("$\\delta$ ($^\\circ$)"),
+       color="F (g)") +
+  coord_cartesian(ylim=c(0, 10)) +
+  scale_color_viridis_b()+
+  theme(legend.position = "bottom")
+```
+:::
+:::
+
+# Regressione
+Il modello $\delta = \arctan\left(a\frac{\Delta F}{2F_1+F_M+\Delta F}\right)$ è evidentemente non lineare nei coefficienti $a$ e $F_M$. L'arcotangente, inoltre, può creare problemi di convergenza
+
+Si ricorre a una regressione ai minimi quadrati **lasciando al primo membro la tangente dell'angolo**
+
+## Dati ordinati, regressione
+
+:::columns
+:::column
+```{r}
+#| fig-width: 6
+#| fig-height: 5
+df.lm <- nls(tan(angle/180*pi)~a*deltaF/(2*F+deltaF+Fm), data=df, start=list(a=1, Fm=50), 
+             control=list(warnOnly=T, maxiter=50, scaleOffset=1))
+
+df <- add_predictions(df, df.lm)
+df <- add_residuals(df, df.lm)
+
+df %>% ggplot(aes(x=deltaF, group=F)) +
+  geom_point(aes(y=angle)) +
+  geom_line(aes(y=angle_n, color="nominale")) +
+  geom_line(aes(y=atan(pred)/pi*180, color="regressione"), linetype=2) +
+  coord_cartesian(ylim=c(0,10)) +
+  labs(color="linea:", y=TeX("$\\delta$ ($^\\circ$)"), x=TeX("$\\Delta F$ (g)")) +
+  theme(legend.position = c(0.2, 0.8))
+```
+:::
+:::column
+
+```{r}
+#| fig-width: 6
+#| fig-height: 5
+df %>% ggplot(aes(x=deltaF)) +
+  geom_point(aes(y=resid)) +
+  labs(x=TeX("$\\Delta F$ (g)"), y=TeX("$\\epsilon$")) +
+  coord_cartesian(ylim=c(-0.015,0.015))
+rsq <- 1 - sum(df$resid^2) / sum((tan(df$angle/180*pi) - mean(tan(df$angle/180*pi)))^2)
+```
+:::
+:::
+
+Risulta: $a = `r summary(df.lm)$coefficients[1,1]`$ e $F_M=`r summary(df.lm)$coefficients[2,1]`$, $R^2=1-\frac{SS_\mathrm{res}}{SS_\mathrm{tot}}=1-\frac{\sum (y_i - \widehat y_i)}{\sum (y_i - \bar y)^2} = `r rsq`$
+
+## Dati casualizzati, regressione
+:::columns
+:::column
+```{r}
+#| fig-width: 6
+#| fig-height: 5
+df.lmr <- nls(tan(angle_r/180*pi)~a*deltaF/(2*F+deltaF+Fm), data=df, start=list(a=1, Fm=50), 
+             control=list(warnOnly=T, maxiter=50, scaleOffset=1))
+
+
+df <- add_predictions(df, df.lmr, var="pred_r")
+df <- add_residuals(df, df.lmr, var="resid_r")
+
+df %>% ggplot(aes(x=deltaF, group=F)) +
+  geom_point(aes(y=angle_r)) +
+  geom_line(aes(y=angle_n, color="nominale")) +
+  geom_line(aes(y=atan(pred_r)/pi*180, color="regresione"), linetype=2) +
+  coord_cartesian(ylim=c(0,10)) +
+  labs(color="linea:", y=TeX("$\\delta$ ($^\\circ$)"), x=TeX("$\\Delta F$ (g)")) +
+  theme(legend.position = c(0.2, 0.8))
+```
+:::
+:::column
+
+
+```{r}
+#| fig-width: 6
+#| fig-height: 5
+df %>% ggplot(aes(x=deltaF)) +
+  geom_point(aes(y=resid_r)) +
+  labs(x=TeX("$\\Delta F$ (g)"), y=TeX("$\\epsilon$")) +
+  coord_cartesian(ylim=c(-0.015,0.015))
+
+rsq_r <- 1 - sum(df$resid_r^2) / sum((tan(df$angle_r/180*pi) - mean(tan(df$angle_r/180*pi)))^2)
+```
+:::
+:::
+
+Risulta: $a = `r summary(df.lmr)$coefficients[1,1]`$ e $F_M=`r summary(df.lmr)$coefficients[2,1]`$, $R^2=1-\frac{SS_\mathrm{res}}{SS_\mathrm{tot}}=1-\frac{\sum (y_i - \widehat y_i)}{\sum (y_i - \bar y)^2} = `r rsq_r`$
+
+
+## Osservazioni
+
+* Sebbene il valore di $R^2$ sia leggermente migliore per i dati non casualizzati, è evidente che la regressione è più vicina al modello nominale per il caso con i dati casualizzati
+* Questo insegna a considerare $R^2$ solo come termine di confronto tra regressioni diverse **ma sugli stessi dati**
+* Se la regressione è fatta sul modello $\tan(\delta)=f(F, \Delta F)$ anziché sul modello $\delta = \arctan(f(F, \Delta f))$ bisogna fare attenzione che i residui $y_i - \widehat y_i$ e i valori regressi $\widehat y_i$ sono calcolati come **tangenti dell'angolo** e non come angolo vero e proprio
+
+## Progetto {.smaller}
+
+Il progetto **individuale** richiede di eseguire un esperimento di taratura statica dello strumento bilancia a due piatti
+
+* Lo strumento virtuale è disponibile su <https://p4010.shinyapps.io/bilancia/>
+* Lo strumento ha parametri $h$ e $l$ ignoti ed è soggetto a disturbi modificanti (funzione del tempo) e interferenti (aleatori)
+* Pianificare l'esperimento perlustrando il dominio dei due parametri $F_1$ e $\Delta F$ con un sufficiente numero di test
+* Eseguire tutte le prove e alla fine scaricare la tabella dei risultati, **che non dovrà essere modificata**
+* **Prendere nota** della chiave di verifica visualizzata e salvarla su un file. La chiave è unica per ogni sessione sperimentale e per ogni file scaricato
+* Eseguire la regressione e determinare la relazione $\delta=f(F_1, \Delta F, a, F_M)$, con $a$ e $F_M$ parametri del modello
+* Realizzare un report `.Rmd` che descriva tutti i passi e le analisi effettuate e riporti la chiave di verifica
+* È necessario consegnare il report in formato pdf e il file dati originale. Il report deve citare la chiave di verifica della sessione sperimentale
+* Il report deve includere (come chunck con `echo=TRUE`) anche tutti i passaggi in R (inclusa l'analisi dei residui della regressione!), con la possibile eccezione del caricamento delle librerie
+* Criteri di valutazione:
+  - completezza dell'analisi
+  - correttezza del risultato
+  - qualità dell'impaginazione e cura per l'aspetto del report e dei grafici
+* **Opzionale**: eseguire un'analisi di bootstrap non parametrico per determinare l'intervallo di confidenza al 95% sui due parametri del modello
+
+## Report
+
+Per il report usare il template `report.Rmd` sulla  [repository GitHub del corso](https://github.com/pbosetti/ADAS-23) (cliccare [qui per scaricare direttamente il file](https://raw.githubusercontent.com/pbosetti/ADAS-23/main/report.Rmd))
+
+Il report richiede la libreria `memor`: per installarla procedere come segue:
+
+```{r eval=FALSE, include=TRUE, echo=TRUE}
+install.packages("devtools")
+devtools::install_github("hebrewseniorlife/memor")
+```
+
+Seguire gli esempi e le indicazioni contenute nel template per l'inserimento di figure e tabelle e per la creazione di riferimenti
+
+
+# Secondo caso
+
+Taratura di un sensore di pressione per solette da scarpa.
+
+L'esperimento è da condurre in gruppo: **due persone al massimo**.
+
+## Descrizione dello strumento
+
+:::columns
+
+:::column
+* Lo strumento è una **soletta** da inserire in una scarpa tra soletta e calzino, e consente di misurare la pressione esercitata dal piede in **16 zone**
+* Ogni zona è un rettangolo di circa 15 mm x 12 mm ed è costituita da una serie di piste conduttive separate da uno strato isolante: la pressione avvicina i conduttori **riducendo la resistenza**
+* La soletta è collegata ad un dispositivo di acquisizione che comunica con un PC, su cui un apposito software acquisisce i **valori di tensione** proporzionali al carico applicato
+:::
+
+:::column
+![Soletta con sensori](images/soletta.jpg){fig-align="center" width="75%"}
+:::
+:::
+
+## Caratteristica statica
+
+:::columns
+:::column
+La **caratteristica statica** di ogni sensore segue l'equazione:
+
+$$
+V(F) = V_0 + \frac{k}{F-F_0}
+$$
+
+La **caratteristica inversa** (utilizzata nelle **misurazioni**) è ovviamente:
+
+$$
+F(V) =\frac{k}{V-V_0} + F_0
+$$
+
+Vanno quindi identificati i tre parametri $V_0$, $F_0$ e $k$
+
+
+
+:::
+:::column
+```{r}
+#| fig-width: 6
+#| fig-height: 5
+params <- list(k=0.58, V_0=0.1684, F_0=0.65)
+V <- function(F, p) p$V_0 + p$k / (F - p$F_0)
+F <- function(V, p) p$F_0 + p$k / (V - p$V_0) 
+
+ggplot() + 
+  geom_vline(xintercept=params$F_0, color="red", lty=2) +
+  geom_hline(yintercept=params$V_0, color="red", lty=2) +
+  geom_function(fun = \(x) V(x, params), xlim=c(0, 10)) + 
+  ylim(-2, 5) +
+  labs(x="Forza peso (N)", y="Tensione (V)")
+```
+:::
+:::
+
+## Procedura di taratura
+
+* La taratura viene eseguita utilizzando come misurandi delle **masse note**, misurate mediante una bilancia con incertezza pari a 0.1 kgf
+* Le masse possono essere combinate in modo da **aumentare il numero di misurandi possibili**
+* Tenere in equilibrio le masse su un unico sensore è difficile,  quindi si caricano le masse su una piastra appoggiata mediante tre piedini a **tre sensori**
+* È possibile tarare tre sensori assieme, assumendo poi che abbiano parametri equivalenti:
+
+$$
+F(V) = 3F_0 + \frac{k}{V_1 - V_0} + \frac{k}{V_2 - V_0} + \frac{k}{V_3 - V_0} 
+$$
+
+* Questi risultati vanno poi **validati** con masse singole caricate su un unico sensore
+
+## Report finale
+
+* Il **report finale** deve essere realizzato analogamente a quanto detto per il primo caso, utilizzando lo stesso template
+* Criteri di **valutazione**:
+  - completezza dell'analisi
+  - correttezza del risultato
+  - qualità dell'impaginazione e cura per l'aspetto del report e dei grafici
+* Ciascun report viene valutato tra -1 (non consegnato) e +3 (ottimo) punti; la media ottenuta coi due report è un **bonus** aggiunto al voto finale del primo modulo

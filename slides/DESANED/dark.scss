@@ -1,0 +1,55 @@
+/*-- scss:defaults --*/
+
+$presentation-font-size-root: 30px;
+$presentation-heading-color: #dd0;
+$code-block-font-size: 0.75em;
+
+/*-- scss:rules --*/
+
+.cite {
+  text-align: right !important;
+  color: #888;
+  font-style: italic;
+}
+
+.reveal .title {
+  border-bottom: 6px;
+  border-bottom-style: solid;
+  border-bottom-color: --presentation-heading-color;  
+}
+
+.reveal .subtitle {
+  color: #b00;
+  font-weight: bold;
+}
+
+.reveal h2 {
+  border-bottom: 4px;
+  border-bottom-style: solid;
+  border-bottom-color: #b00;
+}
+
+.reveal .date {
+  color: #ccc;
+  font-style: italic;
+}
+
+.reveal .quarto-title-author-name {
+  color: #ccc;
+  font-style: italic;
+}
+
+.reveal strong {
+  color: #dd0;
+}
+
+.reveal dt {
+  color: #dd0;
+  text-decoration: underline;
+}
+
+.reveal .important {
+  text-decoration: underline;
+  text-decoration-color: #dd0;
+  font-size: 150%;
+}

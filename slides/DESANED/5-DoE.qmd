@@ -1,0 +1,1076 @@
+---
+title: "Design of Experiments"
+subtitle: |
+  Design of Experiments and Statistical Analysis of Experimental Data, 2024 \
+  ![](images/by-nc-sa.png){height=30}
+author: "Paolo Bosetti"
+institute: "University of Trento, Department of Industrial Engineering"
+format: 
+  revealjs:
+    width: 1280
+    height: 700
+    margin: 0.1
+    slide-number: true
+    code-line-numbers: true
+    code-annotations: below
+    preview-links: auto
+    theme: [default, style.scss]
+    chalkboard: true
+    footer: "paolo.bosetti@unitn.it --- [https://paolobosetti.quarto.pub/desaned/](https://paolobosetti.quarto.pub/desaned/)"
+    fig-width: 5
+    fig-height: 4
+    fig-dpi: 300
+execute: 
+  cache: true
+---
+
+```{r}
+options(width = 60)
+set.seed(0)
+library(latex2exp)
+library(glue)
+library(tidyverse)
+library(modelr)
+theme_set(theme_gray()+theme(legend.position = "bottom"))
+```
+
+# Design (and Analysis) of Experiments
+$\renewcommand{\hat}[1]{\widehat{#1}}$
+$\renewcommand{\tilde}[1]{\widetilde{#1}}$
+$\renewcommand{\theta}{\vartheta}$
+
+**Industrial experiments** often involve numerous factors corresponding to possibly very complex **models**
+
+It is therefore necessary to **minimize the number of treatments** and, therefore, the cost of the experiment, and yet to obtain **the same information**
+
+The experiments must then be analyzed with a statistical approach
+
+## Industrial experiment or scientific experiment?
+
+::: columns
+::: column
+A **scientific experiment** is generally conducted with the purpose of supporting or disproving a theory
+
+- it is always based on a **theoretical model** to be verified
+- often the model focuses on the effect of a limited number of explanatory variables
+:::
+
+::: column
+In the **industrial field** this is often not possible:
+
+- often a **theoretical model** for subject of the experiment is not available due to scientific, technical, or practical reasons
+- the **interaction** between multiple explanatory variables is often what matters most
+:::
+:::
+
+. . .
+
+For practical purposes, the **design** of the experiment is all the more important the higher the complexity (i.e. the number of factors involved)
+
+## Objectives of an experiment
+
+In general, an experiment serves to:
+
+1. **confirm** a theoretical hypothesis (model): you want to verify the [form]{.bgreen} $y=f(\cdot)$ of the theoretical model; the regression of the model is accompanied by the study of confidence intervals (analytical or bootstrap)
+2. **calibrate** the parameters of a model: the shape is known and we want to obtain the [parameter values]{.bgreen}; generally a regression is carried out, collecting data under realistic operating conditions
+3. **identify** the explanatory variables that influence a process: the model may be unknown and we want to determine the [list of independent variables]{.bgreen} that appear in the $y=f(\cdot)$; the objective is to build an approximate empirical model, which can possibly be used as a starting point for the formulation of a theoretical model
+
+## Dimensionality of an experiment
+
+If the **model of interest si simple** (i.e. one predictor), the experiment consists of analyzing the response variable at a sequence of levels for the explanatory variable. The number of levels is correlated with the expected degree of the response: for a regression of degree $m$ you need **at least** $l=m+1$ levels
+
+But if the model **has multiple predictors**, i.e. the output depends on $n$ explanatory variables, and each variable is investigated on $l$ levels, then the number of test conditions is $l^n$
+
+If each test condition is then repeated $r$ times (to average the results), the number of individual experiments is $rl^n$
+
+This number can become large and economically unsustainable **very quickly**
+
+:::aside
+Suppose we have 4 parameters and 4 levels, repeating each test 3 times: the total number of tests is `r 3*4^4`; if the parameters become 5, the number grows to `r 3*4^5`, i.e. `r (3*4^5)/(3*4^4)` times as much, a ratio which is also valid for the cost
+:::
+
+# Factorial plans
+
+If in an experiment the only explanatory variable, or [factor]{.bgreen}, takes on a **sequence** of values, in a **multidimensional** experiment the $n$ factors take on an $n$-dimensional **grid** of values, called **factorial plan **
+
+
+## Factorial plan
+
+```{r}
+data <- tribble (
+   ~A, ~B, ~yield, ~Yates, ~An, ~Bn,
+   "A-", "B-", 20, "$(1)$", -1, -1,
+   "A+", "B-", 50, "$a$", 1, -1,
+   "A-", "B+", 30, "$b$", -1, 1,
+   "A+", "B+", 12, "$ab$", 1, 1
+)
+```
+
+::: columns
+::: column
+- Two factors, $A$ and $B$
+- We investigate 2 levels for each factor indicated as $X-$ and $X+$
+- Let's change **one level at a time**
+- We evaluate each treatment **only 1 time**
+- Let's evaluate the **effects** of $A$ and $B$: $$
+     \begin{align}
+     A &= `r data$yield[2]` - `r data$yield[1]` = `r data$yield[2]-data$yield[1]`\\
+     B &= `r data$yield[3]` - `r data$yield[1]` = `r data$yield[3]-data$yield[1]`
+     \end{align}
+     $$
+:::
+
+::: column
+```{r}
+data[1:3,1:4] %>% ggplot(aes(x=A, y=B)) +
+   geom_label(aes(x=A, y=B, label=yield))
+```
+:::
+:::
+
+## Yates notation
+
+When the levels of all factors are only two, the **Yates order** can be used to indicate the combinations of levels:
+
+- Factors and effects of factors are indicated with capital letters
+- Treatments are indicated with combinations of lowercase letters
+     - letter present means factor at high level
+     - absent letter means factor at low level
+     - if all the letters are absent, write $(1)$
+
+:::aside
+In the example on the previous slide, the treatments are $(1), a, b$
+:::
+
+## Factorial plan
+
+```{r}
+A <- with(data, (yield[2]+yield[4])/2 - (yield[1]+yield[3])/2)
+B <- with(data, (yield[3]+yield[4])/2 - (yield[1]+yield[2])/2)
+AB <- with(data, (yield[1]+yield[4])/2 - (yield[2]+yield[3])/2)
+```
+
+::: columns
+::: column
+Changing one factor at a time does not identify the **interactions**
+
+Interaction occurs when the **effect** of one factor depends on the **level** of another factor
+
+In this second example we measure the response of treatments $(1), a, b, ab$
+
+We can estimate both the effects of $A$ and $B$ and the **interaction** $AB$:
+
+$$
+\begin{align}
+A &= \frac{a+ab}{2} - \frac{(1) + b}{2} = `r A`\\
+B &= \frac{b+ab}{2} - \frac{(1) + a}{2} = `r B` \\
+AB &= \frac{a+b}{2} - \frac{(1)+ab}{2} = `r AB`
+\end{align}
+$$
+:::
+
+::: column
+```{r}
+ggplot(data, aes(x=A, y=B)) +
+   geom_label(aes(x=A, y=B, label=yield))
+A <- with(data, (yield[2]+yield[4])/2 - (yield[1]+yield[3])/2)
+B <- with(data, (yield[3]+yield[4])/2 - (yield[1]+yield[2])/2)
+AB <- with(data, (yield[1]+yield[4])/2 - (yield[2]+yield[3])/2)
+```
+:::
+:::
+
+## Interaction graph
+
+::: columns
+::: column
+The concept of interaction is well illustrated by **interaction graphs**
+
+- If the two segments are **parallel** there is no interaction
+- If the two segments are **crossed** or convergent there is interaction
+- It is **indifferent** which factor is on the abscissa and which is on the series
+:::
+
+::: column
+::: panel-tabset
+### Yield vs. A
+
+```{r}
+ggplot(data, aes(x=A, y=yield, color=B, group=B)) +
+   geom_line(size=2) +
+   geom_point(size=4)
+```
+
+### Yield vs. B
+
+```{r}
+ggplot(data, aes(x=B, y=yield, color=A, group=A)) +
+   geom_line(size=2) +
+   geom_point(size=4)
+```
+:::
+:::
+:::
+
+## Response surface
+
+::: columns
+::: column
+The interaction graphs are nothing more than **projections** on the axis of one of the two factors of the **response surface**
+
+**Coded units** are generally used, rescaling the range of each factor to the range $[-1,1]$
+
+This way you have the same sensitivity regardless of the original scale range
+:::
+
+::: column
+```{r}
+model <- lm(yield~An*Bn, data)
+grd <- expand.grid(An=seq(-1,1,0.1), Bn=seq(-1,1,0.1))
+grd %>% mutate(
+   yield = predict(model, newdata = grd)
+) %>% ggplot(aes(x=An, y=Bn, z=yield)) +
+   geom_contour_filled(show.legend=F) +
+   labs(x="A", y="B", color="Section: ") +
+   geom_segment(aes(x=-1, y=-1, xend=1, yend=-1, color="B-"), size=2) +
+   geom_segment(aes(x=-1, y=1, xend=1, yend=1, color="B+"), size=2) +
+   geom_point(aes(x=An, y=Bn, color=B), data=data, size=4) +
+   theme(legend.position = "bottom")
+```
+:::
+:::
+
+**NOTE**: Neither the response surface nor the interaction plots give any information on the **statistical significance** of the effects
+
+
+## $l^2$ factorial plans
+
+In general, an experiment in which you have 2 factors each tested on $l$ levels is a $l^2$ factorial design, because the **total number of treatments** is $N=rl^2$, where $r$ is the number of repetitions for each treatment
+
+The **statistical model** and regression model associated with the experiment are:
+
+$$
+y_{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_{ij} + \varepsilon_{ijk};\quad \hat y = \mu + \alpha x_1 + \beta x_2 + (\alpha\beta)x_1 x_2
+$$
+with $x_1$ and $x_2$ the values of the two factors in **coded units**
+
+As such, the experiment can be studied with a two-factor ANOVA (or **two-way ANOVA**):
+
+::: columns
+::: column
+$$
+\textrm{A)}~\left\{
+\begin{align}
+H_0&: \alpha_1 = \alpha_2 = \dots =\alpha_a = 0 \\
+H_1&: \alpha_i \ne 0\quad\textrm{for at least one}~i
+\end{align}
+\right.
+$$
+
+$$
+\textrm{B)}~\left\{
+\begin{align}
+H_0&: \beta_1 = \beta_2 = \dots =\beta_b = 0 \\
+H_1&: \beta_j \ne 0\quad\textrm{for at least one}~j
+\end{align}
+\right.
+$$
+:::
+
+::: column
+$$
+\textrm{AB)}~\left\{
+\begin{align}
+H_0&: (\alpha\beta)_{ij} = 0\quad \forall~(i,j) \\
+H_1&: (\alpha\beta)_{ij} \ne 0\quad \textrm{for at least one}~(i,j)
+\end{align}
+\right.
+$$
+:::
+:::
+
+## $l^2$ factorial plans
+
+These pairs of hypotheses correspond to a decomposition of the **corrected total square sum** $SS_\mathrm{tot}=SS_A + SS_B + SS_{AB} + SS_E$
+
+The corresponding ANOVA table is:
+
+| Effect | $\nu$ (GdL) | $SS$ | $MS$ | $F_0$ | *p*-value |
+|----------|----------|----------|----------|----------|--------------------|
+| A| $a-1$ | $SS_A$ | $SS_A/\nu_A$ | $MS_A/MS_E$ | $\mathrm{CDF}^+(F_{0,A}, \nu_A, \nu_E)$ |
+| B| $b-1$ | $SS_B$ | $SS_B/\nu_B$ | $MS_B/MS_E$ | $\mathrm{CDF}^+(F_{0,B}, \nu_B, \nu_E)$ |
+| AB | $(a-1)(b-1)$ | $SS_{AB}$ | $SS_{AB}/\nu_{AB}$ | $MS_{AB}/MS_E$ | $\mathrm{CDF}^+(F_{0,AB}, \nu_{AB}, \nu_E)$ |
+| Error | $ab(n-1)$ | $SS_E$ | $SS_E/\nu_E$ | --- | --- |
+| Total | $abn-1$ | $SS_\mathrm{tot}$ | $SS_\mathrm{tot}/\nu_\mathrm{tot}$ | --- | --- |
+
+
+## Example
+
+We want to study the effect of cutting speed (factor $A$) and rake angle (factor $B$) of a turning tool on tool life. The two factors are both **quantitative**; we decide to investigate three levels for each factor, repeating each treatment twice: factorial plan $2\cdot 3^2$
+
+:::columns
+:::column
+1. preparation of the **test grid**
+2. randomization of the operative sequence
+3. execution of experiments and data collection
+4. formulation and verification of the statistical model
+5. analysis of variance (ANOVA)
+6. creation of the response surface
+
+Points 4 and 5 are possibly repeated
+:::
+:::{.column style="font-size: 70%"}
+```{r}
+df <- expand.grid(
+   Angle=c(15,20,25),
+   Speed=c(125,150,175),
+   Repeat=c(1,2),
+   Life = NA) %>%
+   mutate(StdOrder=1:n(), RunOrder=sample(n()), .before=Angle) %>%
+   mutate(A=scales::rescale(Angle, to=c(-1,1)), .after=Angle) %>%
+   mutate(B=scales::rescale(Speed, c(-1,1)), .after=Speed)
+
+df %>% filter(Repeat==1) %>%
+   select(everything() & ! RunOrder) %>%
+   knitr::kable()
+```
+
+:::
+:::
+
+:::aside
+For reasons of space, the table only reports the first half of the rows, corresponding to the first repetition
+:::
+
+
+## Example --- step 2.
+
+:::columns
+:::column
+In the grid, a new column of randomly ordered integers $\left<1\dots N\right>,~N=rl^n$ is generated
+
+The grid is rearranged according to the new column, usually called *Run Order*
+
+:::
+:::{.column style="font-size: 60%;"}
+```{r}
+df %>%
+   arrange(RunOrder) %>%
+   knitr::kable()
+```
+
+:::
+:::
+
+## Example --- step 3.
+
+:::columns
+:::column
+The experiments are carried out according to the *run order*
+
+By performing the experiments according to the *run order* possible **unknown and uncontrolled** effects are randomly distributed over all treatments:
+
+* global variance increases ($SS_\mathrm{tot}$)
+* the relative effect of the factors is not altered ($SS_X$)
+
+**Note**: a *repetition* is a replica of the entire experiment, not of the measurement operation alone
+
+:::
+:::{.column style="font-size: 60%;"}
+```{r}
+df$Life <- c(-2, 0, -1, -3, 1, 5, 2, 4, 0, -1, 2, 0, 0, 3, 6, 3, 6, -1)
+
+df %>%
+   arrange(RunOrder) %>%
+   knitr::kable()
+```
+
+:::
+:::
+
+## Example --- step 4.
+
+:::columns
+:::column
+We formulate the full quadratic regression model:
+
+
+\begin{align}
+\hat y = & \mu + \alpha_1 x_1 + \beta_1 x_2 + (\alpha\beta)_1x_1x_2 + \\
+          & + \alpha_2x_1^2 + \beta_2x_2^2 + (\alpha\beta)_{2,1}x_1^2x_2 + \\
+          & + (\alpha\beta)_{1,2}x_1x_2^2 + (\alpha\beta)_{2,2}x_1^2x_2^2
+      
+\end{align}
+
+```{r}
+df.lm <- lm(Life~Angle*Speed*I(Angle^2)*I(Speed^2), data=df)
+```
+
+
+where $(\alpha\beta)$ is not a product: it represents the coefficient of a product of factors $A$ and $B$
+
+**It is necessary to evaluate normality and absence of pattern in the residuals**
+:::
+:::column
+
+:::panel-tabset
+### $\varepsilon(A)$
+```{r}
+df <- add_residuals(df, df.lm)
+ggplot(df, aes(x=Angle, y=resid)) + geom_point() +
+   labs(x="angle", y="residuals")
+```
+
+### $\varepsilon(B)$
+```{r}
+ggplot(df, aes(x=Speed, y=resid)) + geom_point() +
+   labs(x="velocity", y="residuals")
+```
+
+### $\varepsilon(r)$
+```{r}
+ggplot(df, aes(x=RunOrder, y=resid)) + geom_point() +
+   labs(x="Run Order", y="residuals")
+```
+
+### Quantile-Quantile
+```{r}
+ggplot(df, aes(sample=resid)) +
+   geom_qq() +
+   geom_qq_line()
+```
+
+
+:::
+
+:::
+:::
+
+## Example --- step 5.
+:::columns
+:::column
+Choosing 5% as the threshold on the *p*-value, we observe that these effects are **statistically insignificant**:
+
+* $B^2$, corresponding to the $\beta_2$ term in the regression
+* $A^2B$, corresponding to the $(\alpha\beta)_{2,1}$ term in the regression
+
+
+:::
+:::{.column style="font-size: 65%;"}
+```{r}
+anova(df.lm) %>% tibble() %>%
+   mutate(effect=c("$A$", "$B$", "$A^2$", "$B^2$", "$AB$", "$A^2B$", "$AB^2$", "$A^2B^2$", "$\\varepsilon$"), .before=Df) %>%
+   rename(`$\\nu$`=Df, `$SS$`=`Sum Sq`, `$MS$`=`Mean Sq`, `$F_0$`=`F value`, `$p\\mathrm{-value}$`=`Pr(>F)`) %>%
+   knitr::kable()
+```
+
+:::
+:::
+
+So the regression equation becomes:
+\begin{align}
+\hat y = & \mu + \alpha_1 x_1 + \beta_1 x_2 + (\alpha\beta)_1x_1x_2 + \\
+          & + \alpha_2x_1^2 + (\alpha\beta)_{1,2}x_1x_2^2 + \\
+          & + (\alpha\beta)_{2,2}x_1^2x_2^2
+      
+\end{align}
+
+
+## Example --- step 6.
+:::columns
+:::column
+The **response surface** allows you to identify notable points and directions:
+
+* Point S is a saddle point, where the gradient is zero in any direction: stable point
+* At point P, the directions tangential to the isohypse are **constant yield directions**
+* Point M is a **maximum** of yield
+
+
+
+:::
+:::{.column style="font-size: 65%;"}
+```{r}
+p1 <- c(22.1, 164)
+p2 <- c(17.55, 145)
+p3 <- c(25.0, 150)
+rs <- expand.grid(
+   Angle=seq(15,25,length.out=20),
+   Speed=seq(125,175,length.out=20))
+add_predictions(rs, df.lm) %>%
+   ggplot(aes(x=Angle, y=Speed, z=pred)) +
+   geom_contour_filled() +
+   geom_label(aes(x=p1[1], y=p1[2], label="S")) +
+   geom_label(aes(x=p2[1], y=p2[2], label="P")) +
+   geom_label(aes(x=p3[1], y=p3[2], label="M")) +
+   labs(color="Tool life") +
+   theme(legend.position = "bottom")
+```
+
+
+:::
+:::
+
+
+:::aside
+In general, a response surface is a **hyper-surface** in an $n+1$-dimensional space, where $n$ is the number of factors
+:::
+
+## Model adequacy analysis
+
+After possibly excluding some effects (for example $B^2$ and $A^2B$) it is necessary to:
+
+1. reformulate the model
+2. analyze the residuals of the new model
+3. confirm with a new ANOVA
+
+In particular, the analysis of the residuals is called **model adequacy check** (*Model Adequacy Check*, MAC) and typically consists of:
+
+* checks for absence of patterns in the residuals depending on the factors
+* checks for absence of patterns in the residuals depending on the test order
+* verification of normality of residuals (Q-Q graph and Shapiro-Wilk test)
+
+
+## $2^n$ factorial plan
+
+:::columns
+:::{.column width=60%}
+Factor plans in which all factors have two levels (low and high, -1 and +1 in coded units) are of particular interest
+
+* allow you to regress models only of the first degree
+* require minimal testing
+* they still allow to define the sensitivity of the process to the various factors, **excluding non-significant factors**
+* are the starting point of any analysis of complex processes (i.e. with more than one explanatory variable)
+:::
+
+:::{.column width=40%}
+![](images/facplan1.png){width=350px}
+:::
+:::
+
+## $2^n$ factorial plan
+
+:::columns
+:::column
+* Each factor has two levels: low and high. In **coded units** -1 and +1 are valid, referred to for short as **- and +**
+* The **treatments**, i.e. combinations of levels for the $n$ factors, are indicated with **Yates notation**
+* the **design matrix** is obtained by permuting all the factors between - and + with frequencies gradually halved
+* the project matrix is repeated for the $r$ repetitions and also reports the **random execution order** column
+* the **effects matrix** is obtained by adding the columns for the interactions, calculated as the product of the relative signs
+:::
+:::{.column style="font-size: 85%; text-align: center;"}
+:::panel-tabset
+
+### Design matrix
+
+```{r}
+lv <- c("-", "+")
+`%f*%` <- function(a, b) {
+   an <- ifelse(a=="-", -1, 1)
+   bn <- ifelse(b=="-", -1, 1)
+   ifelse(an*bn == -1, "-", "+")
+}
+dm <- expand.grid(
+   I="+",
+   A=lv,
+   B=lv,
+   C=lv
+) %>%
+   mutate(AB=A%f*%B, .after=B) %>%
+   mutate(AC=A%f*%C, BC=B%f*%C, ABC=A%f*%B%f*%C) %>%
+   mutate(I="+") %>%
+   mutate(treatment=tolower(colnames(.)), .before="I")
+tr <- tolower(colnames(dm))
+dm$treatment[1] <- "(1)"
+
+dm %>%
+   select(treatment, A, B, C) %>%
+   mutate(repetition=1, .after=treatment) %>%
+   mutate(order=sample(n())) %>%
+   knitr::kable(align=c("l", rep("c", 8)))
+
+```
+
+### Effects matrix
+```{r}
+dm %>%
+   knitr::kable(align=c("l", rep("c", 8)))
+```
+
+:::
+
+:::
+:::
+
+## $2^n$ factorial plan
+
+The effects matrix contains the information to calculate the **effects** and the quadratic sums $SS$ which, in turn, are used to complete the ANOVA table
+
+:::columns
+:::column
+For the effects:
+$$
+\begin{align}
+A &= \frac{-(1)+a-b+ab}{2r} \\
+B &= \frac{-(1)-a+b+ab}{2r} \\
+AB &= \frac{+(1)-a-b+ab}{2r}
+\end{align}
+$$
+:::
+:::column
+For quadratic sums:
+$$
+\begin{align}
+SS_A &=& \frac{(-(1)+a-b+ab)^2}{4r} \\
+SS_B &=& \frac{(-(1)-a+b+ab)^2}{4r} \\
+SS_{AB} &=& \frac{(+(1)-a-b+ab)^2}{4r}
+\end{align}
+$$
+:::
+:::
+
+In general: $\mathrm{E}(X) = \frac{2}{2^rn}\mathrm{Contrast}(X)$ and $\mathit{SS}(X) = \frac{1}{2 ^rn}\mathrm{Contrast}(X)^2$ where the **contrast** of the factor $\mathrm{Contrast}(X)$ is calculated using the signs of the relevant column $X$ for the treatments in the order of Yates (e.g. $\mathrm{Contrast}(AB)=+(1)-a-b+ab$)
+
+## $2^n$ factorial plan: statistical model
+
+The **statistical model** of a $2^n$ factorial plan is obviously a first-order linear model in all factors. For $n=2$, for example:
+
+$$
+y_{ijk} = \mu + \alpha_{i} + \beta_{j} + (\alpha\beta)_{ij}+\varepsilon_{ijk}
+$$
+For $n=3$:
+$$
+y_{ijkl} = \mu + \alpha_{i} + \beta_{j} + (\alpha\beta)_{ij}+ \gamma_k + (\alpha\gamma)_{ik} + (\beta\gamma )_{jk} + (\alpha\beta\gamma)_{ijk} + \varepsilon_{ijkl}
+$$
+and so on.
+
+In R we will see that these models can be abbreviated as `Y~A*B` and `Y~A*B*C` respectively and used to calculate the ANOVA table
+
+:::aside
+Exercise: derive the regression models corresponding to the two statistical models reported above
+:::
+
+
+## Unreplicated factorial designs
+
+As the number of factors increases, the number of individual tests may become unsustainable
+
+The simplest way to reduce the number of tests is to **avoid repetitions for various treatments**
+
+If a treatment is not repeated, however, it is not possible to calculate the $SS_E$ and therefore the ANOVA table cannot be completed with the $F_0$ and the *p*-values
+
+The solution was proposed by C. Daniel and is based on the **hypothesis that at least one of the factors or interactions [is not significant]{style="text-decoration: underline;"}**
+
+This assumption is usually reasonable for more complex processes with large $n$, precisely the cases where it is particularly important to reduce the number of tests
+
+The idea is that **non-significant effects** are statistics calculated on different sub-samples of the same homogeneous sample, and therefore are normally distributed. Only the **significant effects** deviate from the normal distribution of the others
+
+## Daniel's method
+
+:::columns
+:::column
+Which effects are probably significant can therefore be determined with a quantile-quantile graph of them
+
+The graph is a first screening which must be **conservative**: it only serves to remove effects that are certainly not significant (i.e. very aligned with the diagonal) and allow the execution of the ANOVA
+
+The ANOVA table must however be calculated on a **reduced linear statistical model**, in order to confirm the result of the graphic method or to remove further effects that are actually non-significant
+:::
+
+:::column
+```{r}
+daniel <- expand.grid(
+   An = c(-1, 1),
+   Bn = c(-1, 1),
+   Cn = c(-1, 1),
+   Dn = c(-1, 1)
+) %>%
+   mutate(A=factor(An), B=factor(Bn),
+          C=factor(Cn), D=factor(Dn), .before=An) %>%
+   mutate(Yield=c(
+     45, 71, 48, 65, 68, 60, 80, 65,
+     43, 100, 45, 104, 75, 86, 70, 96
+   ))
+daniel.lm <- lm(Yield~A*B*C*D, data=daniel)
+c <- effects(daniel.lm)
+tibble(
+   term = names(c),
+   value = as.numeric(c)
+) %>% slice_tail(n=length(c)-1) %>%
+   ggplot(aes(sample=value)) +
+   geom_hline(aes(yintercept=value), color=gray(0.7)) +
+   geom_qq() +
+   geom_qq_line() +
+   geom_label(aes(y=value, x=-3., label=term), hjust="left") +
+   coord_cartesian(xlim=c(-3,3)) +
+   labs(x="Theoretical Quantiles", y="Sample Quantiles")
+```
+
+:::
+:::
+
+## Daniel's method
+
+:::columns
+:::column
+In this case only the effects $A, C, D$ and the interactions $AC$ and $AD$ are non-normal
+
+The linear statistical model can then be reviewed as
+
+$$
+y_{ijkl} = \mu + \alpha_{i} + \gamma_{j} + (\alpha\gamma)_{ij}+ \delta_k + (\alpha\delta)_{ik} + \varepsilon_{ijkl}
+$$
+That is, we can already rule out that $B$ is in fact a factor. In this way, instead of an unreplicated $2^4$ factorial plan we are dealing with a twice replicated $2^3$ (i.e. $2\cdot 2^3$), for which we can perform a normal ANOVA analysis
+:::
+
+:::column
+```{r}
+tibble(
+   term = names(c),
+   value = as.numeric(c)
+) %>% slice_tail(n=length(c)-1) %>%
+   ggplot(aes(sample=value)) +
+   geom_hline(aes(yintercept=value), color=gray(0.7)) +
+   geom_qq() +
+   geom_qq_line() +
+   geom_label(aes(y=value, x=-3., label=term), hjust="left") +
+   coord_cartesian(xlim=c(-3,3)) +
+   labs(x="Theoretical Quantiles", y="Sample Quantiles")
+```
+
+:::
+:::
+
+# Transformations
+
+In general, if the residuals of a linear model are non-normal, then *p*-values cannot be calculated from $F_0$
+
+Often, however, it is possible to **transform** the response to make the residuals normal
+
+The transformation can be any analytic function applied to the response
+
+## Example
+
+```{r}
+data <- tibble(
+   x = factor(rep(1:4, 6)) %>% sort(),
+   yield = c(
+     0.34, 0.12, 1.23, 0.70, 1.75, 0.12,
+     0.91, 2.94, 2.14, 2.36, 2.86, 4.55,
+     6.31, 8.37, 9.75, 6.09, 9.82, 7.24,
+     5.15, 11.82, 10.95, 5.20, 2.35, 4.82)
+)
+
+data.lm <- lm(yield~x, data=data)
+data <- data %>%
+   add_residuals(data.lm) %>%
+   add_predictions(data.lm)
+
+data.lmt <- lm(sqrt(yield)~x, data=data)
+data <- data %>%
+   add_residuals(data.lmt, var="resid_sq") %>%
+   add_predictions(data.lmt, var="pred_sq")
+```
+
+:::columns
+
+:::column
+Let's consider the data represented in this graph
+
+It doesn't matter where the data comes from: let's just build a linear model of the data
+
+$$ y_{ij} = \mu + x_i + \varepsilon_{ij}$$
+
+Notice how the residuals do not look normal and that there are some obvious **patterns**
+:::
+
+:::column
+:::panel-tabset
+### Data
+```{r}
+data %>% ggplot(aes(x=x, y=yield)) + geom_boxplot()
+```
+### Resid. vs. x
+
+```{r}
+data %>%
+   ggplot(aes(x=x, y=resid)) +
+   geom_point()
+```
+### Resid. vs. $\hat y$
+```{r}
+data %>%
+   ggplot(aes(x=pred, y=resid)) +
+   geom_point()
+```
+### Q-Q
+
+```{r}
+data %>%
+   ggplot(aes(sample=resid)) +
+   geom_qq() +
+   geom_qq_line()
+```
+
+:::
+:::
+:::
+
+## Example
+
+:::columns
+
+:::column
+If we observe from the boxplot that the yield tends to increase more than linearly with $x$, we can think of reformulating the model by *transforming* it through a squaring:
+
+$$ y_{ij} = (\mu + x_i + \varepsilon_{ij})^2$$
+The model no longer seems linear, but considering it can be rewritten as
+
+$$ \sqrt{y_{ij}} = \mu + x_i + \varepsilon_{ij}$$
+
+it is clear that it is still a **linear model in the coefficients**.
+:::
+
+:::column
+:::panel-tabset
+### Residuals vs. x
+
+```{r}
+#| fig-height: 3.5
+data %>%
+   ggplot(aes(x=x, y=resid_sq)) +
+   geom_point()
+```
+### Residuals vs. $\hat y$
+```{r}
+#| fig-height: 3.5
+data %>%
+   ggplot(aes(x=pred_sq, y=resid_sq)) +
+   geom_point()
+```
+### Q-Q
+
+```{r}
+#| fig-height: 3.5
+data %>%
+   ggplot(aes(sample=resid_sq)) +
+   geom_qq() +
+   geom_qq_line()
+```
+
+:::
+:::
+:::
+
+:::aside
+Following this transformation it is therefore clear that the new model is more adequate, with pattern-free residuals and more compatible with a normal distribution
+:::
+
+
+## Box-Cox transformations
+
+Box and Cox proposed a method to identify the **best transformation** in the family of power transformations $y^* = y^\lambda$, with $y^*=\ln(y)$ when $\lambda=0$
+
+We calculate a graph of the **logarithmic likelihood** $\mathcal{L}$ (*log-likelyhood*) of the following $y^{(\lambda)}$:
+
+$$
+y_i^{(\lambda)} =
+\begin{cases}
+\frac{y_i^\lambda-1}{\lambda\dot y^{\lambda-1}} & \lambda\neq 0 \\
+\dot y \ln y_i & \lambda = 0
+\end{cases}, ~~~ \dot y = \exp\left[(1/n)\sum \ln y_i\right],~i=1, 2,\dots,n
+$$
+The likelihood $\ln\mathcal{L}(\lambda|y)$ is nothing more than the probability of extracting a sample $y$ given a certain parameter $\lambda$. Its maximum coincides with the value of $\lambda$ which makes the sample $y$ more normal.
+
+## Box-Cox diagram
+
+:::columns
+
+:::column
+The Box-Cox diagram also identifies an interval corresponding to a variation of less than 95%.
+
+Any value of $\lambda$ within this range is statistically equivalent
+
+You then choose the value included in the range, **which represents a "convenient" transformation**
+
+For example, if the optimal $\lambda$ was 0.58, we would still choose $\lambda=0.5$, which corresponds to the transformation $y^*=\sqrt{y}$
+:::
+
+:::column
+```{r}
+car::boxCox(data.lm)
+```
+:::
+:::
+
+:::aside
+Whenever a linear model is **suspicious** (in a **regression** or in **factorial design analysis**) it is a good idea to try a Box-Cox transformation. In FPs, sometimes the Box-Cox transformation can **simplify the model** (i.e. reduce the number of significant factors or interactions)
+:::
+
+# Extensions and fractions of FPs
+
+An $n^2$ factorial plan assumes that the response is linear: this hypothesis must be verified by **extending** the plan to more than 2 levels
+
+A factorial plan, even an unreplicated $2^n$, can still be too onerous: in these cases it is possible to **split it**, i.e. divide the number of treatments by powers of 2, under penalty of losing information on the more complex interactions
+
+## Central Composite Design (CCD)
+
+:::columns
+:::column
+It would be automatic to **extend** a FP from $2^2$ to $2^3$ to evaluate quadratic effects
+
+In this way, however, the **sensitivity** in the axial directions would be lower than the sensitivity in the diagonal directions, the evaluation interval being smaller in the first case
+
+It is therefore preferable to perform centered FPs with **rotational symmetry around the origin**
+
+By two factors, the axial points are extended a distance $\sqrt{2}$ from the origin; in the generic $n$-dimensional case the distance is $(2^k)^{1/4}$
+:::
+
+:::{.column style="text-align: center;"}
+
+:::panel-tabset
+### Two factors
+![](images/CCD2.png)
+
+### Three factors
+![](images/CCD3.png)
+
+
+:::
+:::
+:::
+
+## Fractional Factor Plans (FFP)
+
+:::columns
+:::column
+Suppose we consider **only** the opposite vertices of the FP in the figure: $(1), ab, ac, bc$
+
+We are considering **half of the original FP**, which however includes all levels of the three factors
+
+Splitting certainly reduces the completeness of the model, but it saves a lot of testing
+
+* How to choose fractions for larger dimensions?
+* What information do we lose?
+
+:::
+
+:::{.column style="text-align: center;"}
+![](images/facplan1.png){width=350px }
+:::
+:::
+
+
+## Choosing fractions: defining relationships
+
+:::columns
+:::column
+Looking at the **effects matrix**, we observe that the treatments $(1), ab, ac, bc$ correspond to the rows for which the relation $I=-ABC$ holds. The other complementary half instead corresponds to $I=ABC$
+
+These relations are called **defining relationships** because they define the FFP. It makes no difference whether you choose the positive or the negative half
+:::
+
+:::{.column style="font-size: 85%; text-align: center;"}
+```{r}
+dm %>%
+   knitr::kable(align=c("l", rep("c", 8)))
+```
+:::
+:::
+
+:::aside
+The effects matrix for a fractional FP $2^{n-1}$ plus the defining relationship uniquely identify a fractional factorial plan
+:::
+
+
+## *Alias* and information loss
+
+In a fractional FP $2^{3-1}$ with defining relationship $I=ABC$, we consider these effects:
+$$
+\begin{align}
+A &= (-(1)+a-b+ab-c+ac-bc+abc)/(2r) \\
+BC &= (\underline{+(1)}+a-b\underline{-ab}-c\underline{-ac} \underline{+bc}+abc)/(2r)
+\end{align}
+$$
+Since the underlined treatments **are not tested**, the $A$ effect is indistinguishable from the $BC$ effect
+
+It is said that $A$ is **aliased** with $BC$
+
+Given a certain defining relation, the possible alias structures can be obtained from the relation itself using a dedicated **algebra**: $I\cdot X=X$, $X\cdot X = X$, $X\cdot Y =XY$
+
+Therefore, it results in $A\cdot I=A\cdot ABC$ i.e. $A=BC$, and similarly $B=AC$ and $C=AB$
+
+## *Alias* and information loss
+
+Therefore, by splitting a FP you lose information: you lose the ability to discriminate between *aliased* effects. It is clear that the longer the defining relationship, the higher the degree of alias interactions with the direct effects will be (e.g. $A=BCDEF$)
+
+By virtue of the **principle of sparsity of effects**, however, this loss of information is not dramatic. The **principle** says that in a process the significance of high-level interactions is gradually less likely as the number of factors that compose them increases
+
+Consequently, an alias $A=BCDEF$ can be neglected by assuming the significance of $A$ rather than that of $BCDEF$ by virtue of said Principle
+
+## Fractional FP of type $2^{n-p}$
+
+It is possible to split a plan more than once, reducing the number of treatments to $2^{n-p}$
+
+For each fraction it is necessary to choose a new defining relationship
+
+For example, for $2^{7-2}$ you can choose the DRs $I=ABCDE$ and $I=CDEFG$
+
+For these two DRs there is a third, dependent one: $I=ABFG$. Any two of these three DRs are equivalent
+
+### Minimum aberration design
+
+* All possible $p$-tuples of defining relations are generated, completing them with the dependent one
+* Count the number of letters in the $(p+1)$-tuples (previous example: $\left<5,5,4\right>$)
+* the *design* that minimizes the number of strings with minimum length is preferable because **it has fewer aliases**
+
+## Minimum Aberration Design (example)
+
+:::columns
+:::column
+Compare these $2^{7-2}_{IV}$ designs:
+
+Design A
+
+: $I = ABCF = BCDG~(= ADFG)$; 
+
+Design B
+
+: $I = ABCF = ADEG~(= BCDEFG)$; 
+
+Design C
+
+: $I=ABCDF=ABDEG~(=CEFG)$
+
+**Carefully select the defining relations!**
+:::
+
+:::column
+| Design A | Design B | Design C |
+|----------|----------|----------|
+|$AB=CF$   |$AB=CF$   |$CE=FG$   |
+|$AC=BF$   |$AC=BF$   |$CF=EG$   |
+|$AD=FG$   |$AD=EG$   |$CG=EF$   |
+|$AG=DF$   |$AE=DG$   |          |
+|$BD=CG$   |$AF=BC$   |          |
+|$BG=CD$   |$AG=DE$   |          |
+|$AF=BC=DG$|          |          |
+
+: 2nd level aliases:
+:::
+:::
+
+# Final recommendations
+
+It is very common to see DoE only partially applied...
+
+## To make a good FP
+
+* Start with $2^n$ and then increase it
+* Evaluate the opportunity for splitting and carefully choose the defining relationships
+* **always** perform the model fit check and refine the statistical model accordingly
+* Discuss interactions and effects **only after refining the model**
+* Evaluate the effects of *alias*
+
+### Advanced themes
+* *Blocking*
+* *Minimum Aberration Design*
+* Model transformations and Box-Cox transformations

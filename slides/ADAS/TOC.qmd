@@ -1,0 +1,32 @@
+---
+title: "Analisi Dati e Statistica"
+subtitle: "Università di Trento, Dipartimento di Ingegneria Industriale"
+author: "Paolo Bosetti"
+---
+
+# Contenuti del corso
+
+0.  [Introduzione al corso](adas-0){target="_blank"}
+1.  [Statistica descrittiva e inferenziale](adas-1){target="_blank"}
+2.  [Introduzione a R](adas-2){target="_blank"}
+3.  [Regressione](adas-3){target="_blank"}
+4.  [Bootstrap](adas-4){target="_blank"}
+5.  [Misura, incertezza, taratura](adas-5){target="\"_blank"}
+6.  [*Design of Experiments*](adas-6){target="\"_blank"}
+7.  [Serie temporali](adas-8){target="_blank"}
+
+# Uso
+
+Le slide sono interattive. I comandi più utili sono:
+
+-   `F` per presentare a tutto schermo
+-   `E` per la modalità esportazione (poi stampare come PDF dal browser); `E` di nuovo per uscire dalla modalità esportazione
+-   Tasti cursore per navigare avanti e indietro
+-   `ESC` per passare alla modalità overview
+-   `?` per altri comandi
+
+# Licenza
+
+Il materiale è in licenza [Creative Commons Attribution Non-Commercial Share-Alike](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+
+![](http://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.eu.png){height="50"}
