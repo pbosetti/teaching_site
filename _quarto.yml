@@ -10,6 +10,8 @@ website:
         text: Home
       - various.qmd
       - about.qmd
+  repo-url: https://github.com/pbosetti/teaching_site
+  repo-actions: [source, issue]
 
 format:
   html:

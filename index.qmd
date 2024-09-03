@@ -6,26 +6,30 @@ At the [Department of Industrial Engineering of the University of Trento](https:
 
 ## Master course, *Design of Precision Systems*
 
-- *K-Fold Cross Validation*: [slides](/kfold){target="_blank"}
+- *K-Fold Cross Validation*: [slides](/../kfold){target="_blank"}
 
 ## PhD course, *Design of Experiments and Statistical Analysis of Experimental Data*
 
-1. [Intro to Statistics](https://paolobosetti.quarto.pub/desaned-1)
-2. [Intro to R language](https://paolobosetti.quarto.pub/desaned-2)
-3. [Regression](https://paolobosetti.quarto.pub/desaned-3)
-4. [K-fold cross validation](https://paolobosetti.quarto.pub/desaned-4)
-5. [DoE](https://paolobosetti.quarto.pub/desaned-5)
+1. [Intro to Statistics](/../desaned-1){target="_blank"}
+2. [Intro to R language](/../desaned-2){target="_blank"}
+3. [Regression](/../desaned-3){target="_blank"}
+4. [K-fold cross validation](/../desaned-4){target="_blank"}
+5. [DoE](/../desaned-5){target="_blank"}
 
 ## Corso triennale, *Analisi dei Dati e Statistica*
 
-0.  [Introduzione al corso](/adas-0){target="_blank"}
-1.  [Statistica descrittiva e inferenziale](/adas-1){target="_blank"}
-2.  [Introduzione a R](/adas-2){target="_blank"}
-3.  [Regressione](/adas-3){target="_blank"}
-4.  [Bootstrap](/adas-4){target="_blank"}
-5.  [Misura, incertezza, taratura](/adas-5){target="\"_blank"}
-6.  [*Design of Experiments*](/adas-6){target="\"_blank"}
-7.  [Serie temporali](/adas-8){target="_blank"}
+0.  [Introduzione al corso](/../adas-0){target="_blank"}
+1.  [Statistica descrittiva e inferenziale](/../adas-1){target="_blank"}
+2.  [Introduzione a R](/../adas-2){target="_blank"}
+3.  [Regressione](/../adas-3){target="_blank"}
+4.  [Bootstrap](/../adas-4){target="_blank"}
+5.  [Misura, incertezza, taratura](/../adas-5){target="\_blank"}
+6.  [*Design of Experiments*](/../adas-6){target="\_blank"}
+7.  [Serie temporali](/../adas-8){target="_blank"}
+
+Materiale aggiuntivo:
+
+* Esperimento virtuale: [taratura di una bilancia a due piatti](/../bilancia){target="_blank"}
 
 
 # License

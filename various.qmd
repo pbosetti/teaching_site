@@ -2,4 +2,4 @@
 title: "Varous stuff"
 ---
 
-Nothing at the moment.
+* [Miroscic coding session 1](/../miroscic-cs1){target="_blank"}: Seminar within the Miroscic PRING project
