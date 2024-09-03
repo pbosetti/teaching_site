@@ -33,8 +33,4 @@ Le slide sono interattive. I comandi più utili sono:
 -   `ESC` per passare alla modalità overview
 -   `?` per altri comandi
 
-# Licenza
 
-Il materiale è in licenza [Creative Commons Attribution Non-Commercial Share-Alike](https://creativecommons.org/licenses/by-nc-sa/4.0/)
-
-![](http://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.eu.png){height="50"}

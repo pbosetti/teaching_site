@@ -2,7 +2,8 @@
 title: "Teaching Stuff"
 ---
 
-At the [Department of Industrial Engineering of the University of Trento](https://dii.unitn.it), I am teaching master courses (in English) and undergraduate courses (in Italian). Some of the teaching material used in these courses is available here.
+At the [Department of Industrial Engineering of the University of Trento](https://dii.unitn.it), I am teaching master courses (in English) and undergraduate courses (in Italian). Some of th
+e teaching material used in these courses is available here.
 
 # Courses
 
@@ -24,15 +25,3 @@ If you are a student of the University of Trento, note that this is NOT the main
 Please note that the material is **constantly updated**. If you are interested in a specific topic, please check the last update date (i.e., refresh your browser!)
 :::
 
-
-# License
-
-:::columns
-:::{.column width=150px}
-![](http://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.eu.png){height="40"}
-:::
-
-:::{.column width=600px}
-Content of this site is made available under [Creative Commons Attribution Non-Commercial Share-Alike](https://creativecommons.org/licenses/by-nc-sa/4.0/)
-:::
-:::
