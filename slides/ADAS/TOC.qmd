@@ -6,14 +6,14 @@ author: "Paolo Bosetti"
 
 # Contenuti del corso
 
-0.  [Introduzione al corso](adas-0){target="_blank"}
-1.  [Statistica descrittiva e inferenziale](adas-1){target="_blank"}
-2.  [Introduzione a R](adas-2){target="_blank"}
-3.  [Regressione](adas-3){target="_blank"}
-4.  [Bootstrap](adas-4){target="_blank"}
-5.  [Misura, incertezza, taratura](adas-5){target="\"_blank"}
-6.  [*Design of Experiments*](adas-6){target="\"_blank"}
-7.  [Serie temporali](adas-8){target="_blank"}
+0.  [Introduzione al corso](0-intro){target="_blank"}
+1.  [Statistica descrittiva e inferenziale](1-statistica){target="_blank"}
+2.  [Introduzione a R](2-R-intro){target="_blank"}
+3.  [Regressione](3-regressione){target="_blank"}
+4.  [Bootstrap](4-bootstrap){target="_blank"}
+5.  [Misura, incertezza, taratura](5-misura){target="\"_blank"}
+6.  [*Design of Experiments*](6-DoE){target="\"_blank"}
+7.  [Serie temporali](7-serie_temporali){target="_blank"}
 
 
 :::callout-important
