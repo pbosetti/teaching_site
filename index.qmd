@@ -7,10 +7,10 @@ e teaching material used in these courses is available here.
 
 # Courses
 
-- *Design of Precision Systems* (DPS), master course, in English
+- *Design of Precision Systems* (DPS), master course, in English 🇬🇧
   - *K-Fold Cross Validation*: [slides](slides/ADAS/kfold){target="_blank"}
-- *[Design of Experiments and Statistical Analysis of Experimental Data](slides/DESANED/TOC.html)* (DESAnED), in English
-- *Analisi dei Dati e Statistica* (ADAS), in Italian
+- *[Design of Experiments and Statistical Analysis of Experimental Data](slides/DESANED/TOC.html)* (DESAnED), in English 🇬🇧
+- *Analisi dei Dati e Statistica* (ADAS), in Italian 🇮🇹
   - [Slide del corso](slides/ADAS/TOC){target="_blank"}
   - [Taratura di una bilancia a due piatti](slides/ADAS/bilancia){target="_blank"}
   

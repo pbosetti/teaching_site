@@ -70,7 +70,7 @@ format:
     footnotes-hover: true
     crossrefs-hover: true
 comments:
-  hypothesis: true
+  hypothesis: false
 
 
 
