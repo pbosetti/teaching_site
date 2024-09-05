@@ -24,7 +24,7 @@ format:
     email-obfuscation: javascript
     pdf-separate-fragments: true
     link-external-icon: true
-html-math-method: katex
+
 
 ---
 

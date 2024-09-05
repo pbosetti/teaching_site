@@ -22,7 +22,7 @@ format:
     fig-dpi: 300
 execute: 
   cache: true
-html-math-method: katex
+
 
 ---
 

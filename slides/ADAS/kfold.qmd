@@ -24,7 +24,7 @@ execute:
   cache: true
 params:
   debug: false
-html-math-method: katex
+
 
 ---
 

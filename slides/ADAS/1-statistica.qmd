@@ -28,7 +28,7 @@ format:
     link-external-icon: true
 execute: 
   cache: true
-html-math-method: katex
+
 ---
 
 ```{r}
@@ -207,7 +207,7 @@ V(c)&=&0\\
 V(x)&=&\sigma^2\\
 V(cx)&=&c^2V(x)=c^2\sigma^2\\
 E(x+y)&=&E(x)+E(y)=\mu_x+\mu_y\\
-\mathrm{Cov}(x,y)&=&E[(x-\mu_x)(y-\mu_y)] \label{eq:cov}\\
+\mathrm{Cov}(x,y)&=&E[(x-\mu_x)(y-\mu_y)]\\
 V(x+y)&=&V(x)+V(y)+2\textrm{ Cov}(x,y)\\
 V(x-y)&=&V(x)+V(y)-2\textrm{ Cov}(x,y) 
 \end{array}

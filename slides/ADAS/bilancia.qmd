@@ -12,7 +12,7 @@ format:
     slide-number: true
     chalkboard: true
     theme: [default, style.scss]
-html-math-method: katex
+
 
 ---
 
