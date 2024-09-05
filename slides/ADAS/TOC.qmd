@@ -3,13 +3,22 @@ title: "Analisi Dati e Statistica"
 subtitle: "Università di Trento, Dipartimento di Ingegneria Industriale"
 date-modified: "`{r} Sys.time()`"
 date-format: "YYYYMMDD"
+format:
+  html:
+    fig-width: 4
+    fig-height: 3
+    fig-dpi: 600
 ---
-```{r}
+```{r setup, include=FALSE, echo=FALSE}
+library(tidyverse)
 ```
+
 
 # Contenuti del corso
 
+::: {.grid}
 
+::: {.g-col-6}
 0.  [Introduzione al corso](0-intro){target="_blank"}
 1.  [Statistica descrittiva e inferenziale](1-statistica){target="_blank"}
 2.  [Introduzione a R](2-R-intro){target="_blank"}
@@ -18,6 +27,37 @@ date-format: "YYYYMMDD"
 5.  [Misura, incertezza, taratura](5-misura){target="\"_blank"}
 6.  [*Design of Experiments*](6-DoE){target="\"_blank"}
 7.  [Serie temporali](7-serie_temporali){target="_blank"}
+:::
+  
+::: {.g-col-6}
+```{r echo=FALSE}
+set.seed(1)
+f <- function(x, offset) 0.3*(x-offset)^2+1*(x-offset)
+N <- 20
+offset <- 5
+df <- tibble(
+  x=seq(0, 10, length.out=N),
+  y= f(x, offset) + rnorm(N, sd=1)
+)
+dfp <- tibble(
+  x=seq(0, 10, length.out=N*10),
+  y=f(x, offset) + rnorm(N, sd=1)
+)
+lm <- lm(y~poly(x, deg=2, raw=T), data=df)
+dfp <- cbind(dfp, predict(lm, dfp, interval="prediction"), level=0.95)
+
+df %>% ggplot(aes(x=x)) +
+  geom_line(aes(x=x, y=fit), data=dfp, color="blue", linewidth=1) +
+  geom_line(aes(x=x, y=upr), data=dfp, color="red", linetype=2) +
+  geom_line(aes(x=x, y=lwr), data=dfp, color="red", linetype=2) +
+  geom_point(aes(x=x, y=y), data=dfp, color=gray(2/3), shape=3) +
+  geom_point(aes(y=y)) +
+  coord_cartesian(ylim=c(-4,15)) +
+  labs(x="predittore (c.u.)", y="osservazioni (c.u.)", title="Banda di predizione al 95%")
+```
+:::
+  
+:::  
 
 
 :::callout-important

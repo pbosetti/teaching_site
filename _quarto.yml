@@ -63,8 +63,9 @@ html-math-method: mathjax
 
 format:
   html:
-    theme: cerulean
-    css: styles.css
+    theme: 
+      - cerulean
+      - styles.scss
     toc: true
     smooth-scroll: true
     citations-hover: true

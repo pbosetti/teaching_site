@@ -1,0 +1,14 @@
+/*-- scss:defaults --*/
+$myred: #990000;
+$primary: $myred !default;
+
+
+/*-- scss:rules --*/
+h1, h2, h3, h4, h5, h6 {
+  /*-- text-shadow: -1px -1px 0 rgba(0, 0, 0, .3); --*/
+  color: $link-color;
+}
+
+.navbar {
+  background-image: linear-gradient(to bottom, $myred, darken($myred, 10%));
+}
