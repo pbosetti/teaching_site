@@ -1,10 +1,14 @@
 ---
 title: "Analisi Dati e Statistica"
 subtitle: "Università di Trento, Dipartimento di Ingegneria Industriale"
-author: "Paolo Bosetti"
+date-modified: "`{r} Sys.time()`"
+date-format: "YYYYMMDD"
 ---
+```{r}
+```
 
 # Contenuti del corso
+
 
 0.  [Introduzione al corso](0-intro){target="_blank"}
 1.  [Statistica descrittiva e inferenziale](1-statistica){target="_blank"}

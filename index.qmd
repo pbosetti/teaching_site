@@ -1,27 +1,43 @@
 ---
 title: "Teaching Stuff"
+date-modified: "`{r} Sys.time()`"
+date-format: "YYYYMMDD"
 ---
 
-At the [Department of Industrial Engineering of the University of Trento](https://dii.unitn.it), I am teaching master courses (in English) and undergraduate courses (in Italian). Some of th
-e teaching material used in these courses is available here.
+```{r}
+```
 
-# Courses
-
-- *Design of Precision Systems* (DPS), master course, in English 🇬🇧
-  - *K-Fold Cross Validation*: [slides](slides/ADAS/kfold){target="_blank"}
-- *[Design of Experiments and Statistical Analysis of Experimental Data](slides/DESANED/TOC.html)* (DESAnED), in English 🇬🇧
-- *Analisi dei Dati e Statistica* (ADAS), in Italian 🇮🇹
-  - [Slide del corso](slides/ADAS/TOC){target="_blank"}
-  - [Taratura di una bilancia a due piatti](slides/ADAS/bilancia){target="_blank"}
-  
+At the [Department of Industrial Engineering of the University of Trento](https://dii.unitn.it), I am teaching master courses (in English) and undergraduate courses (in Italian). Most of the teaching material used in these courses is available here.
 
 :::callout-note
 If you are a student of the University of Trento, note that this is NOT the main support site: look at the [Moodle platform](https://didatticaonline.unitn.it/dol/) instead.
 :::
 
+
+## Design of Precision Systems (DPS) 🇬🇧
+
+Course for the Master Degree in Mechatronics Engineering, given in English
+  
+- Lesson on [K-Fold Cross Validation](slides/ADAS/kfold){target="_blank"}
+
+## Design of Experiments and Statistical Analysis of Experimental Data (DESAnED) 🇬🇧
+
+PhD Seminar, given in English
+
+- Table of contents with [all slides](slides/DESANED/TOC.html){target="_blank"}
+
+
+## Analisi dei Dati e Statistica (ADAS) 🇮🇹
+
+Corso per la Laurea triennale in Ingegneria Industriale, tenuto in italiano
+
+- Indice con tutte le [slide del corso](slides/ADAS/TOC){target="_blank"}
+- Esperimento virtuale: [taratura di una bilancia a due piatti](slides/ADAS/bilancia){target="_blank"}
+  
+
 :::callout-important
 ## Continuous updates!
 
-Please note that the material is **constantly updated**. If you are interested in a specific topic, please check the last update date (i.e., refresh your browser!)
+Please note that the material is **constantly updated**. If you are interested in a specific topic, please check the last update (i.e., refresh your browser!)
 :::
 

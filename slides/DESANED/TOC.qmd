@@ -1,8 +1,11 @@
 ---
 title: "DESAnED contents"
-author: "Paolo Bosetti"
-date: "March 10, 2024"
+date-modified: "`{r} Sys.time()`"
+date-format: "YYYYMMDD"
 ---
+```{r}
+```
+
 
 # Design of Experiments and Statistical Analysis of Experimental Data, 2024
 

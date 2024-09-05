@@ -1,6 +1,10 @@
 ---
 title: "About"
+date-modified: "`{r} Sys.time()`"
+date-format: "YYYYMMDD"
 ---
+```{r}
+```
 
 :::column-margin
 ![](images/PBBW.jpg)

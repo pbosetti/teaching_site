@@ -26,6 +26,7 @@ format:
      link-external-icon: true
 execute:
    cache: true
+html-math-method: katex
 ---
 
 ```{r}

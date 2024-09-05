@@ -1,10 +1,12 @@
 ---
 title: "Tecniche di Bootstrap"
 subtitle: |
-  Analisi Dati e Statistica, 2023--24 \
+  Analisi Dati e Statistica, 2024--25 \
   ![](images/by-nc-sa.png){height=30}
 author: "Paolo Bosetti"
 institute: "Università di Trento, Dipartimento di Ingegneria Industriale"
+date: "`r Sys.time()`"
+date-format: "[*Ultimo aggiornamento:* ]DD/MM/YYYY"
 format: 
   revealjs:
     width: 1280
@@ -22,6 +24,7 @@ format:
     fig-dpi: 300
 execute: 
   cache: true
+html-math-method: katex
 ---
 
 ```{r}
@@ -80,6 +83,9 @@ $\theta$ potrebbe essere il **valore atteso** e $\hat\theta$ la **media campiona
 [Si noti che $\hat\theta$ è a sua volta una variabile casuale]{.underline}. In quanto tale,  $\hat\theta$ avrà una sua distribuzione, ed indicheremo con $G(\theta)=P(\hat\theta<\theta)$ la sua funzione di ripartizione ($\mathrm{CDF}^-$). 
 
 La distribuzione $G$ è chiamata **distribuzione campionaria** della statistica  $\hat\theta$.
+
+
+## Tecniche di Bootstrap
 
 La **forma di** $G$ dipende da:
 

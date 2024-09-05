@@ -46,19 +46,20 @@ website:
       - about.qmd
     right:
       - href: https://github.com/pbosetti/teaching_site
+        text: "This project on GitHub"
         icon: github
   page-footer:
     background: light
     border: true
-    left: "|
-      ![](http://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.eu.png){height='40'}
-    " 
-    center: "Licensed as [CC-BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/)"
+    left: |
+      [![](http://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.eu.png){height='30'}](https://creativecommons.org/licenses/by-nc-sa/4.0/)
     right: 
       - icon: github
         href: https://github.com/pbosetti
   repo-url: https://github.com/pbosetti/teaching_site
   repo-actions: [source, issue]
+  
+html-math-method: mathjax
 
 format:
   html:

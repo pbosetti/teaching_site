@@ -1,10 +1,12 @@
 ---
 title: "Introduzione al Corso"
 subtitle: |
-  Analisi Dati e Statistica, 2023--24 \
+  Analisi Dati e Statistica, 2024--25 \
   ![](images/by-nc-sa.png){height=30}
 author: "Paolo Bosetti"
 institute: "Università di Trento, Dipartimento di Ingegneria Industriale"
+date: "`r Sys.time()`"
+date-format: "[*Ultimo aggiornamento:* ]DD/MM/YYYY"
 format: 
   revealjs:
     width: 1280
@@ -35,6 +37,7 @@ set.seed(0)
 # Introduzione al corso
 
 Di cosa ci occuperemo per le prossime 60 ore assieme
+
 
 ## Analisi statistica dei dati
 
