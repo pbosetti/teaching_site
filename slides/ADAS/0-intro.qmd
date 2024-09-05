@@ -47,7 +47,9 @@ Ogni esperimento è basato su un'operazione di misura, la quale produce **dati q
 -   Il primo è proprio del fenomeno in analisi
 -   il secondo deriva dal contesto: condizioni operative, sistema di misura, materie prime, condizioni ambientali, operatore, ecc.
 
-Un bravo sperimentatore ha le competenze che gli consentono di isolare il primo contributo dal secondo, ottenendo quindi informazioni più affidabili e ripetibili
+Un bravo sperimentatore ha le competenze che gli consentono di **isolare il primo contributo dal secondo**, ottenendo quindi informazioni più affidabili e ripetibili
+
+Inoltre, un bravo sperimentatore è in grado di **comunicare** i risultati in modo chiaro e comprensibile e presentandoli in maniera efficace (grafici!)
 
 ## Analisi statistica dei dati
 
@@ -56,6 +58,7 @@ Dato che l'analisi dei dati richiede capacità di calcolo, il corso legherà str
 Gli **esercizi** sono quindi parte integrante del corso
 
 Imparare l'uso di un **linguaggio e software di analisi dati** (R + RStudio) è parte integrante del corso
+
 
 ## Modalità d'esame
 L'esame è in due parti, tipicamente nello stesso giorno
@@ -69,10 +72,13 @@ L'esame è in due parti, tipicamente nello stesso giorno
 Non è possibile sostenere l'orale in una sessione differente dalla prova pratica
 :::
 
-## Modalità d'esame
-**ATTENZIONE**: questo corso è il primo di due moduli: l'esame è quindi solo una prova parziale e **non viene verbalizzato**
+## Modalità d'esame (A.A. 2024--25)
+**ATTENZIONE**: questo corso è il secondo (o il primo) di due moduli: l'esame è quindi solo una prova parziale e **non viene verbalizzato**
 
-Il voto finale verrà verbalizzato **solo dopo aver superato** anche la prova parziale del secondo modulo (prof. De Cecco).
+Il voto finale verrà verbalizzato **solo dopo aver superato** entrambi i moduli, inclusa cioè:
+
+- **studenti del secondo anno**: la prova parziale del primo modulo (prof. Bertolazzi)
+- **studenti del terzo anno**: o la prova parziale del secondo modulo (prof. De Cecco).
 
 :::{.fragment .highlight-red style="font-size: 125%; margin-top: 50px;"}
 Ricordarsi di iscriversi anche all'appello di registrazione!
@@ -94,11 +100,8 @@ Ricordarsi di iscriversi anche all'appello di registrazione!
 * **Moodle**
 
 * **Testo di riferimento**:
-
+* **Codice sviluppato in classe**: Il codice R sarà gradualmente pubblicato e aggiornato su GitHub: [https://github.com/pbosetti/ADAS-24](https://github.com/pbosetti/ADAS-24){target="_blank"}
   * Paolo Bosetti, *Fondamenti di Statistica per le misure e l'analisi dati in ambito industriale. Con esempi in GNU-R*, Libreria Universitaria Edisioni, 2022
-  
     * Biblioteca (BUP): [https://strutture-provincia.primo.exlibrisgroup.com/permalink/39SBT_INST/ghkipk/alma991021678989206186](https://strutture-provincia.primo.exlibrisgroup.com/permalink/39SBT_INST/ghkipk/alma991021678989206186)
     * Amazon: [https://www.amazon.it/Fondamenti-statistica-misure-lanalisi-industriale/dp](https://www.amazon.it/Fondamenti-statistica-misure-lanalisi-industriale/dp)
     * eBook: [https://www.libreriauniversitaria.it/ebook/9788833595238/autore-paolo-bosetti/ebook-fondamenti-di-statistica-per-le-misure-e-l-analisi-dati-in-ambito-industriale-con-esempi-in-gnu-r.htm](https://www.libreriauniversitaria.it/ebook/9788833595238/autore-paolo-bosetti/ebook-fondamenti-di-statistica-per-le-misure-e-l-analisi-dati-in-ambito-industriale-con-esempi-in-gnu-r.htm)
-
-* **Codice sviluppato in classe**: Il codice R sarà gradualmente pubblicato e aggiornato su GitHub: [https://github.com/pbosetti/ADAS-23](https://github.com/pbosetti/ADAS-23){target="_blank"}
