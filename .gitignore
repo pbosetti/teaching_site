@@ -5,7 +5,6 @@
 .Rprofile
 
 /.quarto/
-/_publish.yml
 /renv/*
 /_site/*
 
