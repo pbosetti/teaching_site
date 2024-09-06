@@ -13,11 +13,11 @@ Course offered to students of Space and Science Technology PhD programme.
 
 ## Contents:
 
-1. [Intro to Statistics](1-statistics){target="_blank"}
-2. [Intro to R language](2-R-intro){target="_blank"}
-3. [Regression](3-regression){target="_blank"}
-4. [K-fold cross validation](4-kfold){target="_blank"}
-5. [DoE](5-DoE){target="_blank"}
+1. [Intro to Statistics](1-statistics.html){target="_blank"}
+2. [Intro to R language](2-R-intro.html){target="_blank"}
+3. [Regression](3-regression.html){target="_blank"}
+4. [K-fold cross validation](4-kfold.html){target="_blank"}
+5. [DoE](5-DoE.html){target="_blank"}
 
 :::callout-note
 ## Code Repository

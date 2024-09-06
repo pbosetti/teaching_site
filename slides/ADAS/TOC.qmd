@@ -19,14 +19,14 @@ library(tidyverse)
 ::: {.grid}
 
 ::: {.g-col-6}
-0.  [Introduzione al corso](0-intro){target="_blank"}
-1.  [Statistica descrittiva e inferenziale](1-statistica){target="_blank"}
-2.  [Introduzione a R](2-R-intro){target="_blank"}
-3.  [Regressione](3-regressione){target="_blank"}
-4.  [Bootstrap](4-bootstrap){target="_blank"}
-5.  [Misura, incertezza, taratura](5-misura){target="\"_blank"}
-6.  [*Design of Experiments*](6-DoE){target="\"_blank"}
-7.  [Serie temporali](7-serie_temporali){target="_blank"}
+0.  [Introduzione al corso](0-intro.html){target="_blank"}
+1.  [Statistica descrittiva e inferenziale](1-statistica.html){target="_blank"}
+2.  [Introduzione a R](2-R-intro.html){target="_blank"}
+3.  [Regressione](3-regressione.html){target="_blank"}
+4.  [Bootstrap](4-bootstrap.html){target="_blank"}
+5.  [Misura, incertezza, taratura](5-misura.html){target="\"_blank"}
+6.  [*Design of Experiments*](6-DoE.html){target="\"_blank"}
+7.  [Serie temporali](7-serie_temporali.html){target="_blank"}
 :::
   
 ::: {.g-col-6}
