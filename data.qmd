@@ -1,5 +1,5 @@
 ---
-title: "Data"
+title: "Example Data"
 date-modified: "`{r} Sys.time()`"
 date-format: "YYYYMMDD"
 ---
@@ -8,8 +8,6 @@ date-format: "YYYYMMDD"
 library(tidyverse)
 library(glue)
 ```
-
-# Example data
 
 During the courses, example data files are used to illustrate different concepts. These files are available here for download or for direct usage.
 

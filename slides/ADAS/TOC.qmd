@@ -15,7 +15,7 @@ library(tidyverse)
 ```
 
 
-# Contenuti del corso
+## Contenuti del corso
 
 ::: {.grid}
 
@@ -68,7 +68,7 @@ Le slide qui presentate possono essere frequentemente aggiornate per correzioni 
 :::
 
 
-# Uso
+## Uso delle slide
 
 Le slide sono interattive. I comandi più utili sono:
 

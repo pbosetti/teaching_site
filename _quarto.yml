@@ -6,8 +6,6 @@ website:
   reader-mode: true
   navbar:
     left:
-      - href: index.qmd
-        text: Home
       - text: ADAS
         menu:
           - href: slides/ADAS/TOC.qmd
@@ -72,6 +70,7 @@ format:
     citations-hover: true
     footnotes-hover: true
     crossrefs-hover: true
+    
 comments:
   hypothesis: false
 

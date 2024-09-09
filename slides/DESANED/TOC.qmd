@@ -1,13 +1,12 @@
 ---
-title: "DESAnED contents"
+title: "Design of Experiments and Statistical Analysis of Experimental Data"
+subtitle: "University of Trento, Department of Industrial Engineering"
 date-modified: "`{r} Sys.time()`"
 date-format: "YYYYMMDD"
 ---
-```{r}
+```{r setup}
 ```
 
-
-# Design of Experiments and Statistical Analysis of Experimental Data, 2024
 
 Course offered to students of Space and Science Technology PhD programme.
 
