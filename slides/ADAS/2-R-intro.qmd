@@ -7,8 +7,9 @@ author: "Paolo Bosetti"
 institute: "Università di Trento, Dipartimento di Ingegneria Industriale"
 date: "`r Sys.time()`"
 date-format: "[*Ultimo aggiornamento:* ]DD/MM/YYYY"
+engine: knitr
 format: 
-  revealjs:
+  live-revealjs:
     width: 1280
     height: 700
     margin: 0.1
@@ -28,6 +29,8 @@ format:
     link-external-icon: true
     lang: it-IT
 ---
+
+{{< include ../../_extensions/r-wasm/live/_knitr.qmd >}}
 
 ```{r}
 options(width = 60)
@@ -69,7 +72,7 @@ Noi utilizzeremo R perché specifico per la statistica, orientato alla grafica e
 ## Assegnazioni
 Ogni linguaggio usa delle **variabili** per memorizzare valori ed oggetti mediante un'operazione di **assegnazione**:
 
-```r
+```{r echo=TRUE}
 a <- 1
 # ma anche
 b = 2
@@ -259,6 +262,7 @@ a
 ```
 * L'ultimo argomento **deve** chiamarsi `value` e rappresenta il lato destro dell'assegnazione!
 
+
 ## Controllo di flusso
 R supporta le tipiche istruzioni di controllo di flusso 
 
@@ -272,6 +276,25 @@ R supporta le tipiche istruzioni di controllo di flusso
   * `repeat expr`
   * `break`
   * `next`
+  
+
+## Esercizio
+
+Scrivere una funzione `sum_all` che sommi tutti gli elementi con indice dispari di un vettore numerico. La funzione deve avere un argomento `x` e restituire la somma di tutti gli elementi di `x`, usando un ciclo `for`.
+
+
+```{webr}
+sum_all <-function(x) {
+  # scrivi qui il codice
+}
+
+sum_all(1:10)
+```
+
+:::aside
+L'uso del ciclo `for` è sconsigliato in R (perché è più lento di alcune alternative), ma è utile per esercitarsi con il controllo di flusso.
+:::
+
   
 ## Argomenti delle funzioni
 * Gli argomenti possono essere indicati per posizione o per nome
@@ -376,6 +399,18 @@ Una **griglia** è una matrice che contiene tutte le combinazioni (ordinate) tra
 ```{r echo=T}
 (df <- expand.grid(A=1:2, B=c("-", "+"), D=c("a", "b", "c")))
 ```
+
+## Esercizio
+
+Riordinare il dataframe `df` in maniera casuale:
+
+```{webr}
+df <- expand.grid(A=1:3, B=LETTERS[1:2])
+# aggiungo una colonna di numeri casuali
+# riordino df per quella colonna
+df # stampo df
+```
+
 
 ## Aggregazione
 Per aggregazione si intende raggruppare righe aventi elementi comuni in un data frame e applicare ad ogni gruppo una data funzione. È utile ad esempio per il calcolo di sub-totali.
