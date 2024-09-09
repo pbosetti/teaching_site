@@ -277,7 +277,7 @@ We monitor generality by training on a subset of data, and estimating the qualit
 
 To solve the problem we use K-fold cross validation. It is a regression strategy where we split the dataset into $k$ subsets, or *folds*, with roughly the same amount of observations. Then:
 
-- we train the model over all the folds together **except the first fold**, and then we validate the model on the first model, i.e. we calculate one or more metrics on the validation data
+- we train the model over all the folds together **except the first fold**, and then we validate the model on the first fold, i.e. we calculate one or more metrics on the validation data
 - we repeat the previous step setting aside each fold, one at a time, and using it for validation, while the remaining folds are used for training
 - each fold is used exactly once for validation, exactly $k-1$ times for training
 - we calculate the overall metrics, by calculating the average of the $k$ metrics evaluated for each validation step, or --- equivalently --- by appliying the above reported equations to the whole set of validation values
