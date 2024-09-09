@@ -22,10 +22,9 @@ format:
     fig-width: 5
     fig-height: 4
     fig-dpi: 300
+    lang: it-IT
 execute: 
   cache: true
-
-
 ---
 
 ```{r setup}

@@ -26,8 +26,7 @@ format:
     email-obfuscation: javascript
     pdf-separate-fragments: true
     link-external-icon: true
-
-
+    lang: it-IT
 ---
 
 ```{r}

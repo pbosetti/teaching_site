@@ -43,6 +43,7 @@ website:
           - href: slides/DESANED/5-DoE.qmd
             text: Design of Experiments
       - various.qmd
+      - data.qmd
       - about.qmd
     right:
       - href: https://github.com/pbosetti/teaching_site

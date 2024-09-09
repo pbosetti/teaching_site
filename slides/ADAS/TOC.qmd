@@ -8,6 +8,7 @@ format:
     fig-width: 4
     fig-height: 3
     fig-dpi: 600
+    lang: it-IT
 ---
 ```{r setup, include=FALSE, echo=FALSE}
 library(tidyverse)

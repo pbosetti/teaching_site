@@ -1,0 +1,56 @@
+---
+title: "Data"
+date-modified: "`{r} Sys.time()`"
+date-format: "YYYYMMDD"
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(glue)
+```
+
+# Example data
+
+During the courses, example data files are used to illustrate different concepts. These files are available here for download or for direct usage.
+
+
+## Loading the data files
+
+Each data file can be separately loaded from the URLs reported [down below](#list-of-csv-files). Nonetheless, you can also exploit the ability of R `read*` functions to open a file directly from its URL. To do so, it can be useful to define a utility function like the following:
+
+```{r eval=FALSE}
+example_url <- function(example) {
+  url = paste0("https://paolobosetti.quarto.pub/data/", example)
+  return(url)
+}
+```
+
+Load this function in your script or put it into a utility library.
+Then, just pipe it with the proper file-reading function, e.g.:
+
+```{r eval=FALSE}
+example_url("timeseries.csv") %>% read_csv()
+```
+
+or
+
+```{r eval=FALSE}
+example_url("3dprint.dat") %>% read_table(comment="#")
+```
+
+
+
+## List of CSV files
+
+```{r echo=FALSE}
+files <- list.files(path = "data", pattern = ".csv", full.names = FALSE)
+reduce(files, ~paste0(.x, glue("* [{.y}](data/{.y})"), "\n"), .init="") %>% 
+  knitr::asis_output()
+```
+## List of DAT files
+
+```{r echo=FALSE}
+files <- list.files(path = "data", pattern = ".dat", full.names = FALSE)
+reduce(files, ~paste0(.x, glue("* [{.y}](data/{.y})"), "\n"), .init="") %>% 
+  knitr::asis_output()
+```
