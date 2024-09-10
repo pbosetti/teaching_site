@@ -722,7 +722,10 @@ In questo caso risultano non-normali solo gli effetti $A, C, D$ e le interazioni
 Il modello statistico lineare può quindi essere rivisto come 
 
 $$
-y_{ijkl} = \mu + \alpha_{i} + \gamma_{j} + (\alpha\gamma)_{ij}+ \delta_k + (\alpha\delta)_{ik} + \varepsilon_{ijkl}
+\begin{multline}
+y_{ijkl} = \mu + \alpha_{i} + \\ 
++ \gamma_{j} + (\alpha\gamma)_{ij}+ \delta_k + (\alpha\delta)_{ik} + \varepsilon_{ijkl}
+\end{multline}
 $$
 Cioè possiamo già escludere che $B$ sia di fatto un fattore. In questo modo, anziché un piano fattoriale $2^4$ non replicato abbiamo a che fare con un $2^3$ replicato due volte (cioè $2\cdot 2^3$), per il quale possiamo eseguire una normale analisi ANOVA
 :::
