@@ -7,6 +7,7 @@ date-format: "YYYYMMDD"
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(glue)
+library(modelr)
 ```
 
 During the courses, example data files are used to illustrate different concepts. These files are available here for download or for direct usage.
@@ -16,7 +17,7 @@ During the courses, example data files are used to illustrate different concepts
 
 Each data file can be separately loaded from the URLs reported [down below](#list-of-csv-files). Nonetheless, you can also exploit the ability of R `read*` functions to open a file directly from its URL. To do so, it can be useful to define a utility function like the following:
 
-```{r eval=FALSE}
+```{r}
 example_url <- function(example) {
   url = paste0("https://paolobosetti.quarto.pub/data/", example)
   return(url)
@@ -52,3 +53,64 @@ files <- list.files(path = "data", pattern = ".dat", full.names = FALSE)
 reduce(files, ~paste0(.x, glue("* [{.y}](data/{.y})"), "\n"), .init="") %>% 
   knitr::asis_output()
 ```
+
+
+# Example
+
+Let's look at the `train.csv` file from the Titanic dataset. We load the dataset and perform some basic data manipulation to only keep the relevant columns. We also classify the passengers into age classes.
+
+```{r}
+titanic <- example_url("train.csv") %>% read_csv(show_col_types = FALSE)
+titanic <- titanic %>% mutate(
+  Survived = as.logical(Survived),
+  Pclass = as.factor(Pclass),
+  AgeClass = cut(Age, breaks=c(0, 10, 18, 40, 60, Inf), labels=c("child", "young", "adult", "senior", "elderly")),
+  Age = as.factor(Age)
+) %>% 
+  select(
+    PassengerId,
+    Survived,
+    Pclass,
+    Sex,
+    Age,
+    AgeClass,
+    Fare
+  )
+titanic %>% head() %>% knitr::kable()
+```
+
+Let's plot the survival rate by age and sex class, as a histogram.
+
+```{r}
+titanic %>% 
+  ggplot(aes(x=AgeClass, fill=Survived)) +
+  geom_bar() +
+  facet_wrap(~Sex) +
+  labs(title="Survival by Age Class", x="Age Class", y="Count", fill="Survived")
+```
+
+In a more refined way, we can build a [generalized linear model of binomial type](/slides/ADAS/3-regressione.html#regressione-lineare-generalizzata) to predict the survival rate based on the fare, age class, and sex:
+
+```{r warning=FALSE}
+model <- glm(Survived ~ Fare + AgeClass + Sex, data=titanic, family=binomial)
+titanic <- add_predictions(titanic, model, var="pred.glm", type="response")
+
+pred <- expand.grid(
+  Fare = seq(0, 500, 5),
+  AgeClass = levels(titanic$AgeClass),
+  Sex = c("female", "male")
+) %>% 
+  add_predictions(model, var="pred.glm", type="response")
+
+titanic %>%
+  ggplot(aes(x=Fare, y=pred.glm, color=AgeClass)) +
+  geom_line(data=pred) +
+  geom_point() +
+  coord_cartesian(ylim=c(0, 1)) +
+  facet_wrap(~Sex) +
+  labs(y="Predicted Survival", color="Age Class")
+                     
+```
+:::{.callout-tip title="A word of the wise"}
+According to our analysis, if you embark the Titanic, you better be a **young and rich female** 😉.
+:::
