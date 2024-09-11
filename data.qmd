@@ -89,7 +89,7 @@ titanic %>%
   labs(title="Survival by Age Class", x="Age Class", y="Count", fill="Survived")
 ```
 
-In a more refined way, we can build a [generalized linear model of binomial type](/slides/ADAS/3-regressione.html#regressione-lineare-generalizzata) to predict the survival rate based on the fare, age class, and sex:
+In a more refined way, we can build a [generalized linear model of binomial type](/slides/ADAS/3-regressione.html#regressione-lineare-generalizzata)🇮🇹 to predict the survival rate based on the fare, age class, and sex:
 
 ```{r warning=FALSE}
 model <- glm(Survived ~ Fare + AgeClass + Sex, data=titanic, family=binomial)
@@ -111,6 +111,6 @@ titanic %>%
   labs(y="Predicted Survival", color="Age Class")
                      
 ```
-:::{.callout-tip title="A word of the wise"}
+:::{.callout-tip title="A word to the wise"}
 According to our analysis, if you embark the Titanic, you better be a **young and rich female** 😉.
 :::
