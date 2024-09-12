@@ -1,5 +1,6 @@
 ---
 title: "Example Data"
+author: "Paolo Bosetti"
 date-modified: "`{r} Sys.time()`"
 date-format: "YYYYMMDD"
 ---
