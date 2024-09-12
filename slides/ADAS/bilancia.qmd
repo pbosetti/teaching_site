@@ -12,8 +12,7 @@ format:
     slide-number: true
     chalkboard: true
     theme: [default, style.scss]
-
-
+    footer: "paolo.bosetti@unitn.it --- [https://paolobosetti.quarto.pub/ADAS](https://paolobosetti.quarto.pub/ADAS)"
 ---
 
 ```{r}

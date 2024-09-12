@@ -3,6 +3,8 @@ title: "Analisi Dati e Statistica"
 subtitle: "Università di Trento, Dipartimento di Ingegneria Industriale"
 date-modified: "`{r} Sys.time()`"
 date-format: "YYYYMMDD"
+aliases:
+  - /ADAS
 format:
   html:
     fig-width: 4

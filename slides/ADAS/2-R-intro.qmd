@@ -19,7 +19,7 @@ format:
     preview-links: auto
     theme: [default, style.scss]
     chalkboard: true
-    footer: "paolo.bosetti@unitn.it --- [https://paolobosetti.quarto.pub](https://paolobosetti.quarto.pub)"
+    footer: "paolo.bosetti@unitn.it --- [https://paolobosetti.quarto.pub/ADAS](https://paolobosetti.quarto.pub/ADAS)"
     fig-width: 5
     fig-height: 4
     fig-dpi: 300
@@ -28,6 +28,14 @@ format:
     pdf-separate-fragments: true
     link-external-icon: true
     lang: it-IT
+    drop:
+      shortcut: "§"
+      engine: webr
+      webr:
+        packages:
+          - tidyverse
+revealjs-plugins:
+  - drop
 ---
 
 {{< include ../../_extensions/r-wasm/live/_knitr.qmd >}}
@@ -54,12 +62,17 @@ Noi utilizzeremo R perché specifico per la statistica, orientato alla grafica e
 * Materiale corso: [https://github.com/pbosetti/ADAS-23](https://github.com/pbosetti/ADAS-23)
 
 ## Ambiente RStudio
-* Installazione: [prima R](http://www.r-project.org), [poi RStudio](https://posit.co/downloads/)
+* Installazione: [prima R](https://cran.mirror.garr.it/CRAN/), [poi RStudio](https://posit.co/downloads/)
+* **Solo su windows**, installare anche [Rtools](https://cran.mirror.garr.it/CRAN/bin/windows/Rtools/)
 * RStudio lavora su cartelle o (meglio) **progetti** (`.Rproj`)
 * Un progetto contiene anche impostazioni specifiche e comuni ai file nella cartella
 * Una **sessione** di RStudio può operare su un unico progetto
 * Si possono aprire più sessioni contemporaneamente
 * RStudio è un ambiente molto potente e complesso, adatto anche alla compilazione di *report* tecnici, articoli, libri e presentazioni (come questa)
+
+:::aside
+**Nota**: Queste slide contengono una versione ridotta e integrata di R, utile per provare in diretta il codice qui illustrato: cliccare sull'icona del prompt in basso a sinistra, [o premere il tasto `§`]{.bgreen}.
+:::
 
 ## Il linguaggio R
 * R è un linguaggio ad alto livello, declarativo, interpretato, a sintassi C-like

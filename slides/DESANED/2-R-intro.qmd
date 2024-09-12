@@ -16,7 +16,7 @@ format:
     preview-links: auto
     theme: [default, style.scss]
     chalkboard: true
-    footer: "paolo.bosetti@unitn.it --- [https://paolobosetti.quarto.pub](https://paolobosetti.quarto.pub)"
+    footer: "paolo.bosetti@unitn.it --- [https://paolobosetti.quarto.pub/DESANED](https://paolobosetti.quarto.pub/DESANED)"
     fig-width: 5
     fig-height: 4
     fig-dpi: 300
@@ -24,8 +24,14 @@ format:
     email-obfuscation: javascript
     pdf-separate-fragments: true
     link-external-icon: true
-
-
+    drop:
+      shortcut: "§"
+      engine: webr
+      webr:
+        packages:
+          - tidyverse
+revealjs-plugins:
+  - drop
 ---
 
 ```{r}
@@ -56,6 +62,10 @@ We will use R because it is specific for statistics, graphics-oriented and open 
 * An RStudio **session** can operate on a single project
 * Multiple sessions can be opened at the same time
 * RStudio is a very powerful and complex environment, also suitable for compiling technical *reports*, articles, books and presentations (like this one)
+
+:::aside
+**Note**: These slides provide an embedded R environment similar to RStudio, and useful for quiclky try the code here discussed: click on the terminal icon on the bottom left, or [just hit the `§` key]{.bgreen}.
+:::
 
 ## The R language
 * R is a high-level, declarative, interpreted language with C-like syntax

@@ -3,6 +3,8 @@ title: "Design of Experiments and Statistical Analysis of Experimental Data"
 subtitle: "University of Trento, Department of Industrial Engineering"
 date-modified: "`{r} Sys.time()`"
 date-format: "YYYYMMDD"
+aliases:
+  - /DESANED
 ---
 ```{r setup}
 ```

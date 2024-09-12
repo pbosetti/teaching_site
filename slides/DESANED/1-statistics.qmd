@@ -6,24 +6,24 @@ subtitle: |
 author: "Paolo Bosetti"
 institute: "University of Trento, Department of Industrial Engineering"
 format:
-   revealjs:
-     width: 1280
-     height: 700
-     margin: 0.1
-     slide-number: true
-     code-line-numbers: true
-     code-annotations: below
-     preview-links: auto
-     theme: [default, style.scss]
-     chalkboard: true
-     footer: "paolo.bosetti@unitn.it --- [https://paolobosetti.quarto.pub](https://paolobosetti.quarto.pub)"
-     fig-width: 5
-     fig-height: 4
-     fig-dpi: 300
-     touch: true
-     email-obfuscation: javascript
-     pdf-separate-fragments: true
-     link-external-icon: true
+  revealjs:
+    width: 1280
+    height: 700
+    margin: 0.1
+    slide-number: true
+    code-line-numbers: true
+    code-annotations: below
+    preview-links: auto
+    theme: [default, style.scss]
+    chalkboard: true
+    footer: "paolo.bosetti@unitn.it --- [https://paolobosetti.quarto.pub/DESANED](https://paolobosetti.quarto.pub/DESANED)"
+    fig-width: 5
+    fig-height: 4
+    fig-dpi: 300
+    touch: true
+    email-obfuscation: javascript
+    pdf-separate-fragments: true
+    link-external-icon: true
 execute:
    cache: true
 

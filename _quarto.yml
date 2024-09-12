@@ -8,7 +8,7 @@ website:
     left:
       - text: ADAS
         menu:
-          - href: slides/ADAS/TOC.qmd
+          - href: slides/ADAS/index.qmd
             text: Contenuti
           - href: slides/ADAS/0-intro.qmd
             text: Intro
@@ -28,7 +28,7 @@ website:
             text: Serie temporali
       - text: DESAnED
         menu:
-          - href: slides/DESANED/TOC.qmd
+          - href: slides/DESANED/index.qmd
             text: Table of Contents
           - href: slides/DESANED/1-statistics.qmd
             text: Statistics

@@ -18,21 +18,21 @@ If you are a student of the University of Trento, note that this is NOT the main
 
 Course for the Master Degree in Mechatronics Engineering, given in English
   
-- Lesson on [K-Fold Cross Validation](slides/ADAS/kfold){target="_blank"}
+- Lesson on [K-Fold Cross Validation](slides/ADAS/kfold.html){target="_blank"}
 
 ## Design of Experiments and Statistical Analysis of Experimental Data (DESAnED) 🇬🇧
 
 PhD Seminar, given in English
 
-- Table of contents with [all slides](slides/DESANED/TOC.html){target="_blank"}
+- Table of contents with [all slides](slides/DESANED/index.html)
 
 
 ## Analisi dei Dati e Statistica (ADAS) 🇮🇹
 
 Corso per la Laurea triennale in Ingegneria Industriale, tenuto in italiano
 
-- Indice con tutte le [slide del corso](slides/ADAS/TOC){target="_blank"}
-- Esperimento virtuale: [taratura di una bilancia a due piatti](slides/ADAS/bilancia){target="_blank"}
+- Indice con tutte le [slide del corso](slides/ADAS/index.html)
+- Esperimento virtuale: [taratura di una bilancia a due piatti](slides/ADAS/bilancia.html){target="_blank"}
   
 
 :::callout-important
