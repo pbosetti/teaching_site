@@ -7,7 +7,7 @@ date: "`r Sys.Date()`"
 format: 
   revealjs:
     width: 1280
-    height: 700
+    height: 720
     margin: 0.1
     slide-number: true
     chalkboard: true

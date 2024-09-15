@@ -1,21 +1,17 @@
 /*-- scss:defaults --*/
 
-$signature-color: #880000;
 $presentation-font-size-root: 30px;
-$presentation-heading-color: $signature-color;
+$presentation-heading-color: #880000;
 $code-block-font-size: 0.75em;
-$body-bg: #ffffff;
 
 /*-- scss:rules --*/
-
-
 
 .reveal a {
   line-height: 1.3em;
 }
 
 .reveal strong {
-  color: $signature-color;
+  color: #880000;
 }
 
 .reveal aside{
@@ -36,6 +32,12 @@ $body-bg: #ffffff;
   font-style: italic;
 }
 
+.reveal p.date {
+  font-size: 50%;
+  font-style: italic;
+  color: #aa9999;
+}
+
 .reveal h1:not(.title) {
   background-image: linear-gradient(to right, #fefefe, #dddddd);
   padding-left: 10px;
@@ -47,13 +49,13 @@ $body-bg: #ffffff;
 .reveal .title {
   border-bottom: 6px;
   border-bottom-style: solid;
-  border-bottom-color: $signature-color;  
+  border-bottom-color: #880000;  
 }
 
 .reveal h2 {
   border-bottom: 4px;
   border-bottom-style: solid;
-  border-bottom-color: $signature-color;
+  border-bottom-color: #880000;
 }
 
 .reveal .math {

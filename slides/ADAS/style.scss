@@ -32,6 +32,12 @@ $code-block-font-size: 0.75em;
   font-style: italic;
 }
 
+.reveal p.date {
+  font-size: 50%;
+  font-style: italic;
+  color: #aa9999;
+}
+
 .reveal h1:not(.title) {
   background-image: linear-gradient(to right, #fefefe, #dddddd);
   padding-left: 10px;

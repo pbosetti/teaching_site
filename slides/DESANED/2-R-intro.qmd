@@ -8,7 +8,7 @@ institute: "University of Trento, Department of Industrial Engineering"
 format: 
   revealjs:
     width: 1280
-    height: 700
+    height: 720
     margin: 0.1
     slide-number: true
     code-line-numbers: true

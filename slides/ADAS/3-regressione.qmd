@@ -10,7 +10,7 @@ date-format: "[*Ultimo aggiornamento:* ]DD/MM/YYYY"
 format: 
   revealjs:
     width: 1280
-    height: 700
+    height: 720
     margin: 0.1
     slide-number: true
     code-line-numbers: true
@@ -435,10 +435,10 @@ y_i &=  \eta_i + g(\varepsilon_i) \\
 \varepsilon_i &\sim D(p_1,p_2,\dots,p_k);~g(\varepsilon_i)\sim \mathcal{N}(0, \sigma^2)
 \end{align}
 $$ 
-Le funzioni di collegamento per le distribuzioni più comuni sono:
 
 :::{.columns}
 :::{.column}
+Le funzioni di collegamento per le distribuzioni più comuni sono:
 
 | Distribuzione | Funzione di collegamento |
 |---------------|--------------------------|

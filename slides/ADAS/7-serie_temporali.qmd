@@ -10,7 +10,7 @@ date-format: "[*Ultimo aggiornamento:* ]DD/MM/YYYY"
 format: 
   revealjs:
     width: 1280
-    height: 700
+    height: 720
     margin: 0.1
     slide-number: true
     code-line-numbers: true
