@@ -67,9 +67,9 @@ Imparare l'uso di un **linguaggio e software di analisi dati** (R + RStudio) è 
 ## Modalità d'esame
 L'esame è in due parti, tipicamente nello stesso giorno
 
--   **prova pratica** (mattina): sulla piattaforma Moodle esamionline vengono proposti una serie di esercizi in R. 
-  * Gli esercizi vengono corretti automaticamente con revisione manuale per quelli non corretti. Il voto massimo è **26/30**.
-  * Ogni esercizio ha un punteggio prefissato. In caso di errore viene corretto manualmente ma il punteggio non può superare la metà del punteggio massimo
+-   **prova pratica** (mattina): sulla piattaforma Moodle esamionline vengono proposti una serie di esercizi in R
+  * Ogni esercizio ha un punteggio prefissato
+  * Gli esercizi vengono corretti automaticamente con revisione manuale per quelli che risultano errati. Il voto massimo è **26/30**
 -   **prova orale** (pomeriggio): per chi desidera migliorare il voto (fino al massimo di 30/30L). L'orale può anche peggiorare il voto della prova pratica
 
 :::{.fragment .highlight-red style="font-size: 125%; margin-top: 50px;"}
@@ -82,7 +82,7 @@ Non è possibile sostenere l'orale in una sessione differente dalla prova pratic
 Il voto finale verrà verbalizzato **solo dopo aver superato** entrambi i moduli, inclusa cioè:
 
 - **studenti del secondo anno**: la prova parziale del primo modulo (prof. Bertolazzi)
-- **studenti del terzo anno**: o la prova parziale del secondo modulo (prof. De Cecco).
+- **studenti del terzo anno**: la prova parziale del secondo modulo (prof. De Cecco).
 
 :::{.fragment .highlight-red style="font-size: 125%; margin-top: 50px;"}
 Ricordarsi di iscriversi anche all'appello di registrazione!
@@ -105,7 +105,3 @@ Ricordarsi di iscriversi anche all'appello di registrazione!
 
 * **Testo di riferimento**:
 * **Codice sviluppato in classe**: Il codice R sarà gradualmente pubblicato e aggiornato su GitHub: [https://github.com/pbosetti/ADAS-24](https://github.com/pbosetti/ADAS-24){target="_blank"}
-  * Paolo Bosetti, *Fondamenti di Statistica per le misure e l'analisi dati in ambito industriale. Con esempi in GNU-R*, Libreria Universitaria Edisioni, 2022
-    * Biblioteca (BUP): [https://strutture-provincia.primo.exlibrisgroup.com/permalink/39SBT_INST/ghkipk/alma991021678989206186](https://strutture-provincia.primo.exlibrisgroup.com/permalink/39SBT_INST/ghkipk/alma991021678989206186)
-    * Amazon: [https://www.amazon.it/Fondamenti-statistica-misure-lanalisi-industriale/dp](https://www.amazon.it/Fondamenti-statistica-misure-lanalisi-industriale/dp)
-    * eBook: [https://www.libreriauniversitaria.it/ebook/9788833595238/autore-paolo-bosetti/ebook-fondamenti-di-statistica-per-le-misure-e-l-analisi-dati-in-ambito-industriale-con-esempi-in-gnu-r.htm](https://www.libreriauniversitaria.it/ebook/9788833595238/autore-paolo-bosetti/ebook-fondamenti-di-statistica-per-le-misure-e-l-analisi-dati-in-ambito-industriale-con-esempi-in-gnu-r.htm)
