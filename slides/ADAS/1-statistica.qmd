@@ -351,6 +351,7 @@ tibble(pop1=runif(N, a, b), pop2=rchisq(N, k)) %>%
 ::: column
 -   **pop1** mostra la stessa probabilità tra 9 e 31 circa
 -   [pop2]{.bgreen} mostra maggiore probabilità attorno a 20 che dirada verso l'alto e verso il basso
+-   Eppure hanno lo stesso valore atteso e la stessa varianza
 :::
 :::
 

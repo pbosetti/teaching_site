@@ -175,6 +175,8 @@ v3 + 2
   * `typeof()`: tipo (basso livello)
   * `length()`: lunghezza vettore
   * `attributes()`: metadati
+  * `str()`: struttura di un oggetto
+  * `summary()`: riassunto statistico
   
 ## Matrici
 * Si costruiscono con la funzione `matrix()`
