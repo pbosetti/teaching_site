@@ -7,8 +7,9 @@ author: "Paolo Bosetti"
 institute: "Università di Trento, Dipartimento di Ingegneria Industriale"
 date: "`r Sys.time()`"
 date-format: "[*Ultimo aggiornamento:* ]DD/MM/YYYY"
+engine: knitr
 format: 
-  revealjs:
+  live-revealjs:
     width: 1280
     height: 720
     margin: 0.1
@@ -27,10 +28,18 @@ format:
     pdf-separate-fragments: true
     link-external-icon: true
     lang: it-IT
-execute: 
-  cache: true
-
+    drop:
+      shortcut: "§"
+      engine: webr
+      webr:
+        packages:
+          - tidyverse
+revealjs-plugins:
+  - drop
+  - quiz
 ---
+
+{{< include ../../_extensions/r-wasm/live/_knitr.qmd >}}
 
 ```{r setup, echo=FALSE, message=FALSE, warning=FALSE}
 options(width = 60)
@@ -321,6 +330,33 @@ $$
 \sum_{i=1}^n(x_i-\bar x) = \sum_{i=1}^n(x_i)-n\bar x=:0 
 $$ 
 quindi non tutti gli $n$ elementi nella definizione di $SS$ possono essere indipendenti, dato che il valore di uno di essi è prevedibile dai restanti $n-1$ grazie alla definizione di $\bar x$
+
+# Qualche domanda
+
+## Nota la media di un campione è possibile calcolare la varianza? {.quiz-question}
+
+- [Sì]{data-explanation="Media e varianza sono concetti ortogonali!"}
+- [No]{.correct}
+
+## Covarianza campionaria {.quiz-question}
+
+Date due v. a. $x$ e $y$ di cui si considerano due campioni, sia $\sigma_{xy}=-7.52$. Allora:
+
+- [$x$ e $y$ sono fortemente correlate in senso positivo]{data-explanation="Non è detto, dipende dalle loro varianze"}
+- [$x$ e $y$ sono fortemente correlate in senso negativo]{data-explanation="Non è detto, dipende dalle loro varianze"}
+- [$x$ e $y$ sono debolmente correlate]{data-explanation="Non è detto, dipende dalle loro varianze"}
+- [$x$ e $y$ sono di certo anti-correlate]{data-explanation="Non è detto, dipende dalle loro varianze"}
+- [Non è possibile affermare quanto siano correlate]{.correct}
+
+## Varianza della media campionaria {.quiz-question}
+
+Da una stessa popolazione estraggo una serie di campioni di 16 elementi e una seconda serie di campioni di 64 elementi. Considerando la varianza delle due medie campionarie:
+
+- È uguale per entrambe le serie
+- [Quella della seconda serie è un quarto di quella della prima]{.correct}
+- Quella della prima serie è il doppio di quella della seconda
+
+
 
 # Distribuzioni
 
@@ -803,6 +839,30 @@ ggplot() +
 :::
 :::
 
+# Qualche domanda
+
+## Gioco del lotto {.quiz-question}
+
+Nel gioco del lotto, la probabilità di vincere giocando dempre gli stessi numeri:
+
+- Aumenta ad ogni estrazione, come predetto dalla distribuzione $\mathcal{B}$
+- Aumenta ad ogni estrazione, come predetto dalla distribuzione $\mathcal{P}$
+- Aumenta ad ogni estrazione, come predetto dalla distribuzione $\mathcal{G}$
+- [È costante ad ogni estrazione]{.correct}
+
+## PDF e CDF {.quiz-question}
+
+Quali di queste affermazioni sono corrette:
+
+- [Qualsiasi CDF è monotona crescente]{.correct}
+- [Esistono distribuzioni con PDF definita solo per valori positivi]{.correct}
+- Per ogni CDF esistono una o più PDF che la generano
+- $\mathrm{PDF}(-x) = -\mathrm{PDF}(x)$
+- $\mathrm{CDF}^+(x) = \mathrm{CDF}^-(-x)$
+- [$\mathrm{CDF}^+(x) = 1- \mathrm{CDF}^-(x)$]{.correct}
+- Una funzione quantile può avere un dominio illimitato a destra o sinistra
+
+
 # Statistica inferenziale
 
 Studia le operazioni di **inferenza**, cioè ricavare informazioni sulla popolazione a partire da un suo campione
@@ -1125,6 +1185,46 @@ $$
 \left[(\bar y_1-\bar y_2)-t_{\alpha/2,n_1+n_2-2}S_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}},~
 (\bar y_1-\bar y_2)+t_{\alpha/2,n_1+n_2-2}S_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}~\right]
 $$
+
+
+# Qualche domanda
+
+## Test di Student {.quiz-question}
+
+```{r echo=FALSE, include=FALSE}
+set.seed(0)
+d <- list(
+  c1=rnorm(10, 12.3, 3.6),
+  c2=rnorm(10, 11.5, 3.3)
+)
+
+var.test(d$c1, d$c2)$p.value > 0.05
+pe <- t.test(d$c1, d$c2, var.equal=T)
+pd <- t.test(d$c1, d$c2, var.equal=F)
+```
+
+Ho due campioni di dati, uno con $n_1=`r length(d$c1)`$, $\mu_1 = `r mean(d$c1) |> round(2)`$, $\sigma_1=`r sd(d$c1) |> round(2)`$ e l'altro con $n_2=`r length(d$c2)`$, $\mu_2 = `r mean(d$c2) |> round(2)`$, $\sigma_2=`r sd(d$c2) |> round(2)`$. Voglio confrontare le medie dei due campioni con un test di Student, assumendo $\alpha=0.05$:
+
+- [$\mu_1=\mu_2$, con un $p$-value pari a `r pe$p.value`]{.correct}
+- [$\mu_1\neq \mu_2$, con un $p$-value pari a `r pd$p.value`]{data-explanation="I due campioni hanno la stessa varianza"}
+- [$\mu_1\neq \mu_2$, con un $p$-value pari a 0.062316]{data-explanation="Hai sparato... e poi 0.06 > 0.05!"}
+- [$\mu_1 = \mu_2$, con un $p$-value pari a 1.386E-4]{data-explanation="Hai sparato, ammettilo!"}
+- [$\mu_1\neq \mu_2$, con un $p$-value pari a 0.048]{data-explanation="Non proprio"}
+
+## Calcolatrice
+
+Usare il riquadro sottostante per risolvere l'esercizio precedente:
+
+```{webr}
+n1=10
+n2=10
+m1=13.59
+m2=10.3
+s1=4.34
+s2=2.24
+# calcolo probabilità dalla T di Student:
+pt(1.38, df=n1, lower.tail=F)
+```
 
 
 ## Anomalie
@@ -1585,3 +1685,45 @@ GGTukey(tk) +
 :::aside
 Cosa succede agli intervalli di confidenza passando da un intervallo al 95% ad un intervallo al 99%?
 :::
+
+
+# Qualche domanda
+
+## Test di Tukey{.quiz-question}
+
+Se riduco $\alpha$ da 0.05 a 0.01, cosa succede agli intervalli di confidenza del test di Tukey?
+
+- [Si allargano tutti della stessa quantità]{.correct}
+- Si allargano tutti, ma in misura diversa
+- Si restringono tutti della stessa quantità
+- Si restringono tutti, ma in misura diversa
+- Rimangono invariati
+
+## ANOVA{.quiz-question}
+
+:::columns
+:::column
+Nell'[esperimento sopra riportato](#esperimento-a-un-fattore-e-piu-livelli), una tabella ANOVA come la seguente è corretta oppure no?
+:::
+
+:::{.column style="font-size:66%"}
+```{r, echo=FALSE}
+df <- expand.grid(Cotton=seq(15,35,5), Run=1:5) %>% tibble()
+df$Strength <- c(
+  7, 12, 14, 19, 7,
+  7, 17, 18, 25, 10, 
+  15, 12, 18, 22, 11,
+  11, 18, 19, 19, 15,
+  9, 18, 19, 23, 11
+)
+df %>% lm(Strength~Cotton, data=.) %>% anova() %>% knitr::kable()
+```
+:::
+:::
+
+- [Sì]{data-explanation="5 livelli, 5 ripetizioni, quindi DoF=4"}
+- [No, la colonna `Df` è sospetta]{.correct}
+- [No, la colonna `Sum Sq` è sospetta]{data-explanation="5 livelli, 5 ripetizioni, quindi DoF=4"}
+- [No, la colonna `Mean Sq` è sospetta]{data-explanation="5 livelli, 5 ripetizioni, quindi DoF=4"}
+- [No, la colonna `F value` è sospetta]{data-explanation="5 livelli, 5 ripetizioni, quindi DoF=4"}
+- [No, la colonna `Pr(>F)` è sospetta]{data-explanation="5 livelli, 5 ripetizioni, quindi DoF=4"}
