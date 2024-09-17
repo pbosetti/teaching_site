@@ -7,7 +7,6 @@ author: "Paolo Bosetti"
 institute: "Università di Trento, Dipartimento di Ingegneria Industriale"
 date: "`r Sys.time()`"
 date-format: "[*Ultimo aggiornamento:* ]DD/MM/YYYY"
-engine: knitr
 format: 
   live-revealjs:
     width: 1280
@@ -1185,6 +1184,41 @@ $$
 \left[(\bar y_1-\bar y_2)-t_{\alpha/2,n_1+n_2-2}S_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}},~
 (\bar y_1-\bar y_2)+t_{\alpha/2,n_1+n_2-2}S_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}~\right]
 $$
+
+## Potenza del test di Student
+
+La **potenza** di un test statistico è la probabilità di rifiutare l'ipotesi nulla quando essa è falsa, cioè $1-\beta$. È l'**affidabilità** del test. Essa dipende ovviamente dalla dimensione dei campioni. È possibile calcolare le **curve di potenza** per diverse dimensioni dei campioni e per diverse dimensioni di dello **scarto relativo** $\delta =(\mu_1 - \mu_2) / \sigma$.
+
+:::columns
+:::column
+```{r}
+expand_grid(
+  n=c(3:10, 12, 15, 20),
+  alpha=c(0.005, 0.01, 0.05, 0.1),
+  delta = seq(0, 4, 0.05),
+) %>% 
+  mutate(
+    power = power.t.test(n=n, delta=delta, sig.level=alpha)$power,
+    n=factor(n)
+  ) %>% 
+  ggplot(aes(x=delta, y=power, color=n)) +
+  geom_line() +
+  facet_wrap(~alpha) +
+  geom_hline(yintercept=0.9, linetype=2) +
+  labs(y="Potenza del test", x="Differenza relativa tra le medie")
+
+```
+:::
+
+:::column
+
+- La potenza del test diminuisce con la differenza tra le medie
+- La potenza del test aumenta con la dimensione dei campioni
+- La potenza del test aumenta con $\alpha$
+- Con $\alpha=0.05$ e $n=10$, la potenza del test è $\geq0.9$ per $\delta\geq1.5$
+
+:::
+:::
 
 
 # Qualche domanda
