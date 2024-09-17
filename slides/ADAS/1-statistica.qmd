@@ -843,7 +843,7 @@ ggplot() +
 
 ## Gioco del lotto {.quiz-question}
 
-Nel gioco del lotto, la probabilità di vincere giocando dempre gli stessi numeri:
+Nel gioco del lotto, la probabilità di vincere giocando sempre gli stessi numeri:
 
 - Aumenta ad ogni estrazione, come predetto dalla distribuzione $\mathcal{B}$
 - Aumenta ad ogni estrazione, come predetto dalla distribuzione $\mathcal{P}$
