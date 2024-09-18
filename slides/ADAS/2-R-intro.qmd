@@ -541,28 +541,33 @@ Altri argomenti opzionali servono per personalizzare il risultato.
 ## Tidyverse
 Assieme a RStudio è emersa una *new wave* di librerie R che modificano radicalmente l'approccio. Vanno sotto il nome collettivo di [`tidyverse`](https://www.tidyverse.org)
 
+:::columns
+:::column
+
 * `ggplot2`: grafici
 * `purrr`: programmazione funzionale
 * `dplyr`: manipolazione dati
 * `stringr`: manipolazione stringhe
 
-
-## Tidyverse
-Assieme a RStudio è emersa una *new wave* di librerie R che modificano radicalmente l'approccio. Vanno sotto il nome collettivo di [`tidyverse`](https://www.tidyverse.org)
+:::
+:::column
 
 * `tibble`: data frame migliorati
 * `readr`: importazione dati
 * `tidyr`: preparazione dati
 * `lubridate`: manipolazione date
 
+:::
+:::
+
 ## Tidyverse
 L'approccio `tidyverse` ha alcune caratteristiche comuni:
 
-* dati in formato **tidy** (un'osservazione per riga, una variabile, o osservando, per colonna)
-* composizione di funzioni grafiche con `+` (`ggplot(...) + geom_line()`), ogni funzione è un layer
+* dati in formato **tidy** (un'osservazione per riga; una variabile, o **osservando**, per colonna)
+* composizione di funzioni grafiche con `+` (`ggplot(...) + geom_line()`), ogni funzione è un **layer**
 * notazione prefissa con `%>%` (`a %>% str()` invece di `str(a)`)
 
-È utile consultare i cheat sheet: [https://posit.co/resources/cheatsheets/](https://posit.co/resources/cheatsheets/)
+È utile consultare i cheat sheet: [https://posit.co/resources/cheatsheets/](https://posit.co/resources/cheatsheets/){target="_blank"}
 
 ## Notazione infissa {auto-animate=true}
 ```r
