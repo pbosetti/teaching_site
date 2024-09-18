@@ -851,6 +851,7 @@ Nel gioco del lotto, la probabilità di vincere giocando sempre gli stessi numer
 - Aumenta ad ogni estrazione, come predetto dalla distribuzione $\mathcal{G}$
 - [È costante ad ogni estrazione]{.correct}
 
+
 ## PDF e CDF {.quiz-question}
 
 Quali di queste affermazioni sono corrette:
@@ -870,7 +871,7 @@ Studia le operazioni di **inferenza**, cioè ricavare informazioni sulla popolaz
 
 ## Ipotesi statistiche
 
--   Si è visto che media e varianza campionaria sono due **stimatori** e rappresentano della **variabili aleatorie**
+-   Si è visto che media e varianza campionaria sono due **stimatori** e rappresentano delle **variabili aleatorie**
 -   Quindi prelevando due campioni da una popolazione le due **stime** di media e varianza saranno sempre differenti
 -   Come faccio a sapere se due campioni con media diversa provengono dalla stessa popolazione?
 -   Posso formulare una **coppia di ipotesi alternative**: 
