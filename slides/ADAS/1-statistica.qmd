@@ -354,7 +354,7 @@ Da una stessa popolazione estraggo una serie di campioni di 16 elementi e una se
 - È uguale per entrambe le serie
 - [Quella della seconda serie è circa un quarto di quella della prima]{.correct}
 - Quella della prima serie è circa il doppio di quella della seconda
-- [Quella della seconda serie è un quarto di quella della prima]
+- Quella della seconda serie è un quarto di quella della prima
 - Quella della prima serie è il doppio di quella della seconda
 
 

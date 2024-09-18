@@ -60,6 +60,12 @@ reduce(files, ~paste0(.x, glue("* [{.y}](data/{.y})"), "\n"), .init="") %>%
 
 Let's look at the `train.csv` file from the Titanic dataset. We load the dataset and perform some basic data manipulation to only keep the relevant columns. We also classify the passengers into age classes.
 
+```{r echo=FALSE}
+example_url <- function(example) {
+  return(paste0("data/", example))
+}
+```
+
 ```{r}
 titanic <- example_url("train.csv") %>% read_csv(show_col_types = FALSE)
 titanic <- titanic %>% mutate(

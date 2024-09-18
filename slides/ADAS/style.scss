@@ -82,6 +82,12 @@ $code-block-font-size: 0.75em;
   border: #888888 2px solid !important;
 }
 
+.option-button:hover {
+  background-color: #efefef !important;
+  color: #555555 !important;
+  border: #888888 2px solid !important;
+}
+
 .option-button.selected {
   background-color: #f9f9ff !important;
   color: black !important;
