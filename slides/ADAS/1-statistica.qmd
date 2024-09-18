@@ -352,7 +352,9 @@ Date due v. a. $x$ e $y$ di cui si considerano due campioni, sia $\sigma_{xy}=-7
 Da una stessa popolazione estraggo una serie di campioni di 16 elementi e una seconda serie di campioni di 64 elementi. Considerando la varianza delle due medie campionarie:
 
 - È uguale per entrambe le serie
-- [Quella della seconda serie è un quarto di quella della prima]{.correct}
+- [Quella della seconda serie è circa un quarto di quella della prima]{.correct}
+- Quella della prima serie è circa il doppio di quella della seconda
+- [Quella della seconda serie è un quarto di quella della prima]
 - Quella della prima serie è il doppio di quella della seconda
 
 
@@ -1737,7 +1739,7 @@ Se riduco $\alpha$ da 0.05 a 0.01, cosa succede agli intervalli di confidenza de
 
 :::columns
 :::column
-Nell'[esperimento sopra riportato](#esperimento-a-un-fattore-e-piu-livelli), una tabella ANOVA come la seguente è corretta oppure no?
+Nell'[esperimento sopra riportato](#esperimenti-a-un-fattore-e-più-livelli), una tabella ANOVA come la seguente è corretta oppure no?
 :::
 
 :::{.column style="font-size:66%"}
