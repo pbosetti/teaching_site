@@ -1037,6 +1037,9 @@ $$
 dove $t_{\alpha/2, n_1+n_2-2}$ è appunto la funzione quantile, coda alta, della T di Student valutata per la probabilità $\alpha/2$ e per $n_1+n_2-2$ g.d.l.
 
 ## Test di Student
+
+:::columns
+:::{.column width="60%"}
 ```{r}
 N <- 15
 a <- 0.1
@@ -1059,11 +1062,23 @@ ggplot(aes(x=x)) +
   labs(x="t", y="p", color="curva:")
 
 ```
+:::
 
-## Tabella dei quantili {.smaller}
+:::{.column width="40%"}
+
+Note:
+
+* L'ordinata della $\mathrm{CDF}^+$ in $t_0$ è uguale all'area sottesa dalla $\mathrm{PDF}$ in $[t_0, +\infty)$ (in grigio)
+* Il segno del numeratore in $t_0$ è arbitrario, quindi $\mathrm{CDF}^+(t_0)$ è la metà della probabilità d'errore di tipo I complessiva, cioè $\alpha/2$
+
+:::
+:::
+
+## Tabella dei quantili
 In assenza dei calcolatori, il Test di Student veniva effettuato predeterminando $\alpha$ e decidendo se rifiutare $H_0$ sulla base della **tabella dei quantili**:
 
-:::{style="margin-top: 50px; margin-bottom: 50px;"}
+:::{.columns  style="font-size: 66%; margin-top: 50px; margin-bottom: 50px;"}
+:::{.column}
 ```{r}
 N <- 30
 df <- tibble(dof=1:N)
@@ -1073,7 +1088,20 @@ for (i in c(0.1, 0.05, 0.025, 0.01, 0.005, 0.0025, 0.001)) {
 knitr::kable(head(df, n=10), digits=3)
 ```
 :::
-Ad esempio, per un campione con 8 g.d.l. e $\alpha=10%$ risulta un valore critico di $t_0=`r round(qt(0.05, 8, lower.tail=F), 3)`$: ogni valore di $t_0$ calcolato superiore a tale valore (in modulo) comporta il rifiuto di $H_0$ con una probabilità d'errore inferiore al 10%
+
+:::{.column}
+```{r}
+N <- 20
+df <- tibble(dof=11:N)
+for (i in c(0.1, 0.05, 0.025, 0.01, 0.005, 0.0025, 0.001)) {
+  df[,as.character(i)] <- qt(i, df$dof, lower.tail=F)
+}
+knitr::kable(df, digits=3)
+```
+:::
+:::
+
+Ad esempio, per un campione con 8 g.d.l. e $\alpha=0.1$ risulta un valore critico di $t_0=`r round(qt(0.05, 8, lower.tail=F), 3)`$: ogni valore di $t_0$ calcolato superiore a tale valore (in modulo) comporta il rifiuto di $H_0$ con una probabilità d'errore inferiore al 10%
 
 
 ## Varianti del test di Student
@@ -1193,8 +1221,8 @@ $$
 La **potenza** di un test statistico è la probabilità di rifiutare l'ipotesi nulla quando essa è falsa, cioè $1-\beta$. È l'**affidabilità** del test. Essa dipende ovviamente dalla dimensione dei campioni. È possibile calcolare le **curve di potenza** per diverse dimensioni dei campioni e per diverse dimensioni di dello **scarto relativo** $\delta =(\mu_1 - \mu_2) / \sigma$.
 
 :::columns
-:::column
-```{r}
+:::{.column width="66%"}
+```{r fig.width=5, fig.height=3}
 expand_grid(
   n=c(3:10, 12, 15, 20),
   alpha=c(0.005, 0.01, 0.05, 0.1),
@@ -1208,12 +1236,13 @@ expand_grid(
   geom_line() +
   facet_wrap(~alpha) +
   geom_hline(yintercept=0.9, linetype=2) +
-  labs(y="Potenza del test", x="Differenza relativa tra le medie")
+  labs(y="Potenza del test", x=TeX("$\\delta=(\\mu_1 - \\mu_2)/\\sigma$")) +
+  theme(legend.position="right")
 
 ```
 :::
 
-:::column
+:::{.column width="34%"}
 
 - La potenza del test diminuisce con la differenza tra le medie
 - La potenza del test aumenta con la dimensione dei campioni
@@ -1242,15 +1271,15 @@ pd <- t.test(d$c1, d$c2, var.equal=F)
 
 Ho due campioni di dati, uno con $n_1=`r length(d$c1)`$, $\mu_1 = `r mean(d$c1) |> round(2)`$, $\sigma_1=`r sd(d$c1) |> round(2)`$ e l'altro con $n_2=`r length(d$c2)`$, $\mu_2 = `r mean(d$c2) |> round(2)`$, $\sigma_2=`r sd(d$c2) |> round(2)`$. Voglio confrontare le medie dei due campioni con un test di Student, assumendo $\alpha=0.05$:
 
-- [$\mu_1=\mu_2$, con un $p$-value pari a `r pe$p.value`]{.correct}
-- [$\mu_1\neq \mu_2$, con un $p$-value pari a `r pd$p.value`]{data-explanation="I due campioni hanno la stessa varianza"}
-- [$\mu_1\neq \mu_2$, con un $p$-value pari a 0.062316]{data-explanation="Hai sparato... e poi 0.06 > 0.05!"}
-- [$\mu_1 = \mu_2$, con un $p$-value pari a 1.386E-4]{data-explanation="Hai sparato, ammettilo!"}
-- [$\mu_1\neq \mu_2$, con un $p$-value pari a 0.048]{data-explanation="Non proprio"}
+- [$\mu_1=\mu_2$, con un $p$-value pari a `r pe$p.value %>% round(4)`]{.correct}
+- [$\mu_1\neq \mu_2$, con un $p$-value pari a `r pd$p.value %>% round(4)`]{data-explanation="I due campioni hanno la stessa varianza"}
+- [$\mu_1\neq \mu_2$, con un $p$-value pari a 0.0623]{data-explanation="Hai sparato... e poi 0.06 > 0.05!"}
+- [$\mu_1 = \mu_2$, con un $p$-value pari a 1.39E-4]{data-explanation="Hai sparato, ammettilo!"}
+- [$\mu_1\neq \mu_2$, con un $p$-value pari a 0.0487]{data-explanation="Non proprio"}
 
 ## Calcolatrice
 
-Usare il riquadro sottostante per risolvere l'esercizio precedente:
+Usare il riquadro sottostante per risolvere l'esercizio precedente (oltre alla [tabella dei quantili](#tabella-dei-quantili)):
 
 ```{webr}
 n1=10
@@ -1281,6 +1310,9 @@ In Inglese le anomalie sono note come *outlier*
 ## Anomalie: metodo grafico
 Il più comune metodo grafico per individuare le anomalie è il ***box-plot***
 
+:::columns
+:::column
+
 ```{r}
 set.seed(0)
 tibble(
@@ -1293,7 +1325,15 @@ ggplot(aes(x=name, y=value)) +
   coord_flip() +
   labs(y="valore", x="campione")
 ```
+:::
+:::column
 
+* il box va dal primo al terzo quartile (metà dei dati)
+* la linea nel box è la mediana
+* i baffi vanno dal minimo al punto più lontano ma non oltre 1.5 volte l'interquartile
+* i punti oltre i baffi sono **possibili anomalie**
+:::
+:::
 
 ## Anomalie: test statistici
 :::{.panel-tabset}
@@ -1304,7 +1344,7 @@ Dati $\left<x_1, x_2,\dots,x_n\right>$ con **distribuzione normale**, si calcola
 
 Per via della normalità degli $x_i$ è evidente che $|x_i-\bar x|/S_x\sim\mathcal{N}(0,1)$. Possiamo quindi calcolare la probabilità di un valore maggiore o uguale a $s_0$ dalla funzione di ripartizione, coda superiore:
 $$
-P_s=CDF_{\mathcal{N}}^+(s_0)
+P_s=\mathrm{CDF}_{\mathcal{N}}^+(s_0)
 $$
 Su $n$ osservazioni normali ci aspettiamo $nP_s$ valori più grandi di $s_0$. Quindi, se risulta $nP_s < 0.5$, mentre noi abbiamo **un** punto sospetto, allora possiamo scartare l'anomalia
 
