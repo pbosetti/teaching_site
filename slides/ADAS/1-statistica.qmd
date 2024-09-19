@@ -415,7 +415,8 @@ tibble(x=seq(-3.5,3.5,0.01), p=dnorm(x, 0, 1)) %>%
   ggplot(aes(x=x, y=p)) +
   geom_area(fill=gray(0.75)) +
   geom_step(direction = "mid") +
-  labs(x=TeX("x"), y=TeX("PDF(x)"))
+  geom_label(x=0, y=0.2, label="Area = 1") +
+  labs(x=TeX("x"), y="PDF(x)")
 ```
 :::
 :::
@@ -460,7 +461,7 @@ tibble(q=0:20, p=dbinom(q, 20, 0.5)) %>%
   ggplot(aes(x=q, y=p)) + 
   geom_col(width=0.1) +
   geom_point() +
-  labs(x=TeX("x"), y=TeX("p(x)")) + 
+  labs(x=TeX("x"), y="p(x)") + 
   labs(title="Binom(20, 0.5)")
 ```
 :::
@@ -502,7 +503,7 @@ tibble(q=0:20, p=dpois(q, 5)) %>%
   ggplot(aes(x=q, y=p)) + 
   geom_col(width=0.1) +
   geom_point() +
-  labs(x=TeX("x"), y=TeX("p(x)")) + 
+  labs(x=TeX("x"), y="p(x)") + 
   labs(title="Poisson(5)")
 ```
 :::
@@ -540,7 +541,7 @@ tibble(q=0:20, p=dgeom(q, 1/6)) %>%
   ggplot(aes(x=q, y=p)) + 
   geom_col(width=0.1) +
   geom_point() +
-  labs(x=TeX("x"), y=TeX("p(x)")) + 
+  labs(x=TeX("x"), y="p(x)") + 
   labs(title="Geom(1/6)")
 ```
 :::
@@ -584,7 +585,7 @@ tibble(q=0:20, p=dunif(q, 1, 6)) %>%
   ggplot(aes(x=q, y=p)) + 
   geom_col(width=0.1) +
   geom_point() +
-  labs(x=TeX("x"), y=TeX("p(x)")) + 
+  labs(x=TeX("x"), y="p(x)") + 
   labs(title="Unif(0,1) Discreta")
 ```
 :::
@@ -625,7 +626,7 @@ tibble(q=seq(-3.5,3.5,0.01), p=dnorm(q, 0, 1)) %>%
   ggplot(aes(x=q, y=p)) +
   geom_area(fill=gray(0.75)) +
   geom_step(direction = "mid") +
-  labs(x=TeX("x"), y=TeX("f(x)")) +
+  labs(x=TeX("x"), y="f(x)") +
   labs(title="Norm(0,1)")
 ```
 :::
@@ -697,7 +698,7 @@ tibble(q=seq(-0,40,0.1), p=dchisq(q, 10)) %>%
   ggplot(aes(x=q, y=p)) +
   geom_area(fill=gray(0.75)) +
   geom_line() +
-  labs(x=TeX("x"), y=TeX("f(x)")) + 
+  labs(x=TeX("x"), y="f(x)") + 
   labs(title=TeX("$\\chi^2_{10}$"))
 ```
 :::
@@ -743,7 +744,7 @@ tibble(q=seq(-3.5,3.5,0.1), p=dt(q, 3), n=dnorm(q, 0, 1)) %>%
   geom_area(fill=gray(0.75)) +
   geom_line() +
   geom_line(aes(x=q, y=n),lty=2) +
-  labs(x=TeX("x"), y=TeX("f(x)")) + 
+  labs(x=TeX("x"), y="f(x)") + 
   labs(title=TeX("$T_3$"))
 ```
 :::
@@ -784,7 +785,7 @@ tibble(q=seq(0,5,0.01), p=df(q, 10,10)) %>%
   ggplot(aes(x=q, y=p)) +
   geom_area(fill=gray(0.75)) +
   geom_line() +
-  labs(x=TeX("x"), y=TeX("f(x)")) + 
+  labs(x=TeX("x"), y="f(x)") + 
   labs(title=TeX("$F_{10,10}$"))
 ```
 :::
@@ -813,7 +814,7 @@ Una distribuzione è descritta da tre funzioni, tra loro correlate:
 ```{r}
 ggplot() +
   geom_function(fun=dnorm, args=list(mean=0, sd=1), xlim=c(-3,3)) +
-  labs(x=TeX("x"), y=TeX("PDF(x)")) +
+  labs(x=TeX("x"), y="PDF(x)") +
   labs(title="Norm(0,1)")
 ```
 
@@ -823,7 +824,7 @@ ggplot() +
 ggplot() +
   geom_function(aes(color="bassa"), fun=pnorm, args=list(mean=0, sd=1), xlim=c(-3,3)) +
   geom_function(aes(color="alta"), fun=pnorm, args=list(mean=0, sd=1, lower.tail=F), xlim=c(-3,3)) +
-  labs(x=TeX("x"), y=TeX("CDF(x)"), color="coda:") +
+  labs(x=TeX("x"), y="CDF(x)", color="coda:") +
   labs(title="Norm(0,1)")
 ```
 
@@ -833,7 +834,7 @@ ggplot() +
 ggplot() +
   geom_function(aes(color="alta"), fun=qnorm, args=list(mean=0, sd=1), xlim=c(0,1), n=1001) +
   geom_function(aes(color="bassa"), fun=qnorm, args=list(mean=0, sd=1, lower.tail=F), xlim=c(0,1), n=1001) +
-  labs(x=TeX("x"), y=TeX("CDF(x)"), color="coda:") +
+  labs(x=TeX("x"), y=TeX("Q(x)"), color="coda:") +
   labs(title="Norm(0,1)")
 ```
 :::
@@ -1393,15 +1394,32 @@ df[1:100,] %>% ggplot() +
   labs(x="valore", y="densità di probabilità", title="100 elementi")
   
 ```
-Per il numero di canne, o *bin*, si usa la **formula di Sturges**: $K = \lceil\log_2 n \rceil + 1$ o la **formula di Scott**: $K=3.49 s / \sqrt[3]{n}$
+Per il numero di canne, o *bin*, si usa la **formula di Sturges**: $K = \lceil\log_2 n \rceil + 1$ o la **formula di Scott**: $h=3.49 s / \sqrt[3]{n}$ ($h$ è l'ampiezza della canna)
+
+## Sturges e Scott
+
+```{r}
+df <- tibble(
+  n = seq(10, 5000, by=1),
+)
+df$Sturges <- map_dbl(df$n, ~nclass.Sturges(1:.))
+df$Scott <- map_dbl(df$n, ~nclass.scott(rnorm(.)))
+df %>% 
+  pivot_longer(Sturges:Scott) %>%
+  ggplot() +
+  geom_line(aes(x=n, y=value, color=name)) +
+  labs(x="dimensione campione", y="numero di canne", color="metodo")
+```
 
 
-## Analisi di normalità: grafico quantile-quantile {.smaller}
+
+## Analisi di normalità: grafico quantile-quantile
 
 :::columns
 :::{.column}
 Tabella campionaria:
 
+:::{style="font-size: 70%"}
 ```{r}
 set.seed(0)
 N <- 10
@@ -1413,6 +1431,7 @@ df <- tibble(
 )
 knitr::kable(df, digits=3)
 ```
+:::
 :::
 
 :::{.column}
@@ -1432,9 +1451,12 @@ df %>% ggplot(aes(x=q, y=x)) +
 
 :::
 
+:::{style="font-size: 70%"}
 La colonna `x` sono le osservazioni ordinate; la ripartizione dei punti, colonna `f`, è corretta con la **formula di Bloom**: $f=(1-3/8)/(n+1-3/4)$; la colonna `q` rappresenta i quantili normali standard di `f`.
 
 La diagonale sul grafico passa per i due punti del primo e terzo quartile
+:::
+
 
 ## Analisi di normalità: grafico quantile-quantile
 ```{r}
@@ -1479,6 +1501,7 @@ Per campioni **sufficientemente grandi**, il test è così potente da evidenziar
 * Il T-test vale per campioni **normali e indipendentemente distribuiti** (*IID*)
 * È necessario **verificare questa ipotesi**
 * Se riporto in un grafico i valori dei due campioni nell'ordine in cui sono stati acquisiti posso osservare correlazione (s1 vs. s3) o mancanza di correlazione (s1 vs. s2)
+* È evidente che $\rho_{s_1s_2}$ sarà vicina a 0, mentre $\rho_{s_1s_3}$ sarà vicina a 1
 :::
 
 :::{.column}
@@ -1495,7 +1518,6 @@ df %>% ggplot(aes(x=s1, y=s2)) +
 ```
 :::
 :::
-È evidente che $\rho_{s_1s_2}$ sarà vicina a 0, mentre $\rho_{s_1s_3}$ sarà vicina a 1
 
 Esiste un **test di correlazione di Pearson** che fornisce un *p*-value associato all'ipotesi alternativa che i due campioni **siano correlati**.
 

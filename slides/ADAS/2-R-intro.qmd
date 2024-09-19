@@ -252,6 +252,16 @@ v2 %% 2 == 0 # operatore modulo (resto)
 NOTA: `TRUE` e `FALSE` possono essere abbreviati in `T` e `F`
 :::
 
+## Esercizio
+
+Dal data frame `mtcars`, estrarre le righe corrispondenti ai veicoli con cilindrata (`disp`) maggiore di 200 e peso minore di 3.5 tonnellate (`wt`)
+
+
+```{webr}
+head(mtcars)
+```
+
+
 ## Funzioni
 * Le funzioni sono *first class objects*, cioè sono variabili come altre
 * possono essere assegnate a variabili e passate a funzioni
