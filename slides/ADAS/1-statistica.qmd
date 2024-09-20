@@ -1274,7 +1274,7 @@ pe <- t.test(d$c1, d$c2, var.equal=T)
 pd <- t.test(d$c1, d$c2, var.equal=F)
 ```
 
-Ho due campioni di dati, uno con $n_1=`r length(d$c1)`$, $\mu_1 = `r mean(d$c1) |> round(2)`$, $\sigma_1=`r sd(d$c1) |> round(2)`$ e l'altro con $n_2=`r length(d$c2)`$, $\mu_2 = `r mean(d$c2) |> round(2)`$, $\sigma_2=`r sd(d$c2) |> round(2)`$. Voglio confrontare le medie dei due campioni con un test di Student, assumendo $\alpha=0.05$:
+Ho due campioni di dati, uno con $n_1=`r length(d$c1)`$, $\mu_1 = `r mean(d$c1) |> round(5)`$, $\sigma_1=`r sd(d$c1) |> round(5)`$ e l'altro con $n_2=`r length(d$c2)`$, $\mu_2 = `r mean(d$c2) |> round(5)`$, $\sigma_2=`r sd(d$c2) |> round(5)`$. Voglio confrontare le medie dei due campioni con un test di Student, assumendo $\alpha=0.05$:
 
 - [$\mu_1=\mu_2$, con un $p$-value pari a `r pe$p.value %>% round(4)`]{.correct}
 - [$\mu_1\neq \mu_2$, con un $p$-value pari a `r pd$p.value %>% round(4)`]{data-explanation="I due campioni hanno la stessa varianza"}
@@ -1284,17 +1284,21 @@ Ho due campioni di dati, uno con $n_1=`r length(d$c1)`$, $\mu_1 = `r mean(d$c1) 
 
 ## Calcolatrice
 
-Usare il riquadro sottostante per risolvere l'esercizio precedente (oltre alla [tabella dei quantili](#tabella-dei-quantili)):
+Usare il riquadro sottostante per risolvere l'esercizio precedente (provare anche con la [tabella dei quantili](#tabella-dei-quantili))
+
+**Nota**: la radice quadrata si ottiene con `sqrt(x)`, l'elevamento a potenza con `x^y`.
 
 ```{webr}
 n1=10
 n2=10
-m1=13.59
-m2=10.3
-s1=4.34
-s2=2.24
+m1=13.59213
+m2=10.30381
+s1=4.33921
+s2=2.24027
 # calcolo probabilità dalla T di Student:
 pt(1.38, df=n1, lower.tail=F)
+# calcolo probabilità dalla F:
+pf(2, n1, n2, lower.tail=F)
 ```
 
 
