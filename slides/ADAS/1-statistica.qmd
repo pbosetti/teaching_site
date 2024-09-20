@@ -986,7 +986,7 @@ Nel grafico, i **trattini verticali in basso** rappresentano i valori di 10 camp
 
 ## Test di Student
 
-Per i due campioni $y_{1,1}$ e $y_{2,i}$ è possibile definire la variabile:
+Per i due campioni $y_{1,i}$ e $y_{2,i}$ è possibile definire la variabile:
 $$
 t_0 = \frac{\bar{y_2} - \bar{y_1}}{S_p\sqrt{\frac{1}{n_1} + \frac{1}{n_s} }}
 $$
@@ -1122,12 +1122,14 @@ Due campioni sono detti **omoschedastici** quando provengono da popolazioni con 
 :::{.columns}
 :::{.column}
 * Test a un campione:
+
 $$
 \begin{eqnarray}
 H_0:~& \mu = \mu_0 \\
 H_1:~& \mu \neq \mu_0
 \end{eqnarray}
 $$
+
 $$
 t_0 = \frac{\mu_0 - \bar y}{S/\sqrt{n}}
 $$
@@ -1135,16 +1137,18 @@ $$
 
 :::{.column}
 * Test a un lato:
+
 $$
 \begin{eqnarray}
 H_0:~& \mu_1 = \mu_2 \\
 H_1:~& \mu_1 \gtrless \mu_2
 \end{eqnarray}
 $$
+
 $$
 \begin{eqnarray}
 t_0 &\gtrless& \pm t_{\alpha, k} \\
-p\mathrm{-value} &=& CDF_t^{\pm}(t_0, k)
+p\textrm{-value} &=& CDF_t^{\pm}(t_0, k)
 \end{eqnarray}
 $$
 
@@ -1164,7 +1168,7 @@ $$
 \begin{eqnarray}
 H_0 :~& \sigma^2_1 = \sigma^2_2 \\
 H_1 :~& \sigma^2_1 \neq \sigma^2_2
-\end{eqnarray},~~~F_0=\frac{S_1}{S_2}\sim\mathcal{F}_{n_1-1, n_2-1}
+\end{eqnarray},~~~F_0=\frac{S^2_1}{S^2_2}\sim\mathcal{F}_{n_1-1, n_2-1}
 $$
 Cioè se il *p*-value associato a $F_0$ è piccolo, si assume che i campioni non siano omoschedastici e quindi si effettua il test di Welch; altrimenti vale il test di Student
 
@@ -1187,7 +1191,7 @@ Quindi il test accoppiato è un test a un campione, con il vantaggio che **gli e
 
 
 ## L'intervallo di confidenza
-Dato parametro ignoto $\vartheta$, vogliamo definire due statistiche $L$ e $U$, tali per cui la probabilità: $P(L\leq\vartheta\leq U)= 1-\alpha$. 
+Dato parametro ignoto $\vartheta$, vogliamo definire due statistiche $\color{darkred}{L}$ e $\color{green}{U}$, tali per cui la probabilità: $P(\color{darkred}L\color{darkblue}\leq\vartheta\leq \color{green}U\color{darkblue})= 1-\alpha$. 
 In questo caso l'intervallo $[L,U]$ è detto **intervallo di confidenza** per il parametro $\vartheta$.
 
 Consideriamo un T-test ad un campione. Sappiamo che:
@@ -1198,7 +1202,7 @@ Se $c$ è $t_{\alpha/2, n-1}$, allora, per definizione: $P(-c\leq t_0\leq c) = 1
 
 Sostituendo $t_0$ otteniamo:
 $$
-P(\bar x - cS/\sqrt{n} \leq \mu \leq \bar x + cS/\sqrt{n}) = 1-\alpha
+P(\color{darkred}{\bar x - cS/\sqrt{n}}\color{darkblue} \leq \mu \leq \color{green}\bar x + cS/\sqrt{n}\color{darkblue}) = 1-\alpha
 $$
 
 ## Intervallo di confidenza
