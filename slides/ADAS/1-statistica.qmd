@@ -859,7 +859,7 @@ Quali di queste affermazioni sono corrette:
 
 - [Qualsiasi CDF è monotona crescente]{.correct}
 - [Esistono distribuzioni con PDF definita solo per valori positivi]{.correct}
-- Per ogni CDF esistono una o più PDF che la generano
+- Per ogni CDF possono esistere più di una PDF che la generano
 - $\mathrm{PDF}(-x) = -\mathrm{PDF}(x)$
 - $\mathrm{CDF}^+(x) = \mathrm{CDF}^-(-x)$
 - [$\mathrm{CDF}^+(x) = 1- \mathrm{CDF}^-(x)$]{.correct}
