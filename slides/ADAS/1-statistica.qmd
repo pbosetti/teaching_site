@@ -440,7 +440,7 @@ La distribuzione binomiale descrive la probabilità di ottenere $x\in[0, n]$ suc
 
 ### Definizioni
 
--   Si dice che $x\sim\mathrm{Binom}(n,p_s)$ o anche $x\sim\mathcal{B}(n,p_s)$ quando la PDF è: 
+-   Si dice che $x\sim\mathrm{Binom}(n,p_s)$ o anche $x\sim\mathcal{B}(n,p_s)$ quando la probabilità è: 
 $$
 p(x)=\binom{n}{x}p_s^x(1-p_s)^{n-x},~~~x\in{0,1\dots,n}
 $$
@@ -481,7 +481,7 @@ tibble(q=0:20, p=dbinom(q, 20, 0.5)) %>%
 
 ### Definizioni
 
--   Si dice che $x\sim\mathrm{Poisson}(\lambda)$ oppure $x\sim\mathcal{P}(\lambda)$ quando la PDF è: 
+-   Si dice che $x\sim\mathrm{Poisson}(\lambda)$ oppure $x\sim\mathcal{P}(\lambda)$ quando la probabilità è: 
 $$
 p(x)=\frac{e^{-\lambda}\lambda^x}{x!},~~~\forall x\in\mathbb{N}^+
 $$
@@ -520,7 +520,7 @@ tibble(q=0:20, p=dpois(q, 5)) %>%
 
 ### Definizioni
 
--   Si dice che $x\sim\mathrm{Geom}(p_s)$ oppure $x\sim\mathcal{G}(p_s)$ quando la PDF è: 
+-   Si dice che $x\sim\mathrm{Geom}(p_s)$ oppure $x\sim\mathcal{G}(p_s)$ quando la probabilità è: 
 $$
 p(x)=p_s(1-p_s)^{x-1},~~~x \in\mathbb{N}^+
 $$
