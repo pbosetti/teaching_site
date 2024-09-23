@@ -59,7 +59,7 @@ Noi utilizzeremo R perché specifico per la statistica, orientato alla grafica e
 * RStudio: [https://posit.co/downloads/](https://posit.co/downloads/)
 * Cheat sheet: [https://posit.co/resources/cheatsheets/](https://posit.co/resources/cheatsheets/)
 * Tidyverse: [https://tidyverse.org](https://tidyverse.org)
-* Materiale corso: [https://github.com/pbosetti/ADAS-23](https://github.com/pbosetti/ADAS-23)
+* Materiale corso: [https://github.com/pbosetti/ADAS-24](https://github.com/pbosetti/ADAS-24)
 
 ## Ambiente RStudio
 * Installazione: [prima R](https://cran.mirror.garr.it/CRAN/), [poi RStudio](https://posit.co/downloads/)
@@ -104,9 +104,9 @@ L'esecuzione di un comando fornisce direttamente un risultato:
 Si noti il testo `[1]` all'inizio della riga di output: sarà chiaro più avanti
 
 ## Tipi, o classi native
-* R ha 6+1 tipi o *classi* native
+* R ha 6(+1) tipi o *classi* native
   * character: `"a"`, `"string"`, `'my text'`
-  * numeric: `1`, `3.1415`
+  * numeric: `1`, `3.1416`
   * integer: `1L`
   * logical: `TRUE`, `FALSE` (oppure `T` e `F`)
   * complex: `1+4i`
@@ -162,7 +162,7 @@ length(a)
 length(v3)
 ```
 
-Le funzioni agiscono quindi sempre su vettori:
+Le funzioni e gli operatori agiscono quindi sempre su vettori (sono *vettorializzati*):
 ```{r echo=T}
 a * 2
 v3 + 2
@@ -251,15 +251,6 @@ v2 %% 2 == 0 # operatore modulo (resto)
 :::{.fragment}
 NOTA: `TRUE` e `FALSE` possono essere abbreviati in `T` e `F`
 :::
-
-## Esercizio
-
-Dal data frame `mtcars`, estrarre le righe corrispondenti ai veicoli con cilindrata (`disp`) maggiore di 200 e peso minore di 3.5 tonnellate (`wt`)
-
-
-```{webr}
-head(mtcars)
-```
 
 
 ## Funzioni
@@ -362,6 +353,17 @@ Anche in assegnazione:
 df$C <- LETTERS[1:10]
 head(df, 3)
 ```
+
+
+## Esercizio
+
+Dal data frame `mtcars`, estrarre le righe corrispondenti ai veicoli con cilindrata (`disp`) maggiore di 200 e peso minore di 3.5 tonnellate (`wt`)
+
+
+```{webr}
+head(mtcars)
+```
+
 
 ## Liste {.scrollable}
 Una lista è una sequenza di coppie chiave-valore, cioè una sequenza di valori identificati da un nome, o chiave.
