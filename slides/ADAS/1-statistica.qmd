@@ -1277,7 +1277,7 @@ pd <- t.test(d$c1, d$c2, var.equal=F)
 Ho due campioni di dati, uno con $n_1=`r length(d$c1)`$, $\mu_1 = `r mean(d$c1) |> round(5)`$, $\sigma_1=`r sd(d$c1) |> round(5)`$ e l'altro con $n_2=`r length(d$c2)`$, $\mu_2 = `r mean(d$c2) |> round(5)`$, $\sigma_2=`r sd(d$c2) |> round(5)`$. Voglio confrontare le medie dei due campioni con un test di Student, assumendo $\alpha=0.05$:
 
 - [$\mu_1\neq\mu_2$, con un $p$-value pari a `r pe$p.value %>% round(4)`]{.correct}
-- [$\mu_1 = \mu_2$, con un $p$-value pari a `r pd$p.value %>% round(4)`]{data-explanation="il p-value è minore della soglia di accettazione"}
+- [$\mu_1 = \mu_2$, con un $p$-value pari a `r pd$p.value %>% round(4)`]{data-explanation="il p-value è maggiore della soglia di accettazione"}
 - [$\mu_1\neq \mu_2$, con un $p$-value pari a 0.0623]{data-explanation="Hai sparato... e poi 0.06 > 0.05!"}
 - [$\mu_1 = \mu_2$, con un $p$-value pari a 1.39E-4]{data-explanation="Hai sparato, ammettilo!"}
 - [$\mu_1\neq \mu_2$, con un $p$-value pari a 0.0487]{data-explanation="Non proprio"}
