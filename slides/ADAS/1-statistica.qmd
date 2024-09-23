@@ -1834,3 +1834,52 @@ df %>% lm(Strength~Cotton, data=.) %>% anova() %>% knitr::kable()
 - [No, la colonna `Mean Sq` è sospetta]{data-explanation="5 livelli, 5 ripetizioni, quindi DoF=4"}
 - [No, la colonna `F value` è sospetta]{data-explanation="5 livelli, 5 ripetizioni, quindi DoF=4"}
 - [No, la colonna `Pr(>F)` è sospetta]{data-explanation="5 livelli, 5 ripetizioni, quindi DoF=4"}
+
+
+## Il significato del $p$-value
+
+```{r}
+library(glue)
+set.seed(2)
+mu0 = 10.3
+pop <- rnorm(1000, mean=mu0, sd=2.7)
+N <- 1000
+alpha <- 0.05
+```
+
+
+:::columns
+:::column
+Il significato del $p$-value è illustrato con un esempio: si consideri un esperimento in cui si effettuano `r N` test di Student, ciascuno con un livello di significatività $\alpha$ del `r alpha*100`%
+
+Supponiamo che si tratti di test ad un campione, con ipotesi nulla $\mu = \mu_0$ e ipotesi alternativa $\mu \neq \mu_0$, e supponiamo che tutti i campioni siano prelevati dalla stessa popolazione con valore atteso $\mu_0$
+
+Allora il valore atteso delle predizioni errate (cioè quelle in cui vale $H_1$) è `r alpha*100`%
+
+:::
+
+:::column
+```{r}
+tibble(
+  i = 1:N,
+  p = map_dbl(1:N, ~t.test(sample(pop, 15), mu=mu0, conf.level=1-alpha)$p.value),
+  hyp = ifelse(p<0.05, "H1", "H0")
+) %>% 
+  {ggplot(data = .) +
+  geom_point(aes(x=i, y=p, color=hyp, shape=hyp)) +
+  geom_hline(yintercept=alpha, color="red") +
+  scale_color_manual(values=c("H0"="darkgreen", "H1"="red"), name="Ipotesi") +
+  scale_shape_manual(values=c("H0"=19, "H1"=17), name="Ipotesi") +
+  geom_label(x=0, y=alpha, label=glue("{alpha*100}%")) +
+  labs(
+    title=glue("p-value di {N} T-test ({length(.$hyp[.$hyp == 'H1'])/N*100}% errori di tipo I)"), 
+    x="# Test", 
+    y="p-value")}
+```
+
+:::
+:::
+
+:::aside
+**Nota**: Lo stesso approccio **frequentista** è applicabile a qualsiasi altro test statistico di cui si calcoli il $p$-value
+:::
