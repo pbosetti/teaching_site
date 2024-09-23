@@ -8,3 +8,4 @@ date-format: "YYYYMMDD"
 
 * [Miroscic coding session 1](/../miroscic-cs1){target="_blank"}: Seminar within the Miroscic PRIN project
 * [K-Fold Cross Validation](/kfold.html){target="_blank"}: K-Fold Cross Validation document
+* [Rcpp intro](/rcpp.html){target="_blank"}: Rcpp introduction
