@@ -1,0 +1,190 @@
+---
+title: "Rcpp examples"
+author: "Paolo Bosetti"
+format:
+  html: default
+  pdf: default
+---
+
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(Rcpp)
+library(RcppEigen)
+```
+
+
+# Rcpp: wrapping C/C++ functions
+
+## Hello, World!
+
+C++ code can be embedded in R code as strings or read from source files:
+
+```{r}
+code <- r"(
+#include <Rcpp.h>
+using namespace Rcpp;
+
+// [[Rcpp::export]]
+void hello_world() {
+  Rcout << "Hello, World!" << std::endl;
+}
+)"
+
+sourceCpp(code=code)
+hello_world()
+```
+
+## Deal with vectors
+
+Vectors, lists and matrices can be passed to and returned from C++ functions:
+
+```{r}
+code <- r"(
+#include <Rcpp.h>
+using namespace Rcpp;
+
+// [[Rcpp::export]]
+NumericVector add_one(NumericVector x) {
+  return x + 1;
+}
+
+// [[Rcpp::export]]
+NumericVector scale(NumericVector x, double factor) {
+  return x * factor;
+}
+
+// [[Rcpp::export]]
+NumericVector add(NumericVector x, NumericVector y) {
+  return x + y;
+}
+
+// [[Rcpp::export]]
+NumericVector operate(NumericVector x, NumericVector y) {
+  if (x.size() != y.size()) {
+    stop("Vectors must have the same length");
+  }
+  NumericVector res(x.size());
+  for (int i = 0, j = x.size()-1; i < x.size(); i++, j--) {
+    res[i] = x[i] + y[j];
+  }
+  return res;
+}
+
+// [[Rcpp::export]]
+NumericMatrix outer_product(NumericVector x, NumericVector y) {
+  NumericMatrix res(x.size(), y.size());
+  for (int i = 0; i < x.size(); i++) {
+    for (int j = 0; j < y.size(); j++) {
+      res(i, j) = x[i] * y[j];
+    }
+  }
+  return res;
+}
+
+// [[Rcpp::export]]
+DataFrame data_frame(NumericVector x, NumericVector y) {
+  if (x.size() != y.size()) {
+    stop("Vectors must have the same length");
+  }
+  return DataFrame::create(
+    _["x"] = x, 
+    _["y"] = y
+  );
+}
+
+)"
+
+sourceCpp(code=code)
+add_one(1:10)
+scale(1:10, 2)
+add(1:10, 11:20)
+operate(1:10, 11:20)
+outer_product(1:3, 1:4)
+data_frame(1:3, (1:3)^2)
+```
+
+## Functionals
+
+R functions can be passed to and executed by C++ code, enabling functional programming:
+
+```{r}
+code <- r"(
+#include <Rcpp.h>
+using namespace Rcpp;
+
+// [[Rcpp::export]]
+NumericVector apply(NumericVector x, Function f) {
+  NumericVector res(x.size());
+  for (int i = 0; i < x.size(); i++) {
+    res[i] = as<double>(f(x[i]));
+  }
+  return res;
+}
+)"
+
+sourceCpp(code=code)
+apply(1:10, \(x){ x + 1 })
+```
+
+
+## RcppEigen
+
+Eigen (or Armadillo) can be used to perform linear algebra operations:
+
+```{r}
+
+code <- r"(
+#include <RcppEigen.h>
+using namespace Rcpp;
+using namespace Eigen;
+
+// [[Rcpp::depends(RcppEigen)]]
+// [[Rcpp::export]]
+NumericVector eigen_example(NumericMatrix x) {
+  Map<MatrixXd> m(as<Map<MatrixXd> >(x));
+  SelfAdjointEigenSolver<MatrixXd> es(m);
+  return wrap(es.eigenvalues());
+}
+)"
+
+sourceCpp(code=code)
+eigen_example(matrix(1:4, 2, 2))
+```
+
+
+# Wrapping Classes
+
+C++ classes can be wrapped as *modules* and used in R as S4 objects:
+
+```{r}
+code <- r"(
+#include <Rcpp.h>
+using namespace Rcpp;
+
+class Counter {
+public:
+  Counter() : count(0) {}
+  void increment() { count++; }
+  int get() { return count; }
+private:
+  int count;
+};
+
+RCPP_MODULE(counter_module) {
+  class_<Counter>("Counter")
+  .constructor()
+  .method("increment", &Counter::increment)
+  .method("get", &Counter::get);
+}
+
+)"
+
+sourceCpp(code=code)
+counter <- new(Counter)
+counter$increment()
+counter$increment()
+counter$get()
+
+```
+
