@@ -1836,21 +1836,25 @@ df %>% lm(Strength~Cotton, data=.) %>% anova() %>% knitr::kable()
 - [No, la colonna `Pr(>F)` è sospetta]{data-explanation="5 livelli, 5 ripetizioni, quindi DoF=4"}
 
 
+# La spiegazione frequentista
+L'approccio frequentista è quello che definisce e studia la probabilità *a posteriori* cioè contando il numero di eventi relativamente al numero totale di osservazioni
+
 ## Il significato del $p$-value
 
 ```{r}
 library(glue)
-set.seed(2)
+set.seed(5)
 mu0 = 10.3
-pop <- rnorm(1000, mean=mu0, sd=2.7)
 N <- 1000
+pop <- rnorm(N*10, mean=mu0, sd=2.7)
 alpha <- 0.05
+n1 <- 15
 ```
 
 
 :::columns
 :::column
-Il significato del $p$-value è illustrato con un esempio: si consideri un esperimento in cui si effettuano `r N` test di Student, ciascuno con un livello di significatività $\alpha$ del `r alpha*100`%
+Il significato del $p$-value è illustrato con un esempio: si consideri un esperimento in cui si effettuano `r N` test di Student su altrettanti campioni di $n=`r n1`$ elementi, ciascuno con un livello di significatività $\alpha$ del `r alpha*100`%
 
 Supponiamo che si tratti di test ad un campione, con ipotesi nulla $\mu = \mu_0$ e ipotesi alternativa $\mu \neq \mu_0$, e supponiamo che tutti i campioni siano prelevati dalla stessa popolazione con valore atteso $\mu_0$
 
@@ -1862,7 +1866,7 @@ Allora il valore atteso delle predizioni errate (cioè quelle in cui vale $H_1$)
 ```{r}
 tibble(
   i = 1:N,
-  p = map_dbl(1:N, ~t.test(sample(pop, 15), mu=mu0, conf.level=1-alpha)$p.value),
+  p = map_dbl(1:N, ~t.test(sample(pop, n1), mu=mu0, conf.level=1-alpha)$p.value),
   hyp = ifelse(p<0.05, "H1", "H0")
 ) %>% 
   {ggplot(data = .) +
@@ -1882,4 +1886,131 @@ tibble(
 
 :::aside
 **Nota**: Lo stesso approccio **frequentista** è applicabile a qualsiasi altro test statistico di cui si calcoli il $p$-value
+:::
+
+## E se cambiamo $n$?
+
+
+```{r}
+set.seed(5)
+mu0 = 10.3
+n2 <- 50
+```
+
+:::columns
+
+:::column
+Se aumentiamo la dimensione dei campioni da `r n1` a `r n2`, la probabilità di errore di tipo I rimane sempre la stessa, a pari condizioni
+
+Com'è possibile?
+
+Aumentando la dimensione del campione aumenta la **potenza** del test, cioè la sua capacità di discriminare anche piccoli differenze. Ma per un certo test, per una certa differenza, il $p$-value non dipende dalla dimensione del campione, perché è proprio calcolato *compensando* l'effetto della dimensione del campione
+:::
+
+:::column
+
+```{r}
+tibble(
+  i = 1:N,
+  p = map_dbl(1:N, ~t.test(sample(pop, n2), mu=mu0, conf.level=1-alpha)$p.value),
+  hyp = ifelse(p<0.05, "H1", "H0")
+) %>% 
+  {ggplot(data = .) +
+  geom_point(aes(x=i, y=p, color=hyp, shape=hyp)) +
+  geom_hline(yintercept=alpha, color="red") +
+  scale_color_manual(values=c("H0"="darkgreen", "H1"="red"), name="Ipotesi") +
+  scale_shape_manual(values=c("H0"=19, "H1"=17), name="Ipotesi") +
+  geom_label(x=0, y=alpha, label=glue("{alpha*100}%")) +
+  labs(
+    title=glue("p-value di {N} T-test ({length(.$hyp[.$hyp == 'H1'])/N*100}% errori di tipo I)"), 
+    x="# Test", 
+    y="p-value")}
+```
+
+:::
+:::
+
+
+## E per la potenza?
+
+:::columns
+
+:::column
+Consideriamo i test in cui l'ipotesi nulla sia 
+
+$$
+\begin{eqnarray}
+H_0:~&\mu = \mu_0 + \sigma \\
+H_1:~&\mu \neq \mu_0 + \sigma
+\end{eqnarray}
+$$
+
+cioè una differenza di un $\sigma$ dal valore atteso della popolazione
+
+Allora in gran parte dei casi avremo un $p$-value piccolo, che ci spinge a rigettare $H_0$ (*Caso A*)
+
+Se però passiamo da campioni da 15 elementi a campioni da 30 elementi (*Caso B*) la **potenza** del test aumenta sensibilmente, a pari condizioni
+
+:::
+
+:::column
+
+:::panel-tabset
+### Caso A
+
+```{r}
+library(glue)
+set.seed(5)
+mu0 = 10.3
+sd = 2.7
+N <- 1000
+pop <- rnorm(N*10, mean=mu0, sd=sd)
+alpha <- 0.05
+n3 <- 15
+
+tibble(
+  i = 1:N,
+  p = map_dbl(1:N, ~t.test(sample(pop, n3), mu=mu0+1*sd, conf.level=1-alpha)$p.value),
+  hyp = ifelse(p<0.05, "H1", "H0")
+) %>% 
+  {ggplot(data = .) +
+  geom_point(aes(x=i, y=p, color=hyp, shape=hyp)) +
+  geom_hline(yintercept=alpha, color="red") +
+  scale_color_manual(values=c("H0"="darkgreen", "H1"="red"), name="Ipotesi") +
+  scale_shape_manual(values=c("H0"=19, "H1"=17), name="Ipotesi") +
+  geom_label(x=0, y=alpha, label=glue("{alpha*100}%")) +
+  ylim(0,0.5) +
+  labs(
+    title=glue("p-value di {N} T-test, campioni da {n3} elementi"), 
+    x="# Test", 
+    y="p-value")}
+```
+
+### Caso B
+
+```{r}
+n3 <- 30
+tibble(
+  i = 1:N,
+  p = map_dbl(1:N, ~t.test(sample(pop, n3), mu=mu0+1*sd, conf.level=1-alpha)$p.value),
+  hyp = ifelse(p<0.05, "H1", "H0")
+) %>% 
+  {ggplot(data = .) +
+  geom_point(aes(x=i, y=p, color=hyp, shape=hyp)) +
+  geom_hline(yintercept=alpha, color="red") +
+  scale_color_manual(values=c("H0"="darkgreen", "H1"="red"), name="Ipotesi") +
+  scale_shape_manual(values=c("H0"=19, "H1"=17), name="Ipotesi") +
+  geom_label(x=0, y=alpha, label=glue("{alpha*100}%")) +
+  ylim(0,0.5) +
+  labs(
+    title=glue("p-value di {N} T-test, campioni da {n3} elementi"), 
+    x="# Test", 
+    y="p-value")}
+```
+
+
+:::
+
+
+:::
 :::
