@@ -42,6 +42,8 @@ website:
             text: Design of Experiments
       - various.qmd
       - data.qmd
+      - text: "Blog"
+        href: /blog/index.html
       - about.qmd
     right:
       - href: https://github.com/pbosetti/teaching_site
