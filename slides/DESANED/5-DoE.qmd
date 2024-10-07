@@ -14,7 +14,7 @@ format:
     code-line-numbers: true
     code-annotations: below
     preview-links: auto
-    theme: [default, style.scss]
+    theme: [default, ../slides.scss]
     chalkboard: true
     footer: "paolo.bosetti@unitn.it --- [https://paolobosetti.quarto.pub/DESANED](https://paolobosetti.quarto.pub/DESANED)"
     fig-width: 5

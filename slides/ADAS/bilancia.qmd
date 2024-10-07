@@ -11,7 +11,7 @@ format:
     margin: 0.1
     slide-number: true
     chalkboard: true
-    theme: [default, style.scss]
+    theme: [default, ../slides.scss]
     footer: "paolo.bosetti@unitn.it --- [https://paolobosetti.quarto.pub/ADAS](https://paolobosetti.quarto.pub/ADAS)"
 ---
 

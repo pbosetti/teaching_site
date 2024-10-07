@@ -23,6 +23,29 @@ $code-block-font-size: 0.75em;
   text-align: center;
 }
 
+.reveal .theorem {
+  background-color: #f9f9ff;
+  border: 1px solid #888888;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 43px 0px 10px 0px;
+}
+
+.reveal .theorem .title {
+  font-weight: normal;
+  border: 1px solid #888888 !important;
+  border-radius: 5px;
+  margin-top: -32px;
+  margin-left: 30px;
+  background-color: white;
+  padding: 0px 10px 0px 10px;
+  width: fit-content;
+}
+
+.reveal .theorem .title p {
+  margin: 0px;
+}
+
 .quarto-title-author-name {
   font-size: 80%;
   font-weight: bold;
@@ -74,4 +97,34 @@ $code-block-font-size: 0.75em;
 .reveal .bgreen {
   font-weight: bold;
   color: #008800;
+}
+
+.option-button {
+  background-color: #efefef !important;
+  color: black !important;
+  border: #888888 2px solid !important;
+}
+
+.option-button:hover {
+  background-color: #efefef !important;
+  color: #555555 !important;
+  border: #888888 2px solid !important;
+}
+
+.option-button.selected {
+  background-color: #f9f9ff !important;
+  color: black !important;
+  border: #000088 2px solid !important;
+}
+
+.option-button.correct {
+  background-color: #f9fff9 !important;
+  color: black !important;
+  border: #008800 2px solid !important;
+}
+
+.option-button.incorrect {
+  background-color: #fff9f9 !important;
+  color: black !important;
+  border: #880000 2px solid !important;
 }
