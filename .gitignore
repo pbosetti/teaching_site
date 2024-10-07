@@ -8,5 +8,7 @@
 /renv/*
 /_site/*
 
+site_libs/
+
 *_cache
 *_files

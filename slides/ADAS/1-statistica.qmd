@@ -638,7 +638,6 @@ tibble(q=seq(-3.5,3.5,0.01), p=dnorm(q, 0, 1)) %>%
 
 ## Teorema del limite centrale (enunciato)
 
-:::theorem
 Se $x_1, x_2, \dots,x_n$ sono $n$ variabili aleatorie **indipendenti e identicamente distribuite** (IID) con $E(x_i)=\mu$ e $V(x_i)=\sigma^2~~\forall i=1,2,\dots,n$ (entrambi finiti), e $y=x_1+x_2+\dots+x_n$, allora: 
 $$
 z_n=\frac{y-n\mu}{\sqrt{n\sigma^2}}
@@ -647,7 +646,6 @@ approssima una distribuzione $\mathcal{N}(0,1)$, nel senso che se $F_n(z)$ è la
 $$
 \lim_{n\rightarrow+\infty}\frac{F_n(z)}{\Phi(z)}=1
 $$
-:::
 
 
 ## Teorema del limite centrale (significato)
@@ -1705,7 +1703,6 @@ Sulla base dell'ultima equazione possiamo calcolare il *p*-value associato all'i
 ## Teorema di Cochran
 La definizione di $F_0$ presuppone che $MS_{tr}$ e $MS_E$ **siano indipendenti**. Dato che sono il risultato della decomposizione di $SS_T$ in $SS_{tr}+SS_E$, ciò non è scontato. Vale però il **teorema**:
 
-:::theorem
 Siano $Z_i\sim \mathcal{N}(0,1),~i=1,2,\dots,\nu$ **campioni indipendenti**, con
 $\sum_{i=1}^\nu Z_i^2=Q_1+Q_2+\dots+Q_s$
 dove $s\leqslant \nu$ e $Q_i$ ha $\nu_i$ gradi di libertà ($i=1, 2,\dots,s$). 
@@ -1716,7 +1713,6 @@ $$
 $$
 
 Siccome $(N-a)+(a-1)=(N-1)$, consegue che $SS_{tr}/\sigma^2$ e $SS_E/\sigma^2$ sono variabili casuali indipendenti distribuite come $\mathcal{X}^2_{a-1}$ e $\mathcal{X}^2_{N-a}$, rispettivamente.
-:::
 
 
 ## ANOVA (*ANalysis Of VAriance*)
