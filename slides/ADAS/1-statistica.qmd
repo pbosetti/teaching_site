@@ -1709,13 +1709,13 @@ Sulla base dell'ultima equazione possiamo calcolare il *p*-value associato all'i
 
 ## Teorema di Cochran
 
+La definizione di $F_0$ presuppone che $MS_{tr}$ e $MS_E$ **siano indipendenti**. Dato che sono il risultato della decomposizione di $SS_T$ in $SS_{tr}+SS_E$, ciò non è scontato. Vale però il **teorema**:
+
 :::theorem
 
 :::title
 Teorema
 :::
-
-La definizione di $F_0$ presuppone che $MS_{tr}$ e $MS_E$ **siano indipendenti**. Dato che sono il risultato della decomposizione di $SS_T$ in $SS_{tr}+SS_E$, ciò non è scontato. Vale però il **teorema**:
 
 Siano $Z_i\sim \mathcal{N}(0,1),~i=1,2,\dots,\nu$ **campioni indipendenti**, con
 $\sum_{i=1}^\nu Z_i^2=Q_1+Q_2+\dots+Q_s$
