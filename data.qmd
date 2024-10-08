@@ -43,17 +43,22 @@ example_url("3dprint.dat") %>% read_table(comment="#")
 ## List of CSV files
 
 ```{r echo=FALSE}
-files <- list.files(path = "data", pattern = ".csv", full.names = FALSE)
-reduce(files, ~paste0(.x, glue("* [{.y}](data/{.y})"), "\n"), .init="") %>% 
+list.files(path = "data", pattern = ".csv", full.names = FALSE) %>% 
+  reduce(
+    ~paste0(.x, glue("* [{.y}](data/{.y})"), "\n"), 
+    .init="") %>% 
   knitr::asis_output()
 ```
 ## List of DAT files
 
 ```{r echo=FALSE}
-files <- list.files(path = "data", pattern = ".dat", full.names = FALSE)
-reduce(files, ~paste0(.x, glue("* [{.y}](data/{.y})"), "\n"), .init="") %>% 
+list.files(path = "data", pattern = ".dat", full.names = FALSE) %>% 
+  reduce(
+    ~paste0(.x, glue('* [<.y>](data/<.y>){type="text/csv"}', .open="<", .close=">"), "\n"), 
+    .init="") %>% 
   knitr::asis_output()
 ```
+
 
 
 # Example
