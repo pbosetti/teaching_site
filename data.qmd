@@ -72,13 +72,14 @@ example_url <- function(example) {
 ```
 
 ```{r}
-titanic <- example_url("train.csv") %>% read_csv(show_col_types = FALSE)
-titanic <- titanic %>% mutate(
-  Survived = as.logical(Survived),
-  Pclass = as.factor(Pclass),
-  AgeClass = cut(Age, breaks=c(0, 10, 18, 40, 60, Inf), labels=c("child", "young", "adult", "senior", "elderly")),
-  Age = as.factor(Age)
-) %>% 
+titanic <- example_url("train.csv") %>% 
+  read_csv(show_col_types = FALSE) %>% 
+  mutate(
+    Survived = as.logical(Survived),
+    Pclass = as.factor(Pclass),
+    AgeClass = cut(Age, breaks=c(0, 10, 18, 40, 60, Inf), labels=c("child", "young", "adult", "senior", "elderly")),
+    Age = as.factor(Age)
+  ) %>% 
   select(
     PassengerId,
     Survived,
@@ -105,7 +106,6 @@ In a more refined way, we can build a [generalized linear model of binomial type
 
 ```{r warning=FALSE}
 model <- glm(Survived ~ Fare + AgeClass + Sex, data=titanic, family=binomial)
-titanic <- add_predictions(titanic, model, var="pred.glm", type="response")
 
 pred <- expand.grid(
   Fare = seq(0, 500, 5),
@@ -115,6 +115,7 @@ pred <- expand.grid(
   add_predictions(model, var="pred.glm", type="response")
 
 titanic %>%
+  add_predictions(model, var="pred.glm", type="response") %>% 
   ggplot(aes(x=Fare, y=pred.glm, color=AgeClass)) +
   geom_line(data=pred) +
   geom_point(aes(shape=Survived), size=2) +
