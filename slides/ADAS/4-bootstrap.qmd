@@ -244,6 +244,11 @@ In particolare sarà possibile calcolarne:
 
 ## Procedura Generale
 
+:::theorem
+:::title
+Procedura
+:::
+
 Se $x$ è un campione di $n$ elementi provenienti da una distribuzione ignota:
 
 1. si ricampiona $x$ con reinserimento, ottenendo $x_i^*=\left<x^*_{i,1}, x^*_{i,2},\dots,x^*_{1,n}\right>$
@@ -257,6 +262,10 @@ Si possono ora stimare le proprietà del parametro $\theta$ sulla base del campi
 * il valore atteso di $\theta$ è stimata con la media del campione di bootstrap
 * la varianza di $\theta$ è stimata con la varianza del campione di bootstrap
 * l'intervallo di confidenza di $\theta$ è stimato dai quantili del campione di boostrap
+
+:::
+
+
 
 ## Esempio
 ```{r}

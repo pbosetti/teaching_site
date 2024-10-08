@@ -74,6 +74,10 @@ Valida per ogni modello **lineare nei parametri** (mentre i predittori possono c
 
 ## Basi {.smaller}
 
+:::theorem
+:::title
+Definizioni
+:::
 Si definisce il **modello statistico** del processo da regredire come segue: 
 $$
 y_i=f(x_{1i}, x_{2i}, \dots, x_{ni}, c_1, c_2, \dots, c_{n+1}) + \varepsilon_i=\hat{y_i} + \varepsilon_i,~i=1,2,\dots,N
@@ -85,13 +89,20 @@ dove $i$ è l'indice di osservazione ($N\geq n+1$ in totale), $\hat{y_i}$ è il 
 -   Il residuo è la **componente aleatoria**
 -   Si assume l'ipotesi di **normalità dei residui**, cioè che $\varepsilon_i \sim\mathcal{N}(0, \sigma^2)$
 
-. . .
+---   
+
+:::columns
+:::{.column width=66%}
 
 Se la $f(\cdot)$ è una funzione analitica e lineare nei coefficienti, allora possiamo esprimerla come $\mathbf{A}\mathbf{k}=\mathbf{y}$, dove 
 
 * $\mathbf{y}$ è il vettore delle $y_i,~i=1\dots N$
 * $\mathbf{k}$ è il vettore dei parametri $c_j,~j=1\dots n+1$
 * $\mathbf{A}$ una matrice $N\times (n+1)$ così composta:
+
+:::
+
+:::{.column width=33%}
 
 $$
 \mathbf A = \begin{bmatrix}
@@ -101,6 +112,11 @@ x_2^{n-1} & x_2^{n-2} & \dots & x_2 & 1 \\
 x_N^{n-1} & x_N^{n-2} & \dots & x_N & 1 \\
 \end{bmatrix} 
 $$
+
+:::
+:::
+
+:::
 
 ## Basi
 

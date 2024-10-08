@@ -66,11 +66,19 @@ Incertezza, precisione, accuratezza
 
 Introdotta nel 1984, dà alcune **definizioni**:
 
+:::theorem
+:::title
+Definizioni
+:::
+
 -   **Misurazione**: l'atto del misurare, assegnare valori numerici a grandezze fisiche
 -   **Parametro**: grandezza di un sistema fisico alla quale assegnare valori numerici
 -   **Misurando**: un parametro sottoposto a misurazione
 -   **Misura**: il risultato di una misurazione
 -   **Metrologia**: disciplina che riguarda la **qualità** delle misure
+
+:::
+
 
 ## Norma UNI4546
 
@@ -125,6 +133,11 @@ Quindi, se non ha senso parlare di valore vero, allora non ha senso nemmeno parl
 ## Norma GUM (ISO/IEC 98-3:2008)
 La GUM definisce:
 
+:::theorem
+:::title
+Definizioni
+:::
+
 * L'**incertezza standard** (*standard uncertainty*) $u_x$ della variabile $x$ come la deviazione standard del valor medio di $x$:
 $$
 u_x=\frac{s_x}{\sqrt{n}}=\sqrt{\frac{\sum_{i=1}^n(x_i-\bar x)^2}{n(n-1)}}
@@ -134,7 +147,16 @@ $$
 u_{x\mathrm{rel}}=\frac{u_x}{|\bar x|}
 $$
 
+:::
+
+
 ## Norma GUM (ISO/IEC 98-3:2008)
+
+:::theorem
+:::title
+Definizioni
+:::
+
 Ricordando che l'**intervallo di confidenza** è definito come
 $$
 P\left(-t_{n-1,\alpha/2}\leq\frac{|\bar x - \mu_0|}{s_x/\sqrt{n}}\leq t_{n-1,\alpha/2}\right) = 1-\alpha
@@ -150,6 +172,8 @@ U_x=t_{\alpha/2,n-1}\frac{s_x}{\sqrt{n}}=t_{\alpha/2,n-1}u_x = k_{n-1}u_x
 $$
 
 Il termine $k_{n-1}$ è chiamato **fattore di copertura**, e dipende solo dalla dimensione del campione (è il quantile della distribuzione T di Student). 
+
+:::
 
 
 ## Fattore di copertura
