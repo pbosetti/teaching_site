@@ -74,7 +74,7 @@ df %>%
 We load the data from a web address and make a quick plot:
 
 ```{r}
-data <- read_csv("data/kfold.csv", 
+data <- read_csv("https://paolobosetti.quarto.pub/data/kfold.csv", 
                  show_col_types = FALSE)
 data %>% ggplot(aes(x=x, y=y)) + geom_point()
 ```
