@@ -27,7 +27,7 @@ execute:
   cache: true
 ---
 
-```{r}
+```{r setup, include=FALSE}
 options(width = 60)
 set.seed(0)
 library(latex2exp)
@@ -426,7 +426,7 @@ Quando quest'ipotesi non è vera, ma il **modello è comunque lineare nei parame
 Nel caso della regressione lineare: 
 $$
 \begin{align}
-y_i &= f(\mathbf{x}_i, \mathbf{k}) + \varepsilon_i = \eta_i + \varepsilon_i \\
+y_i &= f(\mathbf{x}_i, \mathbf{k}) + \varepsilon_i = \hat y_i + \varepsilon_i \\
 \varepsilon_i &\sim \mathcal{N}(0, \sigma^2)
 \end{align}
 $$ 
@@ -434,7 +434,7 @@ Nel caso della **regressione lineare generalizzata**:
 
 $$
 \begin{align}
-y_i &=  \eta_i + \varepsilon_i \\
+y_i &=  \hat y_i + \varepsilon_i \\
 \varepsilon_i &\sim D(p_1,p_2,\dots,p_k)
 \end{align}
 $$ 
@@ -447,7 +447,7 @@ La **funzione di collegamento** (*link function*) $g(\cdot)$ è tale per cui:
 
 $$
 \begin{align}
-y_i &=  \eta_i + g(\varepsilon_i) \\
+y_i &=  \hat y_i + g(\varepsilon_i) \\
 \varepsilon_i &\sim D(p_1,p_2,\dots,p_k);~g(\varepsilon_i)\sim \mathcal{N}(0, \sigma^2)
 \end{align}
 $$ 
@@ -488,7 +488,7 @@ tibble(x=seq(-6, 6, 0.1), y1=logit(x, 1, 1), y2=logit(x, -4, 1)) %>%
 :::{.column}
 Il caso tipico di regressione logistica è il classificatore di **eventi binomiali**
 
-consideriamo un processo che, in funzione di uno o più predittori, possa fornire un risultato che può valere solo una di due alternative (successo/fallimento, rotto/integro, vero/falso, 1/0). Vogliamo **identificare la soglia dei predittori** che commuta il risultato
+consideriamo un processo che, in funzione di uno o più predittori, possa fornire un risultato che può valere solo una di due alternative (successo|fallimento, rotto|integro, vero|falso, 1|0). Vogliamo **identificare la soglia dei predittori** che commuta il risultato
 
 Una regressione lineare non è adatta alla situazione: è evidente che i **residui non sono normali** e che la pendenza della regressione dipende molto da quanti punti sono raccolti nelle zone "sicure"
 :::
@@ -656,8 +656,8 @@ Tuttavia posso riportare, per ogni **trattamento**
 ```{r}
 df.s %>% ggplot(aes(x=x)) + 
   geom_ribbon(aes(ymin=lwr, ymax=upr, group=s), alpha=1/6) +
-  geom_errorbar(aes(ymin=lwr, ymax=upr, group=s, color=s), alpha=2/3) +
-  geom_line(aes(y=value, group=s, color=s), linewidth=1) +
+  geom_errorbar(aes(ymin=lwr, ymax=upr, group=s, color=s), alpha=2/3, position="dodge", width=33, linewidth=1) +
+  geom_line(aes(y=value, group=s, color=s), linewidth=0.5) +
   geom_point(aes(x=x, y=value, group=s, color=s, shape=s), data=df) +
   labs(color="Serie:", shape="Serie:", y="valore", title="Confidenza al 95%") +
   coord_cartesian(xlim=c(50,950), ylim=c(150,400)) +
