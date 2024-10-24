@@ -656,12 +656,13 @@ Tuttavia posso riportare, per ogni **trattamento**
 ```{r}
 df.s %>% ggplot(aes(x=x)) + 
   geom_ribbon(aes(ymin=lwr, ymax=upr, group=s), alpha=1/6) +
-  geom_errorbar(aes(ymin=lwr, ymax=upr, group=s, color=s), alpha=2/3, position="dodge", width=33, linewidth=1) +
   geom_line(aes(y=value, group=s, color=s), linewidth=0.5) +
   geom_point(aes(x=x, y=value, group=s, color=s, shape=s), data=df) +
   labs(color="Serie:", shape="Serie:", y="valore", title="Confidenza al 95%") +
+  geom_errorbar(aes(ymin=lwr, ymax=upr, group=s, color=s), alpha=2/3, position="dodge", width=33, linewidth=1) +
   coord_cartesian(xlim=c(50,950), ylim=c(150,400)) +
   scale_x_continuous(breaks=df.n$x) +
+  scale_shape_manual(values=c(1, 2)) +
   theme(legend.position = "bottom")
 ```
 :::
