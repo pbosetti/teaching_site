@@ -678,7 +678,7 @@ $$
 \begin{align}
 E(y - f(\bar x_1, \bar x_2, \dots, \bar x_k)) &= E\left(\sum_{i=1}^k \frac{\partial f}{\partial x_i} (x_i - \bar x_i) \right) \\
 u^2_y=E((y-\bar y)^2) &= E\left(\left(\sum_{i=1}^k \frac{\partial f}{\partial x_i}(x_i - \bar x_i)\right)^2\right) \\
-u_y^2 &= \sum_{j=1}^k\sum_{i=1}^k \frac{\partial f}{\partial x_i}\frac{\partial f}{\partial x_j}u_{i,j}^2  \label{eq:inccomb}
+u_y^2 &= \sum_{j=1}^k\sum_{i=1}^k \frac{\partial f}{\partial x_i}\frac{\partial f}{\partial x_j}u_{i,j}^2
 \end{align}
 $$
 dove $u_{i,j}$ è la **covarianza** $u_{i,j}=\textrm{Cov}(x_i, x_j)=E((x_i-\bar x_j)(x_j - \bar x_i))$
@@ -705,7 +705,7 @@ L'ipotesi che le $x_i$ siano indipendenti **va verificata**, ad esempio con un t
 ## Esempio: volume di un cilindro
 Siccome $V=\pi r^2l$ vogliamo calcolare l'incertezza standard sul volume di un cilindro, note che siano le incertezze standard su raggio, $u_r$, e lunghezza, $u_l$
 
-Entrambe le incertezze sono calcolate da un campione di 20 elementi, entrambi con deviazione standard 2.24 mm: $u=s/\sqrt{n} = 2.24/\sqrt{20} = `r round(2.24/sqrt(20), 2)`$
+Entrambe le incertezze sono calcolate da un campione di 20 elementi, entrambi con deviazione standard 2.24 mm: $u=s/\sqrt{n} = 2.24/\sqrt{20} = `r round(2.24/sqrt(20), 2)`~\mathrm{mm}$
 
 $$
 u_V=\sqrt{\left(\frac{\partial V}{\partial r}\right)^2u_r^2 + \left(\frac{\partial V}{\partial l}\right)^2u_l^2 }=
