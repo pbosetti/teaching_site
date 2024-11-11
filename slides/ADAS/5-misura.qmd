@@ -654,7 +654,7 @@ Nel caso di $n$ variabili, e **arrestandosi al termine di primo grado**:
 $$
 \begin{align}
 y =&f(x_1,x_2,\dots,x_n) \\
-\simeq&f\left( \bar x_1 + \frac{\partial f}{\partial x_1}\Delta x_1 + \frac{\partial f}{\partial x_2}\Delta x_2 + \cdots + \frac{\partial f}{\partial x_n}\Delta x_n \right) \\
+\simeq&f\left( \bar x_1 + \Delta x_1, \bar x_2 + \Delta x_2, \dots, \bar x_n + \Delta x_n  \right) \\
 =& f(\bar x_1, \bar x_2,\dots,\bar x_n) + \sum_{i=1}^n \frac{\partial f}{\partial x_i}(x_i-\bar x_i)
 \end{align}
 $$

@@ -142,7 +142,7 @@ df %>%
 
 :::columns
 :::column
-Se il campione proviene da una distribuzione è non-normale (ad esempio uniforme) allora, grazie al **teorema del limite centrale**, la distribuzione della statistica campionaria è **asintoticamente normale**, cioè $G(\theta)\rightarrow\mathcal{N}(\theta, \sigma^2/n)$ quando $n\rightarrow +\infty$.
+Se il campione proviene da una distribuzione non-normale (ad esempio uniforme) allora, grazie al **teorema del limite centrale**, la distribuzione della statistica campionaria è **asintoticamente normale**, cioè $G(\theta)\rightarrow\mathcal{N}(\theta, \sigma^2/n)$ quando $n\rightarrow +\infty$.
 
 Ripetiamo l'analisi sopra fatta per il campione normale
 
