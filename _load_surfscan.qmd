@@ -1,0 +1,49 @@
+---
+title: "Surface Scan loading"
+author: "Paolo Bosetti"
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+example_url <- function(example) {
+  url = paste0("https://paolobosetti.quarto.pub/data/", example)
+  return(url)
+}
+```
+
+# Surface Scan loading
+
+Carichiamo la scansione di superficie, aggiungendo una colonna con l'indice della cella lungo l'asse y:
+
+```{r}
+df <- example_url("surface_scan.csv") %>% 
+  read_csv() %>% 
+  mutate(y=1:n(), .before=1)
+```
+Trasformiamo la tabella in formato lungo, adatto al plot:
+
+```{r}
+tbl <- df %>% 
+  pivot_longer(-y, names_to = "x", values_to = "v") %>% 
+  mutate(x = as.integer(x))
+
+tbl %>%
+  ggplot() +
+  geom_raster(aes(x, y, fill=v)) +
+  scale_fill_viridis_c()
+```
+
+Per comodità, trasformiamo anche la tabella in matrice (con valori in [0,1]) e la visualizziamo come immagine raster:
+
+```{r}
+mat <- df %>% 
+  select(-y) %>% 
+  as.matrix() %>% 
+  scales::rescale(to=c(0,1))
+
+dim(mat)
+plot(c(1,ncol(mat)), c(1,nrow(mat)), type="n", xlab="x", ylab="y")
+rasterImage(mat, xleft=1, ybottom=1, xright=ncol(mat), ytop=nrow(mat))
+```
+
+

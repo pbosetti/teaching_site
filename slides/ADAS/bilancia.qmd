@@ -1,6 +1,6 @@
 ---
 title: "Esperimenti di taratura"
-subtitle: "Progetto del corso Analisi Dati e Statistica, A.A. 2023--24"
+subtitle: "Progetto del corso Analisi Dati e Statistica, A.A. 2024--25"
 author: "Paolo Bosetti"
 institute: "Università di Trento, Dipartimento di Ingegneria Industriale"
 date: "`r Sys.Date()`"
@@ -22,7 +22,7 @@ library(modelr)
 source("bilancia/bilancia.R")
 ```
 
-# Primo caso
+# Esperimento virtuale
 
 Taratura di una bilancia a due piatti, condotta in simulazione.
 
@@ -149,6 +149,7 @@ df %>% ggplot(aes(x=deltaF, y=angle_n, group=F, color=F)) +
 :::
 
 ## Dati raccolti in ordine casuale
+
 :::columns
 :::column
 
@@ -245,7 +246,7 @@ df <- add_residuals(df, df.lmr, var="resid_r")
 df %>% ggplot(aes(x=deltaF, group=F)) +
   geom_point(aes(y=angle_r)) +
   geom_line(aes(y=angle_n, color="nominale")) +
-  geom_line(aes(y=atan(pred_r)/pi*180, color="regresione"), linetype=2) +
+  geom_line(aes(y=atan(pred_r)/pi*180, color="regressione"), linetype=2) +
   coord_cartesian(ylim=c(0,10)) +
   labs(color="linea:", y=TeX("$\\delta$ ($^\\circ$)"), x=TeX("$\\Delta F$ (g)")) +
   theme(legend.position = c(0.2, 0.8))
@@ -297,7 +298,7 @@ Il progetto **individuale** richiede di eseguire un esperimento di taratura stat
 
 ## Report
 
-Per il report usare il template `report.Rmd` sulla  [repository GitHub del corso](https://github.com/pbosetti/ADAS-23) (cliccare [qui per scaricare direttamente il file](https://raw.githubusercontent.com/pbosetti/ADAS-23/main/report.Rmd))
+Per il report usare il template `report.Rmd` sulla  [repository GitHub del corso](https://github.com/pbosetti/ADAS-24) (cliccare [qui per scaricare direttamente il file](https://raw.githubusercontent.com/pbosetti/ADAS-24/main/report.Rmd))
 
 Il report richiede la libreria `memor`: per installarla procedere come segue:
 
@@ -309,84 +310,3 @@ devtools::install_github("hebrewseniorlife/memor")
 Seguire gli esempi e le indicazioni contenute nel template per l'inserimento di figure e tabelle e per la creazione di riferimenti
 
 
-# Secondo caso
-
-Taratura di un sensore di pressione per solette da scarpa.
-
-L'esperimento è da condurre in gruppo: **due persone al massimo**.
-
-## Descrizione dello strumento
-
-:::columns
-
-:::column
-* Lo strumento è una **soletta** da inserire in una scarpa tra soletta e calzino, e consente di misurare la pressione esercitata dal piede in **16 zone**
-* Ogni zona è un rettangolo di circa 15 mm x 12 mm ed è costituita da una serie di piste conduttive separate da uno strato isolante: la pressione avvicina i conduttori **riducendo la resistenza**
-* La soletta è collegata ad un dispositivo di acquisizione che comunica con un PC, su cui un apposito software acquisisce i **valori di tensione** proporzionali al carico applicato
-:::
-
-:::column
-![Soletta con sensori](images/soletta.jpg){fig-align="center" width="75%"}
-:::
-:::
-
-## Caratteristica statica
-
-:::columns
-:::column
-La **caratteristica statica** di ogni sensore segue l'equazione:
-
-$$
-V(F) = V_0 + \frac{k}{F-F_0}
-$$
-
-La **caratteristica inversa** (utilizzata nelle **misurazioni**) è ovviamente:
-
-$$
-F(V) =\frac{k}{V-V_0} + F_0
-$$
-
-Vanno quindi identificati i tre parametri $V_0$, $F_0$ e $k$
-
-
-
-:::
-:::column
-```{r}
-#| fig-width: 6
-#| fig-height: 5
-params <- list(k=0.58, V_0=0.1684, F_0=0.65)
-V <- function(F, p) p$V_0 + p$k / (F - p$F_0)
-F <- function(V, p) p$F_0 + p$k / (V - p$V_0) 
-
-ggplot() + 
-  geom_vline(xintercept=params$F_0, color="red", lty=2) +
-  geom_hline(yintercept=params$V_0, color="red", lty=2) +
-  geom_function(fun = \(x) V(x, params), xlim=c(0, 10)) + 
-  ylim(-2, 5) +
-  labs(x="Forza peso (N)", y="Tensione (V)")
-```
-:::
-:::
-
-## Procedura di taratura
-
-* La taratura viene eseguita utilizzando come misurandi delle **masse note**, misurate mediante una bilancia con incertezza pari a 0.1 kgf
-* Le masse possono essere combinate in modo da **aumentare il numero di misurandi possibili**
-* Tenere in equilibrio le masse su un unico sensore è difficile,  quindi si caricano le masse su una piastra appoggiata mediante tre piedini a **tre sensori**
-* È possibile tarare tre sensori assieme, assumendo poi che abbiano parametri equivalenti:
-
-$$
-F(V) = 3F_0 + \frac{k}{V_1 - V_0} + \frac{k}{V_2 - V_0} + \frac{k}{V_3 - V_0} 
-$$
-
-* Questi risultati vanno poi **validati** con masse singole caricate su un unico sensore
-
-## Report finale
-
-* Il **report finale** deve essere realizzato analogamente a quanto detto per il primo caso, utilizzando lo stesso template
-* Criteri di **valutazione**:
-  - completezza dell'analisi
-  - correttezza del risultato
-  - qualità dell'impaginazione e cura per l'aspetto del report e dei grafici
-* Ciascun report viene valutato tra -1 (non consegnato) e +3 (ottimo) punti; la media ottenuta coi due report è un **bonus** aggiunto al voto finale del primo modulo

@@ -1,5 +1,8 @@
 project:
   type: website
+  render:
+    - "*.qmd"
+    - "!_*.qmd"
 
 website:
   title: "Paolo Bosetti"

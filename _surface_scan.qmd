@@ -1,0 +1,152 @@
+---
+title: "Sheet metal data"
+author: "Paolo Bosetti"
+date-modified: "`{r} Sys.time()`"
+date-format: "YYYYMMDD"
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(glue)
+library(modelr)
+```
+
+
+# Sheet metal data
+
+
+
+## Set up
+
+We are creating some functions:
+
+-   `gauss()`: it generates a 2-D Gaussian peak at a certain position and with a given elliptical angle
+-   `add_spot()`: cumulatively adds a spot to a 2-D grid. Position and width parameters are normalized in $(0,1)$, then internally scaled to the original grid dimensions
+-   `add_plane()`: adds a tilted plane with equation $z=\mu + ax + by + cxy$
+-   `mat_to_png()`: saves a matrix to a png file
+
+```{r}
+gauss <- function(x, y, A=1, x0=0, y0=0, sx = 1, sy=1, theta=0, deg=TRUE) {
+  theta <- ifelse(deg, theta/180*pi, theta)
+  ct <- cos(theta)
+  st <- sin(theta)
+  s2t <- sin(2*theta)
+  dx <- x-x0
+  dy <- y-y0
+  a <- ct^2/(2*sx^2) + st^2/(2*sy^2)
+  b <- -s2t/(4*sx^2) + s2t^2/(4*sy^2)
+  c <- st^2/(2*sx^2) + ct^2/(2*sy^2)
+  return(A * exp(-(a*dx^2 + 2*b*dx*dy +c*dy^2)))
+}
+add_spot <- function(grid, x0=0, y0=0, w=0, e=1, A=255, angle = runif(1, 0, 90)) {
+  x0 <- diff(range(grid$x)) * x0
+  y0 <- diff(range(grid$y)) * y0
+  wx <- diff(range(grid$x)) * w * e
+  wy <- diff(range(grid$y)) * w * 1/e
+  if (is_null(attr(grid, "x"))) {
+    attr(grid, "x") <- x0
+    attr(grid, "y") <- y0
+    attr(grid, "theta") <- angle
+  } else {
+    attr(grid, "x") <- c(attr(grid, "x"), x0)
+    attr(grid, "y") <- c(attr(grid, "y"), y0)
+    attr(grid, "theta") <- c(attr(grid, "theta"), angle)
+  }
+  grid %>%
+    mutate(
+      v = v + gauss(x, y, 
+                    A=A, 
+                    x0=x0, y0=y0, 
+                    sx=wx, sy=wy, 
+                    theta=angle) %>% 
+        as.integer()
+    )
+}
+add_cluster <- function(grid, x0=0.5, y0=0.5, w=0.01, n=2, A=255, attract=3, emin=0.3) {
+  p <- tibble(
+    x = rnorm(n, x0, w/attract),
+    y = rnorm(n, y0, w/attract),
+    w = runif(n, w/n, w/n*2),
+    e = runif(n, emin, 1)
+  )
+  for (i in 1:n) {
+    grid <- grid %>%
+      add_spot(A=A/n, x0=p$x[i], y0=p$y[i], w=p$w[i], e=p$e[i])
+  }
+  return(grid)
+}
+add_plane <- function(grid, mu = -min(a, b, c), a=1, b=1, c=0) {
+  mu
+  a <- a/max(grid$x)
+  b <- b/max(grid$y)
+  c <- c/max(grid$x)/max(grid$y)
+  grid %>% mutate(
+    v = (v + mu + a*x + b*y + c*x*y) %>% as.integer()
+  )
+}
+mat_to_png <- function(mat, filename) {
+  png(filename, width=dim(mat)[2], height=dim(mat)[1])
+  par(mar = rep(0, 4))
+  image(t(mat), 
+        axes = FALSE, 
+        col = grey(seq(0, 1, length = 256)),
+        asp=dim(mat)[1]/dim(mat)[2],
+        useRaster = T)
+  dev.off()
+}
+```
+
+Now let's build a sample image: we start from a regular, square $x,y$ grid, then add a plane and two spots. Finally, we add some noise and rescale to the output image depth (256 levels).
+
+```{r}
+gx <- 1:1024
+gy <- 1:2048
+
+df <- expand.grid(
+  x = gx,
+  y = gy,
+  v = 0
+) %>%
+  add_plane(a=50, b=-32, c=150) %>%
+  add_spot(A=255, x0=0.3, y0=0.2, w=0.1, e=1.5, angle=15) %>%
+  add_spot(A=128, x0=0.8, y0=0.7, w=0.1, e=1.1, angle=148) %>%
+  add_cluster(w=0.1, n=5, emin=0.5) %>%
+  mutate(
+    v = v + rnorm(n(), 0, max(v)*0.02) %>% pmax(0)
+  ) %>%
+  mutate(
+    v = scales::rescale(.$v, to=c(0,255)) %>% as.integer()
+  )
+
+mat <- df %>% pivot_wider(names_from=x, values_from = v) %>% 
+  select(!y) %>% 
+  as.matrix()
+```
+
+
+```{r}
+df %>% 
+  ggplot() +
+  geom_raster(aes(x, y, fill=v)) +
+  scale_fill_viridis_c()
+```
+```{r}
+write.csv(mat, "data/surface_scan.csv", row.names = F)
+```
+
+## Loading
+
+```{r}
+df <- read.csv("data/scan.csv") %>% 
+  rename_with(.fn = ~ as.character(seq_along(.))) %>%
+  mutate(y=1:n(), .before=1) %>% 
+  pivot_longer(-y, names_to = "x", values_to = "v") %>% 
+  mutate(x = as.integer(x))
+
+
+
+df %>% 
+  ggplot() +
+  geom_raster(aes(x, y, fill=v))
+```
+
