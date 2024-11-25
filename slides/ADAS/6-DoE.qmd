@@ -634,7 +634,7 @@ $$
 :::
 :::
 
-In generale: $\mathrm{Ef}(X) = \frac{2}{2^rn}\mathrm{Contrast}(X)$ e $\mathit{SS}(X) = \frac{1}{2^rn}\mathrm{Contrast}(X)^2$ dove il **contrasto** del fattore $\mathrm{Contrast}(X)$ è calcolato usando i segni della relativa colonna $X$ per i trattamenti nell'ordine di Yates (efs. $\mathrm{Contrast}(AB)=+(1)-a-b+ab$)
+In generale: $\mathrm{Ef}(X) = \frac{2}{2^nr}\mathrm{Contrast}(X)$ e $\mathit{SS}(X) = \frac{1}{2^nr}\mathrm{Contrast}(X)^2$ dove il **contrasto** del fattore $\mathrm{Contrast}(X)$ è calcolato usando i segni della relativa colonna $X$ per i trattamenti nell'ordine di Yates (es. $\mathrm{Contrast}(AB)=+(1)-a-b+ab$)
 
 ## Piano fattoriale $2^n$: modello statistico
 
@@ -916,7 +916,7 @@ Ogni volta che un modello lineare è **sospetto** (in una **regressione** o nell
 
 # Estensioni e frazionamenti
 
-Un piano fattoriale $n^2$ assume che la risposta sia lineare: quest'ipotesi va verificata **estendendo** il piano a più di 2 livelli
+Un piano fattoriale $2^n$ assume che la risposta sia lineare: quest'ipotesi va verificata **estendendo** il piano a più di 2 livelli
 
 Un piano fattoriale, anche $2^n$ non replicato, può risultare comunque troppo oneroso: in questi casi è possibile **frazionarlo**, cioè dividere per potenze di 2 il numero di trattamenti, pena la perdita di informazioni sulle interazioni più complesse
 
@@ -930,7 +930,7 @@ In questo modo, però, la **sensibilità** nelle direzioni assiali sarebbe infer
 
 Si preferisce quindi eseguire PF centrati con **simmetria rotazionale attorno all'origine**
 
-Per due fattori, i punti assiali sono estesi a distanza $\sqrt{2}$ dall'origine; nel generico caso $n$-dimensionale la distanza è $(2^k)^{1/4}$
+Per due fattori, i punti assiali sono estesi a distanza $\sqrt{2}$ dall'origine; nel generico caso $n$-dimensionale la distanza è $(2^n)^{1/4}$
 :::
 
 :::{.column style="text-align: center;"}
