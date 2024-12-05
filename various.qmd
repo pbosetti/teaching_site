@@ -1,5 +1,5 @@
 ---
-title: "Varous stuff"
+title: "Various stuff"
 date-modified: "`{r} Sys.time()`"
 date-format: "YYYYMMDD"
 ---

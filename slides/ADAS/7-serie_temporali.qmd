@@ -661,7 +661,7 @@ $$
 $$ 
 siano **tutte strettamente fuori dal cerchio unitario** sul piano complesso
 
-Ad esempio: $\mathrm{ARMA}(2,2)$ con $\Phi_2(z)= 1 + 0.9z + 0.1z^2$ e $\theta_q(z) = 1 + 2z + 15z^2$:
+Ad esempio: $\mathrm{ARMA}(2,2)$ con $\Phi_2(z)= 1 + 0.9z + 0.1z^2$ e $\Theta_q(z) = 1 + 2z + 15z^2$:
 ```{r echo=T}
 abs(polyroot(c(1, -0.9, -0.1)))
 abs(polyroot(c(1, 2, 15)))
