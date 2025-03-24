@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="it-IT"><head>
+<script src="../../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.40">
+
+  <meta name="author" content="Paolo Bosetti">
+  <title>Paolo Bosetti – Misura, Incertezza, Taratura</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-f5b10fc125ee2ba6c83f7620df646e3b.css">
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-77EMP7T5YY"></script>
+
+  <script type="text/plain" cookie-consent="tracking">
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-77EMP7T5YY', { 'anonymize_ip': true});
+  </script>
+  
+  <script type="text/javascript" charset="UTF-8">
+  document.addEventListener('DOMContentLoaded', function () {
+  cookieconsent.run({
+    "notice_banner_type":"simple",
+    "consent_type":"express",
+    "palette":"light",
+    "language":"en",
+    "page_load_consent_levels":["strictly-necessary"],
+    "notice_banner_reject_button_hide":false,
+    "preferences_center_close_button_hide":false,
+    "website_name":""
+    ,
+  "language":"it-IT"
+    });
+  });
+  </script> 
+    
+  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Misura, Incertezza, Taratura</h1>
+  <p class="subtitle"></p><p>Analisi Dati e Statistica, 2024–25<br>
+<img data-src="images/by-nc-sa.png" height="30"></p><p></p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Paolo Bosetti 
+</div>
+        <p class="quarto-title-affiliation">
+            Università di Trento, Dipartimento di Ingegneria Industriale
+          </p>
+    </div>
+</div>
+
+  <p class="date"><em>Ultimo aggiornamento:</em> 24/03/2025</p>
+</section>
+<section>
+<section id="misura" class="title-slide slide level1 center">
+<h1>Misura</h1>
+<p>Un’operazione di <strong>misura</strong> è alla base di qualsiasi <strong>creazione di valore</strong> ed è fondamentale in qualsiasi ambito scientifico e ingegneristico</p>
+<p>Una <strong>misurazione</strong> può essere ottenuta con uno strumento più o meno “buono”</p>
+<p>La “bontà” di uno strumento è precisamente definita come la sua <strong>incertezza</strong>, che è un termine statistico</p>
+</section>
+<section id="incertezza" class="slide level2">
+<h2>Incertezza</h2>
+<div class="columns">
+<div class="column">
+<p>Incertezza, precisione, accuratezza</p>
+<ul>
+<li>L’incertezza è l’inverso della <strong>precisione</strong>, a sua volta sinonimo di <strong>ripetibilità</strong></li>
+<li>L’<strong>accuratezza</strong> è sinonimo di mancata polarizzazione</li>
+</ul>
+<p>È meglio avere uno strumento preciso o accurato?</p>
+</div><div class="column" style="text-align: right">
+<p><img data-src="images/bulls_eye.png" width="500"></p>
+</div></div>
+</section>
+<section id="norma-uni4546" class="slide level2">
+<h2>Norma UNI4546</h2>
+<p>Introdotta nel 1984, dà alcune <strong>definizioni</strong>:</p>
+<div class="theorem">
+<div class="title">
+<p>Definizioni</p>
+</div>
+<ul>
+<li><strong>Misurazione</strong>: l’atto del misurare, assegnare valori numerici a grandezze fisiche</li>
+<li><strong>Parametro</strong>: grandezza di un sistema fisico alla quale assegnare valori numerici</li>
+<li><strong>Misurando</strong>: un parametro sottoposto a misurazione</li>
+<li><strong>Misura</strong>: il risultato di una misurazione</li>
+<li><strong>Metrologia</strong>: disciplina che riguarda la <strong>qualità</strong> delle misure</li>
+</ul>
+</div>
+</section>
+<section id="norma-uni4546-1" class="slide level2">
+<h2>Norma UNI4546</h2>
+<p>Una <strong>misura</strong>, che è il risultato di una <strong>misurazione</strong>, rappresenta un parametro di un sistema considerato <strong>in un determinato stato</strong></p>
+<p>È una terna costituita da:</p>
+<ol type="1">
+<li>un <span class="bgreen">valore</span></li>
+<li>un’<span class="bblue">incertezza</span></li>
+<li>un’<strong>unità di misura</strong></li>
+</ol>
+<p>Ad esempio: la mia statura è <span class="bgreen">183</span><span class="bblue">±0.5</span>&nbsp;<strong>cm</strong></p>
+<p>Esistono due tipi di grandezze:</p>
+<ul>
+<li><strong>estensive</strong>, per cui vale la somma (lunghezze, correnti elettriche, velocità)</li>
+<li><strong>intensive</strong>, esprimono un ordine e non vale la somma (pressioni, temperatura)</li>
+</ul>
+
+<aside><div>
+<p>L’incertezza è parte integrante di una misura; senza incertezza la misura non è valida</p>
+</div></aside></section>
+<section id="norma-uni4546-2" class="slide level2">
+<h2>Norma UNI4546</h2>
+<ul>
+<li>Misurazione <strong>diretta</strong>: ottenuta per confronto diretto con un campione noto</li>
+<li>Misurazione <strong>indiretta</strong>: si misurano grandezze secondarie collegate a quella di interesse mediante un <strong>modello</strong></li>
+</ul>
+<p>Nel caso di misurazione indiretta, lo strumento di misura è basato su un <strong>trasduttore</strong>: un dispositivo che trasforma una grandezza fisica in ingresso in un’altra grandezza (es. forza in carica elettrica)</p>
+<p>Un <strong>modello</strong> è un insieme di relazioni tra parametri descrivente le interazioni (m. <strong>statico</strong>) e possibilmente l’evoluzione nel tempo (m. <span class="bgreen">dinamico</span>) di un sistema</p>
+<p>Un modello può essere <strong>analitico</strong> o <strong>numerico</strong></p>
+
+<aside><div>
+<p>Il modello di misura deve essere costruito sulla base della misura stessa: non deve essere necessariamente esaustivo né basato sulla comprensione fisica del sistema (cioè può anche essere <strong>empirico</strong>)</p>
+</div></aside></section>
+<section id="norma-gum-isoiec-98-32008" class="slide level2">
+<h2>Norma GUM (ISO/IEC 98-3:2008)</h2>
+<p><strong><em>Guide to the expression of Uncertainty in Measurement</em></strong> è il riferimento normativo per la terminologia e i metodi di calcolo dell’incertezza nelle misurazioni</p>
+<p>Secondo la GUM il risultato di una misurazione è una <strong>variabile aleatoria</strong> e va trattato in quanto tale</p>
+<p>La GUM ha abolito i termini di <strong>errore</strong> (sostituito con <span class="bgreen">incertezza</span>) e di <strong>valore vero</strong> (sostituito con <span class="bgreen">stima</span>)</p>
+<p>Cioè si assume che il valore vero di una grandezza <strong>non sia conoscibile</strong>: anche aumentando all’infinito la precisione di uno strumento, prima o poi si arriva a livello atomico, per cui vale il <strong>principio di indeterminazione di Pauli</strong></p>
+<p>Quindi, se non ha senso parlare di valore vero, allora non ha senso nemmeno parlare di errore di misura</p>
+</section>
+<section id="norma-gum-isoiec-98-32008-1" class="slide level2">
+<h2>Norma GUM (ISO/IEC 98-3:2008)</h2>
+<p>La GUM definisce:</p>
+<div class="theorem">
+<div class="title">
+<p>Definizioni</p>
+</div>
+<ul>
+<li>L’<strong>incertezza standard</strong> (<em>standard uncertainty</em>) <span class="math inline">\(u_x\)</span> della variabile <span class="math inline">\(x\)</span> come la deviazione standard del valor medio di <span class="math inline">\(x\)</span>: <span class="math display">\[
+u_x=\frac{s_x}{\sqrt{n}}=\sqrt{\frac{\sum_{i=1}^n(x_i-\bar x)^2}{n(n-1)}}
+\]</span></li>
+<li>L’<strong>incertezza relativa</strong> come rapporto tra l’incertezza standard e la media della variabile; è adimensionale e utile per confronti: <span class="math display">\[
+u_{x\mathrm{rel}}=\frac{u_x}{|\bar x|}
+\]</span></li>
+</ul>
+</div>
+</section>
+<section id="norma-gum-isoiec-98-32008-2" class="slide level2">
+<h2>Norma GUM (ISO/IEC 98-3:2008)</h2>
+<div class="theorem">
+<div class="title">
+<p>Definizioni</p>
+</div>
+<p>Ricordando che l’<strong>intervallo di confidenza</strong> è definito come <span class="math display">\[
+P\left(-t_{n-1,\alpha/2}\leq\frac{|\bar x - \mu_0|}{s_x/\sqrt{n}}\leq t_{n-1,\alpha/2}\right) = 1-\alpha
+\]</span> risulta che l’intervallo <span class="math inline">\(\bar x \pm t_{\alpha/2,n-1}u_x\)</span> contiene il valore atteso di <span class="math inline">\(x\)</span> con una confidenza <span class="math inline">\(1-\alpha\)</span></p>
+<p>Quindi la GUM definisce anche:</p>
+<ul>
+<li>L’<strong>incertezza estesa</strong> come la semi-ampiezza dell’intervallo di confidenza su <span class="math inline">\(\bar x\)</span>:</li>
+</ul>
+<p><span class="math display">\[
+U_x=t_{\alpha/2,n-1}\frac{s_x}{\sqrt{n}}=t_{\alpha/2,n-1}u_x = k_{n-1}u_x
+\]</span></p>
+<p>Il termine <span class="math inline">\(k_{n-1}\)</span> è chiamato <strong>fattore di copertura</strong>, e dipende solo dalla dimensione del campione (è il quantile della distribuzione T di Student).</p>
+</div>
+</section>
+<section id="fattore-di-copertura" class="slide level2">
+<h2>Fattore di copertura</h2>
+<div class="columns">
+<div class="column">
+<p><strong>Ricordare</strong> che per <span class="math inline">\(n&gt;50\)</span> i quantili della normale e della T di Student sono indistinguibili a livello pratico</p>
+<p>Per questo motivo, per campioni sufficientemente grandi la GUM consente di adottare i fattori di copertura ricavati dai quantili di <span class="math inline">\(\mathcal{N}(0,1)\)</span></p>
+<p>Salvo indicazioni, per esprimere una misura si usa sempre l’<strong>incertezza standard</strong> (27.5±0.1mm, in cui <span class="math inline">\(u_x=0.1\)</span>)</p>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: right;">Livello di confidenza</th>
+<th style="text-align: right;"><span class="math inline">\(\alpha\)</span></th>
+<th style="text-align: right;">Fattore di copertura</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">68.27%</td>
+<td style="text-align: right;">0.3173</td>
+<td style="text-align: right;">1.0000</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">90%</td>
+<td style="text-align: right;">0.1000</td>
+<td style="text-align: right;">1.6449</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">95%</td>
+<td style="text-align: right;">0.0500</td>
+<td style="text-align: right;">1.9600</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">95.45%</td>
+<td style="text-align: right;">0.0455</td>
+<td style="text-align: right;">2.0000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">99%</td>
+<td style="text-align: right;">0.0100</td>
+<td style="text-align: right;">2.5758</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">99.73%</td>
+<td style="text-align: right;">0.0027</td>
+<td style="text-align: right;">3.0000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+<p>Se si usa l’<strong>incertezza estesa</strong> è necessario accompagnarla dal <strong>livello di confidenza</strong> (27.5±0.1mm al 95%)</p>
+
+<aside><div>
+<p>Per campioni con meno di 50 elementi è opportuno calcolare il fattore di copertura come <span class="math inline">\(t_{\alpha/2,n-1}\)</span></p>
+</div></aside></section>
+<section id="modello-statico-di-uno-strumento-di-misura" class="slide level2">
+<h2>Modello statico di uno strumento di misura</h2>
+<p>Nel caso di <strong>misurazioni indirette</strong>, è fondamentale disporre di un modello che descriva il comportamento del trasduttore, cioè la relazione tra uscita e ingresso</p>
+<p>Ogni modello dipende da uno o più parametri numerici che devono essere identificati</p>
+<p>Questa operazione di identificazione dei parametri del modello di misura si chiama <strong>taratura</strong></p>
+<p>La taratura punta a definire la correlazione <span class="math inline">\(y=f(m)\)</span> tra l’ingresso misurando <span class="math inline">\(m\)</span> e l’uscita del trasduttore <span class="math inline">\(y\)</span>, e la relativa <strong>incertezza</strong>. La <span class="math inline">\(f(\cdot)\)</span> è detta <strong>caratteristica statica dello strumento</strong></p>
+<p>D’ora in avanti considereremo solo il caso di <strong>sistemi statici</strong>, cioè in stato stazionario, per i quali <strong>il tempo non è una variabile di modello</strong></p>
+<p>I <strong>sistemi dinamici</strong> verranno presi in considerazione nel secondo modulo di questo corso</p>
+
+<aside><div>
+<p>Si parla di <strong>taratura statica o dinamica</strong> per una operazione di misurazione statica o dinamica, rispettivamente</p>
+</div></aside></section>
+<section id="taratura" class="slide level2">
+<h2>Taratura</h2>
+<div class="columns">
+<div class="column">
+<p>Uno strumento fornisce la misura mediante <strong>inversione della caratteristica statica</strong>: <span class="math inline">\(m=f^{-1}(y)\)</span></p>
+<p>Perché la <span class="math inline">\(f(\cdot)\)</span> sia nota è necessario identificarne i parametri mediante <strong>regressione</strong></p>
+<p>La regressione viene effettuata a partire da una serie di coppie <span class="math inline">\((m_i, y_i)\)</span> ottenute:</p>
+<ul>
+<li>da una serie di <strong>misurandi noti</strong> <span class="math inline">\(m_i\)</span></li>
+<li>da una serie di misurazioni <span class="math inline">\(y_i\)</span> ottenute con uno strumento di qualità migliore di quello in taratura</li>
+</ul>
+</div><div class="column">
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Misurazione</a></li><li><a href="#tabset-1-2">Taratura</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="5-misura_files/figure-revealjs/unnamed-chunk-3-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-2">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="5-misura_files/figure-revealjs/unnamed-chunk-4-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+
+<aside><div>
+<p>Per “strumento migliore” si intende uno strumento con una precisione migliore di almeno un ordine di grandezza</p>
+</div></aside></section>
+<section id="taratura-2" class="slide level2">
+<h2>Taratura</h2>
+<p>Una <strong>taratura statica</strong> si sviluppa quindi su quattro passaggi:</p>
+<ol type="1">
+<li><strong>sviluppo del modello dello strumento</strong>: mediante analisi dei principi fisici si definisce la caratteristica statica come relazione (analitica, numerica o mista) tra ingresso e uscita. Idealmente, un modello completo comprende anche gli <strong>ingressi di disturbo</strong></li>
+<li><strong>raccolta dei dati di taratura</strong>: una campagna sperimentale fornisce le coppie <span class="math inline">\((m_i, y_i)\)</span>, che <strong>vanno raccolte con <span class="math inline">\(m\)</span> in ordine casuale</strong></li>
+<li><strong>regressione</strong>: si identificano i parametri del modello</li>
+<li><strong>validazione del modello</strong>: si verifica l’adeguatezza del modello regredito mediante analisi dei residui</li>
+</ol>
+<p>La taratura deve anche definire l’<strong>incertezza</strong> dello strumento, dovuta:</p>
+<ul>
+<li>al modello (la <em>forma</em> della caratteristica statica)</li>
+<li>ai parametri del modello</li>
+<li>alla stima del misurando (dovuta a ingressi di disturbo)</li>
+</ul>
+</section>
+<section id="ingressi-di-disturbo" class="slide level2">
+<h2>Ingressi di disturbo</h2>
+<div class="columns">
+<div class="column">
+<p>Gli ingressi fonte di incertezza possono essere:</p>
+<ul>
+<li><strong>ingressi modificanti</strong>: modificano la caratteristica statica, per cui ad uno stesso valore di <span class="math inline">\(m\)</span> possono corrispondere diversi valori di <span class="math inline">\(y\)</span> per via di un cambiamento della <strong>forma</strong> di <span class="math inline">\(f(\cdot)\)</span> o del valore dei parametri (ad es. effetto della temperatura)</li>
+<li><strong>ingressi interferenti</strong>: si sommano direttamente all’uscita dello strumento, per cui <span class="math inline">\(y=f(m)+y_d\)</span>, e hanno tipicamente un carattere stocastico (ad es. vibrazioni, disturbi elettrici)</li>
+</ul>
+</div><div class="column">
+<p><img data-src="images/modellomisura.png"></p>
+</div></div>
+
+<aside><div>
+<p>L’incertezza si riferisce solo alla componente aleatoria e non prevedibile della misura; si assume che ogni componente di deviazione sistematica sia già stato corretto</p>
+</div></aside></section>
+<section id="esempio-dinamometro-a-mensola" class="slide level2">
+<h2>Esempio: dinamometro a mensola</h2>
+<div class="columns">
+<div class="column">
+<p>È uno strumento per la misura della <strong>forza peso</strong> che sfrutta:</p>
+<ul>
+<li>l’elasticità di una trave snella per convertire una forza in una deformazione</li>
+<li>un estensimetro per convertire una deformazione in una variazione di resistenza</li>
+<li>un circuito elettrico con voltmetro per convertire la variazione di resistenza in variazione di corrente, mediante <strong>amplificazione</strong></li>
+</ul>
+<p>Il modello dello strumento fornisce:</p>
+</div><div class="column">
+<div class="panel-tabset" style="text-align: center;">
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Dinamometro</a></li><li><a href="#tabset-2-2">Amplificatore</a></li></ul>
+<div class="tab-content" style="text-align: center;">
+<div id="tabset-2-1">
+<p><img data-src="images/cantilever.jpg" width="500"></p>
+</div>
+<div id="tabset-2-2">
+<p><img data-src="images/amplifier.jpg" width="500"></p>
+</div>
+</div>
+</div>
+</div></div>
+<p><span class="math display">\[
+V=3/2GV_i\frac{lG_F}{EBH^2}F+V_0 = V_0+ KF
+\]</span></p>
+</section>
+<section id="esempio-dinamometro-a-mensola-1" class="slide level2">
+<h2>Esempio: dinamometro a mensola</h2>
+<p>La caratteristica statica dello strumento dipende, oltre che dal misurando <span class="math inline">\(F\)</span>, da altri 8 parametri</p>
+<p>Per effettuare la taratura si tengono il più possibile costanti tutti i parametri, eccetto il misurando</p>
+<p>I parametri che non è possibile mantenere costanti si accetta che fluttuino, ripetendo le misurazioni e mediando i risultati: si parla di <strong>controllo statistico del processo di taratura</strong>, che mitiga l’effetto degli <strong>ingressi interferenti</strong></p>
+<p>È la condizione in cui si applica il <strong>teorema del limite centrale</strong></p>
+<p>Gli <strong>ingressi modificanti</strong> sono più complessi da trattare e richiedono una modifica del modello e il passaggio da uno strumento di misura a un <strong>sistema di misura</strong></p>
+<p>Ad esempio, <strong>la temperatura</strong> può influire su tutti i parametri della caratteristica statica: se affianco uno strumento di misura della temperatura e arricchisco il modello con la dipendenza dalla temperatura, posso <strong>compensare l’effetto</strong> degli ingressi modificanti</p>
+
+<aside><div>
+<p>Un <strong>sistema di misura</strong> è costituito da più strumenti che lavorano assieme</p>
+</div></aside></section>
+<section id="casualizzazione-della-sequenza-di-taratura" class="slide level2">
+<h2>Casualizzazione della sequenza di taratura</h2>
+<p>Compensare l’effetto degli ingressi modificanti durante la taratura può non essere semplice o economico</p>
+<p>Se però raccolgo le coppie <span class="math inline">\((m_y, y_i)\)</span> in ordine casuale anziché in ordine di <span class="math inline">\(m_i\)</span>, ottengo il risultato di <strong>distribuire casualmente</strong> l’effetto degli ingressi modificanti</p>
+<p>In questo modo trasformo gli ingressi modificanti in <strong>ingressi interferenti</strong>, dei quali posso mitigare l’effetto mediante <strong>controllo statistico</strong></p>
+<p>Confrontiamo ora la taratura del dinamometro a mensola effettuata <strong>senza casualizzazione</strong> e <span class="bgreen">con casualizzazione</span>, nel caso di un ingresso modificante (la temperatura) non preso in considerazione dall’operatore</p>
+</section>
+<section id="taratura-del-dinamometro-senza-casualizzazione" class="slide level2">
+<h2>Taratura del dinamometro (senza casualizzazione)</h2>
+<div class="columns">
+<div class="column">
+<p>Nel laboratorio di taratura, dopo 4 ore dall’inizio del processo di taratura, il termostato viene modificato e la temperatura comincia a variare tra 20°C e 25°C</p>
+<p>L’addetto alla calibrazione <strong>non si accorge</strong> del cambiamento <strong>né registra la temperatura</strong></p>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="5-misura_files/figure-revealjs/unnamed-chunk-6-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="taratura-del-dinamometro-senza-casualizzazione-1" class="slide level2">
+<h2>Taratura del dinamometro (senza casualizzazione)</h2>
+<div class="columns">
+<div class="column">
+<p>L’addetto registra la tensione in uscita in corrispondenza di 50 valori di forza applicati, variabili tra 10&nbsp;N e 100&nbsp;N, <strong>in ordine crescente della forza</strong></p>
+<p>Dato che il modello dello strumento prevede una relazione lineare <span class="math inline">\(V=V_0+KF\)</span>, l’addetto effettua una regressione lineare</p>
+<p>Lo studio dei residui però evidenzia un <em>pattern</em> con un minimo, per cui l’addetto <strong>sospetta un sotto-adattamento</strong> e quindi tenta una seconda regressione con un modello quadratico</p>
+</div><div class="column">
+<div class="panel-tabset">
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">Regressione</a></li><li><a href="#tabset-3-2">Residui</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="5-misura_files/figure-revealjs/unnamed-chunk-7-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-3-2">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="5-misura_files/figure-revealjs/unnamed-chunk-8-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="taratura-del-dinamometro-senza-casualizzazione-2" class="slide level2">
+<h2>Taratura del dinamometro (senza casualizzazione)</h2>
+<div class="columns">
+<div class="column">
+<p>L’addetto verifica quindi una regressione con un modello di secondo grado</p>
+<p>L’analisi dei residui lo soddisfa e quindi accetta la nuova caratteristica statica tarata come un polinomio di secondo grado</p>
+<p><strong>Nota</strong>: questa caratteristica ha perso la relazione con la fisica del problema ed è quindi <strong>puramente empirica</strong></p>
+<p>Tuttavia, dato che la variazione di temperatura <strong>non è stata registrata né notata</strong>, l’addetto non ha modo di accorgersi che la caratteristica così tarata è ovviamente sbagliata e in pratica inutilizzabile</p>
+</div><div class="column">
+<div class="panel-tabset">
+<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">Regressione</a></li><li><a href="#tabset-4-2">Residui</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="5-misura_files/figure-revealjs/unnamed-chunk-9-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-4-2">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="5-misura_files/figure-revealjs/unnamed-chunk-10-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+
+<aside><div>
+<p>I residui non sono del tutto privi di pattern (andamento a “M”). Tuttavia, aumentando il grado della regressione si può raggiungere un livello (grado 6) in cui i residui sono effettivamente privi di pattern, ma ciò tuttavia non invalida quanto sopra detto</p>
+</div></aside></section>
+<section id="taratura-del-dinamometro-con-casualizzazione" class="slide level2">
+<h2>Taratura del dinamometro <span class="bgreen">(con casualizzazione)</span></h2>
+<div class="columns">
+<div class="column">
+<p>Rivediamo cosa sarebbe successo raccogliendo le coppie <span class="math inline">\((m_i,y_i)\)</span> in <strong>ordine casuale</strong></p>
+<p>In questo caso l’effetto di aumento della temperatura è nullo sulle coppie raccolte (con valori casuali di <span class="math inline">\(m_i\)</span>!) prima di 4 ore; successivamente questo effetto si distribuisce casualmente su tutti i valori del misurando (diventa un ingresso interferente)</p>
+<p>La regressione lineare di primo grado questa volta è adatta, anche se la varianza non è costante</p>
+<p>Tuttavia, osservando i <strong>residui in funzione del tempo</strong> si nota che a circa 4 ore inizia a succedere qualcosa che fa aumentare i residui</p>
+</div><div class="column">
+<div class="panel-tabset">
+<ul id="tabset-5" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-5-1">Regressione</a></li><li><a href="#tabset-5-2">Residui (F)</a></li><li><a href="#tabset-5-3">Residui (t)</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="5-misura_files/figure-revealjs/unnamed-chunk-11-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-5-2">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="5-misura_files/figure-revealjs/unnamed-chunk-12-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-5-3">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="5-misura_files/figure-revealjs/unnamed-chunk-13-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="taratura-del-dinamometro-con-casualizzazione-1" class="slide level2">
+<h2>Taratura del dinamometro <span class="bgreen">(con casualizzazione)</span></h2>
+<div class="columns">
+<div class="column">
+<p>Se variamo il colore dei punti in funzione del tempo in cui sono state effettuate le singole prove, osserviamo che c’è una fascia di punti in basso con <strong>andamento lineare e varianza costante</strong>, tutti raccolti a meno di 4 ore dall’inizio</p>
+<p>Scartando dalla regressione tutti i punti raccolti dopo 4 ore, otteniamo una regressione lineare con residui stretti e regolari</p>
+<p>La caratteristica statica così identificata rappresenta correttamente il comportamento dello strumento a 20°C</p>
+</div><div class="column">
+<div class="panel-tabset">
+<ul id="tabset-6" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-6-1">Regressione</a></li><li><a href="#tabset-6-2">Regressione <span class="math inline">\(t&lt;4~\mathrm{h}\)</span></a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="5-misura_files/figure-revealjs/unnamed-chunk-14-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-6-2">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="5-misura_files/figure-revealjs/unnamed-chunk-15-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+
+<aside><div>
+<p>Secondo la <strong>Norma ISO 1</strong>, tutte le misure vanno riferite alla temperatura di 20°C</p>
+</div></aside></section></section>
+<section>
+<section id="propagazione-dellincertezza" class="title-slide slide level1 center">
+<h1>Propagazione dell’incertezza</h1>
+<p>In certi casi è necessario valutare l’incertezza di una <strong>misura derivata</strong>, cioè costruita per combinazione di altre misure</p>
+</section>
+<section id="basi" class="slide level2">
+<h2>Basi</h2>
+<p>Supponiamo di voler misurare la velocità media di un veicolo in un tratto di strada</p>
+<p>Possiamo esprimere la velocità come rapporto tra la distanza percorsa <span class="math inline">\(d\)</span> e il tempo impiegato <span class="math inline">\(t\)</span>: <span class="math display">\[
+v=\frac{d}{t}
+\]</span> Sia la misura di distanza che quella di tempo sono accompagnate da una loro incertezza standard</p>
+<p>Qual è l’<strong>incertezza standard sulla misura indiretta</strong> di velocità?</p>
+<p>Secondo la GUM può essere determinata in due modi:</p>
+<ul>
+<li>analitico, mediante la <strong>legge di propagazione dell’incertezza</strong></li>
+<li>numerico, mediante il <strong>metodo Monte Carlo</strong></li>
+</ul>
+</section>
+<section id="metodo-analitico" class="slide level2">
+<h2>Metodo analitico</h2>
+<p>Sia <span class="math inline">\(y=f(x_1,x_2,\dots,x_n)\)</span>: vogliamo esprimere l’<strong>incertezza tipo combinata</strong> note che siano le <span class="math inline">\(u_1,u_2,\dots,u_n\)</span></p>
+<p>Esprimiamo la variazione di <span class="math inline">\(y\)</span> in un intorno di <span class="math inline">\(x_0\)</span> mediante <strong>sviluppo in serie di Taylor</strong> per una sola variabile <span class="math inline">\(x\)</span>: <span class="math display">\[
+f(x_0+\Delta x)=f(x_0)+\frac{df}{dx}\Delta x + \frac{d^2f}{dx^2}\frac{\Delta x^2}{2!} + \frac{d^3f}{dx^3}\frac{\Delta x^2}{3!}+o(\Delta x^3)
+\]</span> Nel caso di <span class="math inline">\(n\)</span> variabili, e <strong>arrestandosi al termine di primo grado</strong>: <span class="math display">\[
+\begin{align}
+y =&amp;f(x_1,x_2,\dots,x_n) \\
+\simeq&amp;f\left( \bar x_1 + \Delta x_1, \bar x_2 + \Delta x_2, \dots, \bar x_n + \Delta x_n  \right) \\
+=&amp; f(\bar x_1, \bar x_2,\dots,\bar x_n) + \sum_{i=1}^n \frac{\partial f}{\partial x_i}(x_i-\bar x_i)
+\end{align}
+\]</span></p>
+</section>
+<section id="metodo-analitico-1" class="slide level2">
+<h2>Metodo analitico</h2>
+<p>Si noti che: <span class="math display">\[
+\begin{align}
+E(y) &amp;= E\left(f(\bar x_1, \bar x_2, \dots, \bar x_k) + \sum_{i=1}^k \frac{\partial f}{\partial x_i} (x_i - \bar x_i)\right) \\
+&amp;= E(f(\bar x_1, \bar x_2, \dots, \bar x_k)) + \sum_{i=1}^k \frac{\partial f}{\partial x_i} E(x_i - \bar x_i) \\
+&amp;= f(\bar x_1, \bar x_2, \dots, \bar x_k)
+\end{align}
+\]</span> cioè il valore medio di <span class="math inline">\(f(\cdot)\)</span> è la stessa funzione applicata ai valori medi: <span class="math inline">\(\bar y=f(\bar x_1, \bar x_2,\dots,\bar x_k)\)</span></p>
+</section>
+<section id="metodo-analitico-2" class="slide level2">
+<h2>Metodo analitico</h2>
+<p>Possiamo quindi scrivere che: <span class="math display">\[
+\begin{align}
+E(y - f(\bar x_1, \bar x_2, \dots, \bar x_k)) &amp;= E\left(\sum_{i=1}^k \frac{\partial f}{\partial x_i} (x_i - \bar x_i) \right) \\
+u^2_y=E((y-\bar y)^2) &amp;= E\left(\left(\sum_{i=1}^k \frac{\partial f}{\partial x_i}(x_i - \bar x_i)\right)^2\right) \\
+u_y^2 &amp;= \sum_{j=1}^k\sum_{i=1}^k \frac{\partial f}{\partial x_i}\frac{\partial f}{\partial x_j}u_{i,j}^2
+\end{align}
+\]</span> dove <span class="math inline">\(u_{i,j}\)</span> è la <strong>covarianza</strong> <span class="math inline">\(u_{i,j}=\textrm{Cov}(x_i, x_j)=E((x_i-\bar x_j)(x_j - \bar x_i))\)</span></p>
+</section>
+<section id="metodo-analitico-3" class="slide level2">
+<h2>Metodo analitico</h2>
+<p>Nel caso in cui le <span class="math inline">\(x_i\)</span> siano tutte indipendenti, cioè <span class="math inline">\(u_{i,j}=0~\forall i\neq j\)</span>, vale la relazione semplificata: <span class="math display">\[
+u_y = \sqrt{\sum_{i=1}^n \left(\frac{\partial f}{\partial x_i}\right)^2 u_i^2}
+\]</span> nota come <strong>legge di propagazione delle incertezze</strong></p>
+<p>Le derivate parziali che compaiono nella LPI sono dette <strong>coefficienti di sensibilità</strong> e vanno valutati nel valore medio della rispettiva variabile <span class="math inline">\(x_i\)</span>.</p>
+<p>Il valore dei coefficienti di sensibilità consente di determinare quale delle misure combinande contribuisce maggiormente all’incertezza della misura combinata</p>
+<p><strong>Volendo migliorare la misura combinata</strong> conviene investire soprattutto sulle misure combinande con un maggiore coefficiente di sensibilità</p>
+
+<aside><div>
+<p>L’ipotesi che le <span class="math inline">\(x_i\)</span> siano indipendenti <strong>va verificata</strong>, ad esempio con un test di correlazione</p>
+</div></aside></section>
+<section id="esempio-volume-di-un-cilindro" class="slide level2">
+<h2>Esempio: volume di un cilindro</h2>
+<p>Siccome <span class="math inline">\(V=\pi r^2l\)</span> vogliamo calcolare l’incertezza standard sul volume di un cilindro, note che siano le incertezze standard su raggio, <span class="math inline">\(u_r\)</span>, e lunghezza, <span class="math inline">\(u_l\)</span></p>
+<p>Entrambe le incertezze sono calcolate da un campione di 20 elementi, entrambi con deviazione standard 2.24&nbsp;mm: <span class="math inline">\(u=s/\sqrt{n} = 2.24/\sqrt{20} = 0.5~\mathrm{mm}\)</span></p>
+<p><span class="math display">\[
+u_V=\sqrt{\left(\frac{\partial V}{\partial r}\right)^2u_r^2 + \left(\frac{\partial V}{\partial l}\right)^2u_l^2 }=
+\pi \bar r \sqrt{4\bar l^2 u_r^2+\bar r^2 u_l^2}
+\]</span></p>
+<p>Nel caso in cui sia <span class="math inline">\(r=\)</span> 120.0±0.5 mm e <span class="math inline">\(l=\)</span> 450.0±0.5, l’incertezza tipo combinata risulta pari a: <span class="math display">\[
+\begin{align}
+u_V&amp;=&amp;\pi 120\sqrt{4\cdot 450^2\cdot 0.5^2+120^2\cdot 0.5^2} \\
+&amp;=&amp;171\times10^3~\mathrm{ mm^3}\simeq2 \times 10^5~\mathrm{mm^3}
+\end{align}
+\]</span> e quindi il volume misurato è: <span class="math display">\[
+V=\pi \cdot 120^2 \cdot 450 = (20.4\pm0.2)\times 10^6~\mathrm{mm^3}= (20.4\pm0.2)~\mathrm{l}
+\]</span></p>
+</section>
+<section id="metodo-monte-carlo" class="slide level2">
+<h2>Metodo Monte Carlo</h2>
+<p>Se la relazione <span class="math inline">\(y=f(x_1,x_2,\dots, x_n)\)</span> <strong>non è differenziabile</strong> oppure non è nota in forma analitica (ma solo numerica), allora la LPI non è applicabile</p>
+<p>In questo caso la GUM prevede l’applicazione di un metodo numerico noto come <em>Monte Carlo</em>, perché, come alla roulette, prevede la generazione di numeri casuali <strong>per simulare una distribuzione</strong>:</p>
+<ol type="1">
+<li>si genera un elevato (<span class="math inline">\(\geq10000\)</span>) numero di <em>n</em>-uple <span class="math inline">\(x_1,x_2,\dots, x_n\)</span>, generando per ogni <span class="math inline">\(x_i\)</span> un numero casuale da una distribuzione <strong>rappresentativa del caso reale</strong></li>
+<li>si applica la <span class="math inline">\(y=f(x_1,x_2,\dots, x_n)\)</span> a ciascuna <em>n</em>-upla, generando altrettanti valori di <span class="math inline">\(y\)</span></li>
+<li>si studia la distribuzione empirica delle <span class="math inline">\(y\)</span> così generate, calcolando l’intervallo di confidenza mediante il metodo dei quantili</li>
+</ol>
+
+<aside><div>
+<p><strong>Nota</strong>: il metodo non fa alcuna assunzione sulla distribuzione delle <span class="math inline">\(x_i\)</span>, anzi, la sua efficacia sta proprio nel prescindere da qualsiasi ipotesi di normalità</p>
+</div></aside></section>
+<section id="esempio-volume-di-un-cilindro-1" class="slide level2">
+<h2>Esempio: volume di un cilindro</h2>
+<div class="columns">
+<div class="column">
+<p><strong>Primo passo</strong>: generazione dei campioni delle misure di raggio e lunghezza</p>
+<p>Dopo uno studio della tecnologia di produzione del cilindro, si accerta che</p>
+<ul>
+<li>la distribuzione del raggio è simmetrica, con media 120.0 mm e deviazione standard 0.5 mm</li>
+<li>la distribuzione della lunghezza è gobba, con media 450.0 mm e deviazione standard 0.5 mm</li>
+</ul>
+<p>Si generano due campioni da 10&nbsp;000 elementi ciascuno</p>
+</div><div class="column">
+<div class="panel-tabset">
+<ul id="tabset-7" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-7-1">Raggio</a></li><li><a href="#tabset-7-2">Lunghezza</a></li></ul>
+<div class="tab-content">
+<div id="tabset-7-1">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="5-misura_files/figure-revealjs/unnamed-chunk-17-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-7-2">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="5-misura_files/figure-revealjs/unnamed-chunk-18-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+<p>Dato che generiamo un’elevata quantità di campioni, secondo la GUM assumiamo che <strong>l’incertezza standard coincida con la deviazione standard</strong></p>
+</section>
+<section id="esempio-volume-di-un-cilindro-2" class="slide level2">
+<h2>Esempio: volume di un cilindro</h2>
+<div class="columns">
+<div class="column">
+<p><strong>Secondo passo</strong>: calcolo del campione di misure derivate di volume</p>
+<p>Si applica semplicemente la <span class="math inline">\(V=\pi r^2l\)</span> a ciascuna coppia <span class="math inline">\((r,l)\)</span> generando altrettanti valori di <span class="math inline">\(V\)</span></p>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="5-misura_files/figure-revealjs/unnamed-chunk-19-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+
+<aside><div>
+<p>Si noti, nuovamente, come la composizione di più distribuzioni, anche differenti, porti sempre a distribuzioni tendenti alla normale</p>
+</div></aside></section>
+<section id="esempio-volume-di-un-cilindro-3" class="slide level2">
+<h2>Esempio: volume di un cilindro</h2>
+<div class="columns">
+<div class="column">
+<p><strong>Terzo passo</strong>: valutazione della distribuzione e calcolo dell’incertezza derivata</p>
+<p>La media e la deviazione standard dei volumi calcolati corrispondono al valore atteso e all’incertezza standard sulla misura di volume</p>
+<p>Considerando un’unica cifra significativa per l’incertezza e arrotondando la media alla stessa risoluzione, si ottiene <span class="math display">\[
+V=(20.4\pm0.2)~\mathrm{l}
+\]</span></p>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="5-misura_files/figure-revealjs/unnamed-chunk-20-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+
+
+
+<aside><div>
+<p><strong>Nota</strong>: un ulteriore vantaggio del metodo Monte Carlo è che consente di analizzare anche la <strong>forma</strong> della distribuzione della misura derivata (ad esempio mediante un diagramma Q-Q)</p>
+</div></aside></section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>paolo.bosetti@unitn.it — <a href="https://paolobosetti.quarto.pub/ADAS">https://paolobosetti.quarto.pub/ADAS</a></p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+
+        height: 720,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copiato!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copiato!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+          let selectedAnnoteEl;
+          const selectorForAnnotation = ( cell, annotation) => {
+            let cellAttr = 'data-code-cell="' + cell + '"';
+            let lineAttr = 'data-code-annotation="' +  annotation + '"';
+            const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+            return selector;
+          }
+          const selectCodeLines = (annoteEl) => {
+            const doc = window.document;
+            const targetCell = annoteEl.getAttribute("data-target-cell");
+            const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+            const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+            const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+            const lineIds = lines.map((line) => {
+              return targetCell + "-" + line;
+            })
+            let top = null;
+            let height = null;
+            let parent = null;
+            if (lineIds.length > 0) {
+                //compute the position of the single el (top and bottom and make a div)
+                const el = window.document.getElementById(lineIds[0]);
+                top = el.offsetTop;
+                height = el.offsetHeight;
+                parent = el.parentElement.parentElement;
+              if (lineIds.length > 1) {
+                const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+                const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+                height = bottom - top;
+              }
+              if (top !== null && height !== null && parent !== null) {
+                // cook up a div (if necessary) and position it 
+                let div = window.document.getElementById("code-annotation-line-highlight");
+                if (div === null) {
+                  div = window.document.createElement("div");
+                  div.setAttribute("id", "code-annotation-line-highlight");
+                  div.style.position = 'absolute';
+                  parent.appendChild(div);
+                }
+                div.style.top = top - 2 + "px";
+                div.style.height = height + 4 + "px";
+                div.style.left = 0;
+                let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+                if (gutterDiv === null) {
+                  gutterDiv = window.document.createElement("div");
+                  gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                  gutterDiv.style.position = 'absolute';
+                  const codeCell = window.document.getElementById(targetCell);
+                  const gutter = codeCell.querySelector('.code-annotation-gutter');
+                  gutter.appendChild(gutterDiv);
+                }
+                gutterDiv.style.top = top - 2 + "px";
+                gutterDiv.style.height = height + 4 + "px";
+              }
+              selectedAnnoteEl = annoteEl;
+            }
+          };
+          const unselectCodeLines = () => {
+            const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+            elementsIds.forEach((elId) => {
+              const div = window.document.getElementById(elId);
+              if (div) {
+                div.remove();
+              }
+            });
+            selectedAnnoteEl = undefined;
+          };
+            // Handle positioning of the toggle
+        window.addEventListener(
+          "resize",
+          throttle(() => {
+            elRect = undefined;
+            if (selectedAnnoteEl) {
+              selectCodeLines(selectedAnnoteEl);
+            }
+          }, 10)
+        );
+        function throttle(fn, ms) {
+        let throttle = false;
+        let timer;
+          return (...args) => {
+            if(!throttle) { // first call gets through
+                fn.apply(this, args);
+                throttle = true;
+            } else { // all the others get throttled
+                if(timer) clearTimeout(timer); // cancel #2
+                timer = setTimeout(() => {
+                  fn.apply(this, args);
+                  timer = throttle = false;
+                }, ms);
+            }
+          };
+        }
+          // Attach click handler to the DT
+          const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+          for (const annoteDlNode of annoteDls) {
+            annoteDlNode.addEventListener('click', (event) => {
+              const clickedEl = event.target;
+              if (clickedEl !== selectedAnnoteEl) {
+                unselectCodeLines();
+                const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+                if (activeEl) {
+                  activeEl.classList.remove('code-annotation-active');
+                }
+                selectCodeLines(clickedEl);
+                clickedEl.classList.add('code-annotation-active');
+              } else {
+                // Unselect the line
+                unselectCodeLines();
+                clickedEl.classList.remove('code-annotation-active');
+              }
+            });
+          }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>

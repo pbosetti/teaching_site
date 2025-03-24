@@ -1,0 +1,2801 @@
+<!DOCTYPE html>
+<html lang="it-IT"><head>
+<script src="../../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
+<link href="../../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.40">
+
+  <meta name="author" content="Paolo Bosetti">
+  <title>Paolo Bosetti – Statistica Descrittiva e Inferenziale</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-78bc8ee546218921c8ab7c589265a5bd.css">
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-77EMP7T5YY"></script>
+
+  <script type="text/plain" cookie-consent="tracking">
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-77EMP7T5YY', { 'anonymize_ip': true});
+  </script>
+  
+  <script type="text/javascript" charset="UTF-8">
+  document.addEventListener('DOMContentLoaded', function () {
+  cookieconsent.run({
+    "notice_banner_type":"simple",
+    "consent_type":"express",
+    "palette":"light",
+    "language":"en",
+    "page_load_consent_levels":["strictly-necessary"],
+    "notice_banner_reject_button_hide":false,
+    "preferences_center_close_button_hide":false,
+    "website_name":""
+    ,
+  "language":"it-IT"
+    });
+  });
+  </script> 
+    
+  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-drop/drop-runtime.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-quiz/quiz.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script type="module" src="../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+  <link href="../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Statistica Descrittiva e Inferenziale</h1>
+  <p class="subtitle"></p><p>Analisi Dati e Statistica, 2024–25<br>
+<img data-src="images/by-nc-sa.png" height="30"></p><p></p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Paolo Bosetti 
+</div>
+        <p class="quarto-title-affiliation">
+            Università di Trento, Dipartimento di Ingegneria Industriale
+          </p>
+    </div>
+</div>
+
+  <p class="date"><em>Ultimo aggiornamento:</em> 24/03/2025</p>
+</section>
+<section>
+<section id="statistica-descrittiva" class="title-slide slide level1 center">
+<h1>Statistica descrittiva</h1>
+<p>La Statistica Descrittiva serve a descrivere il comportamento di variabili aleatorie</p>
+</section>
+<section id="variabili-aleatorie-o-stocastiche" class="slide level2">
+<h2>Variabili aleatorie (o stocastiche)</h2>
+<p>Una variabile stocastica è una variabile che assume valori casuali ad ogni osservazione, cioè tali per cui non è possibile prevedere il valore esatto della prossima osservazione, nemmeno conoscendo le osservazioni precedenti</p>
+<div class="fragment">
+<p>La <strong>misurazione</strong> è il processo che porta alla valutazione oggettiva del <strong>misurando</strong>. Il risultato di una misurazione è chiamato <strong>misura</strong></p>
+</div>
+<div class="fragment">
+<p>Le variabili stocastiche sono di particolare interesse per l’ingegneria e per l’industria in genere, dato che ogni <strong>misurazione</strong> produce, come risultato, un valore che ha un contenuto casuale ed è quindi rappresentabile come una variabile stocastica</p>
+</div>
+<div class="fragment">
+<p>A sua volta, il contributo casuale ad una misura è chiamato <strong>incertezza</strong></p>
+</div>
+<div class="fragment">
+<p>Dato che ogni attività produttiva è indissolubilmente legata a delle misurazioni, è quindi evidente quanto sia fondamentale trattare in maniera coerente e robusta i contributi casuali alle misure</p>
+</div>
+</section>
+<section id="effetto-scala" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Effetto scala</h2>
+<div style="text-align: center;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-2-1.png" width="1800"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="effetto-scala-1" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Effetto scala</h2>
+<div style="text-align: center;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-3-1.png" width="1800"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="effetto-scala-2" class="slide level2">
+<h2>Effetto scala</h2>
+<p>In altre parole, la componente stocastica di una misura è affetta da un effetto scala: tanto più piccolo è il rapporto tra il <strong>valore medio</strong> misurato e la <strong>variabilità</strong> tipica dello strumento (cioè la sua <strong>precisione</strong>), tanto meno sarà apprezzabile l’effetto di casualità</p>
+<p>È quindi essenziale definire in maniera precisa ed efficace concetti intuitivi come <strong>variabilità</strong> e <strong>valore medio</strong> che abbiamo sopra espresso</p>
+</section>
+<section id="popolazioni" class="slide level2">
+<h2>Popolazioni</h2>
+<p>In statistica, una <strong>popolazione</strong> è un insieme di valori, oggetti o eventi di interesse per una qualche analisi o esperimento.</p>
+<p>Per studiare la statura dei residenti nella città di Trento, la <strong>popolazione</strong> di interesse è l’intero insieme degli abitanti di Trento.</p>
+<p>Per studiare il comportamento meccanico della lega d’Alluminio prodotta da un certo impianto, la <strong>popolazione di interesse</strong> può essere l’intera quantità di lega prodotta da un certo lotto di materia prima</p>
+<p>Ma per studiare anche gli effetti di variabilità delle materie prime (tra un lotto e l’altro), delle condizioni ambientali, ecc., sarebbe più opportuno <strong>definire come popolazione un insieme più ampio</strong></p>
+<p>Quindi spesso la definizione della popolazione di interesse è <strong>arbitraria</strong></p>
+</section>
+<section id="popolazioni-1" class="slide level2">
+<h2>Popolazioni</h2>
+<p>Quindi:</p>
+<ul>
+<li><p>la definizione della popolazione dipende <strong>dall’obiettivo dell’analisi</strong></p></li>
+<li><p>la dimensione di una popolazione è <strong>generalmente molto ampia e potenzialmente non limitata</strong></p></li>
+<li><p>di conseguenza è <strong>spesso impraticabile</strong> considerare l’intera popolazione</p></li>
+<li><p>si lavora quindi su <strong>sottoinsiemi estratti casualmente</strong> dalla popolazione, chiamati <strong>campioni</strong></p></li>
+<li><p>essendo estratti casualmente, i <strong>campioni approssimano la popolazione</strong>, tanto meglio quanto più sono numerosi</p></li>
+</ul>
+</section>
+<section id="popolazione" class="slide level2">
+<h2>Popolazione</h2>
+<p>Osservando una popolazione possiamo identificare un <strong>valore centrale</strong> e una <strong>variabilità</strong></p>
+
+<img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-4-1.png" width="1500" class="r-stretch"></section>
+<section id="momenti-di-una-popolazione" class="slide level2">
+<h2>Momenti di una popolazione</h2>
+<p>Il valore centrale è chiamato <strong>valore atteso</strong> e la variabilità è chiamata <strong>varianza</strong></p>
+<ul>
+<li><p>Valore atteso:</p>
+<ul>
+<li><p>per v.a. discrete: <span class="math inline">\(\mu = E(x) := \sum_{i = 1}^N x_i p(x_i)\)</span></p></li>
+<li><p>per v.a. continue: <span class="math inline">\(\mu = E(x) := \int_{-\infty}^{+\infty} x f(x)~\mathrm{d}x\)</span></p></li>
+</ul></li>
+<li><p>Varianza:</p>
+<ul>
+<li>per v.a. discrete: <span class="math inline">\(\sigma^2 = V(x) := \sum_{i = 1}^N (x_i -\mu)^2 p(x_i)\)</span></li>
+<li>per v.a. continue: <span class="math inline">\(\sigma^2 = V(x) := \int_{-\infty}^{+\infty} (x - \mu)^2 f(x)~\mathrm{d}x\)</span></li>
+</ul></li>
+</ul>
+<p>dove <span class="math inline">\(E()\)</span> e <span class="math inline">\(V()\)</span> sono gli <strong>operatori valore atteso e varianza</strong>, rispettivamente; <span class="math inline">\(x_i\)</span> (e <span class="math inline">\(x\)</span>) è la generica osservazione della v.a., e <span class="math inline">\(p(x_i)\)</span> e <span class="math inline">\(f(x)\)</span> sono la <strong>probabilità</strong> e la <strong>densità di probabilità</strong> di riscontrare un dato valore</p>
+<p>Le proprietà di una popolazione si indicano con lettere greche: <span class="math inline">\(\mu\)</span> e <span class="math inline">\(\sigma^2\)</span></p>
+<p><strong>NOTA</strong>: Risulta <span class="math inline">\(\sigma^2 = E\left[(x-\mu)^2\right]\)</span></p>
+</section>
+<section id="probabilità-e-densità-di-probabilità" class="slide level2">
+<h2>Probabilità e densità di probabilità</h2>
+<ul>
+<li><p><strong>Probabilità</strong> (o <strong>frequenza</strong>): per una v.a. discreta, corrisponde al rapporto tra il numero di osservazioni di un dato valore e il numero totale di osservazioni</p></li>
+<li><p><strong>Densità di probabilità</strong>: per una v.a. continua, la probabilità di riscontrare esattamente un dato valore è nulla, quindi ci si riferisce ad una probabilità di riscontrare un valore all’interno di un dato intervallo. La densità di probabilità è la derivata di tale valore</p></li>
+</ul>
+<div class="columns">
+<div class="column" style="width:45%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-5-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:55%;">
+<ul>
+<li><strong>Probabilità cumulata</strong> (<em>Cumulated Distribution Function</em>): <span class="math inline">\(p(x_0) = P(x\leq x_0)\)</span></li>
+<li><span class="bgreen">Densità di probabilità</span> (<em>Probability Density Function</em>): <span class="math inline">\(f(x) = \frac{d}{dx} p(x)\)</span></li>
+<li>Vale anche <span class="math inline">\(p(x_0) = \int_{-\infty}^{x_0}f(x) \mathrm d x\)</span></li>
+</ul>
+</div></div>
+</section>
+<section id="probabilità-e-densità-di-probabilità-1" class="slide level2">
+<h2>Probabilità e densità di probabilità</h2>
+<p>Inoltre, si noti che probabilità e frequenza devono <strong>sommare a 1</strong>: rispettivamente: <span class="math display">\[
+\begin{array}{l} \sum_i p(x_i) = 1 \\
+\int_{-\infty}^\infty f(x)~\mathrm{d}x = 1 \end{array}
+\]</span></p>
+<p>Questo perché ovviamente la probabilità di riscontrare un qualsiasi valore deve essere certa, cioè 1</p>
+</section>
+<section id="proprietà-degli-operatori" class="slide level2">
+<h2>Proprietà degli operatori</h2>
+<p>Gli operatori valore atteso e varianza godono delle seguenti proprietà:</p>
+<p><span class="math display">\[
+\begin{array}{l}
+E(c)&amp;=&amp;c\\
+E(x)&amp;=&amp;\mu\\
+E(cx)&amp;=&amp;cE(x)=c\mu\\
+V(c)&amp;=&amp;0\\
+V(x)&amp;=&amp;\sigma^2\\
+V(cx)&amp;=&amp;c^2V(x)=c^2\sigma^2\\
+E(x+y)&amp;=&amp;E(x)+E(y)=\mu_x+\mu_y\\
+\mathrm{Cov}(x,y)&amp;=&amp;E[(x-\mu_x)(y-\mu_y)]\\
+V(x+y)&amp;=&amp;V(x)+V(y)+2\textrm{ Cov}(x,y)\\
+V(x-y)&amp;=&amp;V(x)+V(y)-2\textrm{ Cov}(x,y)
+\end{array}
+\]</span></p>
+<p>dove <span class="math inline">\(c\)</span> indica una costante</p>
+</section>
+<section id="correlazione-e-covarianza" class="slide level2">
+<h2>Correlazione e covarianza</h2>
+<p>L’operatore <strong>covarianza</strong> è un indice di quanto due variabili stocastiche siano interdipendenti</p>
+<p>Più utile della covarianza (che non è limitata) è la <strong>correlazione</strong> che ha il vantaggio di essere compresa nell’intervallo <span class="math inline">\([-1,1]\)</span>:</p>
+<p><span class="math display">\[
+\mathrm{Corr}(x, y) = \frac{E[(x-\mu_x)(y-\mu_y)]}{\sigma_x\sigma_y} = \frac{\mathrm{Cov}(x,y)}{\sigma_x\sigma_y}
+\]</span></p>
+<ul>
+<li>vicina a zero significa nessuna correlazione</li>
+<li>vicina a 1 significa forte correlazione <span class="bgreen">positiva</span> (se aumenta <span class="math inline">\(x\)</span> aumenta anche <span class="math inline">\(y\)</span>)</li>
+<li>vicina a -1 significa forte correlazione <strong>negativa</strong> (se aumenta <span class="math inline">\(x\)</span> diminuisce <span class="math inline">\(y\)</span>).</li>
+</ul>
+<p>Covarianza e correlazione sono anche indicate come <span class="math inline">\(\sigma_{xy}^2\)</span> e <span class="math inline">\(\rho_{xy}\)</span>, rispettivamente.</p>
+</section>
+<section id="campioni" class="slide level2">
+<h2>Campioni</h2>
+<p>Una popolazioni può essere eccessivamente numerosa per essere analizzata direttamente</p>
+<p>Quindi si analizzano dei sottoinsiemi ottenuti per campionatura, cioè estrazione casuale</p>
+<p>L’estrazione casuale di un campione <strong>sufficientemente grande</strong> non altera le <strong>proprietà di distribuzione</strong> della popolazione</p>
+<p>Da una popolazione di <span class="math inline">\(N\)</span> elementi è possibile estrarre un numero di campioni di dimensione <span class="math inline">\(n\)</span> <strong>differenti</strong> descritto dal <strong>coefficiente binomiale</strong>: <span class="math display">\[\binom{N}{n}=\frac{N!}{(N-n)!n!},~N&gt;n\]</span></p>
+</section>
+<section id="stimatori" class="slide level2">
+<h2>Stimatori</h2>
+<p>Per ogni proprietà della popolazione è possibile definire uno <strong>stimatore</strong>, o <strong>statistica</strong>, costruito sul campione</p>
+<p>Si definiscono <strong>media e varianza campionarie</strong></p>
+<p><span class="math display">\[
+\begin{eqnarray} \bar x &amp;=&amp; \frac{1}{n}\sum_{i=1}^n x_i\\
+S^2 &amp;=&amp; \frac{\sum_{i=1}^n (x_i - \bar x)^2}{n-1}
+\end{eqnarray}
+\]</span></p>
+<p>Un particolare valore assunto da uno stimatore è detto <strong>stima</strong></p>
+<p>Al posto della varianza <span class="math inline">\(S^2\)</span> si usa spesso la <strong>deviazione standard</strong> <span class="math inline">\(S\)</span> (stesse unità di misura)</p>
+</section>
+<section id="stime" class="slide level2">
+<h2>Stime</h2>
+<p>Dato che ogni campione è estratto casualmente, <strong>ogni stima è una variabile aleatoria</strong></p>
+<p>Più grande è il campione, più la stima si avvicina alla proprietà corrispondente: si ha <strong>convergenza in distribuzione</strong></p>
+
+<img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-6-1.png" width="1500" class="r-stretch"></section>
+<section id="valore-atteso-e-varianza-della-media-campionaria" class="slide level2">
+<h2>Valore atteso e varianza della media campionaria</h2>
+<p>Valore atteso della media:</p>
+<p><span class="math display">\[
+\begin{eqnarray} \mathrm E(\bar x) &amp;=&amp; \mathrm E(\frac{x_1+x_2+\dots+x_n}{n}) = \frac{1}{n}\left[\mathrm E(x_1+x_2+\dots+x_n) \right]\\
+&amp;=&amp; \frac{1}{n}\left[\mathrm E(x_1)+\mathrm E(x_2)+\dots+\mathrm E(x_n) \right] = \frac{1}{n} n\mathrm E(x) \\
+\mathrm E(\bar x)&amp;=&amp; \mu
+\end{eqnarray}
+\]</span></p>
+<p>Varianza della media:</p>
+<p><span class="math display">\[
+\begin{eqnarray}
+\mathrm V(\bar x) &amp;=&amp; \mathrm V(\frac{x_1+x_2+\dots+x_n}{n}) = \frac{1}{n^2}\left[\mathrm V(x_1+x_2+\dots+x_n) \right]\\
+&amp;=&amp; \frac{1}{n^2}\left[\mathrm V(x_1)+\mathrm V(x_2)+\dots+\mathrm V(x_n) \right] = \frac{n\mathrm V(x)}{n^2} = \frac{\mathrm V(x)}{n} \\
+\mathrm V(\bar x) &amp;=&amp; \frac{\sigma^2}{n}
+\end{eqnarray}
+\]</span></p>
+</section>
+<section id="gradi-di-libertà" class="slide level2">
+<h2>Gradi di libertà</h2>
+<p>I gradi di libertà di una statistica (GdF o <em>DoF</em>) sono il numero di elementi <strong>indipendenti</strong> che compaiono nella sua definizione. Dalla definizione della varianza risulta che</p>
+<p><span class="math display">\[
+\sigma^2=E\left(\frac{\sum(x_i - \bar x)^2}{n-1}\right)=E\left(\frac{SS}{\nu}\right)
+\]</span></p>
+<p>Cioè la varianza è il valore atteso della <strong>somma quadratica</strong> (<em>Sum of Squares</em>) divisa per il suo numero di gradi di libertà <span class="math inline">\(\nu\)</span>, cioè di elementi indipendenti.</p>
+<p>Che questi ultimi siano <span class="math inline">\(n-1\)</span> è dimostrato dalla seguente relazione: <span class="math display">\[
+\sum_{i=1}^n(x_i-\bar x) = \sum_{i=1}^n(x_i)-n\bar x=:0
+\]</span> quindi non tutti gli <span class="math inline">\(n\)</span> elementi nella definizione di <span class="math inline">\(SS\)</span> possono essere indipendenti, dato che il valore di uno di essi è prevedibile dai restanti <span class="math inline">\(n-1\)</span> grazie alla definizione di <span class="math inline">\(\bar x\)</span></p>
+</section></section>
+<section>
+<section id="qualche-domanda" class="title-slide slide level1 center">
+<h1>Qualche domanda</h1>
+
+</section>
+<section id="nota-la-media-di-un-campione-è-possibile-calcolare-la-varianza" class="slide level2 quiz-question">
+<h2>Nota la media di un campione è possibile calcolare la varianza?</h2>
+<ul>
+<li><span data-explanation="Media e varianza sono concetti ortogonali!">Sì</span></li>
+<li><span class="correct">No</span></li>
+</ul>
+</section>
+<section id="covarianza-campionaria" class="slide level2 quiz-question">
+<h2>Covarianza campionaria</h2>
+<p>Date due v. a. <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span> di cui si considerano due campioni, sia <span class="math inline">\(\sigma_{xy}=-7.52\)</span>. Allora:</p>
+<ul>
+<li><span data-explanation="Non è detto, dipende dalle loro varianze"><span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span> sono fortemente correlate in senso positivo</span></li>
+<li><span data-explanation="Non è detto, dipende dalle loro varianze"><span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span> sono fortemente correlate in senso negativo</span></li>
+<li><span data-explanation="Non è detto, dipende dalle loro varianze"><span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span> sono debolmente correlate</span></li>
+<li><span data-explanation="Non è detto, dipende dalle loro varianze"><span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span> sono di certo anti-correlate</span></li>
+<li><span class="correct">Non è possibile affermare quanto siano correlate</span></li>
+</ul>
+</section>
+<section id="varianza-della-media-campionaria" class="slide level2 quiz-question">
+<h2>Varianza della media campionaria</h2>
+<p>Da una stessa popolazione estraggo una serie di campioni di 16 elementi e una seconda serie di campioni di 64 elementi. Considerando la varianza delle due medie campionarie:</p>
+<ul>
+<li>È uguale per entrambe le serie</li>
+<li><span class="correct">Quella della seconda serie è circa un quarto di quella della prima</span></li>
+<li>Quella della prima serie è circa il doppio di quella della seconda</li>
+<li>Quella della seconda serie è un quarto di quella della prima</li>
+<li>Quella della prima serie è il doppio di quella della seconda</li>
+</ul>
+</section></section>
+<section>
+<section id="distribuzioni" class="title-slide slide level1 center">
+<h1>Distribuzioni</h1>
+<p>Valore atteso e varianza non sono le uniche due proprietà di una popolazione.</p>
+<p>Due popolazioni possono avere gli stessi parametri valore atteso e varianza ma avere <strong>forme</strong> differenti. La <em>forma</em> di una popolazione si chiama <strong>distribuzione</strong></p>
+<div class="columns">
+<div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-7-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column">
+<ul>
+<li><strong>pop1</strong> mostra la stessa probabilità tra 9 e 31 circa</li>
+<li><span class="bgreen">pop2</span> mostra maggiore probabilità attorno a 20 che dirada verso l’alto e verso il basso</li>
+<li>Eppure hanno lo stesso valore atteso e la stessa varianza</li>
+</ul>
+</div></div>
+</section>
+<section id="distribuzioni-1" class="slide level2">
+<h2>Distribuzioni</h2>
+<div class="columns">
+<div class="column">
+<p>Distribuzioni discrete</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-8-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column">
+<p>Distribuzioni continue</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-9-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section></section>
+<section>
+<section id="distribuzioni-discrete" class="title-slide slide level1 center">
+<h1>Distribuzioni discrete</h1>
+
+</section>
+<section id="distribuzione-binomiale-o-di-bernoulli" class="slide level2">
+<h2>Distribuzione binomiale o di Bernoulli</h2>
+<div class="columns">
+<div class="column">
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Descrizione</a></li><li><a href="#tabset-1-2">Definizioni</a></li><li><a href="#tabset-1-3">Esempi</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<p>Un <strong>processo di Bernoulli</strong> è una serie di <span class="math inline">\(n\)</span> eventi con risultati <span class="math inline">\(z_1, z_2, \dots, z_n\)</span> tali per cui:</p>
+<ul>
+<li>gli eventi <span class="math inline">\(z_i\)</span> sono tutti <em>indipendenti</em></li>
+<li>ogni <span class="math inline">\(z_i\)</span> è rappresentabile con 0 o con 1</li>
+<li>la probabilità di successo <span class="math inline">\(p_s\in[0,1]\)</span> di ciascun evento è costante</li>
+</ul>
+<p>La distribuzione binomiale descrive la probabilità di ottenere <span class="math inline">\(x\in[0, n]\)</span> successi in <span class="math inline">\(n\)</span> eventi</p>
+</div>
+<div id="tabset-1-2">
+<ul>
+<li>Si dice che <span class="math inline">\(x\sim\mathrm{Binom}(n,p_s)\)</span> o anche <span class="math inline">\(x\sim\mathcal{B}(n,p_s)\)</span> quando la probabilità è: <span class="math display">\[
+p(x)=\binom{n}{x}p_s^x(1-p_s)^{n-x},~~~x\in{0,1\dots,n}
+\]</span></li>
+<li>Momenti: <span class="math display">\[
+\mu=np_s,~~~\sigma^2=np_s(1-p_s)
+\]</span></li>
+</ul>
+</div>
+<div id="tabset-1-3">
+<ul>
+<li>probabilità di ottenere 8 volte testa lanciando 10 volte una moneta</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-10-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="distribuzione-di-poisson" class="slide level2">
+<h2>Distribuzione di Poisson</h2>
+<div class="columns">
+<div class="column">
+<div class="panel-tabset">
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Descrizione</a></li><li><a href="#tabset-2-2">Definizioni</a></li><li><a href="#tabset-2-3">Esempi</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1">
+<ul>
+<li>Probabilità di avere un numero <span class="math inline">\(x\in\mathbb{N}^+\)</span> di eventi che si verificano successivamente ed indipendentemente in un dato intervallo di tempo (o spazio…)</li>
+<li>Mediamente si verificano <span class="math inline">\(\lambda\in\mathbb{R}^+\)</span> eventi nello stesso intervallo</li>
+<li>È nota anche come <strong>legge degli eventi rari</strong></li>
+</ul>
+</div>
+<div id="tabset-2-2">
+<ul>
+<li>Si dice che <span class="math inline">\(x\sim\mathrm{Poisson}(\lambda)\)</span> oppure <span class="math inline">\(x\sim\mathcal{P}(\lambda)\)</span> quando la probabilità è: <span class="math display">\[
+p(x)=\frac{e^{-\lambda}\lambda^x}{x!},~~~\forall x\in\mathbb{N}^+
+\]</span></li>
+<li>Momenti: <span class="math display">\[
+\mu=\lambda,~~~\sigma^2=\lambda
+\]</span></li>
+</ul>
+</div>
+<div id="tabset-2-3">
+<ul>
+<li>probabilità di riscontrare un difetto su 1 m di filo, quando ci sono mediamente 9 difetti ogni 100 m</li>
+<li>probabilità di ricevere una telefonata nei prossimi 10’ in un centralino che ne riceve mediamente 250 al giorno</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-11-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="distribuzione-geometrica" class="slide level2">
+<h2>Distribuzione geometrica</h2>
+<div class="columns">
+<div class="column">
+<div class="panel-tabset">
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">Descrizione</a></li><li><a href="#tabset-3-2">Definizioni</a></li><li><a href="#tabset-3-3">Esempi</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1">
+<p>È la distribuzione di probabilità di ottenere in un processo di Bernoulli un successo dopo <span class="math inline">\(x \in \mathbb{N}^+\)</span> fallimenti</p>
+</div>
+<div id="tabset-3-2">
+<ul>
+<li>Si dice che <span class="math inline">\(x\sim\mathrm{Geom}(p_s)\)</span> oppure <span class="math inline">\(x\sim\mathcal{G}(p_s)\)</span> quando la probabilità è: <span class="math display">\[
+p(x)=p_s(1-p_s)^{x-1},~~~x \in\mathbb{N}^+
+\]</span></li>
+<li>Momenti: <span class="math display">\[
+\mu=(1-p_s)/p_s,~~~\sigma^2=(1-p_s)/p_s^2
+\]</span></li>
+</ul>
+</div>
+<div id="tabset-3-3">
+<ul>
+<li>La probabilità di ottenere per la prima volta un dato numero dopo <span class="math inline">\(x\)</span> lanci di un dado a sei facce (<span class="math inline">\(p_s=1/6\)</span>)</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-12-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section></section>
+<section>
+<section id="distribuzioni-continue" class="title-slide slide level1 center">
+<h1>Distribuzioni continue</h1>
+
+</section>
+<section id="distribuzione-uniforme" class="slide level2">
+<h2>Distribuzione Uniforme</h2>
+<div class="columns">
+<div class="column">
+<div class="panel-tabset">
+<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">Descrizione</a></li><li><a href="#tabset-4-2">Definizioni</a></li><li><a href="#tabset-4-3">Esempi</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1">
+<ul>
+<li>distribuzione in cui tutti i valori della v.a. hanno la stessa probabilità</li>
+<li>può essere sia discreta che continua</li>
+</ul>
+</div>
+<div id="tabset-4-2">
+<ul>
+<li>Si dice <span class="math inline">\(x\sim\mathcal{U}(a,b)\)</span> quando la PDF è: <span class="math display">\[
+f(x)=\begin{cases} 1/(b-a),&amp;x\in[a, b] \\
+0,&amp;\textrm{altrimenti} \end{cases}
+\]</span></li>
+<li>Momenti: <span class="math display">\[
+\mu=(b+a)/2,~~~\sigma^2=\frac{(b-a)^2}{12}
+\]</span></li>
+</ul>
+</div>
+<div id="tabset-4-3">
+<ul>
+<li>Il lancio di un dado a 6 facce (discreta)</li>
+<li>L’estrazione di un numero della tombola (discreta)</li>
+<li>L’angolo di arresto di una ruota in rotazione libera (continua)</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-13-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="distribuzione-normale-o-gaussiana" class="slide level2">
+<h2>Distribuzione normale o gaussiana</h2>
+<div class="columns">
+<div class="column">
+<div class="panel-tabset">
+<ul id="tabset-5" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-5-1">Descrizione</a></li><li><a href="#tabset-5-2">Definizioni</a></li><li><a href="#tabset-5-3">Nota</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1">
+<ul>
+<li>Rappresenta il caso in cui la probabilità di riscontrare valori via via più lontani dal valore atteso decresce asintoticamente a 0</li>
+<li>La probabilità di un qualsiasi valore <strong>non è mai nulla</strong></li>
+</ul>
+</div>
+<div id="tabset-5-2">
+<ul>
+<li><p>Si dice che <span class="math inline">\(x\sim\mathrm{Norm}(\mu,\sigma^2)\)</span> oppure <span class="math inline">\(x\sim\mathcal{N}(\mu,\sigma^2)\)</span> quando la PDF è: <span class="math display">\[
+f(x) =\frac{1}{\sigma \sqrt{2 \pi}}e^{-\frac{1}{2}\left[\frac{x-\mu}{\sigma}\right]^2}
+\]</span></p></li>
+<li><p>Momenti: coincidono con i due parametri <span class="math inline">\(\mu\)</span> e <span class="math inline">\(\sigma^2\)</span></p></li>
+</ul>
+</div>
+<div id="tabset-5-3">
+<p>Se <span class="math inline">\(x\sim\mathcal{N}(\mu, \sigma^2)\)</span> allora <span class="math display">\[
+\frac{x-\mu}{\sigma}\sim\mathcal{N}(0,1)
+\]</span> e la distribuzione <span class="math inline">\(\mathcal{N}(0,1)\)</span> è detta <strong>normale standard</strong>.</p>
+</div>
+</div>
+</div>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-14-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+
+<aside><div>
+<p>È una distribuzione che gioca un ruolo centrale, in virtù del <strong>teorema del limite centrale</strong></p>
+</div></aside></section>
+<section id="teorema-del-limite-centrale-enunciato" class="slide level2">
+<h2>Teorema del limite centrale (enunciato)</h2>
+<div class="theorem">
+<div class="title">
+<p>Teorema</p>
+</div>
+<p>Se <span class="math inline">\(x_1, x_2, \dots,x_n\)</span> sono <span class="math inline">\(n\)</span> variabili aleatorie <strong>indipendenti e identicamente distribuite</strong> (IID) con <span class="math inline">\(E(x_i)=\mu\)</span> e <span class="math inline">\(V(x_i)=\sigma^2~~\forall i=1,2,\dots,n\)</span> (entrambi finiti), e <span class="math inline">\(y=x_1+x_2+\dots+x_n\)</span>, allora: <span class="math display">\[
+z_n=\frac{y-n\mu}{\sqrt{n\sigma^2}}
+\]</span> approssima una distribuzione <span class="math inline">\(\mathcal{N}(0,1)\)</span>, nel senso che se <span class="math inline">\(F_n(z)\)</span> è la funzione di distribuzione di <span class="math inline">\(z_n\)</span> e <span class="math inline">\(\Phi(z)\)</span> è la funzione di distribuzione di <span class="math inline">\(\mathcal{N}(0,1)\)</span>, allora: <span class="math display">\[
+\lim_{n\rightarrow+\infty}\frac{F_n(z)}{\Phi(z)}=1
+\]</span></p>
+</div>
+</section>
+<section id="teorema-del-limite-centrale-significato" class="slide level2">
+<h2>Teorema del limite centrale (significato)</h2>
+<ul>
+<li>Fondamentale nel <strong>campo delle misure</strong>:
+<ul>
+<li>una misura è somma di una serie di eventi</li>
+<li>ogni evento può avere una distribuzione ignota</li>
+<li>sommando molte distribuzioni il risultato converge alla normale</li>
+<li>quindi il risultato di una misura è <strong>spesso</strong> normale</li>
+</ul></li>
+<li>La convergenza è spesso molto rapida (una decina di elementi)</li>
+<li><strong>Nota</strong>: sommando o moltiplicando una distribuzione per una costante cambiano i suoi momenti ma la distribuzione rimane la stessa. Invece, operazioni tra v.a. <strong>cambiano la distribuzione risultante!</strong></li>
+</ul>
+</section>
+<section id="distribuzione-chi-quadro" class="slide level2">
+<h2>Distribuzione Chi-quadro</h2>
+<div class="columns">
+<div class="column">
+<div class="panel-tabset">
+<ul id="tabset-6" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-6-1">Descrizione</a></li><li><a href="#tabset-6-2">Definizioni</a></li><li><a href="#tabset-6-3">Nota</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1">
+<ul>
+<li>È la distribuzione di una somma di distribuzioni <strong>normali standard</strong></li>
+<li>Cioè, sia <span class="math inline">\(x = z_1^2+z_2^2+\dots+z_k^2\)</span>, con <span class="math inline">\(z_i\sim\mathcal{N}(0,1)~~\forall i=1, 2, \dots,k\)</span>, allora la distribuzione di <span class="math inline">\(x\)</span> è una Chi-quadro</li>
+<li>Il numero di normali sommate <span class="math inline">\(k\)</span> è il <strong>numero di gradi di libertà</strong> della distribuzione</li>
+</ul>
+</div>
+<div id="tabset-6-2">
+<ul>
+<li>Si dice che <span class="math inline">\(x\sim\chi^2_k\)</span> quando la PDF è: <span class="math display">\[
+f(x)=\frac{1}{2^{k/2}\Gamma(k/2)}x^{k/2-1}e^{-y/2}
+\]</span></li>
+<li>Momenti: <span class="math display">\[
+\mu=k,~~~\sigma^2=2k
+\]</span></li>
+</ul>
+</div>
+<div id="tabset-6-3">
+<p>Considerando la somma quadratica di un campione di <span class="math inline">\(k\)</span> elementi <span class="math inline">\(y_i\)</span>, ciascuno proveniente da una distribuzione <span class="math inline">\(\mathcal{N}(\mu, \sigma^2)\)</span>, risulta che: <span class="math display">\[
+\frac{(y_i-\bar y)}{\sigma}\sim \mathcal{N}(0,1)~~\forall i=1,2,\dots,k
+\]</span> e quindi: <span class="math display">\[
+\frac{\mathit{SS}}{\sigma^2}=\frac{\sum_{i=1}^k(y_i-\bar y)^2}{\sigma^2} \sim \mathcal{X}^2_{k-1}
+\]</span></p>
+</div>
+</div>
+</div>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-15-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="distribuzione-t-di-student" class="slide level2">
+<h2>Distribuzione T di Student</h2>
+<div class="columns">
+<div class="column">
+<div class="panel-tabset">
+<ul id="tabset-7" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-7-1">Descrizione</a></li><li><a href="#tabset-7-2">Definizioni</a></li><li><a href="#tabset-7-3">Nota</a></li></ul>
+<div class="tab-content">
+<div id="tabset-7-1">
+<p>Siano due v.a. <span class="math display">\[
+z\sim\mathcal{N}(0,1),~x\sim\mathcal{X}^2_k
+\]</span> allora la loro combinazione <span class="math display">\[
+x=\frac{z}{\sqrt{x/k}}
+\]</span> è distribuita come una T di Student</p>
+</div>
+<div id="tabset-7-2">
+<ul>
+<li><p>Si dice che <span class="math inline">\(x\sim\mathrm{T}_k\)</span> oppure <span class="math inline">\(x\sim\mathcal{T}_k\)</span> quando la PDF è: <span class="math display">\[
+f(x)=\frac{\Gamma\left((k-1)/2\right)}{\sqrt{k\pi}\Gamma(k/2)}\frac{1}{((x^2/k)+1)^{(k+1)/2}}
+\]</span></p></li>
+<li><p>Momenti: <span class="math display">\[
+\mu = 0,~~~ \sigma^2=k/(k-2)
+\]</span></p></li>
+</ul>
+</div>
+<div id="tabset-7-3">
+<p>La T di Student è un caso particolare della <span class="math inline">\(\mathcal{N}(0,1)\)</span>: <span class="math display">\[
+\lim_{k\rightarrow+\infty}t_k=\mathcal{N}(0,1)
+\]</span> La convergenza è <strong>molto rapida</strong>: già per <span class="math inline">\(k&gt;30\)</span> la differenza tra le due funzioni di distribuzione diventa trascurabile</p>
+</div>
+</div>
+</div>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-16-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+
+<aside><div>
+<p>La figura confronta la T di Student con la normale standard (tratteggiata)</p>
+</div></aside></section>
+<section id="distribuzione-f-di-snedecor" class="slide level2">
+<h2>Distribuzione F di Snedecor</h2>
+<div class="columns">
+<div class="column">
+<div class="panel-tabset">
+<ul id="tabset-8" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-8-1">Descrizione</a></li><li><a href="#tabset-8-2">Definizioni</a></li></ul>
+<div class="tab-content">
+<div id="tabset-8-1">
+<p>Siano due v.a. <span class="math display">\[
+x_u\sim\mathcal{X}^2_u,~~~x_v\sim\mathcal{X}^2_v
+\]</span> e si definisce <span class="math inline">\(x\)</span> come: <span class="math display">\[x=\frac{x_u/u}{x_v/v}\]</span> allora <span class="math inline">\(x\)</span> è una v.a. distribuita come una F di Snedecor</p>
+</div>
+<div id="tabset-8-2">
+<ul>
+<li><p>Si dice che <span class="math inline">\(x\sim\mathrm{F}_{u,v}\)</span> oppure <span class="math inline">\(x\sim\mathcal{F}_{u,v}\)</span> quando la PDF è: <span class="math display">\[
+f(x)=\frac{\Gamma\left(\frac{u+v}{2}\right)\left(\frac{u}{v}\right)^{u/2}x^{(u/2)-1}}{\Gamma\left( \frac{u}{2} \right)\Gamma\left( \frac{v}{2} \right) \left(\frac{u}{v}x+1\right)^{(u+v)/2}}
+\]</span></p></li>
+<li><p>Momenti: <span class="math display">\[
+\mu = \frac{v}{v-2},~~~\sigma^2=\frac{2v^2(u+v-2)}{u(v-2)^2(v-4)}
+\]</span></p></li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-17-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="funzioni-di-distribuzione" class="slide level2">
+<h2>Funzioni di distribuzione</h2>
+<div class="columns">
+<div class="column">
+<p>Una distribuzione è descritta da tre funzioni, tra loro correlate:</p>
+<ul>
+<li><strong>funzione di densità di distribuzione</strong>, PDF</li>
+<li><strong>funzione di distribuzione cumulata</strong>, CDF, è l’integrale progressivo della PDF: <span class="math display">\[
+\begin{array}{rcl}
+\mathrm{CDF}^-(x) &amp;=&amp; \int_{-\infty}^x \mathrm{PDF}(x)~\mathrm{d}x \\
+\mathrm{CDF}^+(x) &amp;=&amp; \int^{+\infty}_x \mathrm{PDF}(x)~\mathrm{d}x
+\end{array}
+\]</span></li>
+<li><strong>funzione quantile</strong>, è l’inversa della CDF; è definita solo in <span class="math inline">\([0,1]\)</span></li>
+</ul>
+</div><div class="column">
+<div class="panel-tabset">
+<ul id="tabset-9" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-9-1">PDF</a></li><li><a href="#tabset-9-2">CDF</a></li><li><a href="#tabset-9-3">Quantile</a></li></ul>
+<div class="tab-content">
+<div id="tabset-9-1">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-18-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-9-2">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-19-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-9-3">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-20-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section></section>
+<section>
+<section id="qualche-domanda-1" class="title-slide slide level1 center">
+<h1>Qualche domanda</h1>
+
+</section>
+<section id="gioco-del-lotto" class="slide level2 quiz-question">
+<h2>Gioco del lotto</h2>
+<p>Nel gioco del lotto, la probabilità di vincere giocando sempre gli stessi numeri:</p>
+<ul>
+<li>Aumenta ad ogni estrazione, come predetto dalla distribuzione <span class="math inline">\(\mathcal{B}\)</span></li>
+<li>Aumenta ad ogni estrazione, come predetto dalla distribuzione <span class="math inline">\(\mathcal{P}\)</span></li>
+<li>Aumenta ad ogni estrazione, come predetto dalla distribuzione <span class="math inline">\(\mathcal{G}\)</span></li>
+<li><span class="correct">È costante ad ogni estrazione</span></li>
+</ul>
+</section>
+<section id="pdf-e-cdf" class="slide level2 quiz-question">
+<h2>PDF e CDF</h2>
+<p>Quali di queste affermazioni sono corrette:</p>
+<ul>
+<li><span class="correct">Qualsiasi CDF è monotona crescente</span></li>
+<li><span class="correct">Esistono distribuzioni con PDF definita solo per valori positivi</span></li>
+<li>Per ogni CDF possono esistere più di una PDF che la generano</li>
+<li><span class="math inline">\(\mathrm{PDF}(-x) = -\mathrm{PDF}(x)\)</span></li>
+<li><span class="math inline">\(\mathrm{CDF}^+(x) = \mathrm{CDF}^-(-x)\)</span></li>
+<li><span class="correct"><span class="math inline">\(\mathrm{CDF}^+(x) = 1- \mathrm{CDF}^-(x)\)</span></span></li>
+<li>Una funzione quantile può avere un dominio illimitato a destra o sinistra</li>
+</ul>
+</section></section>
+<section>
+<section id="statistica-inferenziale" class="title-slide slide level1 center">
+<h1>Statistica inferenziale</h1>
+<p>Studia le operazioni di <strong>inferenza</strong>, cioè ricavare informazioni sulla popolazione a partire da un suo campione</p>
+</section>
+<section id="ipotesi-statistiche" class="slide level2">
+<h2>Ipotesi statistiche</h2>
+<ul>
+<li>Si è visto che media e varianza campionaria sono due <strong>stimatori</strong> e rappresentano delle <strong>variabili aleatorie</strong></li>
+<li>Quindi prelevando due campioni da una popolazione le due <strong>stime</strong> di media e varianza saranno sempre differenti</li>
+<li>Come faccio a sapere se due campioni con media diversa provengono dalla stessa popolazione?</li>
+<li>Posso formulare una <strong>coppia di ipotesi alternative</strong>: <span class="math display">\[
+\begin{eqnarray}
+H_0:~&amp;\mu_1 = \mu_2 \\
+H_1:~&amp;\mu_1 \neq \mu_2 \\
+\end{eqnarray}
+\]</span></li>
+</ul>
+
+<aside><div>
+<p><span class="math inline">\(H_0\)</span> è detta <strong>ipotesi nulla</strong>, o debole; <span class="math inline">\(H_1\)</span> è detta <strong>ipotesi alternativa</strong>, o forte</p>
+</div></aside></section>
+<section id="matrice-di-confusione" class="slide level2">
+<h2>Matrice di confusione</h2>
+<div class="columns">
+<div class="column">
+<p>Un <strong>test di ipotesi</strong> può avere due tipi di errore:</p>
+<ul>
+<li>Errore di tipo I: falso positivo, o falso allarme</li>
+<li>Errore di tipo II: falso negativo, o mancato allarme</li>
+</ul>
+<p>Lo scopo della statistica inferenziale è associare una probabilità a questi errori</p>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Ipotesi nulla</th>
+<th style="text-align: left;">vera</th>
+<th style="text-align: left;">falsa</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">accettata</td>
+<td style="text-align: left;">OK</td>
+<td style="text-align: left;">Errore tipo II</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rifiutata</td>
+<td style="text-align: left;">Errore tipo I</td>
+<td style="text-align: left;">OK</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+<p>La probabilità di un Errore di tipo I è <span class="math inline">\(\alpha\)</span>, la probabilità di un Errore di tipo II è <span class="math inline">\(\beta\)</span>.</p>
+<p>Il valore <span class="math inline">\(1-\beta\)</span> è la <strong>potenza</strong> <span class="math inline">\(P\)</span> del test</p>
+
+<aside><div>
+<p><strong>Nota</strong>: <span class="math inline">\(\alpha \neq 1-\beta\)</span></p>
+</div></aside></section>
+<section id="test-di-student" class="slide level2">
+<h2>Test di Student</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/Gosset.jpg" width="200"></p>
+<figcaption>William S. Gosset</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:70%;">
+<ul>
+<li><strong>William S. Gosset</strong>, detto <em>Student</em>, mastro birraio Guinness a Dublino, ~1900</li>
+<li><strong>Problema</strong>: come capire se due medie diverse su campioni di processo indicano due diversi processi?</li>
+<li>Siano i due campioni <strong>normali e indipendenti</strong> <span class="math inline">\(y_{1,i},~i=1, 2, \dots, n_1\)</span> e <span class="math inline">\(y_{2,i},~i=1, 2, \dots, n_2\)</span>, sarà ovviamente <span class="math inline">\(\bar{y_1}\neq\bar{y_2}\)</span>, quindi come faccio a capire se vale <span class="math inline">\(H_0\)</span> o <span class="math inline">\(H_1\)</span>?</li>
+</ul>
+</div></div>
+<p>Ovviamente la risposta è <strong>probabilistica</strong>: posso solo associare una probabilità d’errore <span class="math inline">\(\alpha\)</span> al test di ipotesi <span class="math display">\[
+\begin{eqnarray}
+H_0:~&amp;\mu_1 = \mu_2 \\
+H_1:~&amp;\mu_1 \neq \mu_2 \\
+\end{eqnarray}
+\]</span></p>
+</section>
+<section id="test-di-student-1" class="slide level2">
+<h2>Test di Student</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>I campioni C1 e C3 non avranno valori comuni: è molto probabile che vengano da popolazioni differenti</li>
+<li>I campioni C1 e C2 invece sono più difficili da distinguere</li>
+<li>Intuitivamente, <span class="math inline">\(H_1\)</span> è tanto più probabile quanto più le medie sono distanti e le varianze strette</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-22-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+
+<aside><div>
+<p>Nel grafico, i <strong>trattini verticali in basso</strong> rappresentano i valori di 10 campioni casuali estratti dalle rispettive popolazioni</p>
+</div></aside></section>
+<section id="test-di-student-2" class="slide level2">
+<h2>Test di Student</h2>
+<p>Per i due campioni <span class="math inline">\(y_{1,i}\)</span> e <span class="math inline">\(y_{2,i}\)</span> è possibile definire la variabile: <span class="math display">\[
+t_0 = \frac{\bar{y_2} - \bar{y_1}}{S_p\sqrt{\frac{1}{n_1} + \frac{1}{n_s} }}
+\]</span> dove <span class="math inline">\(S_p^2\)</span> è chiamata <strong>varianza comune</strong> (<em>pooled variance</em>) e vale: <span class="math display">\[
+S_p^2 = \frac{(n_1-1)S_1^2 + (n_2-1)S_2^2}{n_1+n_2-2}
+\]</span> La <span class="math inline">\(t_0\)</span> è il rapporto tra una v.a. normale al numeratore e una v.a. <span class="math inline">\(\chi^2\)</span> al denominatore. Di conseguenza è essa stessa una v.a. ed è definita come una T di Student.</p>
+<ul>
+<li><p>Il <strong>numero di gradi di libertà</strong> è lo stesso della <span class="math inline">\(\chi^2\)</span> ed è <span class="math inline">\(n_1+n_2-2\)</span></p></li>
+<li><p><span class="math inline">\(t_0\)</span> è detta <strong>statistica di test</strong> e vale che <span class="math inline">\(t_0\sim t_{n_1+n_2-2}\)</span></p></li>
+</ul>
+</section>
+<section id="test-di-student-3" class="slide level2">
+<h2>Test di Student</h2>
+<ul>
+<li><p>È evidente che casi come <strong>C1 vs.&nbsp;C3</strong> nel grafico precedente avranno un valore di <span class="math inline">\(|t_0|\)</span> più alto che casi come <strong>C1 vs.&nbsp;C2</strong> (rapporto tra distanza e varianza)</p></li>
+<li><p>Ma data una coppia di campioni provenienti dalla stessa popolazione la probabilità di valori elevati di <span class="math inline">\(|t_0|\)</span> è molto bassa</p></li>
+<li><p>Dato che conosciamo la <strong>distribuzione</strong> di <span class="math inline">\(t_0\)</span> possiamo quindi calcolare la probabilità di riscontrare un dato valore <strong>assumendo che valga <span class="math inline">\(H_1\)</span></strong></p></li>
+<li><p>In altre parole, la probabilità di rifiutare <span class="math inline">\(H_0\)</span> quando essa è vera è pari alla probabilità di riscontrare un valore pari o superiore a <span class="math inline">\(t_0\)</span> nella distribuzione di Student</p></li>
+<li><p>In realtà, il segno di <span class="math inline">\(t_0\)</span> è arbitrario, quindi bisogna verificare la probabilità di riscontrare un valore <strong>esterno all’intervallo <span class="math inline">\([-|t_0|, |t_0|]\)</span></strong></p></li>
+</ul>
+</section>
+<section id="test-di-student-4" class="slide level2">
+<h2>Test di Student</h2>
+<p>In definitiva, la probabilità di un errore di tipo I nel test di Student risulta: <span class="math display">\[
+p\mathrm{-value} = 2\mathrm{CDF}^+_t(|t_0|,n_1+n_2-2)
+\]</span> dove <span class="math inline">\(\mathrm{CDF}^{+}_{t}\)</span> è la <strong>distribuzione cumulata, coda alta</strong>, di una T di Student con <span class="math inline">\(n_1+n_2-2\)</span> g.d.l, e dove il fattore 2 tiene in considerazione l’ultimo punto della pagina precedente</p>
+<p>La probabilità d’errore di un qualunque test statistico è chiamata <strong><em>p</em>-value</strong></p>
+<ul>
+<li>Più piccolo è il <em>p</em>-value, più siamo spinti a rifiutare <span class="math inline">\(H_0\)</span></li>
+<li>Tipicamente, si tende a rifiutare <span class="math inline">\(H_0\)</span> quando il <em>p</em>-value diventa minore del 5%</li>
+</ul>
+</section>
+<section id="test-di-student-5" class="slide level2">
+<h2>Test di Student</h2>
+<p>Spesso nei test statistici si accetta o rifiuta <span class="math inline">\(H_0\)</span> sulla base di una soglia di probabilità d’errore di tipo I, indicata con <span class="math inline">\(\alpha\)</span></p>
+<ol type="1">
+<li>Si fissa un <span class="math inline">\(\alpha\)</span> a priori in funzione del <strong>rischio associato</strong> al test</li>
+<li>Si calcola il valore di <span class="math inline">\(t_{0,\mathrm{max}}\)</span> che corrisponde a <span class="math inline">\(\alpha\)</span></li>
+<li>Se risulta <span class="math inline">\(|t_0| \geq t_{0,\mathrm{max}}\)</span> <strong>si rifiuta <span class="math inline">\(H_0\)</span></strong> con una probabilità d’errore <strong>minore di <span class="math inline">\(\alpha\)</span></strong></li>
+</ol>
+<p>Il valore di soglia si calcola mediante la <strong>funzione quantile</strong> e si rifiuta <span class="math inline">\(H_0\)</span> quando: <span class="math display">\[
+|t_0| \geq t_{0,\mathrm{max}} = t_{\alpha/2, n_1+n_2-2}
+\]</span> dove <span class="math inline">\(t_{\alpha/2, n_1+n_2-2}\)</span> è appunto la funzione quantile, coda alta, della T di Student valutata per la probabilità <span class="math inline">\(\alpha/2\)</span> e per <span class="math inline">\(n_1+n_2-2\)</span> g.d.l.</p>
+</section>
+<section id="test-di-student-6" class="slide level2">
+<h2>Test di Student</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-23-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:40%;">
+<p>Note:</p>
+<ul>
+<li>L’ordinata della <span class="math inline">\(\mathrm{CDF}^+\)</span> in <span class="math inline">\(t_0\)</span> è uguale all’area sottesa dalla <span class="math inline">\(\mathrm{PDF}\)</span> in <span class="math inline">\([t_0, +\infty)\)</span> (in grigio)</li>
+<li>Il segno del numeratore in <span class="math inline">\(t_0\)</span> è arbitrario, quindi <span class="math inline">\(\mathrm{CDF}^+(t_0)\)</span> è la metà della probabilità d’errore di tipo I complessiva, cioè <span class="math inline">\(\alpha/2\)</span></li>
+</ul>
+</div></div>
+</section>
+<section id="tabella-dei-quantili" class="slide level2">
+<h2>Tabella dei quantili</h2>
+<p>In assenza dei calcolatori, il Test di Student veniva effettuato predeterminando <span class="math inline">\(\alpha\)</span> e decidendo se rifiutare <span class="math inline">\(H_0\)</span> sulla base della <strong>tabella dei quantili</strong>:</p>
+<div class="columns" style="font-size: 66%; margin-top: 50px; margin-bottom: 50px;">
+<div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: right;">dof</th>
+<th style="text-align: right;">0.1</th>
+<th style="text-align: right;">0.05</th>
+<th style="text-align: right;">0.025</th>
+<th style="text-align: right;">0.01</th>
+<th style="text-align: right;">0.005</th>
+<th style="text-align: right;">0.0025</th>
+<th style="text-align: right;">0.001</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3.078</td>
+<td style="text-align: right;">6.314</td>
+<td style="text-align: right;">12.706</td>
+<td style="text-align: right;">31.821</td>
+<td style="text-align: right;">63.657</td>
+<td style="text-align: right;">127.321</td>
+<td style="text-align: right;">318.309</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1.886</td>
+<td style="text-align: right;">2.920</td>
+<td style="text-align: right;">4.303</td>
+<td style="text-align: right;">6.965</td>
+<td style="text-align: right;">9.925</td>
+<td style="text-align: right;">14.089</td>
+<td style="text-align: right;">22.327</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1.638</td>
+<td style="text-align: right;">2.353</td>
+<td style="text-align: right;">3.182</td>
+<td style="text-align: right;">4.541</td>
+<td style="text-align: right;">5.841</td>
+<td style="text-align: right;">7.453</td>
+<td style="text-align: right;">10.215</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1.533</td>
+<td style="text-align: right;">2.132</td>
+<td style="text-align: right;">2.776</td>
+<td style="text-align: right;">3.747</td>
+<td style="text-align: right;">4.604</td>
+<td style="text-align: right;">5.598</td>
+<td style="text-align: right;">7.173</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">1.476</td>
+<td style="text-align: right;">2.015</td>
+<td style="text-align: right;">2.571</td>
+<td style="text-align: right;">3.365</td>
+<td style="text-align: right;">4.032</td>
+<td style="text-align: right;">4.773</td>
+<td style="text-align: right;">5.893</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1.440</td>
+<td style="text-align: right;">1.943</td>
+<td style="text-align: right;">2.447</td>
+<td style="text-align: right;">3.143</td>
+<td style="text-align: right;">3.707</td>
+<td style="text-align: right;">4.317</td>
+<td style="text-align: right;">5.208</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">1.415</td>
+<td style="text-align: right;">1.895</td>
+<td style="text-align: right;">2.365</td>
+<td style="text-align: right;">2.998</td>
+<td style="text-align: right;">3.499</td>
+<td style="text-align: right;">4.029</td>
+<td style="text-align: right;">4.785</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">1.397</td>
+<td style="text-align: right;">1.860</td>
+<td style="text-align: right;">2.306</td>
+<td style="text-align: right;">2.896</td>
+<td style="text-align: right;">3.355</td>
+<td style="text-align: right;">3.833</td>
+<td style="text-align: right;">4.501</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">1.383</td>
+<td style="text-align: right;">1.833</td>
+<td style="text-align: right;">2.262</td>
+<td style="text-align: right;">2.821</td>
+<td style="text-align: right;">3.250</td>
+<td style="text-align: right;">3.690</td>
+<td style="text-align: right;">4.297</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">1.372</td>
+<td style="text-align: right;">1.812</td>
+<td style="text-align: right;">2.228</td>
+<td style="text-align: right;">2.764</td>
+<td style="text-align: right;">3.169</td>
+<td style="text-align: right;">3.581</td>
+<td style="text-align: right;">4.144</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: right;">dof</th>
+<th style="text-align: right;">0.1</th>
+<th style="text-align: right;">0.05</th>
+<th style="text-align: right;">0.025</th>
+<th style="text-align: right;">0.01</th>
+<th style="text-align: right;">0.005</th>
+<th style="text-align: right;">0.0025</th>
+<th style="text-align: right;">0.001</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">1.363</td>
+<td style="text-align: right;">1.796</td>
+<td style="text-align: right;">2.201</td>
+<td style="text-align: right;">2.718</td>
+<td style="text-align: right;">3.106</td>
+<td style="text-align: right;">3.497</td>
+<td style="text-align: right;">4.025</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">1.356</td>
+<td style="text-align: right;">1.782</td>
+<td style="text-align: right;">2.179</td>
+<td style="text-align: right;">2.681</td>
+<td style="text-align: right;">3.055</td>
+<td style="text-align: right;">3.428</td>
+<td style="text-align: right;">3.930</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">1.350</td>
+<td style="text-align: right;">1.771</td>
+<td style="text-align: right;">2.160</td>
+<td style="text-align: right;">2.650</td>
+<td style="text-align: right;">3.012</td>
+<td style="text-align: right;">3.372</td>
+<td style="text-align: right;">3.852</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">1.345</td>
+<td style="text-align: right;">1.761</td>
+<td style="text-align: right;">2.145</td>
+<td style="text-align: right;">2.624</td>
+<td style="text-align: right;">2.977</td>
+<td style="text-align: right;">3.326</td>
+<td style="text-align: right;">3.787</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">1.341</td>
+<td style="text-align: right;">1.753</td>
+<td style="text-align: right;">2.131</td>
+<td style="text-align: right;">2.602</td>
+<td style="text-align: right;">2.947</td>
+<td style="text-align: right;">3.286</td>
+<td style="text-align: right;">3.733</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">1.337</td>
+<td style="text-align: right;">1.746</td>
+<td style="text-align: right;">2.120</td>
+<td style="text-align: right;">2.583</td>
+<td style="text-align: right;">2.921</td>
+<td style="text-align: right;">3.252</td>
+<td style="text-align: right;">3.686</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">1.333</td>
+<td style="text-align: right;">1.740</td>
+<td style="text-align: right;">2.110</td>
+<td style="text-align: right;">2.567</td>
+<td style="text-align: right;">2.898</td>
+<td style="text-align: right;">3.222</td>
+<td style="text-align: right;">3.646</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">1.330</td>
+<td style="text-align: right;">1.734</td>
+<td style="text-align: right;">2.101</td>
+<td style="text-align: right;">2.552</td>
+<td style="text-align: right;">2.878</td>
+<td style="text-align: right;">3.197</td>
+<td style="text-align: right;">3.610</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">1.328</td>
+<td style="text-align: right;">1.729</td>
+<td style="text-align: right;">2.093</td>
+<td style="text-align: right;">2.539</td>
+<td style="text-align: right;">2.861</td>
+<td style="text-align: right;">3.174</td>
+<td style="text-align: right;">3.579</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">1.325</td>
+<td style="text-align: right;">1.725</td>
+<td style="text-align: right;">2.086</td>
+<td style="text-align: right;">2.528</td>
+<td style="text-align: right;">2.845</td>
+<td style="text-align: right;">3.153</td>
+<td style="text-align: right;">3.552</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+<p>Ad esempio, per un campione con 8 g.d.l. e <span class="math inline">\(\alpha=0.1\)</span> risulta un valore critico di <span class="math inline">\(t_0=1.86\)</span>: ogni valore di <span class="math inline">\(t_0\)</span> calcolato superiore a tale valore (in modulo) comporta il rifiuto di <span class="math inline">\(H_0\)</span> con una probabilità d’errore inferiore al 10%</p>
+</section>
+<section id="varianti-del-test-di-student" class="slide level2">
+<h2>Varianti del test di Student</h2>
+<p>Il test di Student sopra visto vale per il caso più generico. Esistono varianti del test per le seguenti condizioni, che possono combinarsi per dare luogo a 4 diversi test:</p>
+<ul>
+<li>test a uno o due campioni</li>
+<li>test a uno o due lati (in <span class="math inline">\(H_1\)</span> la disuguaglianza è sostituita con un <span class="math inline">\(&gt;\)</span> o un <span class="math inline">\(&lt;\)</span>)</li>
+</ul>
+<p>Inoltre, nel caso di test a due campioni è possibile assumere che i campioni siano <strong>omoschedastici</strong> oppure no</p>
+
+<aside><div>
+<p>Due campioni sono detti <strong>omoschedastici</strong> quando provengono da popolazioni con <strong>identica varianza</strong></p>
+</div></aside></section>
+<section id="varianti-del-test-di-student-1" class="slide level2">
+<h2>Varianti del test di Student</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>Test a un campione:</li>
+</ul>
+<p><span class="math display">\[
+\begin{eqnarray}
+H_0:~&amp; \mu = \mu_0 \\
+H_1:~&amp; \mu \neq \mu_0
+\end{eqnarray}
+\]</span></p>
+<p><span class="math display">\[
+t_0 = \frac{\mu_0 - \bar y}{S/\sqrt{n}}
+\]</span></p>
+</div><div class="column">
+<ul>
+<li>Test a un lato:</li>
+</ul>
+<p><span class="math display">\[
+\begin{eqnarray}
+H_0:~&amp; \mu_1 = \mu_2 \\
+H_1:~&amp; \mu_1 \gtrless \mu_2
+\end{eqnarray}
+\]</span></p>
+<p><span class="math display">\[
+\begin{eqnarray}
+t_0 &amp;\gtrless&amp; \pm t_{\alpha, k} \\
+p\textrm{-value} &amp;=&amp; CDF_t^{\pm}(t_0, k)
+\end{eqnarray}
+\]</span></p>
+</div></div>
+<p><strong>Nota</strong>: il test a un lato, a pari valore di <span class="math inline">\(t_0\)</span>, ha una soglia di rifiuto di <span class="math inline">\(H_0\)</span> più bassa, ed è quindi <strong>più potente</strong></p>
+</section>
+<section id="omoschedasticità" class="slide level2">
+<h2>Omoschedasticità</h2>
+<p>Il test a due campioni sopra visto assume che i due campioni siano <strong>omoschedastici</strong>. Se non lo sono, è necessario rivedere la definizione di <span class="math inline">\(t_0\)</span> come segue (<strong>Test di Welch</strong>): <span class="math display">\[
+t_0 = \frac{\bar{y_1} - \bar{y_2}}{\sqrt{S_1^2/n_1 + S_2^2/n_2}};~~~\nu=\frac{(S_1^2/n_1 + S_2^2/n_2)^2}{\frac{(S_1^2/n_1)^2}{n_1-1}+\frac{(S_2^2/n_2)^2}{n_2-1}}
+\]</span> L’ipotesi di omoschedasticità va preliminarmente verificata con un <strong>test della varianza</strong>: <span class="math display">\[
+\begin{eqnarray}
+H_0 :~&amp; \sigma^2_1 = \sigma^2_2 \\
+H_1 :~&amp; \sigma^2_1 \neq \sigma^2_2
+\end{eqnarray},~~~F_0=\frac{S^2_1}{S^2_2}\sim\mathcal{F}_{n_1-1, n_2-1}
+\]</span> Cioè se il <em>p</em>-value associato a <span class="math inline">\(F_0\)</span> è piccolo, si assume che i campioni non siano omoschedastici e quindi si effettua il test di Welch; altrimenti vale il test di Student</p>
+</section>
+<section id="il-test-di-student-accoppiato" class="slide level2">
+<h2>Il test di Student accoppiato</h2>
+<p>Nel caso di test di Student a due campioni, quando essi <strong>hanno la stessa dimensione e sono raccolti due a due in condizioni molto simili</strong>, è opportuno accoppiarli e effettuare il test di Student accoppiato</p>
+<p>Ogni misura è esprimibile come: <span class="math display">\[
+y_{ij}=\mu_i+\beta_j+\varepsilon_{ij};\hspace{9pt} \left\{ \begin{array}{l}i=1,2\\j=1,2,\dots ,n\end{array} \right.
+\]</span> Se definisco <span class="math inline">\(d_j=y_{1j} - y_{2j}\)</span>, ricordando le proprietà dell’operatore <span class="math inline">\(E(\cdot)\)</span>, risulta <span class="math inline">\(\mu_d = \mu_1 - \mu_2\)</span>. Quindi posso riformulare una coppia di ipotesi equivalenti: <span class="math display">\[
+\begin{eqnarray}
+H_0 :~&amp; \mu_d = 0 \\
+H_1 :~&amp; \mu_d \neq 0
+\end{eqnarray}
+\]</span> Quindi il test accoppiato è un test a un campione, con il vantaggio che <strong>gli effetti casuali tra coppie di osservazioni non influiscono sul risultato del test</strong></p>
+</section>
+<section id="lintervallo-di-confidenza" class="slide level2">
+<h2>L’intervallo di confidenza</h2>
+<p>Dato parametro ignoto <span class="math inline">\(\vartheta\)</span>, vogliamo definire due statistiche <span class="math inline">\(\color{darkred}{L}\)</span> e <span class="math inline">\(\color{green}{U}\)</span>, tali per cui la probabilità: <span class="math inline">\(P(\color{darkred}L\color{darkblue}\leq\vartheta\leq \color{green}U\color{darkblue})= 1-\alpha\)</span>. In questo caso l’intervallo <span class="math inline">\([L,U]\)</span> è detto <strong>intervallo di confidenza</strong> per il parametro <span class="math inline">\(\vartheta\)</span>.</p>
+<p>Consideriamo un T-test ad un campione. Sappiamo che: <span class="math display">\[
+t_0=\frac{\bar x - \mu}{S/\sqrt{n}}\sim t_{n-1}
+\]</span> Se <span class="math inline">\(c\)</span> è <span class="math inline">\(t_{\alpha/2, n-1}\)</span>, allora, per definizione: <span class="math inline">\(P(-c\leq t_0\leq c) = 1-\alpha\)</span></p>
+<p>Sostituendo <span class="math inline">\(t_0\)</span> otteniamo: <span class="math display">\[
+P(\color{darkred}{\bar x - cS/\sqrt{n}}\color{darkblue} \leq \mu \leq \color{green}\bar x + cS/\sqrt{n}\color{darkblue}) = 1-\alpha
+\]</span></p>
+</section>
+<section id="intervallo-di-confidenza" class="slide level2">
+<h2>Intervallo di confidenza</h2>
+<p>In pratica, significa che il valore atteso della popolazione (che è ignoto!) ha la probabilità <span class="math inline">\(1-\alpha\)</span> di ricadere nell’<strong>intervallo <span class="math inline">\([\bar x - cS/\sqrt{n}, \bar x + cS/\sqrt{n}]\)</span>, detto di confidenza</strong></p>
+<p>Se il <span class="math inline">\(\mu_0\)</span> del corrispondente test sta al di fuori dell’intervallo di confidenza, allora possiamo rifiutare <span class="math inline">\(H_0\)</span> con un errore inferiore a <span class="math inline">\(\alpha\)</span>.</p>
+<p>Per un <strong>test a due campioni</strong> risulta: <span class="math display">\[
+P\left( -t_{\alpha/2,n_1+n_2-2}\leqslant\frac{(\bar y_1-\bar y_2)-(\mu_1-\mu_2)}{S_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}\leqslant t_{\alpha/2,n_1+n_2-2} \right)=1-\alpha
+\]</span> Quindi l’intervallo di confidenza <span class="math inline">\([L,U]\)</span> è definito da: <span class="math display">\[
+\left[(\bar y_1-\bar y_2)-t_{\alpha/2,n_1+n_2-2}S_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}},~
+(\bar y_1-\bar y_2)+t_{\alpha/2,n_1+n_2-2}S_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}~\right]
+\]</span></p>
+</section>
+<section id="potenza-del-test-di-student" class="slide level2">
+<h2>Potenza del test di Student</h2>
+<p>La <strong>potenza</strong> di un test statistico è la probabilità di rifiutare l’ipotesi nulla quando essa è falsa, cioè <span class="math inline">\(1-\beta\)</span>. È l’<strong>affidabilità</strong> del test. Essa dipende ovviamente dalla dimensione dei campioni. È possibile calcolare le <strong>curve di potenza</strong> per diverse dimensioni dei campioni e per diverse dimensioni di dello <strong>scarto relativo</strong> <span class="math inline">\(\delta =(\mu_1 - \mu_2) / \sigma\)</span>.</p>
+<div class="columns">
+<div class="column" style="width:66%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-26-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:34%;">
+<ul>
+<li>La potenza del test diminuisce con la differenza tra le medie</li>
+<li>La potenza del test aumenta con la dimensione dei campioni</li>
+<li>La potenza del test aumenta con <span class="math inline">\(\alpha\)</span></li>
+<li>Con <span class="math inline">\(\alpha=0.05\)</span> e <span class="math inline">\(n=10\)</span>, la potenza del test è <span class="math inline">\(\geq0.9\)</span> per <span class="math inline">\(\delta\geq1.5\)</span></li>
+</ul>
+</div></div>
+</section></section>
+<section>
+<section id="qualche-domanda-2" class="title-slide slide level1 center">
+<h1>Qualche domanda</h1>
+
+</section>
+<section id="test-di-student-7" class="slide level2 quiz-question">
+<h2>Test di Student</h2>
+<p>Ho due campioni di dati, uno con <span class="math inline">\(n_1=10\)</span>, <span class="math inline">\(\mu_1 = 13.59213\)</span>, <span class="math inline">\(\sigma_1=4.33921\)</span> e l’altro con <span class="math inline">\(n_2=10\)</span>, <span class="math inline">\(\mu_2 = 10.30381\)</span>, <span class="math inline">\(\sigma_2=2.24028\)</span>. Voglio confrontare le medie dei due campioni con un test di Student, assumendo <span class="math inline">\(\alpha=0.05\)</span>:</p>
+<ul>
+<li><span class="correct"><span class="math inline">\(\mu_1\neq\mu_2\)</span>, con un <span class="math inline">\(p\)</span>-value pari a 0.0473</span></li>
+<li><span data-explanation="il p-value è maggiore della soglia di accettazione"><span class="math inline">\(\mu_1 = \mu_2\)</span>, con un <span class="math inline">\(p\)</span>-value pari a 0.0522</span></li>
+<li><span data-explanation="Hai sparato... e poi 0.06 > 0.05!"><span class="math inline">\(\mu_1\neq \mu_2\)</span>, con un <span class="math inline">\(p\)</span>-value pari a 0.0623</span></li>
+<li><span data-explanation="Hai sparato, ammettilo!"><span class="math inline">\(\mu_1 = \mu_2\)</span>, con un <span class="math inline">\(p\)</span>-value pari a 1.39E-4</span></li>
+<li><span data-explanation="Non proprio"><span class="math inline">\(\mu_1\neq \mu_2\)</span>, con un <span class="math inline">\(p\)</span>-value pari a 0.0487</span></li>
+</ul>
+</section>
+<section id="calcolatrice" class="slide level2">
+<h2>Calcolatrice</h2>
+<p>Usare il riquadro sottostante per risolvere l’esercizio precedente (provare anche con la <a href="#/tabella-dei-quantili">tabella dei quantili</a>)</p>
+<p><strong>Nota</strong>: la radice quadrata si ottiene con <code>sqrt(x)</code>, l’elevamento a potenza con <code>x^y</code>.</p>
+<div class="cell">
+<div>
+<div id="webr-1">
+
+</div>
+<script type="webr-1-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibjE9MTBcbm4yPTEwXG5tMT0xMy41OTIxM1xubTI9MTAuMzAzODFcbnMxPTQuMzM5MjFcbnMyPTIuMjQwMjdcbiMgY2FsY29sbyBwcm9iYWJpbGl0w6AgZGFsbGEgVCBkaSBTdHVkZW50OlxucHQoMS4zOCwgZGY9bjEsIGxvd2VyLnRhaWw9RilcbiMgY2FsY29sbyBwcm9iYWJpbGl0w6AgZGFsbGEgRjpcbnBmKDIsIG4xLCBuMiwgbG93ZXIudGFpbD1GKSJ9
+</script>
+</div>
+</div>
+</section>
+<section id="anomalie" class="slide level2">
+<h2>Anomalie</h2>
+<p>La raccolta dei dati relativi ad un campione può essere <strong>affetta da errori</strong>:</p>
+<ul>
+<li>nell’operazione di misura</li>
+<li>nell’operazione di trascrittura del dato</li>
+</ul>
+<p>Questi errori ovviamente hanno un’elevata probabilità di <strong>non concordare con il resto dei dati</strong>, cioè di essere troppo lontani dalla media in rapporto alla varianza tipica del processo.</p>
+<p>Questi errori sono chiamati <strong>anomalie</strong> ed è buona norma identificarli ed eliminarli <strong>immediatamente dopo aver concluso la raccolta dei dati</strong></p>
+
+<aside><div>
+<p>In Inglese le anomalie sono note come <em>outlier</em></p>
+</div></aside></section>
+<section id="anomalie-metodo-grafico" class="slide level2">
+<h2>Anomalie: metodo grafico</h2>
+<p>Il più comune metodo grafico per individuare le anomalie è il <strong><em>box-plot</em></strong></p>
+<div class="columns">
+<div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-29-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column">
+<ul>
+<li>il box va dal primo al terzo quartile (metà dei dati)</li>
+<li>la linea nel box è la mediana</li>
+<li>i baffi vanno dal minimo al punto più lontano ma non oltre 1.5 volte l’interquartile</li>
+<li>i punti oltre i baffi sono <strong>possibili anomalie</strong></li>
+</ul>
+</div></div>
+</section>
+<section id="anomalie-test-statistici" class="slide level2">
+<h2>Anomalie: test statistici</h2>
+<div class="panel-tabset">
+<ul id="tabset-10" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-10-1">Criterio di Chauvenet</a></li><li><a href="#tabset-10-2">Test di Grubb</a></li></ul>
+<div class="tab-content">
+<div id="tabset-10-1">
+<p>Non è un vero test ma un criterio in base al quale eliminare il punto più lontano dalla media (<strong>uno solo!</strong>)</p>
+<p>Dati <span class="math inline">\(\left&lt;x_1, x_2,\dots,x_n\right&gt;\)</span> con <strong>distribuzione normale</strong>, si calcola la massima differenza assoluta <span class="math inline">\(s_0=\underset{i=1,\dots,n}{\max}\left(\frac{|x_i - \bar x|}{S_x}\right)\)</span></p>
+<p>Per via della normalità degli <span class="math inline">\(x_i\)</span> è evidente che <span class="math inline">\(|x_i-\bar x|/S_x\sim\mathcal{N}(0,1)\)</span>. Possiamo quindi calcolare la probabilità di un valore maggiore o uguale a <span class="math inline">\(s_0\)</span> dalla funzione di ripartizione, coda superiore: <span class="math display">\[
+P_s=\mathrm{CDF}_{\mathcal{N}}^+(s_0)
+\]</span> Su <span class="math inline">\(n\)</span> osservazioni normali ci aspettiamo <span class="math inline">\(nP_s\)</span> valori più grandi di <span class="math inline">\(s_0\)</span>. Quindi, se risulta <span class="math inline">\(nP_s &lt; 0.5\)</span>, mentre noi abbiamo <strong>un</strong> punto sospetto, allora possiamo scartare l’anomalia</p>
+</div>
+<div id="tabset-10-2">
+<p>Il test di Grubb è un vero e proprio <strong>test statistico</strong>, basato su una coppia di ipotesi (<span class="math inline">\(H_1\)</span> porta allo scarto della sospetta anomalia), su una statistica di test e sul calcolo di un <strong><em>p</em>-value</strong>.</p>
+<p>In breve: <span class="math display">\[
+\begin{eqnarray}
+G_0 &amp;=&amp; \frac{\underset{i=1,\dots,n}{\max}|y_i-\bar y|}{S_x}\\
+G_0 &amp;&gt;&amp; \frac{n-1}{n}\sqrt{\frac{t^2_{\alpha/(2n),n-2}}{n-2+t^2_{\alpha/(2n),n-2}}} \Rightarrow \neg H_0
+\end{eqnarray}
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="analisi-di-normalità" class="slide level2">
+<h2>Analisi di normalità</h2>
+<p>I test visti fin qui assumono sempre che i campioni su cui si opera <strong>derivino da una distribuzione normale</strong>, per quanto a parametri incogniti</p>
+<p><strong>Prima di effettuare un qualsiasi test</strong>, quindi, è necessario verificare l’ipotesi di normalità</p>
+<p>Come per l’analisi delle anomalie, anche in questo caso è possibile utilizzare sia metodi grafici che test statistici</p>
+<p>In generale, i test statistici sono sempre preferibili, perché</p>
+<ul>
+<li>sono meno soggetti a interpretazione personale</li>
+<li>consentono l’<strong>automazione</strong> della scelta all’interno di <strong>algoritmi</strong></li>
+</ul>
+</section>
+<section id="analisi-di-normalità-istogramma" class="slide level2">
+<h2>Analisi di normalità: istogramma</h2>
+<div>
+
+</div>
+<div class="cell quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-30-1.png" width="1500"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-30-2.png" width="1500"></p>
+</div>
+</div>
+</div>
+<p>Per il numero di canne, o <em>bin</em>, si usa la <strong>formula di Sturges</strong>: <span class="math inline">\(K = \lceil\log_2 n \rceil + 1\)</span> o la <strong>formula di Scott</strong>: <span class="math inline">\(h=3.49 s / \sqrt[3]{n}\)</span> (<span class="math inline">\(h\)</span> è l’ampiezza della canna)</p>
+</section>
+<section id="sturges-e-scott" class="slide level2">
+<h2>Sturges e Scott</h2>
+
+<img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-31-1.png" width="1500" class="r-stretch"></section>
+<section id="analisi-di-normalità-grafico-quantile-quantile" class="slide level2">
+<h2>Analisi di normalità: grafico quantile-quantile</h2>
+<div class="columns">
+<div class="column">
+<p>Tabella campionaria:</p>
+<div style="font-size: 70%">
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: right;">i</th>
+<th style="text-align: right;">x</th>
+<th style="text-align: right;">f</th>
+<th style="text-align: right;">q</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">-1.540</td>
+<td style="text-align: right;">0.061</td>
+<td style="text-align: right;">-1.547</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">-0.929</td>
+<td style="text-align: right;">0.159</td>
+<td style="text-align: right;">-1.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">-0.326</td>
+<td style="text-align: right;">0.256</td>
+<td style="text-align: right;">-0.655</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">-0.295</td>
+<td style="text-align: right;">0.354</td>
+<td style="text-align: right;">-0.375</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">-0.006</td>
+<td style="text-align: right;">0.451</td>
+<td style="text-align: right;">-0.123</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0.415</td>
+<td style="text-align: right;">0.549</td>
+<td style="text-align: right;">0.123</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">1.263</td>
+<td style="text-align: right;">0.646</td>
+<td style="text-align: right;">0.375</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">1.272</td>
+<td style="text-align: right;">0.744</td>
+<td style="text-align: right;">0.655</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">1.330</td>
+<td style="text-align: right;">0.841</td>
+<td style="text-align: right;">1.000</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">2.405</td>
+<td style="text-align: right;">0.939</td>
+<td style="text-align: right;">1.547</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-33-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+<div style="font-size: 70%">
+<p>La colonna <code>x</code> sono le osservazioni ordinate; la ripartizione dei punti, colonna <code>f</code>, è corretta con la <strong>formula di Bloom</strong>: <span class="math inline">\(f=(1-3/8)/(n+1-3/4)\)</span>; la colonna <code>q</code> rappresenta i quantili normali standard di <code>f</code>.</p>
+<p>La diagonale sul grafico passa per i due punti del primo e terzo quartile</p>
+</div>
+</section>
+<section id="analisi-di-normalità-grafico-quantile-quantile-1" class="slide level2">
+<h2>Analisi di normalità: grafico quantile-quantile</h2>
+
+<img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-34-1.png" width="1500" class="r-stretch"></section>
+<section id="analisi-di-normalità-test-del-chi-quadro" class="slide level2">
+<h2>Analisi di normalità: test del Chi-Quadro</h2>
+<p>È un test statistico per verificare l’ipotesi nulla che un dato campione provenga da una data (a scelta!) distribuzione</p>
+<ul>
+<li><p>Raggruppiamo <span class="math inline">\(\left&lt;x_1, x_2, \dots, x_n\right&gt;\)</span> in <span class="math inline">\(k\)</span> classi, t.c&nbsp;ogni classe abbia almeno 4–5 elementi. La largezza di ciascun intervallo può essere diversa</p></li>
+<li><p>Sia <span class="math inline">\(O_i,~i=1,2,\dots,k\)</span> il numero di osservazioni in ogni classe, e <span class="math inline">\(E_i\)</span> il numero di osservazioni attese (<em>expected</em>) in ogni classe per la distribuzione ipotizzata</p></li>
+<li><p>Le differenze tra <span class="math inline">\(O_i\)</span> e <span class="math inline">\(E_i\)</span> saranno tanti più grandi quanto più varrà <span class="math inline">\(H_1\)</span>. Quindi si definisce la statistica di test:</p></li>
+</ul>
+<p><span class="math display">\[
+X_0^2 = \sum_{i=1}^k \frac{(O_i-E_i)^2}{E_i} \sim \chi_{k-p-1}^2
+\]</span> dove <span class="math inline">\(p\)</span> è il numero di parametri della distribuzione ipotizzata (2 per la normale)</p>
+</section>
+<section id="analisi-di-normalità-test-di-shapiro-wilk" class="slide level2">
+<h2>Analisi di normalità: test di Shapiro-Wilk</h2>
+<p>Tra i test di <strong>normalità</strong> è quello con la <strong>potenza</strong> maggiore per un dato livello di significatività</p>
+<p>La statistica di test è basata su una <strong>distribuzione anonima</strong> e nota solo numericamente</p>
+<p>Per campioni <strong>sufficientemente grandi</strong>, il test è così potente da evidenziare anche piccole deviazioni dalla normalità, dovute ad esempio a anomalie. In questi casi è opportuno accompagnarlo con un grafico Quantile-Quantile per discriminare questi effetti</p>
+</section>
+<section id="verifica-di-correlazione" class="slide level2">
+<h2>Verifica di correlazione</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>Il T-test vale per campioni <strong>normali e indipendentemente distribuiti</strong> (<em>IID</em>)</li>
+<li>È necessario <strong>verificare questa ipotesi</strong></li>
+<li>Se riporto in un grafico i valori dei due campioni nell’ordine in cui sono stati acquisiti posso osservare correlazione (s1 vs.&nbsp;s3) o mancanza di correlazione (s1 vs.&nbsp;s2)</li>
+<li>È evidente che <span class="math inline">\(\rho_{s_1s_2}\)</span> sarà vicina a 0, mentre <span class="math inline">\(\rho_{s_1s_3}\)</span> sarà vicina a 1</li>
+</ul>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-35-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+<p>Esiste un <strong>test di correlazione di Pearson</strong> che fornisce un <em>p</em>-value associato all’ipotesi alternativa che i due campioni <strong>siano correlati</strong>.</p>
+</section></section>
+<section>
+<section id="analisi-della-varianza" class="title-slide slide level1 center">
+<h1>Analisi della Varianza</h1>
+<p>Il Test di Student considera un unico <strong>fattore</strong> con uno o due livelli.</p>
+<p>Cosa succede se abbiamo più di due livelli o più di un fattore?</p>
+</section>
+<section id="fattori" class="slide level2">
+<h2>Fattori</h2>
+<ul>
+<li>Un <strong>fattore</strong> è un parametro che determina il risultato di un processo</li>
+<li>È possibile avere fattori <strong>quantitativi</strong> o <strong>qualitativi</strong>
+<ul>
+<li>Fattori quantitativi assumono livelli rappresentabili da numeri reali</li>
+<li>Fattori qualitativi assumono livelli non ordinati e non misurabili</li>
+</ul></li>
+<li>I livelli di un fattore sono chiamati <strong>trattamenti</strong></li>
+<li>Il valore misurato come uscita del processo è chiamato <strong>resa</strong> (<em>yield</em>)</li>
+</ul>
+</section>
+<section id="esperimenti-a-un-fattore-e-più-livelli" class="slide level2">
+<h2>Esperimenti a un fattore e più livelli</h2>
+<p><strong>Esempio</strong>: resistenza a trazione di un filato in funzione della percentuale di fibre di cotone (fattore quantitativo)</p>
+<ul>
+<li>Ogni trattamento è ripetuto 5 volte</li>
+<li>Il boxplot è utile come orientamento ma per campioni così piccoli l’indicazione delle anomalie non è affidabile</li>
+</ul>
+<div class="columns">
+<div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: right;">% Cotone</th>
+<th style="text-align: right;">#1</th>
+<th style="text-align: right;">#2</th>
+<th style="text-align: right;">#3</th>
+<th style="text-align: right;">#4</th>
+<th style="text-align: right;">#5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">18</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">19</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">23</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">35</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">11</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-37-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="esperimenti-a-un-fattore-e-più-livelli-1" class="slide level2">
+<h2>Esperimenti a un fattore e più livelli</h2>
+<p>La domanda è: i trattamenti producono variazioni di resa <strong>statisticamente significative</strong>?</p>
+<p>Ogni singolo valore di resa può essere espresso come (<strong>modello delle medie</strong>): <span class="math display">\[
+y_{ij}=\mu_i+\varepsilon_{ij},~~\left\{\begin{array}{rcl}
+i &amp;=&amp; 1, 2, \dots, a \\
+j &amp;=&amp; 1, 2, \dots, n
+\end{array}\right.
+\]</span> dove <span class="math inline">\(i\)</span> sono i trattamenti, <span class="math inline">\(j\)</span> sono le ripetizioni, <span class="math inline">\(\varepsilon_{ij}\)</span> sono i <strong>residui</strong>, cioè la componente puramente stocastica e a media nulla della variabile aleatoria <span class="math inline">\(y_{ij}\)</span>, mentre <span class="math inline">\(\mu_i\)</span> è la componente deterministica</p>
+<p>Possiamo separare <span class="math inline">\(\mu_i = \mu + \tau_i\)</span>, dove <span class="math inline">\(\tau_i\)</span> è il contributo del trattamento alla media complessiva <span class="math inline">\(\mu\)</span> (<strong>modello degli effetti</strong>): <span class="math display">\[
+y_{ij}=\mu + \tau_i+\varepsilon_{ij},~~\left\{\begin{array}{rcl}
+i &amp;=&amp; 1, 2, \dots, a \\
+j &amp;=&amp; 1, 2, \dots, n
+\end{array}\right.
+\]</span></p>
+</section>
+<section id="esperimenti-a-un-fattore-e-più-livelli-2" class="slide level2">
+<h2>Esperimenti a un fattore e più livelli</h2>
+<ul>
+<li>Possiamo sfruttare i modelli precedenti per studiare la <strong>significatività</strong> del fattore</li>
+<li>Usando il <strong>modello delle medie</strong> abbiamo la coppia di ipotesi:</li>
+</ul>
+<p><span class="math display">\[
+\begin{eqnarray}
+H_0&amp;:&amp;~\mu_1=\mu_2=\dots =\mu_a \\
+H_1&amp;:&amp;~\mu_i\neq\mu_j~~~\textrm{per almeno una coppia }(i, j)
+\end{eqnarray}
+\]</span></p>
+<ul>
+<li>Equivalentemente, usando il <strong>modello degli effetti</strong>:</li>
+</ul>
+<p><span class="math display">\[
+\begin{eqnarray}
+H_0&amp;:&amp;~\tau_1=\tau_2=\dots =\tau_a = 0 \\
+H_1&amp;:&amp;~\tau_i\neq0~~~\textrm{per almeno un }i
+\end{eqnarray}
+\]</span></p>
+<ul>
+<li>Per sciogliere l’ipotesi dobbiamo formulare una <strong>statistica di test appropriata</strong></li>
+</ul>
+</section>
+<section id="decomposizione-della-varianza" class="slide level2">
+<h2>Decomposizione della varianza</h2>
+<p><strong>Definizioni</strong>:</p>
+<ul>
+<li>Notazione abbreviata per le somme:</li>
+</ul>
+<p><span class="math display">\[
+\begin{eqnarray}
+y_{i.}&amp;=&amp;\sum_{j=1}^n y_{ij},~\bar y_{i.}=y_{i.}/n,~i=1, 2, \dots, a \\
+y_{..}&amp;=&amp;\sum_{i=1}^a\sum_{j=1}^n y_{ij},~\bar y_{..}=y_{..}/N,~N=na
+\end{eqnarray}
+\]</span></p>
+<ul>
+<li>Introduciamo la <strong>somma quadratica totale corretta</strong>: <span class="math display">\[
+\begin{equation}
+SS_T=\sum_{i=1}^a\sum_{j=1}^n (y_{ij}-\bar y_{..})^2 = (N-1)V(y_{ij})
+\end{equation}
+\]</span></li>
+</ul>
+</section>
+<section id="decomposizione-della-varianza-1" class="slide level2">
+<h2>Decomposizione della varianza</h2>
+<p>Considerando che: <span class="math display">\[
+SS_T=\sum_{i=1}^a\sum_{j=1}^n (y_{ij}-\bar y_{..})^2 = \sum_{i=1}^a\sum_{j=1}^n [(\bar y_{i.}-\bar y_{..})+(y_{ij}-\bar y_{i.})]^2
+\]</span></p>
+<p>ovvero:</p>
+<p><span class="math display">\[
+SS_T= n\sum_{i=1}^a(\bar y_{i.}-\bar y_{..})^2 + \sum_{i=1}^a\sum_{j=1}^n (y_{ij}-\bar y_{i.})^2 + 2\sum_{i=1}^a\sum_{j=1}^n(\bar y_{i.}-\bar y_{..})(y_{ij}-\bar y_{i.})
+\]</span></p>
+<p>e siccome <span class="math inline">\(\sum_{j=1}^n (y_{ij}-\bar y_{i.})=y_{i.}-n\bar y_{i.}=0\)</span>, ne consegue che la <span class="math inline">\(SS_T\)</span> può essere decomposta come:</p>
+<p><span class="math display">\[
+SS_T=\sum_{i=1}^a\sum_{j=1}^n (y_{ij}-\bar y_{..})^2=n\sum_{i=1}^a(\bar y_{i.}-\bar y_{..})^2 + \sum_{i=1}^a\sum_{j=1}^n (y_{ij}-\bar y_{i.})^2=SS_{tr}+SS_E
+\]</span></p>
+</section>
+<section id="decomposizione-della-varianza-2" class="slide level2">
+<h2>Decomposizione della varianza</h2>
+<p>Abbiamo decomposto la <span class="math inline">\(SS_T\)</span> (che è parente stretta della varianza) nelle <strong>somme quadratiche medie</strong>:</p>
+<ul>
+<li><span class="math inline">\(SS_{tr}\)</span>, che misura la variabilità tra un trattamento e l’altro</li>
+<li><span class="math inline">\(SS_E\)</span>, che misura la variabilità all’interno dei trattamenti</li>
+</ul>
+<p>Ricordando quanto detto nella definizione della distribuzione <span class="math inline">\(\mathcal{X}^2\)</span>:</p>
+<p><span class="math display">\[
+\frac{\mathit{SS}}{\sigma^2}=\frac{\sum_{i=1}^n(y_i-\bar y)^2}{\sigma^2} \sim \mathcal{X}^2_{n-1}
+\]</span></p>
+<p>risulta che:</p>
+<p><span class="math display">\[
+\sum_{i=1}^{a}\sum_{j=1}^{n}\frac{(y_{ij}-\bar y_{..})^2}{\sigma^2} = \frac{SS_T}{\sigma^2} \sim \chi^2_{N-1},~~~\frac{SS_E}{\sigma^2} \sim \chi^2_{N-a},~~~\frac{SS_{tr}}{\sigma^2} \sim \chi^2_{a-1}
+\]</span></p>
+</section>
+<section id="decomposizione-della-varianza-3" class="slide level2">
+<h2>Decomposizione della varianza</h2>
+<ul>
+<li>Il rapporto tra una somma quadratica e il relativo numero di g.d.l. è uguale alla varianza</li>
+<li>Quindi, <strong>se vale <span class="math inline">\(H_0\)</span></strong> deve essere <span class="math inline">\(E(SS_{tr}/(a-1)) = E(SS_E/(N-a))\)</span>, dato che si tratta del valore atteso di diversi campioni tratti dallo stesso gruppo di osservazioni, tutte provenienti dalla stessa popolazione (<span class="math inline">\(H_0\)</span> significa che i trattamenti <strong>non sono significativi</strong>)</li>
+<li>Ma allora possiamo scrivere:</li>
+</ul>
+<p><span class="math display">\[
+F_0 = \frac{SS_{tr}/(a-1)}{SS_E/(N-a)}=\frac{MS_{tr}}{MS_E} \sim F_{a-1,N-a}
+\]</span> Dove <span class="math inline">\(MS_\cdot\)</span> sono dette <strong>somme quadratiche medie</strong></p>
+<p>Sulla base dell’ultima equazione possiamo calcolare il <em>p</em>-value associato all’ipotesi <span class="math inline">\(H_1\)</span>: per valori piccoli possiamo affermare che <strong>almeno un trattamento ha effetto statisticamente significativo</strong></p>
+</section>
+<section id="teorema-di-cochran" class="slide level2">
+<h2>Teorema di Cochran</h2>
+<p>La definizione di <span class="math inline">\(F_0\)</span> presuppone che <span class="math inline">\(MS_{tr}\)</span> e <span class="math inline">\(MS_E\)</span> <strong>siano indipendenti</strong>. Dato che sono il risultato della decomposizione di <span class="math inline">\(SS_T\)</span> in <span class="math inline">\(SS_{tr}+SS_E\)</span>, ciò non è scontato. Vale però il <strong>teorema</strong>:</p>
+<div class="theorem">
+<div class="title">
+<p>Teorema</p>
+</div>
+<p>Siano <span class="math inline">\(Z_i\sim \mathcal{N}(0,1),~i=1,2,\dots,\nu\)</span> <strong>campioni indipendenti</strong>, con <span class="math inline">\(\sum_{i=1}^\nu Z_i^2=Q_1+Q_2+\dots+Q_s\)</span> dove <span class="math inline">\(s\leqslant \nu\)</span> e <span class="math inline">\(Q_i\)</span> ha <span class="math inline">\(\nu_i\)</span> gradi di libertà (<span class="math inline">\(i=1, 2,\dots,s\)</span>).</p>
+<p>Allora, <span class="math inline">\(Q_1,Q_2,\dots,Q_s\)</span> sono <strong>variabili casuali indipendenti</strong> distribuite come <span class="math inline">\(\mathcal{X}^2\)</span> con <span class="math inline">\(\nu_1,\nu_2,\dots,\nu_s\)</span> gradi di libertà, se e soltanto se <span class="math display">\[
+\nu=\nu_1+\nu_2+\dots+\nu_s
+\]</span></p>
+<p>Siccome <span class="math inline">\((N-a)+(a-1)=(N-1)\)</span>, consegue che <span class="math inline">\(SS_{tr}/\sigma^2\)</span> e <span class="math inline">\(SS_E/\sigma^2\)</span> sono variabili casuali indipendenti distribuite come <span class="math inline">\(\mathcal{X}^2_{a-1}\)</span> e <span class="math inline">\(\mathcal{X}^2_{N-a}\)</span>, rispettivamente.</p>
+</div>
+</section>
+<section id="anova-analysis-of-variance" class="slide level2">
+<h2>ANOVA (<em>ANalysis Of VAriance</em>)</h2>
+<p>Tornando all’esempio della resistenza dei filati misti, possiamo applicare la decomposizione della varianza ottenendo:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Df</th>
+<th style="text-align: right;">Sum Sq</th>
+<th style="text-align: right;">Mean Sq</th>
+<th style="text-align: right;">F value</th>
+<th style="text-align: right;">Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Cotton</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">475.76</td>
+<td style="text-align: right;">118.94</td>
+<td style="text-align: right;">14.75682</td>
+<td style="text-align: right;">9.1e-06</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Residuals</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">161.20</td>
+<td style="text-align: right;">8.06</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>La tabella soprastante è detta <strong>tabella ANOVA</strong></p>
+<p>Il <em>p</em>-value molto basso ci consente di rifiutare l’ipotesi nulla e affermare che <strong>almeno un trattamento ha effetti statisticamente significativi</strong></p>
+<p>Non sappiamo comunque quanti e quali trattamenti siano significativi. Per studiare questo aspetto si utilizza il <strong>Test di Tukey</strong></p>
+</section>
+<section id="test-di-tukey" class="slide level2">
+<h2>Test di Tukey</h2>
+<p>Il test valuta <strong>contemporaneamente</strong> tutte le seguenti coppie di ipotesi: <span class="math display">\[
+\left.
+\begin{eqnarray}
+H_0&amp;:&amp;~\mu_i=\mu_j \\
+H_1&amp;:&amp;~\mu_i\neq \mu_j
+\end{eqnarray}
+\right\} ~~\forall i\neq j
+\]</span> Per ogni coppia <span class="math inline">\((i,j),~i\neq j\)</span> si ha la statistica di test: <span class="math display">\[
+q_{0,ij}=\frac{|\bar y_{i.}-\bar y_{j.}|}{S_{p,ij}\sqrt{2/n}}\sim\mathcal{Q}_{a,k}
+\]</span> dove <span class="math inline">\(n\)</span> è la dimensione dei campioni, uguale per tutti, <span class="math inline">\(a\)</span> è il numero di trattamenti e <span class="math inline">\(k\)</span> è il numero di gradi di libertà di <span class="math inline">\(MS_E\)</span>, cioè <span class="math inline">\(N-a=an-a\)</span>.</p>
+<p>Per ogni coppia si calcola quindi il <em>p</em>-value dalla CDF della <strong>distribuzione dell’intervallo studentizzato</strong> <span class="math inline">\(\mathcal{Q}\)</span> e si calcola l’intervallo di confidenza: <span class="math display">\[
+\bar y_{i.}-\bar y_{j.}-q_{\alpha,a,N-a}\frac{S_{p,ij}}{\sqrt{n}} \leqslant \mu_i-\mu_j
+\leqslant \bar y_{i.}-\bar y_{j.}+q_{\alpha,a,N-a}\frac{S_{p,ij}}{\sqrt{n}}
+\]</span></p>
+</section>
+<section id="test-di-tukey-1" class="slide level2">
+<h2>Test di Tukey</h2>
+<div class="columns">
+<div class="column">
+<p>Generalmente, il risultato viene riportato in un grafico come a fianco</p>
+<p>Le coppie per cui l’intervallo di confidenza è a cavallo di 0 non hanno differenze significative, e viceversa</p>
+<p><strong>Nota</strong>: compiere altrettanti test di Student separati aumenterebbe la probabilità d’errore complessivo, che risulterebbe dalla combinazione delle probabilità d’errore dei singoli test</p>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-39-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+
+<aside><div>
+<p>Cosa succede agli intervalli di confidenza passando da un intervallo al 95% ad un intervallo al 99%?</p>
+</div></aside></section></section>
+<section>
+<section id="qualche-domanda-3" class="title-slide slide level1 center">
+<h1>Qualche domanda</h1>
+
+</section>
+<section id="test-di-tukey-2" class="slide level2 quiz-question">
+<h2>Test di Tukey</h2>
+<p>Se riduco <span class="math inline">\(\alpha\)</span> da 0.05 a 0.01, cosa succede agli intervalli di confidenza del test di Tukey?</p>
+<ul>
+<li><span class="correct">Si allargano tutti della stessa quantità</span></li>
+<li>Si allargano tutti, ma in misura diversa</li>
+<li>Si restringono tutti della stessa quantità</li>
+<li>Si restringono tutti, ma in misura diversa</li>
+<li>Rimangono invariati</li>
+</ul>
+</section>
+<section id="anova" class="slide level2 quiz-question">
+<h2>ANOVA</h2>
+<div class="columns">
+<div class="column">
+<p>Nell’<a href="#/esperimenti-a-un-fattore-e-più-livelli">esperimento sopra riportato</a>, una tabella ANOVA come la seguente è corretta oppure no?</p>
+</div><div class="column" style="font-size:66%">
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Df</th>
+<th style="text-align: right;">Sum Sq</th>
+<th style="text-align: right;">Mean Sq</th>
+<th style="text-align: right;">F value</th>
+<th style="text-align: right;">Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Cotton</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">33.62</td>
+<td style="text-align: right;">33.62000</td>
+<td style="text-align: right;">1.281632</td>
+<td style="text-align: right;">0.269261</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Residuals</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: right;">603.34</td>
+<td style="text-align: right;">26.23217</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></div>
+<ul>
+<li><span data-explanation="5 livelli, 5 ripetizioni, quindi DoF=4">Sì</span></li>
+<li><span class="correct">No, la colonna <code>Df</code> è sospetta</span></li>
+<li><span data-explanation="5 livelli, 5 ripetizioni, quindi DoF=4">No, la colonna <code>Sum Sq</code> è sospetta</span></li>
+<li><span data-explanation="5 livelli, 5 ripetizioni, quindi DoF=4">No, la colonna <code>Mean Sq</code> è sospetta</span></li>
+<li><span data-explanation="5 livelli, 5 ripetizioni, quindi DoF=4">No, la colonna <code>F value</code> è sospetta</span></li>
+<li><span data-explanation="5 livelli, 5 ripetizioni, quindi DoF=4">No, la colonna <code>Pr(&gt;F)</code> è sospetta</span></li>
+</ul>
+</section></section>
+<section>
+<section id="la-spiegazione-frequentista" class="title-slide slide level1 center">
+<h1>La spiegazione frequentista</h1>
+<p>L’approccio frequentista è quello che definisce e studia la probabilità <em>a posteriori</em> cioè contando il numero di eventi relativamente al numero totale di osservazioni</p>
+</section>
+<section id="il-significato-del-p-value" class="slide level2">
+<h2>Il significato del <span class="math inline">\(p\)</span>-value</h2>
+<div class="columns">
+<div class="column">
+<p>Il significato del <span class="math inline">\(p\)</span>-value è illustrato con un esempio: si consideri un esperimento in cui si effettuano 1000 test di Student su altrettanti campioni di <span class="math inline">\(n=15\)</span> elementi, ciascuno con un livello di significatività <span class="math inline">\(\alpha\)</span> del 5%</p>
+<p>Supponiamo che si tratti di test ad un campione, con ipotesi nulla <span class="math inline">\(\mu = \mu_0\)</span> e ipotesi alternativa <span class="math inline">\(\mu \neq \mu_0\)</span>, e supponiamo che tutti i campioni siano prelevati dalla stessa popolazione con valore atteso <span class="math inline">\(\mu_0\)</span></p>
+<p>Allora il valore atteso delle predizioni errate (cioè quelle in cui vale <span class="math inline">\(H_1\)</span>) è 5%</p>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-42-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+
+<aside><div>
+<p><strong>Nota</strong>: Lo stesso approccio <strong>frequentista</strong> è applicabile a qualsiasi altro test statistico di cui si calcoli il <span class="math inline">\(p\)</span>-value</p>
+</div></aside></section>
+<section id="e-se-cambiamo-n" class="slide level2">
+<h2>E se cambiamo <span class="math inline">\(n\)</span>?</h2>
+<div class="columns">
+<div class="column">
+<p>Se aumentiamo la dimensione dei campioni da 15 a 50, la probabilità di errore di tipo I rimane sempre la stessa, a pari condizioni</p>
+<p>Com’è possibile?</p>
+<p>Aumentando la dimensione del campione aumenta la <strong>potenza</strong> del test, cioè la sua capacità di discriminare anche piccoli differenze. Ma per un certo test, per una certa differenza, il <span class="math inline">\(p\)</span>-value non dipende dalla dimensione del campione, perché è proprio calcolato <em>compensando</em> l’effetto della dimensione del campione</p>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-44-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="e-per-la-potenza" class="slide level2">
+<h2>E per la potenza?</h2>
+<div class="columns">
+<div class="column">
+<p>Consideriamo i test in cui l’ipotesi nulla sia</p>
+<p><span class="math display">\[
+\begin{eqnarray}
+H_0:~&amp;\mu = \mu_0 + \sigma \\
+H_1:~&amp;\mu \neq \mu_0 + \sigma
+\end{eqnarray}
+\]</span></p>
+<p>cioè una differenza di un <span class="math inline">\(\sigma\)</span> dal valore atteso della popolazione</p>
+<p>Allora in gran parte dei casi avremo un <span class="math inline">\(p\)</span>-value piccolo, che ci spinge a rigettare <span class="math inline">\(H_0\)</span> (<em>Caso A</em>)</p>
+<p>Se però passiamo da campioni da 15 elementi a campioni da 30 elementi (<em>Caso B</em>) la <strong>potenza</strong> del test aumenta sensibilmente, a pari condizioni</p>
+</div><div class="column">
+<div class="panel-tabset">
+<ul id="tabset-11" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-11-1">Caso A</a></li><li><a href="#tabset-11-2">Caso B</a></li></ul>
+<div class="tab-content">
+<div id="tabset-11-1">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-45-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-11-2">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-46-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+
+
+<script type="webr-data">
+eyJvcHRpb25zIjp7ImJhc2VVcmwiOiJodHRwczovL3dlYnIuci13YXNtLm9yZy92MC40LjEvIn0sInBhY2thZ2VzIjp7InBrZ3MiOlsiZXZhbHVhdGUiLCJrbml0ciIsImh0bWx0b29scyJdLCJyZXBvcyI6W119LCJyZW5kZXJfZGYiOiJkZWZhdWx0In0=
+</script>
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC0xIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoie1xuICAvLyBXYWl0IGZvciBvdXRwdXQgdG8gYmUgd3JpdHRlbiB0byB0aGUgRE9NLCB0aGVuIHRyaWdnZXIgd2lkZ2V0IHJlbmRlcmluZ1xuICBhd2FpdCBfd2Vicl92YWx1ZV8xO1xuICBpZiAod2luZG93LkhUTUxXaWRnZXRzKSB7XG4gICAgd2luZG93LkhUTUxXaWRnZXRzLnN0YXRpY1JlbmRlcigpO1xuICB9XG4gIGlmICh3aW5kb3cuUGFnZWRUYWJsZURvYykge1xuICAgIHdpbmRvdy5QYWdlZFRhYmxlRG9jLmluaXRBbGwoKTtcbiAgfVxufVxuIn0seyJjZWxsTmFtZSI6IndlYnItMSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzEgPSB7XG4gIGNvbnN0IHsgV2ViUkV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwid2Vici0xLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oeyBpZDogYHdlYnItMS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fd2Vicl92YWx1ZV8xID0gd2ViUk9qcy5wcm9jZXNzKF93ZWJyX2VkaXRvcl8xLCB7fSk7XG4ifSx7ImNlbGxOYW1lIjoid2Vici1wcmVsdWRlIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoid2ViUk9qcyA9IHtcbiAgY29uc3QgeyBXZWJSIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lLldlYlI7XG4gIGNvbnN0IHtcbiAgICBXZWJSRXZhbHVhdG9yLFxuICAgIFdlYlJFbnZpcm9ubWVudE1hbmFnZXIsXG4gICAgc2V0dXBSLFxuICAgIGI2NERlY29kZSxcbiAgICBjb2xsYXBzZVBhdGhcbiAgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG5cbiAgY29uc3Qgc3RhdHVzQ29udGFpbmVyID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoXCJleGVyY2lzZS1sb2FkaW5nLXN0YXR1c1wiKTtcbiAgY29uc3QgaW5kaWNhdG9yQ29udGFpbmVyID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoXCJleGVyY2lzZS1sb2FkaW5nLWluZGljYXRvclwiKTtcbiAgaW5kaWNhdG9yQ29udGFpbmVyLmNsYXNzTGlzdC5yZW1vdmUoXCJkLW5vbmVcIik7XG5cbiAgbGV0IHN0YXR1c1RleHQgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KFwiZGl2XCIpXG4gIHN0YXR1c1RleHQuY2xhc3NMaXN0ID0gXCJleGVyY2lzZS1sb2FkaW5nLWRldGFpbHNcIjtcbiAgc3RhdHVzVGV4dCA9IHN0YXR1c0NvbnRhaW5lci5hcHBlbmRDaGlsZChzdGF0dXNUZXh0KTtcbiAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBJbml0aWFsaXNlYDtcblxuICAvLyBIb2lzdCBpbmRpY2F0b3Igb3V0IGZyb20gZmluYWwgc2xpZGUgd2hlbiBydW5uaW5nIHVuZGVyIHJldmVhbFxuICBjb25zdCByZXZlYWxTdGF0dXMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKFwiLnJldmVhbCAuZXhlcmNpc2UtbG9hZGluZy1pbmRpY2F0b3JcIik7XG4gIGlmIChyZXZlYWxTdGF0dXMpIHtcbiAgICByZXZlYWxTdGF0dXMucmVtb3ZlKCk7XG4gICAgZG9jdW1lbnQucXVlcnlTZWxlY3RvcihcIi5yZXZlYWwgPiAuc2xpZGVzXCIpLmFwcGVuZENoaWxkKHJldmVhbFN0YXR1cyk7XG4gIH1cblxuICAvLyB3ZWJSIHN1cHBsZW1lbnRhbCBkYXRhIGFuZCBvcHRpb25zXG4gIGNvbnN0IGRhdGFDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItZGF0YVxcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGRhdGEgPSBKU09OLnBhcnNlKGI2NERlY29kZShkYXRhQ29udGVudCkpO1xuXG4gIC8vIEdyYWIgbGlzdCBvZiByZXNvdXJjZXMgdG8gYmUgZG93bmxvYWRlZFxuICBjb25zdCBmaWxlc0NvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwidmZzLWZpbGVcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBmaWxlcyA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKGZpbGVzQ29udGVudCkpO1xuXG4gIC8vIEluaXRpYWxpc2Ugd2ViUiBhbmQgc2V0dXAgZm9yIFIgY29kZSBldmFsdWF0aW9uXG4gIGxldCB3ZWJSUHJvbWlzZSA9IChhc3luYyAod2ViUikgPT4ge1xuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgd2ViUmA7XG4gICAgYXdhaXQgd2ViUi5pbml0KCk7XG5cbiAgICAvLyBJbnN0YWxsIHByb3ZpZGVkIGxpc3Qgb2YgcGFja2FnZXNcbiAgICAvLyBFbnN1cmUgd2ViUiBkZWZhdWx0IHJlcG8gaXMgaW5jbHVkZWRcbiAgICBkYXRhLnBhY2thZ2VzLnJlcG9zLnB1c2goXCJodHRwczovL3JlcG8uci13YXNtLm9yZ1wiKVxuICAgIGF3YWl0IGRhdGEucGFja2FnZXMucGtncy5tYXAoKHBrZykgPT4gKCkgPT4ge1xuICAgICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiAke3BrZ31gO1xuICAgICAgcmV0dXJuIHdlYlIuZXZhbFJWb2lkKGBcbiAgICAgICAgd2Vicjo6aW5zdGFsbChwa2csIHJlcG9zID0gcmVwb3MpXG4gICAgICAgIGxpYnJhcnkocGtnLCBjaGFyYWN0ZXIub25seSA9IFRSVUUpXG4gICAgICBgLCB7IGVudjoge1xuICAgICAgICBwa2c6IHBrZyxcbiAgICAgICAgcmVwb3M6IGRhdGEucGFja2FnZXMucmVwb3MsXG4gICAgICB9fSk7XG4gICAgfSkucmVkdWNlKChjdXIsIG5leHQpID0+IGN1ci50aGVuKG5leHQpLCBQcm9taXNlLnJlc29sdmUoKSk7XG5cbiAgICAvLyBEb3dubG9hZCBhbmQgaW5zdGFsbCByZXNvdXJjZXNcbiAgICBhd2FpdCBmaWxlcy5tYXAoKGZpbGUpID0+IGFzeW5jICgpID0+IHtcbiAgICAgIGNvbnN0IG5hbWUgPSBmaWxlLnN1YnN0cmluZyhmaWxlLmxhc3RJbmRleE9mKCcvJykgKyAxKTtcbiAgICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgcmVzb3VyY2U6ICR7bmFtZX1gO1xuICAgICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBmZXRjaChmaWxlKTtcbiAgICAgIGlmICghcmVzcG9uc2Uub2spIHtcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBDYW4ndCBkb3dubG9hZCBcXGAke2ZpbGV9XFxgLiBFcnJvciAke3Jlc3BvbnNlLnN0YXR1c306IFwiJHtyZXNwb25zZS5zdGF0dXNUZXh0fVwiLmApO1xuICAgICAgfVxuICAgICAgY29uc3QgZGF0YSA9IGF3YWl0IHJlc3BvbnNlLmFycmF5QnVmZmVyKCk7XG5cbiAgICAgIC8vIFN0b3JlIFVSTHMgaW4gdGhlIGN3ZCB3aXRob3V0IGFueSBzdWJkaXJlY3Rvcnkgc3RydWN0dXJlXG4gICAgICBpZiAoZmlsZS5pbmNsdWRlcyhcIjovL1wiKSkge1xuICAgICAgICBmaWxlID0gbmFtZTtcbiAgICAgIH1cblxuICAgICAgLy8gQ29sbGFwc2UgaGlnaGVyIGRpcmVjdG9yeSBzdHJ1Y3R1cmVcbiAgICAgIGZpbGUgPSBjb2xsYXBzZVBhdGgoZmlsZSk7XG5cbiAgICAgIC8vIENyZWF0ZSBkaXJlY3RvcnkgdHJlZSwgaWdub3JpbmcgXCJkaXJlY3RvcnkgZXhpc3RzXCIgVkZTIGVycm9yc1xuICAgICAgY29uc3QgcGFydHMgPSBmaWxlLnNwbGl0KCcvJykuc2xpY2UoMCwgLTEpO1xuICAgICAgbGV0IHBhdGggPSAnJztcbiAgICAgIHdoaWxlIChwYXJ0cy5sZW5ndGggPiAwKSB7XG4gICAgICAgIHBhdGggKz0gcGFydHMuc2hpZnQoKSArICcvJztcbiAgICAgICAgdHJ5IHtcbiAgICAgICAgICBhd2FpdCB3ZWJSLkZTLm1rZGlyKHBhdGgpO1xuICAgICAgICB9IGNhdGNoIChlKSB7XG4gICAgICAgICAgaWYgKCFlLm1lc3NhZ2UuaW5jbHVkZXMoXCJGUyBlcnJvclwiKSkge1xuICAgICAgICAgICAgdGhyb3cgZTtcbiAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgIH1cblxuICAgICAgLy8gV3JpdGUgdGhpcyBmaWxlIHRvIHRoZSBWRlNcbiAgICAgIHJldHVybiBhd2FpdCB3ZWJSLkZTLndyaXRlRmlsZShmaWxlLCBuZXcgVWludDhBcnJheShkYXRhKSk7XG4gICAgfSkucmVkdWNlKChjdXIsIG5leHQpID0+IGN1ci50aGVuKG5leHQpLCBQcm9taXNlLnJlc29sdmUoKSk7XG5cbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYEluc3RhbGxpbmcgd2ViUiBzaGltc2A7XG4gICAgYXdhaXQgd2ViUi5ldmFsUlZvaWQoYHdlYnI6OnNoaW1faW5zdGFsbCgpYCk7XG5cbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYFdlYlIgZW52aXJvbm1lbnQgc2V0dXBgO1xuICAgIGF3YWl0IHNldHVwUih3ZWJSLCBkYXRhKTtcblxuICAgIHN0YXR1c1RleHQucmVtb3ZlKCk7XG4gICAgaWYgKHN0YXR1c0NvbnRhaW5lci5jaGlsZHJlbi5sZW5ndGggPT0gMCkge1xuICAgICAgc3RhdHVzQ29udGFpbmVyLnBhcmVudE5vZGUucmVtb3ZlKCk7XG4gICAgfVxuICAgIHJldHVybiB3ZWJSO1xuICB9KShuZXcgV2ViUihkYXRhLm9wdGlvbnMpKTtcblxuICAvLyBLZWVwIHRyYWNrIG9mIGluaXRpYWwgT0pTIGJsb2NrIHJlbmRlclxuICBjb25zdCByZW5kZXJlZE9qcyA9IHt9O1xuXG4gIGNvbnN0IHByb2Nlc3MgPSBhc3luYyAoY29udGV4dCwgaW5wdXRzKSA9PiB7XG4gICAgY29uc3Qgd2ViUiA9IGF3YWl0IHdlYlJQcm9taXNlO1xuICAgIGNvbnN0IGV2YWx1YXRvciA9IG5ldyBXZWJSRXZhbHVhdG9yKHdlYlIsIGNvbnRleHQpXG4gICAgYXdhaXQgZXZhbHVhdG9yLnByb2Nlc3MoaW5wdXRzKTtcbiAgICByZXR1cm4gZXZhbHVhdG9yLmNvbnRhaW5lcjtcbiAgfVxuXG4gIHJldHVybiB7XG4gICAgcHJvY2VzcyxcbiAgICB3ZWJSUHJvbWlzZSxcbiAgICByZW5kZXJlZE9qcyxcbiAgfTtcbn1cbiJ9XX0=
+</script>
+<div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
+<div id="exercise-loading-status" class="d-flex gap-2">
+
+</div>
+<div class="spinner-grow spinner-grow-sm">
+
+</div>
+</div>
+<script type="vfs-file">
+W10=
+</script>
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>paolo.bosetti@unitn.it — <a href="https://paolobosetti.quarto.pub/ADAS">https://paolobosetti.quarto.pub/ADAS</a></p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-drop/drop-runtime.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-quiz/quiz.js"></script>
+  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': true,
+'pdfSeparateFragments': true,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'drop': {"button":true,"shortcut":"§","engine":"webr","webr":{"packages":["tidyverse"]},"pyodide":{"packages":[]}},
+'quiz': {"checkKey":"c","resetKey":"q","shuffleKey":"t","allowNumberKeys":true,"disableOnCheck":false,"shuffleOptions":true,"defaultCorrect":"","defaultIncorrect":""},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+
+        height: 720,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, RevealDrop, RevealQuiz, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script type="ojs-module-contents">
+    eyJjb250ZW50cyI6W119
+    </script>
+    <script type="module">
+    if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+    window._ojs.paths.runtimeToDoc = "../../slides/ADAS";
+    window._ojs.paths.runtimeToRoot = "../..";
+    window._ojs.paths.docToRoot = "../..";
+    window._ojs.selfContained = false;
+    window._ojs.runtime.interpretFromScriptTags();
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copiato!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copiato!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+              // default icon
+              link.classList.add("external");
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+          let selectedAnnoteEl;
+          const selectorForAnnotation = ( cell, annotation) => {
+            let cellAttr = 'data-code-cell="' + cell + '"';
+            let lineAttr = 'data-code-annotation="' +  annotation + '"';
+            const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+            return selector;
+          }
+          const selectCodeLines = (annoteEl) => {
+            const doc = window.document;
+            const targetCell = annoteEl.getAttribute("data-target-cell");
+            const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+            const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+            const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+            const lineIds = lines.map((line) => {
+              return targetCell + "-" + line;
+            })
+            let top = null;
+            let height = null;
+            let parent = null;
+            if (lineIds.length > 0) {
+                //compute the position of the single el (top and bottom and make a div)
+                const el = window.document.getElementById(lineIds[0]);
+                top = el.offsetTop;
+                height = el.offsetHeight;
+                parent = el.parentElement.parentElement;
+              if (lineIds.length > 1) {
+                const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+                const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+                height = bottom - top;
+              }
+              if (top !== null && height !== null && parent !== null) {
+                // cook up a div (if necessary) and position it 
+                let div = window.document.getElementById("code-annotation-line-highlight");
+                if (div === null) {
+                  div = window.document.createElement("div");
+                  div.setAttribute("id", "code-annotation-line-highlight");
+                  div.style.position = 'absolute';
+                  parent.appendChild(div);
+                }
+                div.style.top = top - 2 + "px";
+                div.style.height = height + 4 + "px";
+                div.style.left = 0;
+                let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+                if (gutterDiv === null) {
+                  gutterDiv = window.document.createElement("div");
+                  gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                  gutterDiv.style.position = 'absolute';
+                  const codeCell = window.document.getElementById(targetCell);
+                  const gutter = codeCell.querySelector('.code-annotation-gutter');
+                  gutter.appendChild(gutterDiv);
+                }
+                gutterDiv.style.top = top - 2 + "px";
+                gutterDiv.style.height = height + 4 + "px";
+              }
+              selectedAnnoteEl = annoteEl;
+            }
+          };
+          const unselectCodeLines = () => {
+            const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+            elementsIds.forEach((elId) => {
+              const div = window.document.getElementById(elId);
+              if (div) {
+                div.remove();
+              }
+            });
+            selectedAnnoteEl = undefined;
+          };
+            // Handle positioning of the toggle
+        window.addEventListener(
+          "resize",
+          throttle(() => {
+            elRect = undefined;
+            if (selectedAnnoteEl) {
+              selectCodeLines(selectedAnnoteEl);
+            }
+          }, 10)
+        );
+        function throttle(fn, ms) {
+        let throttle = false;
+        let timer;
+          return (...args) => {
+            if(!throttle) { // first call gets through
+                fn.apply(this, args);
+                throttle = true;
+            } else { // all the others get throttled
+                if(timer) clearTimeout(timer); // cancel #2
+                timer = setTimeout(() => {
+                  fn.apply(this, args);
+                  timer = throttle = false;
+                }, ms);
+            }
+          };
+        }
+          // Attach click handler to the DT
+          const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+          for (const annoteDlNode of annoteDls) {
+            annoteDlNode.addEventListener('click', (event) => {
+              const clickedEl = event.target;
+              if (clickedEl !== selectedAnnoteEl) {
+                unselectCodeLines();
+                const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+                if (activeEl) {
+                  activeEl.classList.remove('code-annotation-active');
+                }
+                selectCodeLines(clickedEl);
+                clickedEl.classList.add('code-annotation-active');
+              } else {
+                // Unselect the line
+                unselectCodeLines();
+                clickedEl.classList.remove('code-annotation-active');
+              }
+            });
+          }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>

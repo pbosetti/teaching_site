@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.40">
+
+  <meta name="author" content="Paolo Bosetti">
+  <title>Paolo Bosetti – K-Fold Cross Validation</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-f5b10fc125ee2ba6c83f7620df646e3b.css">
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-77EMP7T5YY"></script>
+
+  <script type="text/plain" cookie-consent="tracking">
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-77EMP7T5YY', { 'anonymize_ip': true});
+  </script>
+  
+  <script type="text/javascript" charset="UTF-8">
+  document.addEventListener('DOMContentLoaded', function () {
+  cookieconsent.run({
+    "notice_banner_type":"simple",
+    "consent_type":"express",
+    "palette":"light",
+    "language":"en",
+    "page_load_consent_levels":["strictly-necessary"],
+    "notice_banner_reject_button_hide":false,
+    "preferences_center_close_button_hide":false,
+    "website_name":""
+    ,
+  "language":"en"
+    });
+  });
+  </script> 
+    
+  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">K-Fold Cross Validation</h1>
+  <p class="subtitle"></p><p>Design of Precision Systems, 2023–24<br>
+<img data-src="images/by-nc-sa.png" height="30"></p><p></p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Paolo Bosetti 
+</div>
+        <p class="quarto-title-affiliation">
+            Dpt. of Industrial Engineering, University of Trento
+          </p>
+    </div>
+</div>
+
+</section>
+<section>
+<section id="the-trouble-with-over-fitting" class="title-slide slide level1 center">
+<h1>The trouble with over-fitting</h1>
+
+</section>
+<section id="loading-the-data" class="slide level2">
+<h2>Loading the data</h2>
+<div class="columns">
+<div class="column">
+<p>We load some data and make a quick plot</p>
+<ul>
+<li>The relationship seems coarsely proportional</li>
+<li>There seems to be a flex in the middle</li>
+<li>Let’s try first with a linear model with degree 1</li>
+</ul>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="kfold_files/figure-revealjs/unnamed-chunk-3-1.png" width="750"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="linear-model-regression" class="slide level2">
+<h2>Linear model regression</h2>
+<p>The regression of a linear model is performed with the <code>lm()</code> function. It takes two arguments:</p>
+<ul>
+<li>a <strong>formula</strong>, i.e.&nbsp;a description of the regression model</li>
+<li>a <strong>data table</strong>, containing the data set to use for regression. The columns of the data set must have the same names used for the predictors</li>
+</ul>
+<p>The formula is expressed in the <strong>formula notation</strong>, which is a map from an analytical regression model, as <span class="math inline">\(y_i = a + bx_i + cx_i^2 + \varepsilon_i\)</span> to a formula object as <code>y~x + I(x^2)</code></p>
+</section>
+<section id="linear-model-regression-1" class="slide level2">
+<h2>Linear model regression</h2>
+<p>To build a formula from a model you typically:</p>
+<ul>
+<li>drop the <strong>grand average</strong> <span class="math inline">\(a\)</span> and the residuals <span class="math inline">\(\varepsilon_i\)</span></li>
+<li>when you need the power of a term (or any mathematical function applied to a term like a logarithm), you have to <strong>protect it with the identity function</strong> <code>I()</code></li>
+<li>if you have more than one predictor, you can combine them as:
+<ul>
+<li><code>y~x1 + x2</code>, which corresponds to <span class="math inline">\(y_i = a + bx_{1,i} + cx_{2,1} + \varepsilon_i\)</span></li>
+<li><code>y~x1 + x2 + x1:x2</code>, which corresponds to <span class="math inline">\(y_i = a + bx_{1,i} + cx_{2,1} + dx_{1,i}x_{2,i} +\varepsilon_i\)</span></li>
+</ul></li>
+<li>the notation <code>y~x1 + x2 + x1:x2</code> can be abbreviated as <code>y~x1*x2</code></li>
+</ul>
+
+<aside><div>
+<p>To remove from the model the grand average (called <em>intercept</em>), subtract 1: <span class="math inline">\(y_i = bx_i + cx_i^2 + \varepsilon_i\)</span> becomes <code>y~x + I(x^2) - 1</code></p>
+</div></aside></section>
+<section id="linear-model-regression-2" class="slide level2">
+<h2>Linear model regression</h2>
+<p>So let’s build a linear model of degree 1 and plot the data with the regression line:</p>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>data.lm <span class="ot">&lt;-</span><span class="fu">lm</span>(y<span class="sc">~</span>x <span class="sc">-</span> <span class="dv">1</span>, <span class="at">data=</span>data)</span>
+<span id="cb1-2"><a></a>data <span class="sc">%&gt;%</span> </span>
+<span id="cb1-3"><a></a>  <span class="fu">add_predictions</span>(data.lm) <span class="sc">%&gt;%</span></span>
+<span id="cb1-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>x)) <span class="sc">+</span></span>
+<span id="cb1-5"><a></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y=</span>y)) <span class="sc">+</span></span>
+<span id="cb1-6"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>pred))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="kfold_files/figure-revealjs/unnamed-chunk-4-1.png" width="750"></p>
+</figure>
+</div>
+</div>
+</div></div>
+</section>
+<section id="linear-model-regression-3" class="slide level2">
+<h2>Linear model regression</h2>
+<ul>
+<li><p>It is important to look at the residuals. They show a rather <strong>strong pattern</strong>, meaning that the linear relationship is <strong>underfitting</strong> the data</p></li>
+<li><p>Thus we need to increase the degree of the fitting polynomial. But <strong>how much so</strong>?</p></li>
+</ul>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>data <span class="sc">%&gt;%</span> </span>
+<span id="cb2-2"><a></a>  <span class="fu">add_residuals</span>(data.lm) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>resid)) <span class="sc">+</span></span>
+<span id="cb2-4"><a></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="kfold_files/figure-revealjs/unnamed-chunk-5-1.png" width="750"></p>
+</figure>
+</div>
+</div>
+</div></div>
+</section>
+<section id="hyper-parameters" class="slide level2">
+<h2>Hyper-parameters</h2>
+<p>The degree of the fitting polynomial is a <strong>hyper-parameter</strong></p>
+<ul>
+<li><p>Regression <strong>parameters</strong> are the coefficients of the polynomial, to be calculated typically by minimizing the root mean square of the residuals</p></li>
+<li><p>The <strong>degree</strong> of the polynomial is a parameter that defines the <strong>number</strong> of regression parameters, and that is why it is named a <strong>hyper-parameter</strong></p></li>
+<li><p>Identifying the best hyper-parameter(s) is the aim of <strong>validation</strong> and <strong>cross-validation</strong> strategies</p></li>
+</ul>
+</section>
+<section id="multiple-regressions" class="slide level2">
+<h2>Multiple regressions</h2>
+<p>In our case we want to compare polynomial fits up to degree 12</p>
+<p>We use <code>modelr::fit_with()</code> to automate the building of many models together: The function needs two arguments:</p>
+<ol type="1">
+<li>the modeling function, typically <code>lm()</code></li>
+<li>the results of a call to <code>formulas()</code>, which in turn takes a list of formulas to be used</li>
+</ol>
+
+<aside><div>
+<p><strong>NOTE</strong>: The list of formulas needs to have <strong>only right hand side formulas</strong>, being the first the response variable, the others are the model part combining the predictors</p>
+</div></aside></section>
+<section id="multiple-regression" class="slide level2">
+<h2>Multiple regression</h2>
+<p>Let’s see how it works. We first build a list of arguments:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>deg <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span></span>
+<span id="cb3-2"><a></a>args <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb3-3"><a></a>  <span class="sc">~</span>y, <span class="sc">~</span>x,</span>
+<span id="cb3-4"><a></a>  <span class="fu">map</span>(deg, <span class="sc">~</span><span class="fu">as.formula</span>(<span class="fu">paste0</span>(<span class="st">"~poly(x,"</span>, ., <span class="st">")"</span>)))</span>
+<span id="cb3-5"><a></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-6"><a></a>  <span class="fu">unlist</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now <code>args</code> is a list of formulas like <code>~y</code>, <code>~x</code>, <code>~poly(x, 2)</code>, <code>~poly(x, 3)</code>, etc.</p>
+
+<aside><div>
+<p><strong>NOTE</strong>: the usage of <code>unlist()</code> at the end: the previous command returns a nested list (a list of lists), and <code>unlist()</code> flattens it into a simple plain list of formulas.</p>
+</div></aside></section>
+<section id="multiple-regression-1" class="slide level2">
+<h2>Multiple regression</h2>
+<p>Now the <code>formulas()</code> function wants <code>n</code> parameters, each being a formula, while we have a list of formulas. We can solve this problem by using <code>do.call()</code> function, which calls a given function passing each element of a list as a separate argument:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>fits <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">fit_with</span>(</span>
+<span id="cb4-2"><a></a>  lm, </span>
+<span id="cb4-3"><a></a>  <span class="at">.formulas=</span><span class="fu">do.call</span>(formulas, args)</span>
+<span id="cb4-4"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now <code>fits</code> is a list or regression results, with polynomials from degree 1 to 12</p>
+</section>
+<section id="quality-of-regression" class="slide level2">
+<h2>Quality of regression</h2>
+<p>Quality of a regression can be verified with different metrics:</p>
+<ul>
+<li><span class="math inline">\(R^2=1-\frac{\sum (x_i - \hat x_i)^2}{\sum (x_i - \bar x_i)^2}\)</span></li>
+<li><span class="math inline">\(\mathrm{MSE}=\frac{\sum(x_i - \hat x_i)^2}{N}\)</span></li>
+<li><span class="math inline">\(\mathrm{RMSE}=\sqrt{\frac{\sum(x_i - \hat x_i)^2}{N}}\)</span></li>
+<li><span class="math inline">\(\mathrm{MAE}=\frac{\sum |x_i - \hat x_i|}{N}\)</span></li>
+<li><span class="math inline">\(\mathrm{MAPE}=\frac{1}{N}\sum \left|\frac{x_i - \hat x_i}{x_i}\right|\)</span></li>
+</ul>
+<p>Typically, the <strong>root means square of error</strong> (RMSE) and the <strong>mean absolute error</strong> (MAE) are the most commonly used metrics</p>
+</section>
+<section id="quality-of-regression-1" class="slide level2">
+<h2>Quality of regression</h2>
+<p>Let’s see how the RMSE and the <span class="math inline">\(R^2\)</span> metrics change when the polynomial degree increases. To do that we build a table with three columns:</p>
+<ol type="1">
+<li>the degree of the polynomial</li>
+<li>the <span class="math inline">\(R^2\)</span> value</li>
+<li>the RMSE value</li>
+</ol>
+<p>We extract these data from the list of linear models above created, <code>fits</code></p>
+<p>For each fitted linear model (an entry in <code>fits</code>), the <span class="math inline">\(R^2\)</span> and RMSE can be extracted with the functions <code>rsquare()</code> and <code>rmse()</code>, respectively</p>
+</section>
+<section id="quality-of-regression-2" class="slide level2">
+<h2>Quality of regression</h2>
+<p>We use <code>map_dbl()</code> to map these functions over the list of polynomial degrees. The resulting table is then used to make a plot:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">tibble</span>(</span>
+<span id="cb5-2"><a></a>  <span class="at">degree=</span><span class="fu">c</span>(<span class="dv">1</span>,deg), <span class="co"># deg starts from 2!</span></span>
+<span id="cb5-3"><a></a>  <span class="at">rsquare=</span>fits <span class="sc">%&gt;%</span> <span class="fu">map_dbl</span>(<span class="sc">~</span><span class="fu">rsquare</span>(., data)),</span>
+<span id="cb5-4"><a></a>  <span class="at">rmse=</span>fits <span class="sc">%&gt;%</span> <span class="fu">map_dbl</span>(<span class="sc">~</span><span class="fu">rmse</span>(., data))</span>
+<span id="cb5-5"><a></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-6"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>degree)) <span class="sc">+</span></span>
+<span id="cb5-7"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>rmse), <span class="at">color=</span><span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb5-8"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>rsquare<span class="sc">*</span><span class="dv">4</span>), <span class="at">color=</span><span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb5-9"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">sec.axis =</span> <span class="fu">sec_axis</span>(</span>
+<span id="cb5-10"><a></a>    \(x) scales<span class="sc">::</span><span class="fu">rescale</span>(x, <span class="at">from=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">4</span>), <span class="at">to=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>)),</span>
+<span id="cb5-11"><a></a>    <span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.1</span>),</span>
+<span id="cb5-12"><a></a>    <span class="at">name=</span><span class="st">"R squared"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+<p>The <span class="math inline">\(R^2\)</span> increases pretty quickly and saturates after degree 3. The RMSE decreases sharply and monothonically. It’s hard to figure out the point where overfitting starts</p>
+</section><section id="quality-of-regression-2-output" class="slide level2 output-location-slide"><h2>Quality of regression</h2><div class="cell output-location-slide">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="kfold_files/figure-revealjs/unnamed-chunk-8-1.png" width="750"></p>
+</figure>
+</div>
+</div>
+</div></section></section>
+<section>
+<section id="k-fold-cross-validation" class="title-slide slide level1 center">
+<h1>K-fold cross-validation</h1>
+<p>To avoid overfitting we want to stop increasing the degree when the model <strong>starts loosing generality</strong>.</p>
+<p>We monitor generality by training on a subset of data, and estimating the quality indicator on a different subset, <strong>not used for training</strong>. This is called cross-validation</p>
+</section>
+<section id="intro" class="slide level2">
+<h2>Intro</h2>
+<p>To solve the problem we use K-fold cross validation. It is a regression strategy where we split the dataset into <span class="math inline">\(k\)</span> subsets, or <em>folds</em>, with roughly the same amount of observations. Then:</p>
+<ul>
+<li>we train the model over all the folds together <strong>except the first fold</strong>, and then we validate the model on the first fold, i.e.&nbsp;we calculate one or more metrics on the validation data</li>
+<li>we repeat the previous step setting aside each fold, one at a time, and using it for validation, while the remaining folds are used for training</li>
+<li>each fold is used exactly once for validation, exactly <span class="math inline">\(k-1\)</span> times for training</li>
+<li>we calculate the overall metrics, by calculating the average of the <span class="math inline">\(k\)</span> metrics evaluated for each validation step, or — equivalently — by appliying the above reported equations to the whole set of validation values</li>
+</ul>
+</section>
+<section id="in-r" class="slide level2">
+<h2>In R</h2>
+<p>In R, we use the <code>caret</code> library to simplify this process. The <code>caret::train()</code> function performs the folding for a given model: it takes as arguments the model formula, the regression function (in our case <code>lm()</code>), the dataset, and a list of parameters that can be created with the supporting <code>trainControl()</code> function.</p>
+<p>The <code>trainControl()</code> function is used to define the details on the cross validation strategy to use. In our case we use the <strong>repeated</strong> K-fold cross validation, named <code>"repeatedcv"</code>, which repeates a K-fold a given number of times.</p>
+</section>
+<section id="in-r-1" class="slide level2">
+<h2>In R</h2>
+<p>In fact, the folds are defined by randomly sampling the initial dataset, so that the resulting RMSE (or any other metric) is also a random variable. Repeating the K-fold 100 times makes the whole process more robust:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>ctrl <span class="ot">&lt;-</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">"repeatedcv"</span>, <span class="at">number=</span><span class="dv">5</span>, <span class="at">repeats=</span><span class="dv">100</span>)</span>
+<span id="cb6-2"><a></a>model <span class="ot">&lt;-</span> <span class="fu">train</span>(y<span class="sc">~</span><span class="fu">poly</span>(x,<span class="dv">8</span>), <span class="at">data=</span>data, <span class="at">method=</span><span class="st">"lm"</span>, <span class="at">trControl=</span>ctrl)</span>
+<span id="cb6-3"><a></a></span>
+<span id="cb6-4"><a></a>model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Linear Regression 
+
+25 samples
+ 1 predictor
+
+No pre-processing
+Resampling: Cross-Validated (5 fold, repeated 100 times) 
+Summary of sample sizes: 20, 20, 21, 20, 19, 20, ... 
+Resampling results:
+
+  RMSE     Rsquared   MAE    
+  10.3213  0.9241026  6.25129
+
+Tuning parameter 'intercept' was held constant at a
+ value of TRUE</code></pre>
+</div>
+</div>
+</section>
+<section id="evaluate-the-results" class="slide level2">
+<h2>Evaluate the results</h2>
+<p>The <code>model</code> object contains a field named <code>model$results</code> that is a table with all the available performance metrics:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 12%">
+<col style="width: 15%">
+<col style="width: 12%">
+<col style="width: 13%">
+<col style="width: 16%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">intercept</th>
+<th style="text-align: right;">RMSE</th>
+<th style="text-align: right;">Rsquared</th>
+<th style="text-align: right;">MAE</th>
+<th style="text-align: right;">RMSESD</th>
+<th style="text-align: right;">RsquaredSD</th>
+<th style="text-align: right;">MAESD</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: right;">10.3213</td>
+<td style="text-align: right;">0.9241026</td>
+<td style="text-align: right;">6.25129</td>
+<td style="text-align: right;">23.37541</td>
+<td style="text-align: right;">0.1183862</td>
+<td style="text-align: right;">12.14192</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Now we want to repeat the K-fold validation over the list of formulas corresponding to the set of polynomials with degrees from 1 to 12. We use again the <code>map()</code> function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>fit_quality <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb8-2"><a></a>  <span class="at">degree=</span><span class="fu">c</span>(<span class="dv">1</span>,deg),</span>
+<span id="cb8-3"><a></a>  <span class="at">results=</span><span class="fu">map</span>(degree, <span class="cf">function</span>(n) {</span>
+<span id="cb8-4"><a></a>    fm <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"y~poly(x,"</span>, n, <span class="st">")"</span>) <span class="sc">%&gt;%</span> <span class="fu">as.formula</span>()</span>
+<span id="cb8-5"><a></a>    <span class="fu">train</span>(fm, <span class="at">data=</span>data, <span class="at">method=</span><span class="st">"lm"</span>, <span class="at">trControl=</span>ctrl)<span class="sc">$</span>results</span>
+<span id="cb8-6"><a></a>    })</span>
+<span id="cb8-7"><a></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-8"><a></a>  <span class="fu">unnest</span>(<span class="at">cols=</span>results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="smaller">
+<p>Note the <code>unnest()</code> function at the end: the model field <code>$results</code> is actualy a table, so without that function in <code>fit_quality</code> we would get a column <code>results</code> that contains a list of tables. The <code>unnest()</code> function flattens this list of tables in place.</p>
+</div>
+</section>
+<section id="evaluate-the-results-1" class="slide level2">
+<h2>Evaluate the results</h2>
+<p>Now we can finally make a plot of the metrics as a function of the polynomial degree:</p>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>fit_quality <span class="sc">%&gt;%</span> </span>
+<span id="cb9-2"><a></a>  <span class="fu">select</span>(<span class="sc">-</span>intercept, <span class="sc">-</span><span class="fu">starts_with</span>(<span class="st">"Rsquared"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-3"><a></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>degree, <span class="at">names_to =</span> <span class="st">"metric"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>degree, <span class="at">y=</span>value, <span class="at">group=</span>metric, <span class="at">color=</span>metric)) <span class="sc">+</span> </span>
+<span id="cb9-5"><a></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb9-6"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb9-7"><a></a>  <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb9-8"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="fu">c</span>(<span class="dv">1</span>,deg))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="kfold_files/figure-revealjs/unnamed-chunk-12-1.png" width="750"></p>
+</figure>
+</div>
+</div>
+</div></div>
+</section>
+<section id="regression" class="slide level2">
+<h2>Regression</h2>
+<div class="columns">
+<div class="column">
+<p>From the previous plot we observe that the minima of any metric happens at degree 3:</p>
+<ul>
+<li>below that value we have underfitting</li>
+<li>above we have overfitting (i.e.&nbsp;the model is loosing generality)</li>
+</ul>
+<p>So we can finally accept the model <span class="math inline">\(y_i=a + bx_i + cx_i^2 + dx_i^3 + \varepsilon_i\)</span> (a degree 3 polynomial in <span class="math inline">\(x_i\)</span>):</p>
+</div><div class="column">
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Regression</a></li><li><a href="#tabset-1-2">Residuals</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="kfold_files/figure-revealjs/unnamed-chunk-13-1.png" width="750"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-2">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="kfold_files/figure-revealjs/unnamed-chunk-14-1.png" width="750"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+
+
+
+<aside><div>
+<p><strong>NOTE</strong>: The regression plot also includes 95% confidence intervals</p>
+</div></aside></section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>paolo.bosetti@unitn.it — <a href="https://paolobosetti.quarto.pub">https://paolobosetti.quarto.pub</a></p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+
+        height: 720,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+          let selectedAnnoteEl;
+          const selectorForAnnotation = ( cell, annotation) => {
+            let cellAttr = 'data-code-cell="' + cell + '"';
+            let lineAttr = 'data-code-annotation="' +  annotation + '"';
+            const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+            return selector;
+          }
+          const selectCodeLines = (annoteEl) => {
+            const doc = window.document;
+            const targetCell = annoteEl.getAttribute("data-target-cell");
+            const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+            const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+            const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+            const lineIds = lines.map((line) => {
+              return targetCell + "-" + line;
+            })
+            let top = null;
+            let height = null;
+            let parent = null;
+            if (lineIds.length > 0) {
+                //compute the position of the single el (top and bottom and make a div)
+                const el = window.document.getElementById(lineIds[0]);
+                top = el.offsetTop;
+                height = el.offsetHeight;
+                parent = el.parentElement.parentElement;
+              if (lineIds.length > 1) {
+                const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+                const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+                height = bottom - top;
+              }
+              if (top !== null && height !== null && parent !== null) {
+                // cook up a div (if necessary) and position it 
+                let div = window.document.getElementById("code-annotation-line-highlight");
+                if (div === null) {
+                  div = window.document.createElement("div");
+                  div.setAttribute("id", "code-annotation-line-highlight");
+                  div.style.position = 'absolute';
+                  parent.appendChild(div);
+                }
+                div.style.top = top - 2 + "px";
+                div.style.height = height + 4 + "px";
+                div.style.left = 0;
+                let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+                if (gutterDiv === null) {
+                  gutterDiv = window.document.createElement("div");
+                  gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                  gutterDiv.style.position = 'absolute';
+                  const codeCell = window.document.getElementById(targetCell);
+                  const gutter = codeCell.querySelector('.code-annotation-gutter');
+                  gutter.appendChild(gutterDiv);
+                }
+                gutterDiv.style.top = top - 2 + "px";
+                gutterDiv.style.height = height + 4 + "px";
+              }
+              selectedAnnoteEl = annoteEl;
+            }
+          };
+          const unselectCodeLines = () => {
+            const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+            elementsIds.forEach((elId) => {
+              const div = window.document.getElementById(elId);
+              if (div) {
+                div.remove();
+              }
+            });
+            selectedAnnoteEl = undefined;
+          };
+            // Handle positioning of the toggle
+        window.addEventListener(
+          "resize",
+          throttle(() => {
+            elRect = undefined;
+            if (selectedAnnoteEl) {
+              selectCodeLines(selectedAnnoteEl);
+            }
+          }, 10)
+        );
+        function throttle(fn, ms) {
+        let throttle = false;
+        let timer;
+          return (...args) => {
+            if(!throttle) { // first call gets through
+                fn.apply(this, args);
+                throttle = true;
+            } else { // all the others get throttled
+                if(timer) clearTimeout(timer); // cancel #2
+                timer = setTimeout(() => {
+                  fn.apply(this, args);
+                  timer = throttle = false;
+                }, ms);
+            }
+          };
+        }
+          // Attach click handler to the DT
+          const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+          for (const annoteDlNode of annoteDls) {
+            annoteDlNode.addEventListener('click', (event) => {
+              const clickedEl = event.target;
+              if (clickedEl !== selectedAnnoteEl) {
+                unselectCodeLines();
+                const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+                if (activeEl) {
+                  activeEl.classList.remove('code-annotation-active');
+                }
+                selectCodeLines(clickedEl);
+                clickedEl.classList.add('code-annotation-active');
+              } else {
+                // Unselect the line
+                unselectCodeLines();
+                clickedEl.classList.remove('code-annotation-active');
+              }
+            });
+          }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>
