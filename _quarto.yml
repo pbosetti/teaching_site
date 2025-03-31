@@ -7,6 +7,11 @@ project:
 website:
   title: "Paolo Bosetti"
   reader-mode: true
+  google-analytics: "G-77EMP7T5YY"
+  cookie-consent:
+    type: express
+    style: simple
+    palette: light
   navbar:
     left:
       - text: ADAS

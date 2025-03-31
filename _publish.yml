@@ -1,4 +1,4 @@
 - source: project
   quarto-pub:
     - id: cd544b84-4001-456e-bca6-abd26521b455
-      url: 'https://paolobosetti.quarto.pub/teaching'
+      url: https://paolobosetti.quarto.pub/teaching

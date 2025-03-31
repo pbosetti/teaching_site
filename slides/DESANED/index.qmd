@@ -29,5 +29,5 @@ The code is also made available on GitHub: <https://github.com/pbosetti/DESAnED>
 ## Bibliography
 
 1. Douglas C. Montgomery, "Design and Analysis of Experiments", 10th edition, Wiley, 2019, ISBN: 978-1-119-49244-3 (any cheaper edition is OK)
-2. Hadley Wickham, Garrett Grolemund, "R for Data Science", 1st edition, O'Reilly, 2017, ISBN: 978-1491910399, (also online at <https://r4ds.had.co.nz>)
+2. Hadley Wickham, Mine Çetinkaya-Rundel, Garrett Grolemund, "R for Data Science", 2nd edition, O'Reilly, 2017, ISBN: 978-1492097402, (also online for free at <https://r4ds.hadley.nz>)
 3. François Chollet with J. J. Allaire, "Deep Learning with R", 2nd edition, Manning, 2019, ISBN 9781617295546

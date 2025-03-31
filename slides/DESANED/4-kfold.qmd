@@ -1,7 +1,7 @@
 ---
 title: "K-Fold Cross Validation"
 subtitle: |
-  Design of Experiments and Statistical Analysis of Experimental Data, 2024 \
+  Design of Experiments and Statistical Analysis of Experimental Data, 2025 \
   ![](images/by-nc-sa.png){height=30}
 author: "Paolo Bosetti"
 institute: "Dpt. of Industrial Engineering, University of Trento"

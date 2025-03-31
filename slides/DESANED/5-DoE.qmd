@@ -1,7 +1,7 @@
 ---
 title: "Design of Experiments"
 subtitle: |
-  Design of Experiments and Statistical Analysis of Experimental Data, 2024 \
+  Design of Experiments and Statistical Analysis of Experimental Data, 2025 \
   ![](images/by-nc-sa.png){height=30}
 author: "Paolo Bosetti"
 institute: "University of Trento, Department of Industrial Engineering"
@@ -26,13 +26,14 @@ execute:
 
 ---
 
-```{r}
+```{r stup}
 options(width = 60)
 set.seed(0)
 library(latex2exp)
 library(glue)
 library(tidyverse)
 library(modelr)
+library(adas.utils)
 theme_set(theme_gray()+theme(legend.position = "bottom"))
 ```
 
@@ -691,19 +692,8 @@ daniel <- expand.grid(
      45, 71, 48, 65, 68, 60, 80, 65,
      43, 100, 45, 104, 75, 86, 70, 96
    ))
-daniel.lm <- lm(Yield~A*B*C*D, data=daniel)
-c <- effects(daniel.lm)
-tibble(
-   term = names(c),
-   value = as.numeric(c)
-) %>% slice_tail(n=length(c)-1) %>%
-   ggplot(aes(sample=value)) +
-   geom_hline(aes(yintercept=value), color=gray(0.7)) +
-   geom_qq() +
-   geom_qq_line() +
-   geom_label(aes(y=value, x=-3., label=term), hjust="left") +
-   coord_cartesian(xlim=c(-3,3)) +
-   labs(x="Theoretical Quantiles", y="Sample Quantiles")
+lm(Yield~A*B*C*D, data=daniel) %>% 
+  daniel_plot_qq()
 ```
 
 :::
@@ -718,24 +708,18 @@ In this case only the effects $A, C, D$ and the interactions $AC$ and $AD$ are n
 The linear statistical model can then be reviewed as
 
 $$
-y_{ijkl} = \mu + \alpha_{i} + \gamma_{j} + (\alpha\gamma)_{ij}+ \delta_k + (\alpha\delta)_{ik} + \varepsilon_{ijkl}
+\begin{align}
+y_{ijkl} =& \mu + \alpha_{i} + \gamma_{j} + (\alpha\gamma)_{ij}+ \\ 
+&+\delta_k + (\alpha\delta)_{ik} + \varepsilon_{ijkl}
+\end{align}
 $$
 That is, we can already rule out that $B$ is in fact a factor. In this way, instead of an unreplicated $2^4$ factorial plan we are dealing with a twice replicated $2^3$ (i.e. $2\cdot 2^3$), for which we can perform a normal ANOVA analysis
 :::
 
 :::column
 ```{r}
-tibble(
-   term = names(c),
-   value = as.numeric(c)
-) %>% slice_tail(n=length(c)-1) %>%
-   ggplot(aes(sample=value)) +
-   geom_hline(aes(yintercept=value), color=gray(0.7)) +
-   geom_qq() +
-   geom_qq_line() +
-   geom_label(aes(y=value, x=-3., label=term), hjust="left") +
-   coord_cartesian(xlim=c(-3,3)) +
-   labs(x="Theoretical Quantiles", y="Sample Quantiles")
+lm(Yield~A*B*C*D, data=daniel) %>% 
+  daniel_plot_qq()
 ```
 
 :::

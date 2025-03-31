@@ -1,7 +1,7 @@
 ---
 title: "Intro to Statistics"
 subtitle: |
-   Design of Experiments and Statistical Analysis of Experimental Data, 2024 \
+   Design of Experiments and Statistical Analysis of Experimental Data, 2025 \
    ![](images/by-nc-sa.png){height=30}
 author: "Paolo Bosetti"
 institute: "University of Trento, Department of Industrial Engineering"
@@ -48,7 +48,7 @@ A stochastic variable is a variable that takes on random values at each observat
 
 . . .
 
-**measurement** is the process that leads to the objective evaluation of the **measurand**. The result of a measurement is called **measurement**
+**measurement** is the process that leads to the objective evaluation of the **measurand**. The result of a measurement is called **measure**
 
 . . .
 
@@ -74,7 +74,7 @@ df <- tibble(i=1:N, x=rnorm(N, m, 0.01))
 df %>% ggplot(aes(x=i, y=x)) +
    geom_point() +
    coord_cartesian(ylim=c(0, 50)) +
-   labs(x="index", y="measurement (mm)")
+   labs(x="index", y="measure (mm)")
 ```
 :::
 
@@ -85,7 +85,7 @@ df %>% ggplot(aes(x=i, y=x)) +
 #| fig-height: 3
 df %>% ggplot(aes(x=i, y=x)) +
    geom_point() +
-   labs(x="index", y="measurement (mm)")
+   labs(x="index", y="measure (mm)")
 ```
 :::
 
@@ -134,7 +134,7 @@ df %>% ggplot(aes(x=i, y=x)) +
    geom_hline(yintercept=mean(df$x), color="red") +
    geom_hline(yintercept = mean(df$x) + c(-1, 1) * sd(df$x) * 3, color="blue") +
    coord_cartesian(ylim=c(-0.05,0.05)+m) +
-   labs(x="index", y="measurement (mm)")
+   labs(x="index", y="measure (mm)")
 ```
 
 ## Moments of a population
@@ -415,7 +415,7 @@ A **Bernoulli process** is a series of $n$ events with outcomes $z_1, z_2, \dots
 - each $z_i$ can be represented with 0 or 1
 - the probability of success $p_s\in[0,1]$ of each event is constant
 
-The binomial distribution describes the probability of getting $x\in[0, n]$ consecutive successes
+The binomial distribution describes the probability of getting $x\in[0, n]$ successes (out of $n$ trials)
 
 ### Definitions
 
@@ -431,6 +431,8 @@ $$
 ### Examples
 
 - probability of getting 8 heads by flipping a coin 10 times
+- probability of finding 3 defective items in a batch of 20, with a defect rate of 0.1
+- probability of 2 sixes in 10 dice rolls
 :::
 :::
 
@@ -470,8 +472,9 @@ $$
 
 ### Examples
 
-- probability of finding a defect on 1 m of wire, when there are on average 9 defects every 100 m
-- probability of receiving a phone call in the next 10' in a switchboard which receives on average 250 calls per day
+- probability of finding a defect on 1 m of wire, when there are on average 9 defects every 100 m: $\lambda=\frac{9~\text{def}}{100~\text m} * 1~\text m = 0.09~\text{def}$
+- probability of receiving a phone call in the next 10 min in a switchboard which receives on average 250 calls per day: $\lambda=\frac{250~\text{calls}}{24~\text{h}} * 1/6~\text{h} \simeq 1.74~\text{calls}$
+- probability of incoming patient in a hospital with an average of 1825 patients per year: $\lambda=1825~\text{patients}/365~\text{days} \simeq 5~\text{patients}$ (see chart on the right)
 :::
 :::
 
@@ -494,7 +497,7 @@ tibble(q=0:20, p=dpois(q, 5)) %>%
 ::: panel-tabset
 ### Description
 
-It is the probability distribution of obtaining a success in a Bernoulli process after $x \in \mathbb{N}^+$ failures
+It is the probability distribution of obtaining a success in a Bernoulli process after $x \in \mathbb{N}^+$ failures (so, when $x=0$ we have a success on first trial and $p(0)=p_s$)
 
 ### Definitions
 
@@ -616,7 +619,10 @@ It is a distribution that plays a central role, by virtue of the **central limit
 
 ## Central limit theorem (statement)
 
->If $x_1, x_2, \dots,x_n$ are $n$ **independent and identically distributed** (IID) random variables with $E(x_i)=\mu$ and $V(x_i)=\sigma^2~ ~\forall i=1,2,\dots,n$ (both finite), and $y=x_1+x_2+\dots+x_n$, then:
+:::{#thm-clt}
+## Celtral limit
+
+If $x_1, x_2, \dots,x_n$ are $n$ **independent and identically distributed** (IID) random variables with $E(x_i)=\mu$ and $V(x_i)=\sigma^2~ ~\forall i=1,2,\dots,n$ (both finite), and $y=x_1+x_2+\dots+x_n$, then:
 $$
 z_n=\frac{y-n\mu}{\sqrt{n\sigma^2}}
 $$
@@ -624,6 +630,7 @@ approximates a distribution $\mathcal{N}(0,1)$, in the sense that if $F_n(z)$ is
 $$
 \lim_{n\rightarrow+\infty}\frac{F_n(z)}{\Phi(z)}=1
 $$
+:::
 
 ## Central limit theorem (meaning)
 
@@ -939,7 +946,7 @@ In the graph, the **vertical dashes at the bottom** represent the values of 10 r
 
 ## Student Test
 
-For the two samples $y_{1,1}$ and $y_{2,i}$ it is possible to define the variable:
+For the two samples $y_{1,i}$ and $y_{2,i}$ it is possible to define the variable:
 $$
 t_0 = \frac{\bar{y_2} - \bar{y_1}}{S_p\sqrt{\frac{1}{n_1} + \frac{1}{n_s} }}
 $$
@@ -1144,6 +1151,44 @@ $$
 $$
 
 
+## Power of Student's T-test
+
+The **power** of a test is the error probability in rejecting $H_0$ when it is false, i.e. $1-\beta$. It represents the test **reliability**. 
+It depends on the samples size and on the **relative difference** $\delta = (\mu_1 - \mu_2) / \sigma$. It is possible to calculate the **power curves** for different sample sizes and for different values of the **relative difference** $\delta = (\mu_1 - \mu_2) / \sigma$.
+
+:::columns
+:::{.column width="66%"}
+```{r fig.width=5, fig.height=3}
+expand_grid(
+  n=c(3:10, 12, 15, 20),
+  alpha=c(0.005, 0.01, 0.05, 0.1),
+  delta = seq(0, 4, 0.05),
+) %>% 
+  mutate(
+    power = power.t.test(n=n, delta=delta, sig.level=alpha)$power,
+    n=factor(n)
+  ) %>% 
+  ggplot(aes(x=delta, y=power, color=n)) +
+  geom_line() +
+  facet_wrap(~alpha) +
+  geom_hline(yintercept=0.9, linetype=2) +
+  labs(y="Power", x=TeX("$\\delta=(\\mu_1 - \\mu_2)/\\sigma$")) +
+  theme(legend.position="right")
+
+```
+:::
+
+:::{.column width="34%"}
+
+- test power **decreases** with $\delta$
+- test power **increases** with sample size
+- test power **increases** with $\alpha$
+- with $\alpha=0.05$ e $n=10$, test power is $\geq0.9$ when $\delta\geq1.5$
+
+:::
+:::
+
+
 ## Outliers
 The collection of data relating to a sample may be **affected by errors**:
 
@@ -1175,7 +1220,7 @@ ggplot(aes(x=name, y=value)) +
 ```
 
 
-## outliers: statistical tests
+## Outliers: statistical tests
 :::{.panel-tabset}
 ### Chauvenet criterion
 It is not a real test but a criterion based on which to eliminate the point furthest from the average (**only one!**)
@@ -1234,6 +1279,23 @@ df[1:100,] %>% ggplot() +
   
 ```
 For the number of bars, or *bins*, use the **Sturges formula**: $K = \lceil\log_2 n \rceil + 1$ or the **Scott formula**: $K=3.49 s / \sqrt[3]{n}$
+
+
+## Sturges vs. Scott
+
+```{r}
+#| fig.width=6, fig.height=3
+df <- tibble(
+  n = seq(10, 5000, by=1),
+)
+df$Sturges <- map_dbl(df$n, ~nclass.Sturges(1:.))
+df$Scott <- map_dbl(df$n, ~nclass.scott(rnorm(.)))
+df %>% 
+  pivot_longer(Sturges:Scott) %>%
+  ggplot() +
+  geom_line(aes(x=n, y=value, color=name)) +
+  labs(x="sample size", y="bins count", color="method")
+```
 
 
 ## Normality analysis: quantile-quantile plot {.smaller}
@@ -1497,7 +1559,10 @@ Based on the last equation we can calculate the *p*-value associated with the hy
 ## Cochran's theorem
 The definition of $F_0$ assumes that $MS_{tr}$ and $MS_E$ **are independent**. Since they are the result of the decomposition of $SS_T$ this is not obvious. However, the **theorem** holds true:
 
-> Let $Z_i\sim \mathcal{N}(0,1),~i=1,2,\dots,\nu$ **independent samples**, with
+:::{#thm-cochran}
+## Cochran's
+
+Let $Z_i\sim \mathcal{N}(0,1),~i=1,2,\dots,\nu$ **independent samples**, with
 $\sum_{i=1}^\nu Z_i^2=Q_1+Q_2+\dots+Q_s$
 where $s\leqslant \nu$ and $Q_i$ has $\nu_i$ degrees of freedom ($i=1, 2,\dots,s$).
 Then, $Q_1,Q_2,\dots,Q_s$ are **independent random variables** distributed as $\mathcal{X}^2$ with $\nu_1,\nu_2,\dots,\nu_s$ degrees of freedom, if and only if
@@ -1505,6 +1570,8 @@ $$
 \nu=\nu_1+\nu_2+\dots+\nu_s
 $$
 Since $(N-a)+(a-1)=(N-1)$, it follows that $SS_{tr}/\sigma^2$ and $SS_E/\sigma^2$ are independent random variables distributed like $\mathcal {X}^2_{a-1}$ and $\mathcal{X}^2_{N-a}$, respectively.
+:::
+
 
 ## ANOVA (*ANalysis Of VAriance*)
 Returning to the example of the resistance of mixed yarns, we can apply the variance decomposition obtaining:
@@ -1584,4 +1651,183 @@ GGTukey(tk) +
 
 :::aside
 **Question**: What happens to confidence intervals going from a 95% interval to a 99% confidence level?
+:::
+
+
+# The Frequentist Approach
+The **frequentist** approach is based on the idea that the probability of an event is the **frequency** with which it occurs in a large number of repetitions of the same experiment
+
+
+## Meaning of $p$-value
+
+```{r}
+library(glue)
+set.seed(5)
+mu0 = 10.3
+N <- 1000
+pop <- rnorm(N*10, mean=mu0, sd=2.7)
+alpha <- 0.05
+n1 <- 15
+```
+
+
+:::columns
+:::column
+The meaning of the $p$-value is illustrated with an example: consider an experiment in which `r N` Student tests are performed on as many samples of $n=`r n1`$ elements, each with a significance level of $\alpha = `r alpha*100`$%
+
+Suppose it is a one-sample test, with null hypothesis $\mu = \mu_0$ and alternative hypothesis $\mu \neq \mu_0$, and suppose all samples are taken from the same population with expected value $\mu_0$
+
+Then the expected value of the wrong predictions (i.e. those in which $H_1$ holds) is `r alpha*100`%
+:::
+
+:::column
+```{r}
+tibble(
+  i = 1:N,
+  p = map_dbl(1:N, ~t.test(sample(pop, n1), mu=mu0, conf.level=1-alpha)$p.value),
+  hyp = ifelse(p<0.05, "H1", "H0")
+) %>% 
+  {ggplot(data = .) +
+  geom_point(aes(x=i, y=p, color=hyp, shape=hyp)) +
+  geom_hline(yintercept=alpha, color="red") +
+  scale_color_manual(values=c("H0"="darkgreen", "H1"="red"), name="Hypothesis") +
+  scale_shape_manual(values=c("H0"=19, "H1"=17), name="Hypothesis") +
+  geom_label(x=0, y=alpha, label=glue("{alpha*100}%")) +
+  labs(
+    title=glue("p-value for {N} T-tests ({length(.$hyp[.$hyp == 'H1'])/N*100}% Type I errors)"), 
+    x="# Tests", 
+    y="p-value")}
+```
+
+:::
+:::
+
+:::aside
+**Note**: The same **frequentist** approach can be applied to any statistical test that produces a $p$-value
+:::
+
+## And if we change $n$?
+
+
+```{r}
+set.seed(5)
+mu0 = 10.3
+n2 <- 50
+```
+
+:::columns
+
+:::column
+If we increase the size of the samples from `r n1` to `r n2`, the probability of a type I error remains the same, under the same conditions
+
+How is it possible?
+
+By increasing the sample size we increase the **power** of the test, i.e. its ability to discriminate even small differences. But for a certain test, for a certain difference, the $p$-value does not depend on the sample size, because it is calculated *compensating* the effect of the sample size
+:::
+
+:::column
+
+```{r}
+tibble(
+  i = 1:N,
+  p = map_dbl(1:N, ~t.test(sample(pop, n2), mu=mu0, conf.level=1-alpha)$p.value),
+  hyp = ifelse(p<0.05, "H1", "H0")
+) %>% 
+  {ggplot(data = .) +
+  geom_point(aes(x=i, y=p, color=hyp, shape=hyp)) +
+  geom_hline(yintercept=alpha, color="red") +
+  scale_color_manual(values=c("H0"="darkgreen", "H1"="red"), name="Hypothesis") +
+  scale_shape_manual(values=c("H0"=19, "H1"=17), name="Hypothesis") +
+  geom_label(x=0, y=alpha, label=glue("{alpha*100}%")) +
+  labs(
+    title=glue("p-value for {N} T-tests ({length(.$hyp[.$hyp == 'H1'])/N*100}% Type I errors)"), 
+    x="# Tests", 
+    y="p-value")}
+```
+
+:::
+:::
+
+
+## And what about test power?
+
+:::columns
+
+:::column
+Consider the tests in which the hypotheses ar
+
+$$
+\begin{eqnarray}
+H_0:~&\mu = \mu_0 + \sigma \\
+H_1:~&\mu \neq \mu_0 + \sigma
+\end{eqnarray}
+$$
+i.e. a difference of one $\sigma$ from the expected value of the population
+
+Then in the majority of cases we will have a small $p$-value, which hints us to reject $H_0$ (*Case A*)
+
+But if we switch from samples of 15 elements to samples of 30 elements (*Case B*) the **power** of the test increases significantly, under the same conditions
+
+:::
+
+:::column
+
+:::panel-tabset
+### Case A
+
+```{r}
+library(glue)
+set.seed(5)
+mu0 = 10.3
+sd = 2.7
+N <- 1000
+pop <- rnorm(N*10, mean=mu0, sd=sd)
+alpha <- 0.05
+n3 <- 15
+
+tibble(
+  i = 1:N,
+  p = map_dbl(1:N, ~t.test(sample(pop, n3), mu=mu0+1*sd, conf.level=1-alpha)$p.value),
+  hyp = ifelse(p<0.05, "H1", "H0")
+) %>% 
+  {ggplot(data = .) +
+  geom_point(aes(x=i, y=p, color=hyp, shape=hyp)) +
+  geom_hline(yintercept=alpha, color="red") +
+  scale_color_manual(values=c("H0"="darkgreen", "H1"="red"), name="Hypothesis") +
+  scale_shape_manual(values=c("H0"=19, "H1"=17), name="Hypothesis") +
+  geom_label(x=0, y=alpha, label=glue("{alpha*100}%")) +
+  ylim(0,0.5) +
+  labs(
+    title=glue("p-value for {N} T-tests, sambles with {n3} elements"), 
+    x="# Tests", 
+    y="p-value")}
+```
+
+### Case B
+
+```{r}
+n3 <- 30
+tibble(
+  i = 1:N,
+  p = map_dbl(1:N, ~t.test(sample(pop, n3), mu=mu0+1*sd, conf.level=1-alpha)$p.value),
+  hyp = ifelse(p<0.05, "H1", "H0")
+) %>% 
+  {ggplot(data = .) +
+  geom_point(aes(x=i, y=p, color=hyp, shape=hyp)) +
+  geom_hline(yintercept=alpha, color="red") +
+  scale_color_manual(values=c("H0"="darkgreen", "H1"="red"), name="Hypothesis") +
+  scale_shape_manual(values=c("H0"=19, "H1"=17), name="Hypothesis") +
+  geom_label(x=0, y=alpha, label=glue("{alpha*100}%")) +
+  ylim(0,0.5) +
+  labs(
+    title=glue("p-value for {N} T-tests, sambles with {n3} elements"), 
+    x="# Tests", 
+    y="p-value")}
+```
+
+
+:::
+
+
+:::
 :::
