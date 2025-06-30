@@ -16,7 +16,7 @@ format:
     preview-links: auto
     theme: [default, ../slides.scss]
     chalkboard: true
-    footer: "paolo.bosetti@unitn.it --- [https://paolobosetti.quarto.pub/DESANED](https://paolobosetti.quarto.pub/DESANED)"
+    footer: "paolo.bosetti@unitn.it --- [https://paolobosetti.quarto.pub/ADAS](https://paolobosetti.quarto.pub/ADAS)"
     fig-width: 5
     fig-height: 4
     fig-dpi: 300
@@ -24,14 +24,7 @@ format:
     email-obfuscation: javascript
     pdf-separate-fragments: true
     link-external-icon: false
-    drop:
-      shortcut: "§"
-      engine: webr
-      webr:
-        packages:
-          - tidyverse
-revealjs-plugins:
-  - drop
+    lang: it-IT
 ---
 
 ```{r}

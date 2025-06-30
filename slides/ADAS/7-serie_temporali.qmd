@@ -662,6 +662,7 @@ $$
 siano **tutte strettamente fuori dal cerchio unitario** sul piano complesso
 
 Ad esempio: $\mathrm{ARMA}(2,2)$ con $\Phi_2(z)= 1 + 0.9z + 0.1z^2$ e $\Theta_q(z) = 1 + 2z + 15z^2$:
+
 ```{r echo=T}
 abs(polyroot(c(1, -0.9, -0.1)))
 abs(polyroot(c(1, 2, 15)))
@@ -675,6 +676,7 @@ Cioè il termine AR non è causale e il termine MA non è invertibile (ma lo sar
 Consideriamo il processo $x_t = w_t$, con $w_t\sim\mathcal{N}(0, 1)$: si tratta ovviamente di puro rumore casuale
 
 Moltiplichiamo entrambi i lati per $1-0.5B$ per ottenere:
+
 $$
 x_t = 0.5x_{t-1}-0.5w_{t-1} + w_t
 $$
@@ -689,17 +691,20 @@ In R si può ancora usare `polyroot()`
 ## Ridondanza
 
 Ad esempio, consideriamo il processo $x_t=0.4x_{t-1}+0.45x_{t-2}+w_t + w_{t-1}+0.25w_{t-2}$, che usando l'operatore $B$ diventa:
+
 $$
 (1-0.4B-0.45B^2)x_t = (1+B+0.25B^2)w_t.
 $$
 
 In questa forma il processo sembra $\mathrm{ARMA}(2,2)$, tuttavia possiamo scomporre i due polinomi in fattori, usando `polyroot()` per calcolare le radici:
+
 ```{r echo=T}
 # per Phi:
 -1/polyroot(c(1, -0.4, -0.45))
 # per Theta:
 -1/polyroot(c(1, 1, 0.25))
 ```
+
 :::aside
 **Nota**: se $z_i,~ i=1,\dots,n$ sono le radici del polinomio $p(z)$ di grado $n$, allora il polinomio può essere scomposto nei fattori $(1-1/z_1 z)\cdot(1-1/z_2 z)\dots(1-1/z_n z)$.
 :::
