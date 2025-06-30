@@ -99,7 +99,7 @@ To build a formula from a model you typically:
 So let's build a linear model of degree 2:
 
 ```{r}
-data.lm <-lm(y~x - 1, data=data)
+data.lm <-lm(y~x, data=data)
 
 data %>% 
   add_predictions(data.lm) %>%
@@ -118,33 +118,13 @@ We note that the residuals show a rather strong pattern, meaning that the linear
 
 # Multiple regressions
 
-The degree of the fitting polynomial is a **hyper-parameter**. In fact, regression **parameters** are the coeffiients of the polynomial, to be calculated typically by minimizing the root mean square of the residuals. But the degree of the polynomial is a parameter that defines the **number** of regression parameters, and that  is why it is named a **hyper-parameter**. Identifying the best hyper-parameter(s) is the aim of validation and cross-validation strategies.
+The degree of the fitting polynomial is a **hyper-parameter**. In fact, regression **parameters** are the coefficients of the polynomial, to be calculated typically by minimizing the root mean square of the residuals. But the degree of the polynomial is a parameter that defines the **number** of regression parameters, and that  is why it is named a **hyper-parameter**. Identifying the best hyper-parameter(s) is the aim of validation and cross-validation strategies.
 
-In our case we want to compare polynomial fits up to degree 12. We use `modelr::fit_with()` to automate the building of many models together. The function needs two arguments:
-
-* the modeling function, typically `lm()`
-* the results of a call to `formulas()`, which in turn takes a list of formulas to be used. This list needs to have only right hand side formulas, being the first the response variable, the others are the model part combining the predictors
-
-We first build a list of arguments:
+In our case we want to compare polynomial fits up to degree 12, using a `map`:
 
 ```{r}
-deg <- 2:12
-args <- list(
-  ~y, ~x,
-  map(deg, ~as.formula(paste0("~poly(x,", ., ")")))
-) %>% 
-  unlist()
-```
-
-Note the usage of `unlist()` at the end: the previous command returns a nested list (a list of lists), and `unlist()` flattens it into a simple plain list of formulas.
-
-Now the `formulas()` function wants `n` parameters, each being a formula, while we have a list of formulas. We can solve this problem by using `do.call()` function, which calls a given function passing each element of a list as a separate argument:
-
-```{r}
-fits <- data %>% fit_with(
-  lm, 
-  .formulas=do.call(formulas, args)
-)
+fits <- 1:12 %>% 
+  map(\(deg) lm(y~poly(x, deg, raw=T), data = data))
 ```
 
 Quality of a regression can be verified with different metrics:
@@ -169,20 +149,17 @@ We use `map_dbl()` to map these functions over the list of polynomial degrees. T
 
 ```{r}
 tibble(
-  degree=c(1,deg), # deg starts from 2!
-  rsquare=fits %>% map_dbl(~rsquare(., data)),
-  rmse=fits %>% map_dbl(~rmse(., data))
+  degree=1:12, # deg starts from 2!
+  rsquare=fits %>% map_dbl(~rsquare(., df)),
+  rmse=fits %>% map_dbl(~rmse(., df))
 ) %>% 
-  ggplot(aes(x=degree)) +
-  geom_line(aes(y=rmse), color="blue") +
-  geom_line(aes(y=rsquare*4), color="red") +
-  scale_y_continuous(sec.axis = sec_axis(
-    \(x) scales::rescale(x, from=c(0,4), to=c(0,1)),
-    breaks=seq(0, 1, 0.1),
-    name="R squared"))
+  pivot_longer(-degree, names_to = "Index") %>% 
+  ggplot(aes(x=degree, y=value)) +
+  geom_line() +
+  facet_wrap(~Index, nrow=2, scales="free")
 ```
 
-The $R^2$ increases pretty quickly and saturates after degree 3. The RMSE decreases sharply and monothonically. It's hard to figure out the point where overfitting starts.
+The $R^2$ increases pretty quickly and saturates after degree 3. The RMSE decreases sharply and monotonically. It's hard to figure out the point where over-fitting starts.
 
 # K-fold cross-validation
 
@@ -218,9 +195,9 @@ Now we want to repeat the K-fold validation over the list of formulas correspond
 
 ```{r warning=FALSE}
 fit_quality <- tibble(
-  degree=c(1,deg),
-  results=map(degree, function(n) {
-    fm <- paste0("y~poly(x,", n, ")") %>% as.formula()
+  degree=1:12,
+  results=map(degree, \(n) {
+    fm <- paste0("y~poly(x,", n, ", raw=TRUE)") %>% as.formula()
     train(fm, data=data, method="lm", trControl=ctrl)$results
     })
 ) %>% 
@@ -239,7 +216,7 @@ fit_quality %>%
   geom_line() +
   geom_point() +
   scale_y_log10() +
-  scale_x_continuous(breaks=c(1,deg))
+  scale_x_continuous(breaks=1:12)
 ```
 
 We observe that the minima of any metric happens at degree 3. This means that below that value we have underfitting, above we have overfitting (i.e. the model is loosing generality).

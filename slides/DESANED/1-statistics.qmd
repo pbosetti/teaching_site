@@ -23,7 +23,7 @@ format:
     touch: true
     email-obfuscation: javascript
     pdf-separate-fragments: true
-    link-external-icon: true
+    link-external-icon: false
 execute:
    cache: true
 
@@ -1754,7 +1754,7 @@ tibble(
 :::columns
 
 :::column
-Consider the tests in which the hypotheses ar
+Consider the tests in which the hypotheses are:
 
 $$
 \begin{eqnarray}
@@ -1798,7 +1798,7 @@ tibble(
   geom_label(x=0, y=alpha, label=glue("{alpha*100}%")) +
   ylim(0,0.5) +
   labs(
-    title=glue("p-value for {N} T-tests, sambles with {n3} elements"), 
+    title=glue("p-value for {N} T-tests, samples with {n3} elements"), 
     x="# Tests", 
     y="p-value")}
 ```
@@ -1820,7 +1820,7 @@ tibble(
   geom_label(x=0, y=alpha, label=glue("{alpha*100}%")) +
   ylim(0,0.5) +
   labs(
-    title=glue("p-value for {N} T-tests, sambles with {n3} elements"), 
+    title=glue("p-value for {N} T-tests, samples with {n3} elements"), 
     x="# Tests", 
     y="p-value")}
 ```

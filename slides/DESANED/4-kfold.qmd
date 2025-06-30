@@ -142,7 +142,7 @@ So let's build a linear model of degree 1 and plot the data with the regression 
 
 ```{r echo=TRUE}
 #| output-location: column
-data.lm <-lm(y~x - 1, data=data)
+data.lm <-lm(y~x, data=data)
 data %>% 
   add_predictions(data.lm) %>%
   ggplot(aes(x=x)) +
@@ -189,32 +189,11 @@ We use `modelr::fit_with()` to automate the building of many models together: Th
 
 ## Multiple regression
 
-Let's see how it works. We first build a list of arguments:
+Let's see how it works. We first build a list linear models with increasing polynomial degrees:
 
 ```{r echo=TRUE}
-deg <- 2:12
-args <- list(
-  ~y, ~x,
-  map(deg, ~as.formula(paste0("~poly(x,", ., ")")))
-) %>% 
-  unlist()
-```
-
-Now `args` is a list of formulas like `~y`, `~x`, `~poly(x, 2)`, `~poly(x, 3)`, etc.
-
-:::aside
-**NOTE**: the usage of `unlist()` at the end: the previous command returns a nested list (a list of lists), and `unlist()` flattens it into a simple plain list of formulas.
-:::
-
-## Multiple regression
-
-Now the `formulas()` function wants `n` parameters, each being a formula, while we have a list of formulas. We can solve this problem by using `do.call()` function, which calls a given function passing each element of a list as a separate argument:
-
-```{r echo=TRUE}
-fits <- data %>% fit_with(
-  lm, 
-  .formulas=do.call(formulas, args)
-)
+fits <- 1:12 %>% 
+  map(\(deg) lm(y~poly(x, deg, raw=T), data = data))
 ```
 
 Now `fits` is a list or regression results, with polynomials from degree 1 to 12
@@ -252,7 +231,7 @@ We use `map_dbl()` to map these functions over the list of polynomial degrees. T
 ```{r echo=TRUE}
 #| output-location: slide
 tibble(
-  degree=c(1,deg), # deg starts from 2!
+  degree=1:12, # deg starts from 2!
   rsquare=fits %>% map_dbl(~rsquare(., data)),
   rmse=fits %>% map_dbl(~rmse(., data))
 ) %>% 
@@ -294,7 +273,7 @@ In fact, the folds are defined by randomly sampling the initial dataset, so that
 
 ```{r echo=TRUE}
 ctrl <- trainControl(method = "repeatedcv", number=5, repeats=100)
-model <- train(y~poly(x,8), data=data, method="lm", trControl=ctrl)
+model <- train(y~poly(x,8, raw=TRUE), data=data, method="lm", trControl=ctrl)
 
 model
 ```
@@ -314,9 +293,9 @@ Now we want to repeat the K-fold validation over the list of formulas correspond
 
 ```{r warning=FALSE, echo=TRUE}
 fit_quality <- tibble(
-  degree=c(1,deg),
+  degree=1:12,
   results=map(degree, function(n) {
-    fm <- paste0("y~poly(x,", n, ")") %>% as.formula()
+    fm <- paste0("y~poly(x,", n, ", raw=TRUE)") %>% as.formula()
     train(fm, data=data, method="lm", trControl=ctrl)$results
     })
 ) %>% 
@@ -340,7 +319,7 @@ fit_quality %>%
   geom_line() +
   geom_point() +
   scale_y_log10() +
-  scale_x_continuous(breaks=c(1,deg))
+  scale_x_continuous(breaks=1:12)
 ```
 
 

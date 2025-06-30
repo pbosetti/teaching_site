@@ -23,7 +23,7 @@ format:
     touch: true
     email-obfuscation: javascript
     pdf-separate-fragments: true
-    link-external-icon: true
+    link-external-icon: false
     drop:
       shortcut: "§"
       engine: webr
