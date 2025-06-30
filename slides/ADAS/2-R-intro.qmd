@@ -9,7 +9,7 @@ date: "`r Sys.time()`"
 date-format: "[*Ultimo aggiornamento:* ]DD/MM/YYYY"
 engine: knitr
 format: 
-  live-revealjs:
+  revealjs:
     width: 1280
     height: 720
     margin: 0.1
@@ -28,17 +28,17 @@ format:
     pdf-separate-fragments: true
     link-external-icon: false
     lang: it-IT
-    drop:
-      shortcut: "§"
-      engine: webr
-      webr:
-        packages:
-          - tidyverse
-revealjs-plugins:
-  - drop
+filters:
+  - webr
+webr:
+  show-startup-message: false 
+  cell-options:
+    fig-width: 8
+    fig-height: 4
+    autorun: false
+    editor-font-scale: 0.75
+  packages: ["tidyverse"]
 ---
-
-{{< include ../../_extensions/r-wasm/live/_knitr.qmd >}}
 
 ```{r}
 options(width = 60)
@@ -299,7 +299,7 @@ R supporta le tipiche istruzioni di controllo di flusso
 Scrivere una funzione `sum_all` che sommi tutti gli elementi con indice dispari di un vettore numerico. La funzione deve avere un argomento `x` e restituire la somma di tutti gli elementi di `x`, usando un ciclo `for`.
 
 
-```{webr}
+```{webr-r}
 sum_all <-function(x) {
   # scrivi qui il codice
 }
@@ -360,7 +360,7 @@ head(df, 3)
 Dal data frame `mtcars`, estrarre le righe corrispondenti ai veicoli con cilindrata (`disp`) maggiore di 200 e peso minore di 3.5 tonnellate (`wt`)
 
 
-```{webr}
+```{webr-r}
 head(mtcars)
 ```
 
@@ -431,7 +431,7 @@ Una **griglia** è una matrice che contiene tutte le combinazioni (ordinate) tra
 
 Riordinare il dataframe `df` in maniera casuale:
 
-```{webr}
+```{webr-r}
 df <- expand.grid(A=1:3, B=LETTERS[1:2])
 # aggiungo una colonna di numeri casuali
 # riordino df per quella colonna

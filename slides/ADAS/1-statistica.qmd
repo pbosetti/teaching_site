@@ -7,8 +7,9 @@ author: "Paolo Bosetti"
 institute: "Università di Trento, Dipartimento di Ingegneria Industriale"
 date: "`r Sys.time()`"
 date-format: "[*Ultimo aggiornamento:* ]DD/MM/YYYY"
+engine: knitr
 format: 
-  live-revealjs:
+  revealjs:
     width: 1280
     height: 720
     margin: 0.1
@@ -27,18 +28,19 @@ format:
     pdf-separate-fragments: true
     link-external-icon: false
     lang: it-IT
-    drop:
-      shortcut: "§"
-      engine: webr
-      webr:
-        packages:
-          - tidyverse
 revealjs-plugins:
-  - drop
   - quiz
+filters:
+  - webr
+webr:
+  show-startup-message: true 
+  cell-options:
+    fig-width: 8
+    fig-height: 4
+    autorun: false
+    editor-font-scale: 0.75
+  packages: ["tidyverse"]
 ---
-
-{{< include ../../_extensions/r-wasm/live/_knitr.qmd >}}
 
 ```{r setup, echo=FALSE, message=FALSE, warning=FALSE}
 options(width = 60)
@@ -1296,7 +1298,7 @@ Usare il riquadro sottostante per risolvere l'esercizio precedente (provare anch
 
 **Nota**: la radice quadrata si ottiene con `sqrt(x)`, l'elevamento a potenza con `x^y`.
 
-```{webr}
+```{webr-r}
 n1=10
 n2=10
 m1=13.59213
