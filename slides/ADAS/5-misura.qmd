@@ -1,7 +1,7 @@
 ---
 title: "Misura, Incertezza, Taratura"
 subtitle: |
-  Analisi Dati e Statistica, 2024--25 \
+  Analisi Dati e Statistica, 2025--26 \
   ![](images/by-nc-sa.png){height=30}
 author: "Paolo Bosetti"
 institute: "Università di Trento, Dipartimento di Ingegneria Industriale"

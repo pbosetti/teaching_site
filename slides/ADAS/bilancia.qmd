@@ -1,6 +1,6 @@
 ---
 title: "Esperimenti di taratura"
-subtitle: "Progetto del corso Analisi Dati e Statistica, A.A. 2024--25"
+subtitle: "Progetto del corso Analisi Dati e Statistica, A.A. 2025--26"
 author: "Paolo Bosetti"
 institute: "Università di Trento, Dipartimento di Ingegneria Industriale"
 date: "`r Sys.Date()`"

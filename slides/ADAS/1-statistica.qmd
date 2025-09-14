@@ -1,7 +1,7 @@
 ---
 title: "Statistica Descrittiva e Inferenziale"
 subtitle: |
-  Analisi Dati e Statistica, 2024--25 \
+  Analisi Dati e Statistica, 2025--26 \
   ![](images/by-nc-sa.png){height=30}
 author: "Paolo Bosetti"
 institute: "Università di Trento, Dipartimento di Ingegneria Industriale"
@@ -1857,7 +1857,7 @@ df %>% lm(Strength~Cotton, data=.) %>% anova() %>% knitr::kable()
 
 
 # La spiegazione frequentista
-L'approccio frequentista è quello che definisce e studia la probabilità *a posteriori* cioè contando il numero di eventi relativamente al numero totale di osservazioni
+L'approccio *frequentista* è quello che definisce e studia la probabilità *a posteriori* cioè contando il numero di eventi relativamente al numero totale di osservazioni
 
 ## Il significato del $p$-value
 
@@ -1905,7 +1905,9 @@ tibble(
 :::
 
 :::aside
-**Nota**: Lo stesso approccio **frequentista** è applicabile a qualsiasi altro test statistico di cui si calcoli il $p$-value
+**Nota 1**: Lo stesso approccio **frequentista** è applicabile a qualsiasi altro test statistico di cui si calcoli il $p$-value
+
+**Nota 2**: Vedi la versione interattiva qui: <https://p4010.shinyapps.io/frequentista/>
 :::
 
 ## E se cambiamo $n$?

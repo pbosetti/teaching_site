@@ -83,5 +83,5 @@ Le slide sono interattive. I comandi più utili sono:
 
 ## Repository del codice
 
-Il codice R sviluppato durante le lezioni è disponibile su GitHub: [github.com/pbosetti/adas-24](https://github.com/pbosetti/adas-24){target="_blank"}.
+Il codice R sviluppato durante le lezioni è disponibile su GitHub: [github.com/pbosetti/adas-25](https://github.com/pbosetti/adas-25){target="_blank"}.
 

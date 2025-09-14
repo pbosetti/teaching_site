@@ -1,7 +1,7 @@
 ---
 title: "Introduzione al Corso"
 subtitle: |
-  Analisi Dati e Statistica, 2024--25 \
+  Analisi Dati e Statistica, 2025--26 \
   ![](images/by-nc-sa.png){height=30}
 author: "Paolo Bosetti"
 institute: "Università di Trento, Dipartimento di Ingegneria Industriale"
@@ -38,6 +38,56 @@ set.seed(0)
 # Introduzione al corso
 
 Di cosa ci occuperemo per le prossime 60 ore assieme
+
+
+## Ingegneria Industriale
+
+* Cosa significa *"industriale"*?
+
+. . . 
+
+* Si parla di *produzione industriale* per indicare la fabbricazione di beni materiali in **serie**, su **scala massiva**, e non in modo artigianale
+
+. . . 
+
+
+
+## ✨ ChatGPT: Su quali competenze si basa l'Ing. Ind.?
+
+
+1. [Technical and Analytical Skills]{.bblue}
+  - Mathematics & **Statistics** → probability, regression, hypothesis testing, statistical process control.
+  - Operations Research → optimization, linear/nonlinear programming, queuing theory, simulation.
+  - Manufacturing Processes & Systems → knowledge of machining, automation, robotics, additive manufacturing.
+  - **Data Analysis & Modeling** → ability to collect, clean, interpret data, and build predictive/optimization models.
+  - Quality Engineering → Six Sigma, lean manufacturing, total quality management (TQM).
+
+## ✨ ChatGPT: Su quali competenze si basa l'Ing. Ind.?
+
+2. [Systems and Process Competence]{.bblue}
+  - Systems Thinking → seeing the whole system (supply chain, production, logistics, people).
+  - Process Design & Improvement → workflow analysis, time & motion studies, ergonomics.
+  - Supply Chain & Logistics → inventory management, distribution systems, **demand forecasting**.
+  - Project Management → planning, scheduling (PERT/CPM, Gantt), resource allocation.
+  - Sustainability & Safety → environmental impact analysis, occupational safety standards.
+
+## ✨ ChatGPT: Su quali competenze si basa l'Ing. Ind.?
+
+3. [Digital and Technological Competence]{.bblue}
+  - Industrial Software → CAD/CAM, ERP (e.g., SAP), MES, PLM systems.
+  - **Programming & Simulation Tools** → Python, MATLAB, **R**, Arena, Simulink, AnyLogic.
+  - **Data-driven Methods** → **machine learning**, IoT, digital twins for smart manufacturing.
+  - Automation & Control → PLCs, SCADA, robotics basics.
+
+## ✨ ChatGPT: Su quali competenze si basa l'Ing. Ind.?
+
+4. [Managerial and Soft Skills]{.bblue}
+  - Decision-Making → balancing cost, quality, and time under uncertainty.
+  - Communication & Teamwork → **writing reports**, making technical presentations, working in cross-disciplinary teams.
+  - Leadership & Change Management → guiding continuous improvement, Kaizen culture.
+  - Economic & Financial Analysis → cost-benefit analysis, ROI, life-cycle costing.
+  - Ethics & Professionalism → considering social and human impact of engineering decisions.
+	
 
 
 ## Analisi statistica dei dati
@@ -77,12 +127,11 @@ Non è possibile sostenere l'orale in una sessione differente dalla prova pratic
 :::
 
 ## Modalità d'esame (A.A. 2024--25)
-**ATTENZIONE**: questo corso è il secondo (o il primo) di due moduli: l'esame è quindi solo una prova parziale e **non viene verbalizzato**
+**ATTENZIONE**: questo corso è uno di due moduli: l'esame è quindi solo una prova parziale e **non viene verbalizzato**
 
-Il voto finale verrà verbalizzato **solo dopo aver superato** entrambi i moduli, inclusa cioè:
+Il voto finale verrà verbalizzato **solo dopo aver superato** entrambi i moduli, inclusa cioè la **prova parziale del primo modulo** (prof. Bertolazzi)
 
-- **studenti del secondo anno**: la prova parziale del primo modulo (prof. Bertolazzi)
-- **studenti del terzo anno**: la prova parziale del secondo modulo (prof. De Cecco).
+Tra il superamento dei due moduli non possono passare più di 4 appelli (cioè il secondo, quale che sia l'ordine, deve essere superato al massimo al 5° appello successivo al superamento del primo)
 
 :::{.fragment .highlight-red style="font-size: 125%; margin-top: 50px;"}
 Ricordarsi di iscriversi anche all'appello di registrazione!
@@ -102,6 +151,5 @@ Ricordarsi di iscriversi anche all'appello di registrazione!
 ## Materiale didattico
 
 * **Moodle**
-
-* **Testo di riferimento**:
-* **Codice sviluppato in classe**: Il codice R sarà gradualmente pubblicato e aggiornato su GitHub: [https://github.com/pbosetti/ADAS-24](https://github.com/pbosetti/ADAS-24){target="_blank"}
+* **Testo di riferimento**: online, su <https://paolobosetti.quarto.pub/slides/ADAS>
+* **Codice sviluppato in classe**: Il codice R sarà gradualmente pubblicato e aggiornato su GitHub: [https://github.com/pbosetti/ADAS-25](https://github.com/pbosetti/ADAS-25){target="_blank"}

@@ -24,7 +24,7 @@ Course for the Master Degree in Mechatronics Engineering, given in English
 
 PhD Seminar, given in English
 
-- Table of contents with [all slides](slides/DESANED/index.html)
+- Table of contents with [all slides](/desaned)
 
 
 ## Analisi dei Dati e Statistica (ADAS) 🇮🇹

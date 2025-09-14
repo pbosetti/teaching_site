@@ -36,19 +36,19 @@ website:
             text: Serie temporali
       - text: DESAnED
         menu:
-          - href: slides/DESANED/index.qmd
+          - href: desaned.qmd
             text: Table of Contents
-          - href: slides/DESANED/1-statistics.qmd
+          - href: /desaned/1-statistics.html
             text: Statistics
-          - href: slides/DESANED/2-R-intro.qmd
+          - href: /desaned/2-R-intro.html
             text: Intro to R language
-          - href: slides/DESANED/3-regression.qmd
+          - href: /desaned/3-regression.html
             text: Regression
-          - href: slides/DESANED/4-kfold.qmd
+          - href: /desaned/4-kfold.html
             text: K-Fold validation
-          - href: slides/DESANED/5-DoE.qmd
-            text: Design of Experiments
-      - various.qmd
+          - href: /desaned/5-DoE.html
+      #       text: Design of Experiments
+      # - various.qmd
       - data.qmd
       - text: "Blog"
         href: /blog/index.html
