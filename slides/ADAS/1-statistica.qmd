@@ -104,7 +104,7 @@ df %>% ggplot(aes(x=i, y=x)) +
 
 ## Effetto scala
 
-In altre parole, la componente stocastica di una misura è affetta da un effetto scala: tanto più piccolo è il rapporto tra il **valore medio** misurato e la **variabilità** tipica dello strumento (cioè la sua **precisione**), tanto meno sarà apprezzabile l'effetto di casualità
+In altre parole, la componente stocastica di una misura è affetta da un effetto scala: tanto più grande è il rapporto tra il **valore medio** misurato e la **variabilità** tipica dello strumento (cioè la sua **precisione**), tanto meno sarà apprezzabile l'effetto di casualità
 
 È quindi essenziale definire in maniera precisa ed efficace concetti intuitivi come **variabilità** e **valore medio** che abbiamo sopra espresso
 
@@ -870,8 +870,8 @@ Quali di queste affermazioni sono corrette:
 - [Qualsiasi CDF è monotona crescente]{.correct}
 - [Esistono distribuzioni con PDF definita solo per valori positivi]{.correct}
 - Per ogni CDF possono esistere più di una PDF che la generano
-- $\mathrm{PDF}(-x) = -\mathrm{PDF}(x)$
-- $\mathrm{CDF}^+(x) = \mathrm{CDF}^-(-x)$
+- [$\mathrm{PDF}(-x) = -\mathrm{PDF}(x)$]{data-explanation="Solo se la PDF è simmetrica e con valore atteso nullo!"}
+- [$\mathrm{CDF}^+(x) = \mathrm{CDF}^-(-x)$]{data-explanation="Solo se la PDF è simmetrica!"}
 - [$\mathrm{CDF}^+(x) = 1- \mathrm{CDF}^-(x)$]{.correct}
 - Una funzione quantile può avere un dominio illimitato a destra o sinistra
 
@@ -1016,9 +1016,9 @@ La $t_0$ è il rapporto tra una v.a. normale al numeratore e una v.a. $\chi^2$ a
 
 * Ma data una coppia di campioni provenienti dalla stessa popolazione la probabilità di valori elevati di $|t_0|$ è molto bassa
 
-* Dato che conosciamo la **distribuzione** di $t_0$ possiamo quindi calcolare la probabilità di riscontrare un dato valore **assumendo che valga $H_1$**
+* Dato che conosciamo la **distribuzione** di $t_0$ possiamo quindi calcolare la probabilità di riscontrare un dato valore **assumendo che valga $H_0$**
 
-* In altre parole, la probabilità di rifiutare $H_0$ quando essa è vera è pari alla probabilità di riscontrare un valore pari o superiore a $t_0$ nella distribuzione di Student
+* In altre parole, la probabilità di sbagliare rifiutando $H_0$ quando essa è vera è pari alla probabilità di riscontrare un valore pari o superiore a $t_0$ nella distribuzione di Student
 
 * In realtà, il segno di $t_0$ è arbitrario, quindi bisogna verificare la probabilità di riscontrare un valore **esterno all'intervallo $[-|t_0|, |t_0|]$**
 
@@ -1284,7 +1284,7 @@ pe <- t.test(d$c1, d$c2, var.equal=T)
 pd <- t.test(d$c1, d$c2, var.equal=F)
 ```
 
-Ho due campioni di dati, uno con $n_1=`r length(d$c1)`$, $\mu_1 = `r mean(d$c1) |> round(5)`$, $\sigma_1=`r sd(d$c1) |> round(5)`$ e l'altro con $n_2=`r length(d$c2)`$, $\mu_2 = `r mean(d$c2) |> round(5)`$, $\sigma_2=`r sd(d$c2) |> round(5)`$. Voglio confrontare le medie dei due campioni con un test di Student, assumendo $\alpha=0.05$:
+Ho due campioni di dati, uno con $n_1=`r length(d$c1)`$, $\bar y_1 = `r mean(d$c1) |> round(5)`$, $S_1=`r sd(d$c1) |> round(5)`$ e l'altro con $n_2=`r length(d$c2)`$, $\bar y_2 = `r mean(d$c2) |> round(5)`$, $S_2=`r sd(d$c2) |> round(5)`$. Voglio confrontare le medie dei due campioni con un test di Student, assumendo $\alpha=0.05$:
 
 - [$\mu_1\neq\mu_2$, con un $p$-value pari a `r pe$p.value %>% round(4)`]{.correct}
 - [$\mu_1 = \mu_2$, con un $p$-value pari a `r pd$p.value %>% round(4)`]{data-explanation="il p-value è maggiore della soglia di accettazione"}
@@ -1301,8 +1301,8 @@ Usare il riquadro sottostante per risolvere l'esercizio precedente (provare anch
 ```{webr-r}
 n1=10
 n2=10
-m1=13.59213
-m2=10.30381
+y1=13.59213
+y2=10.30381
 s1=4.33921
 s2=2.24027
 # calcolo probabilità dalla T di Student:

@@ -50,6 +50,7 @@ Di cosa ci occuperemo per le prossime 60 ore assieme
 
 . . . 
 
+* In questo si differenzia dall'Ingegneria Civile (no serie) e dell'Informazione (beni immateriali)
 
 
 ## ✨ ChatGPT: Su quali competenze si basa l'Ing. Ind.?
@@ -112,6 +113,17 @@ Dato che l'analisi dei dati richiede capacità di calcolo, il corso legherà str
 Gli **esercizi** sono quindi parte integrante del corso
 
 Imparare l'uso di un **linguaggio e software di analisi dati** (R + RStudio) è parte integrante del corso
+
+## Il linguaggio R
+
+* È un linguaggio nativamente grafico e nato per l'analisi statistica
+* Useremo un ambiente (RStudio) che consente di preparare report e documenti integrando testo, dati e algoritmi
+* Lo stesso linguaggio sarà usato anche nei corsi:
+  - *Analisi dei dati per l'Ingegneria* (2° anno comune, 1° modulo)
+  - *Misure, sensori ed elaborazione dei segnali* (2° anno comune)
+  - *Laboratorio di chimica per materiali, energia, ambiente* (3° anno Materiali)
+  
+
 
 
 ## Modalità d'esame
