@@ -19,7 +19,7 @@ format:
     preview-links: auto
     theme: [default, ../slides.scss]
     chalkboard: true
-    footer: "paolo.bosetti@unitn.it --- [https://paolobosetti.quarto.pub/ADAS](https://paolobosetti.quarto.pub/ADAS)"
+    footer: "paolo.bosetti@unitn.it --- [https://paolobosetti.quarto.pub/slides/ADAS/](https://paolobosetti.quarto.pub/slides/ADAS/)"
     fig-width: 5
     fig-height: 4
     fig-dpi: 300
@@ -37,7 +37,7 @@ webr:
     fig-height: 4
     autorun: false
     editor-font-scale: 0.75
-  packages: ["tidyverse"]
+  # packages: ["tidyverse"]
 ---
 
 ```{r}
@@ -97,10 +97,13 @@ c
 # in un colpo solo, assegnazione e visualizzazione:
 (d <- "stringa")
 ```
+
 L'esecuzione di un comando fornisce direttamente un risultato:
+
 ```{r echo=T}
 12*12
 ```
+
 Si noti il testo `[1]` all'inizio della riga di output: sarà chiaro più avanti
 
 ## Tipi, o classi native
@@ -132,6 +135,7 @@ as.character(c(1, 1.7))
 ```
   
 ## Vettori
+
 ```r
 # Si costruiscono con l'operatore/funzione c():
 v1 <- c(10, 2, 7.5, 3)
@@ -168,6 +172,13 @@ a * 2
 v3 + 2
 ```
 
+## Facciamo qualche prova
+
+```{webr-r}
+(v1 <- c(7, 2.5, 3, 1:10))
+v1[c(3,7,2)]
+```
+
 ## Introspezione
 * Funzioni utili per ispezionare gli oggetti:
   * `mode()`: *storage mode*
@@ -180,17 +191,20 @@ v3 + 2
   
 ## Matrici
 * Si costruiscono con la funzione `matrix()`
+
 ```r
 (m1 <- matrix(1:10, 2, 5))
 ```
 * la funzione `array()` costruisce matrici *n*-dimensionali
 * Una matrice è un vettore con attributo `dim`:
+
 ```r
 attr(m1, "dim")
 v <- 1:4
 attr(v, "dim") <- c(2,2) # equivale a dim(m) <- c(2,2)
 v
 ```
+
 ```{r}
 m1 <- matrix(1:10, 2, 5)
 ```
@@ -248,8 +262,25 @@ Il secondo caso funziona grazie all'**operatore modulo**:
 v2 %% 2 == 0 # operatore modulo (resto)
 ```
 
-:::{.fragment}
+::: callout-tip
 NOTA: `TRUE` e `FALSE` possono essere abbreviati in `T` e `F`
+:::
+
+
+## Facciamo qualche prova
+
+```{webr-r}
+v1 <- c(10, 2, 7.5, 3)
+v2 <- 1:10
+v1[c(2,4,1)]
+v2[v2 %% 2 == 0]
+
+m1 <- matrix(1:4, nrow = 2, byrow=T)
+m2 <- matrix(c(2, 3, 1, 7, 5, 1), nrow = 2, byrow=T)
+m1 * m2 # Errore!
+```
+::: callout-tip 
+Cercare nell'help in linea funzioni come `%*%`
 :::
 
 
@@ -300,14 +331,14 @@ Scrivere una funzione `sum_all` che sommi tutti gli elementi con indice dispari 
 
 
 ```{webr-r}
-sum_all <-function(x) {
+sum_odd <-function(x) {
   # scrivi qui il codice
 }
 
-sum_all(1:10)
+sum_odd(1:10)
 ```
 
-:::aside
+::: callout-warning
 L'uso del ciclo `for` è sconsigliato in R (perché è più lento di alcune alternative), ma è utile per esercitarsi con il controllo di flusso.
 :::
 
@@ -358,7 +389,6 @@ head(df, 3)
 ## Esercizio
 
 Dal data frame `mtcars`, estrarre le righe corrispondenti ai veicoli con cilindrata (`disp`) maggiore di 200 e peso minore di 3.5 tonnellate (`wt`)
-
 
 ```{webr-r}
 head(mtcars)
@@ -456,8 +486,9 @@ with(airquality, table(OzHi = Ozone > 80, Month,
                        useNA = "ifany"))
 ```
 
-**NOTA**: `with()` serve per risparmiarsi di scrivere `airquality$Ozone` e `airquality$Month`
-
+::: callout-tip
+**NOTA**: `with()` serve per risparmiarsi di scrivere `airquality$Ozone` e `airquality$Month`: rende *implicito* il nome del data frame
+:::
 
 ## Tabelle di contingenza
 * È anche utile `tapply()`, che opera su una tabella analogamente alle funzioni di aggregazione:
@@ -579,7 +610,9 @@ L'approccio `tidyverse` ha alcune caratteristiche comuni:
 * composizione di funzioni grafiche con `+` (`ggplot(...) + geom_line()`), ogni funzione è un **layer**
 * notazione prefissa con `%>%` (`a %>% str()` invece di `str(a)`)
 
+::: callout-tip
 È utile consultare i cheat sheet: [https://posit.co/resources/cheatsheets/](https://posit.co/resources/cheatsheets/){target="_blank"}
+:::
 
 ## Notazione infissa {auto-animate=true}
 ```r

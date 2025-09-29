@@ -19,7 +19,7 @@ format:
     preview-links: auto
     theme: [default, ../slides.scss]
     chalkboard: true
-    footer: "paolo.bosetti@unitn.it --- [https://paolobosetti.quarto.pub/ADAS](https://paolobosetti.quarto.pub/ADAS)"
+    footer: "paolo.bosetti@unitn.it --- [https://paolobosetti.quarto.pub/slides/ADAS/](https://paolobosetti.quarto.pub/slides/ADAS/)"
     fig-width: 5
     fig-height: 4
     fig-dpi: 300
@@ -998,7 +998,7 @@ Nel grafico, i **trattini verticali in basso** rappresentano i valori di 10 camp
 
 Per i due campioni $y_{1,i}$ e $y_{2,i}$ è possibile definire la variabile:
 $$
-t_0 = \frac{\bar{y_2} - \bar{y_1}}{S_p\sqrt{\frac{1}{n_1} + \frac{1}{n_s} }}
+t_0 = \frac{\bar{y_2} - \bar{y_1}}{S_p\sqrt{\frac{1}{n_1} + \frac{1}{n_2} }}
 $$
 dove $S_p^2$ è chiamata **varianza comune** (*pooled variance*) e vale:
 $$
