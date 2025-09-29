@@ -1,1 +1,1 @@
-Sitemap: https://paolobosetti.quarto.pub/teaching/sitemap.xml
+Sitemap: https://pbosetti.github.io/teaching_site/sitemap.xml
