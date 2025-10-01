@@ -396,7 +396,7 @@
     "href": "slides/ADAS/2-R-intro.html#link-utili",
     "title": "Introduzione al Linguaggio R",
     "section": "Link utili",
-    "text": "Link utili\n\nGNU-R: https://cran.mirror.garr.it/CRAN/\nRStudio: https://posit.co/downloads/\nCheat sheet: https://posit.co/resources/cheatsheets/\nTidyverse: https://tidyverse.org\nMateriale corso: https://github.com/pbosetti/ADAS-24"
+    "text": "Link utili\n\nGNU-R: https://cran.mirror.garr.it/CRAN/\nRStudio: https://posit.co/downloads/\nCheat sheet: https://posit.co/resources/cheatsheets/\nTidyverse: https://tidyverse.org\nMateriale corso: https://github.com/pbosetti/ADAS-25"
   },
   {
     "objectID": "slides/ADAS/2-R-intro.html#ambiente-rstudio",
@@ -606,7 +606,7 @@
     "href": "slides/ADAS/2-R-intro.html#campionamento",
     "title": "Introduzione al Linguaggio R",
     "section": "Campionamento",
-    "text": "Campionamento\nCampionare un insiame di dati (un vettore) significa estrarre un sottoinsieme (detto campione) di valori in maniera casuale. Si esegue con la funzione sample:\n\nsample(1:10) # senza reinserimento\n\n [1]  2  3  1  5  7 10  6  4  9  8\n\nsample(1:10, replace = T) # con reinserimento\n\n [1]  9  5  5  9  9  5  5  2 10  9\n\n\nLa dimensione del campione può essere uguale (caso sopra) o più piccola dell’insieme iniziale:\n\nsample(1:10, size = 5)\n\n[1] 1 4 3 6 2\n\nsample(10) # generazione interi casuali senza ripetizione\n\n [1] 10  6  7  4  8  9  2  1  3  5"
+    "text": "Campionamento\nCampionare un insieme di dati (un vettore) significa estrarre un sottoinsieme (detto campione) di valori in maniera casuale. Si esegue con la funzione sample:\n\nsample(1:10) # senza reinserimento\n\n [1]  2  3  1  5  7 10  6  4  9  8\n\nsample(1:10, replace = T) # con reinserimento\n\n [1]  9  5  5  9  9  5  5  2 10  9\n\n\nLa dimensione del campione può essere uguale (caso sopra) o più piccola dell’insieme iniziale:\n\nsample(1:10, size = 5)\n\n[1] 1 4 3 6 2\n\nsample(10) # generazione interi casuali senza ripetizione\n\n [1] 10  6  7  4  8  9  2  1  3  5"
   },
   {
     "objectID": "slides/ADAS/2-R-intro.html#griglie",
