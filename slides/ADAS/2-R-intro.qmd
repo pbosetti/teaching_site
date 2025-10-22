@@ -59,7 +59,7 @@ Noi utilizzeremo R perché specifico per la statistica, orientato alla grafica e
 * RStudio: [https://posit.co/downloads/](https://posit.co/downloads/)
 * Cheat sheet: [https://posit.co/resources/cheatsheets/](https://posit.co/resources/cheatsheets/)
 * Tidyverse: [https://tidyverse.org](https://tidyverse.org)
-* Materiale corso: [https://github.com/pbosetti/ADAS-24](https://github.com/pbosetti/ADAS-24)
+* Materiale corso: [https://github.com/pbosetti/ADAS-25](https://github.com/pbosetti/ADAS-25)
 
 ## Ambiente RStudio
 * Installazione: [prima R](https://cran.mirror.garr.it/CRAN/), [poi RStudio](https://posit.co/downloads/)
@@ -327,8 +327,11 @@ R supporta le tipiche istruzioni di controllo di flusso
 
 ## Esercizio
 
-Scrivere una funzione `sum_all` che sommi tutti gli elementi con indice dispari di un vettore numerico. La funzione deve avere un argomento `x` e restituire la somma di tutti gli elementi di `x`, usando un ciclo `for`.
+::: panel-tabset
 
+## Esercizio
+
+Scrivere una funzione `sum_odd` che sommi tutti gli elementi con indice dispari di un vettore numerico. La funzione deve avere un argomento `x` e restituire la somma di tutti gli elementi di `x`, usando un ciclo `for`.
 
 ```{webr-r}
 sum_odd <-function(x) {
@@ -342,6 +345,22 @@ sum_odd(1:10)
 L'uso del ciclo `for` è sconsigliato in R (perché è più lento di alcune alternative), ma è utile per esercitarsi con il controllo di flusso.
 :::
 
+## Soluzione
+
+```{webr-r}
+sum_odd <-function(x) {
+  odd <- x[c(T, F)]
+  sum <- 0
+  for (e in odd) {
+    sum <- sum + e
+  }
+  return(sum)
+}
+
+sum_odd(1:10)
+```
+
+:::
   
 ## Argomenti delle funzioni
 * Gli argomenti possono essere indicati per posizione o per nome
@@ -439,7 +458,7 @@ dove il primo è l'indice del valore più piccolo di `df$B` e l'ultimo l'indice 
 
 
 ## Campionamento
-*Campionare* un insiame di dati (un vettore) significa estrarre un sottoinsieme (detto **campione**) di valori in maniera casuale. Si esegue con la funzione `sample`:
+*Campionare* un insieme di dati (un vettore) significa estrarre un sottoinsieme (detto **campione**) di valori in maniera casuale. Si esegue con la funzione `sample`:
 ```{r echo=T}
 sample(1:10) # senza reinserimento
 sample(1:10, replace = T) # con reinserimento

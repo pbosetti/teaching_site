@@ -9,6 +9,7 @@ date-format: "YYYYMMDD"
 library(tidyverse)
 library(glue)
 library(modelr)
+library(adas.utils)
 ```
 
 During the courses, example data files are used to illustrate different concepts. These files are available here for download or for direct usage.
@@ -16,26 +17,22 @@ During the courses, example data files are used to illustrate different concepts
 
 ## Loading the data files
 
-Each data file can be separately loaded from the URLs reported [down below](#list-of-csv-files). Nonetheless, you can also exploit the ability of R `read*` functions to open a file directly from its URL. To do so, it can be useful to define a utility function like the following:
+Each data file can be separately loaded from the URLs reported [down below](#list-of-csv-files). Nonetheless, you can also exploit the ability of R `read.*` functions to open a file directly from its URL. To do so, it can be useful to use the `adas.utils::examples_url()` function that builds the URL based on the file name:
 
 ```{r}
-example_url <- function(example) {
-  url = paste0("https://paolobosetti.quarto.pub/data/", example)
-  return(url)
-}
+examples_url("timeseries.csv")
 ```
 
-Load this function in your script or put it into a utility library.
 Then, just pipe it with the proper file-reading function, e.g.:
 
 ```{r eval=FALSE}
-example_url("timeseries.csv") %>% read_csv()
+examples_url("timeseries.csv") %>% read_csv()
 ```
 
 or
 
 ```{r eval=FALSE}
-example_url("3dprint.dat") %>% read_table(comment="#")
+examples_url("3dprint.dat") %>% read_table(comment="#")
 ```
 
 
@@ -66,13 +63,13 @@ list.files(path = "data", pattern = ".dat", full.names = FALSE) %>%
 Let's look at the `train.csv` file from the Titanic dataset. We load the dataset and perform some basic data manipulation to only keep the relevant columns. We also classify the passengers into age classes.
 
 ```{r echo=FALSE}
-example_url <- function(example) {
+examples_url <- function(example) {
   return(paste0("data/", example))
 }
 ```
 
 ```{r}
-titanic <- example_url("train.csv") %>% 
+titanic <- examples_url("train.csv") %>% 
   read_csv(show_col_types = FALSE) %>% 
   mutate(
     Survived = as.logical(Survived),

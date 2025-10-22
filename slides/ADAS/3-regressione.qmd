@@ -225,7 +225,7 @@ set.seed(0)
 N <- 20
 df <- tibble(
   x=runif(N, 0, 10),
-  y1=5*x+12 + rnorm(N,sd=1),
+  y1=5*x+12 + rnorm(N,sd=4.45),
   y2=0.5*x^2 + 1*x + 3 + rnorm(N,sd=1)
 ) 
 lm1 <- lm(y1~x, data=df)
