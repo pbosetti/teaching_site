@@ -298,7 +298,7 @@ cookieconsent.run({
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">20251001</p>
+      <p class="date-modified">20251106</p>
     </div>
   </div>
     
@@ -312,20 +312,20 @@ cookieconsent.run({
 <p>During the courses, example data files are used to illustrate different concepts. These files are available here for download or for direct usage.</p>
 <section id="loading-the-data-files" class="level2">
 <h2 class="anchored" data-anchor-id="loading-the-data-files">Loading the data files</h2>
-<p>Each data file can be separately loaded from the URLs reported <a href="#list-of-csv-files">down below</a>. Nonetheless, you can also exploit the ability of R <code>read*</code> functions to open a file directly from its URL. To do so, it can be useful to define a utility function like the following:</p>
+<p>Each data file can be separately loaded from the URLs reported <a href="#list-of-csv-files">down below</a>. Nonetheless, you can also exploit the ability of R <code>read.*</code> functions to open a file directly from its URL. To do so, it can be useful to use the <code>adas.utils::examples_url()</code> function that builds the URL based on the file name:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>example_url <span class="ot">&lt;-</span> <span class="cf">function</span>(example) {</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  url <span class="ot">=</span> <span class="fu">paste0</span>(<span class="st">"https://paolobosetti.quarto.pub/data/"</span>, example)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(url)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">examples_url</span>(<span class="st">"timeseries.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "https://paolobosetti.quarto.pub/data/timeseries.csv"</code></pre>
 </div>
-<p>Load this function in your script or put it into a utility library. Then, just pipe it with the proper file-reading function, e.g.:</p>
+</div>
+<p>Then, just pipe it with the proper file-reading function, e.g.:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example_url</span>(<span class="st">"timeseries.csv"</span>) <span class="sc">%&gt;%</span> <span class="fu">read_csv</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">examples_url</span>(<span class="st">"timeseries.csv"</span>) <span class="sc">%&gt;%</span> <span class="fu">read_csv</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>or</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example_url</span>(<span class="st">"3dprint.dat"</span>) <span class="sc">%&gt;%</span> <span class="fu">read_table</span>(<span class="at">comment=</span><span class="st">"#"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">examples_url</span>(<span class="st">"3dprint.dat"</span>) <span class="sc">%&gt;%</span> <span class="fu">read_table</span>(<span class="at">comment=</span><span class="st">"#"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="list-of-csv-files" class="level2">
@@ -335,6 +335,8 @@ cookieconsent.run({
 <ul>
 <li><a href="data/duplicate.csv">duplicate.csv</a></li>
 <li><a href="data/kfold.csv">kfold.csv</a></li>
+<li><a href="data/micrometer.csv">micrometer.csv</a></li>
+<li><a href="data/prod_defects.csv">prod_defects.csv</a></li>
 <li><a href="data/regression.csv">regression.csv</a></li>
 <li><a href="data/surface_scan.csv">surface_scan.csv</a></li>
 <li><a href="data/taratura.csv">taratura.csv</a></li>
@@ -378,24 +380,24 @@ cookieconsent.run({
 <h1>Example</h1>
 <p>Let’s look at the <code>train.csv</code> file from the Titanic dataset. We load the dataset and perform some basic data manipulation to only keep the relevant columns. We also classify the passengers into age classes.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>titanic <span class="ot">&lt;-</span> <span class="fu">example_url</span>(<span class="st">"train.csv"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>(<span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Survived =</span> <span class="fu">as.logical</span>(Survived),</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Pclass =</span> <span class="fu">as.factor</span>(Pclass),</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">AgeClass =</span> <span class="fu">cut</span>(Age, <span class="at">breaks=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">18</span>, <span class="dv">40</span>, <span class="dv">60</span>, <span class="cn">Inf</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"child"</span>, <span class="st">"young"</span>, <span class="st">"adult"</span>, <span class="st">"senior"</span>, <span class="st">"elderly"</span>)),</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Age =</span> <span class="fu">as.factor</span>(Age)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    PassengerId,</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    Survived,</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    Pclass,</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    Sex,</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    Age,</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    AgeClass,</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    Fare</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>titanic <span class="sc">%&gt;%</span> <span class="fu">head</span>() <span class="sc">%&gt;%</span> knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>titanic <span class="ot">&lt;-</span> <span class="fu">examples_url</span>(<span class="st">"train.csv"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>(<span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Survived =</span> <span class="fu">as.logical</span>(Survived),</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Pclass =</span> <span class="fu">as.factor</span>(Pclass),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">AgeClass =</span> <span class="fu">cut</span>(Age, <span class="at">breaks=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">18</span>, <span class="dv">40</span>, <span class="dv">60</span>, <span class="cn">Inf</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"child"</span>, <span class="st">"young"</span>, <span class="st">"adult"</span>, <span class="st">"senior"</span>, <span class="st">"elderly"</span>)),</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Age =</span> <span class="fu">as.factor</span>(Age)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    PassengerId,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    Survived,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    Pclass,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    Sex,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    Age,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    AgeClass,</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    Fare</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>titanic <span class="sc">%&gt;%</span> <span class="fu">head</span>() <span class="sc">%&gt;%</span> knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <thead>
@@ -470,11 +472,11 @@ cookieconsent.run({
 </div>
 <p>Let’s plot the survival rate by age and sex class, as a histogram.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>titanic <span class="sc">%&gt;%</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>AgeClass, <span class="at">fill=</span>Survived)) <span class="sc">+</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Sex) <span class="sc">+</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Survival by Age Class"</span>, <span class="at">x=</span><span class="st">"Age Class"</span>, <span class="at">y=</span><span class="st">"Count"</span>, <span class="at">fill=</span><span class="st">"Survived"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>titanic <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>AgeClass, <span class="at">fill=</span>Survived)) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Sex) <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Survival by Age Class"</span>, <span class="at">x=</span><span class="st">"Age Class"</span>, <span class="at">y=</span><span class="st">"Count"</span>, <span class="at">fill=</span><span class="st">"Survived"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -485,24 +487,24 @@ cookieconsent.run({
 </div>
 <p>In a more refined way, we can build a <a href="./slides/ADAS/3-regressione.html#regressione-lineare-generalizzata">generalized linear model of binomial type</a>🇮🇹 to predict the survival rate based on the fare, age class, and sex:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">glm</span>(Survived <span class="sc">~</span> Fare <span class="sc">+</span> AgeClass <span class="sc">+</span> Sex, <span class="at">data=</span>titanic, <span class="at">family=</span>binomial)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>pred <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Fare =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">500</span>, <span class="dv">5</span>),</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">AgeClass =</span> <span class="fu">levels</span>(titanic<span class="sc">$</span>AgeClass),</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Sex =</span> <span class="fu">c</span>(<span class="st">"female"</span>, <span class="st">"male"</span>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_predictions</span>(model, <span class="at">var=</span><span class="st">"pred.glm"</span>, <span class="at">type=</span><span class="st">"response"</span>)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>titanic <span class="sc">%&gt;%</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_predictions</span>(model, <span class="at">var=</span><span class="st">"pred.glm"</span>, <span class="at">type=</span><span class="st">"response"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Fare, <span class="at">y=</span>pred.glm, <span class="at">color=</span>AgeClass)) <span class="sc">+</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data=</span>pred) <span class="sc">+</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape=</span>Survived), <span class="at">size=</span><span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Sex) <span class="sc">+</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">"Predicted Survival"</span>, <span class="at">color=</span><span class="st">"Age Class"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">glm</span>(Survived <span class="sc">~</span> Fare <span class="sc">+</span> AgeClass <span class="sc">+</span> Sex, <span class="at">data=</span>titanic, <span class="at">family=</span>binomial)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>pred <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Fare =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">500</span>, <span class="dv">5</span>),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">AgeClass =</span> <span class="fu">levels</span>(titanic<span class="sc">$</span>AgeClass),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Sex =</span> <span class="fu">c</span>(<span class="st">"female"</span>, <span class="st">"male"</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_predictions</span>(model, <span class="at">var=</span><span class="st">"pred.glm"</span>, <span class="at">type=</span><span class="st">"response"</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>titanic <span class="sc">%&gt;%</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_predictions</span>(model, <span class="at">var=</span><span class="st">"pred.glm"</span>, <span class="at">type=</span><span class="st">"response"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Fare, <span class="at">y=</span>pred.glm, <span class="at">color=</span>AgeClass)) <span class="sc">+</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data=</span>pred) <span class="sc">+</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape=</span>Survived), <span class="at">size=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Sex) <span class="sc">+</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">"Predicted Survival"</span>, <span class="at">color=</span><span class="st">"Age Class"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">

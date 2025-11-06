@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="it" xml:lang="it"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.7.30">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Paolo Bosetti">
 
-<title>Various stuff – Paolo Bosetti</title>
+<title>Elicottero – Paolo Bosetti</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -56,17 +92,17 @@ ul.task-list li input[type="checkbox"] {
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Nessun risultato",
+    "search-matching-documents-text": "documenti trovati",
+    "search-copy-link-title": "Copiare il link nella ricerca",
+    "search-hide-matches-text": "Nascondere i risultati aggiuntivi",
+    "search-more-match-text": "ci sono altri risultati in questo documento",
+    "search-more-matches-text": "ulteriori risultati in questo documento",
+    "search-clear-button-title": "Pulire",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Cancellare",
+    "search-submit-button-title": "Inviare",
+    "search-label": "Ricerca"
   }
 }</script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-77EMP7T5YY"></script>
@@ -91,13 +127,42 @@ cookieconsent.run({
   "preferences_center_close_button_hide":false,
   "website_name":""
   ,
-"language":"en"
+"language":"it"
   });
 });
 </script> 
   
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -112,8 +177,8 @@ cookieconsent.run({
     <span class="navbar-title">Paolo Bosetti</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+            <div id="quarto-search" class="" title="Ricerca"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Attiva/disattiva la navigazione" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -214,7 +279,7 @@ cookieconsent.run({
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Attiva/disattiva la modalità lettore">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
   </div>
@@ -227,44 +292,218 @@ cookieconsent.run({
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">In questa pagina</h2>
+   
+  <ul>
+  <li><a href="#descrizione-dellesperimento" id="toc-descrizione-dellesperimento" class="nav-link active" data-scroll-target="#descrizione-dellesperimento">Descrizione dell’esperimento</a></li>
+  <li><a href="#obiettivi" id="toc-obiettivi" class="nav-link" data-scroll-target="#obiettivi">Obiettivi</a></li>
+  <li><a href="#modalità" id="toc-modalità" class="nav-link" data-scroll-target="#modalità">Modalità</a></li>
+  <li><a href="#nota-produzione-del-report-finale" id="toc-nota-produzione-del-report-finale" class="nav-link" data-scroll-target="#nota-produzione-del-report-finale">Nota: produzione del report finale</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/pbosetti/teaching_site/blob/main/elicottero.qmd" class="toc-action"><i class="bi bi-github"></i>Mostra il codice</a></li><li><a href="https://github.com/pbosetti/teaching_site/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Various stuff</h1>
+<h1 class="title">Elicottero</h1>
+<p class="subtitle lead">Un esperimento fattoriale</p>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Autore/Autrice</div>
+    <div class="quarto-title-meta-contents">
+             <p>Paolo Bosetti </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Data di Pubblicazione</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">29 ottobre 2025</p>
+    </div>
+  </div>
   
     <div>
-    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-heading">Data di modifica</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">20251106</p>
+      <p class="date-modified">6 novembre 2025</p>
     </div>
   </div>
     
   </div>
   
+<div>
+  <div class="abstract">
+    <div class="block-title">Sommario</div>
+    <p>Questa è la descrizione di un esercizio pratico sulla progettazione, esecuzione e analisi di un piano fattoriale.</p>
+  </div>
+</div>
 
 
 </header>
 
 
+<section id="descrizione-dellesperimento" class="level2">
+<h2 class="anchored" data-anchor-id="descrizione-dellesperimento">Descrizione dell’esperimento</h2>
+<p>Partendo da un foglio di carta e seguendo lo schema costruttivo seguente è possibile ottenere un elicottero che, lasciato cadere da una certa altezza, ruota su se stesso rallentando significativamente la discesa.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/elicottero.png" class="img-fluid figure-img"></p>
+<figcaption>Schema costruttivo. Le linee tratteggiate indicano una piega, quelle continue indicano un taglio</figcaption>
+</figure>
+</div>
+<p>Ci interessa capire la relazione tra alcuni “parametri di progetto” dell’elicottero e il tempo di caduta, assunto come <strong>indice di merito</strong> del sistema.</p>
+<p>In particolare, ci focalizziamo sui seguenti quattro fattori (quindi un piano fattoriale nominalmente <span class="math inline">\(2^4\)</span>)</p>
 <ul>
-<li><a href="./../miroscic-cs1" target="_blank">Miroscic coding session 1</a>: Seminar within the Miroscic PRIN project</li>
-<li><a href="./kfold.html" target="_blank">K-Fold Cross Validation</a>: K-Fold Cross Validation document</li>
-<li><a href="./rcpp.html" target="_blank">Rcpp intro</a>: Rcpp introduction</li>
+<li><span class="math inline">\(A\)</span>: lunghezza delle ali (mm, quantitativo): vaori a scelta, ma il modello non deve superare la larghezza di un foglio A4 (210 mm)</li>
+<li><span class="math inline">\(B\)</span>: larghezza del corpo (mm, quantitativo): valori a scelta, ma il modello non deve superare metà altezza di un foglio A4</li>
+<li><span class="math inline">\(C\)</span>: tipo di carta (g/m<span class="math inline">\(^2\)</span>, quantitativo/qualitativo): scegliere due tipi di carta con grammatura sensibilmente differente</li>
+<li><span class="math inline">\(D\)</span>: direzione di piega dei lembi (concorde/discorde, qualitativo)</li>
 </ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Il tipo di carta <span class="math inline">\(C\)</span> è un parametro quantitativo, dato che la grammatura può essere misurata. Tuttavia lo consideriamo <strong>qualitativo</strong>, nel senso che assumiamo di non poter accedere a grammature intermedie. Quindi, nella valutazione di eventuali modelli di secondo grado, il tipo di carta va considerato come puramente qualitativo.</p>
+<p>Riguardo il fattore <span class="math inline">\(D\)</span>: <em>concorde</em> significa che durante la rotazione la tasca formata dalla piega segue la piega stessa; <em>discorde</em> significa l’opposto, cioè che la tasca tende a “riempirsi d’aria”.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+La resa, o indice di merito
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Il tempo di caduta deve essere misurato su un’unica altezza di riferimento, scelta a piacere. Per aumentare la sensibilità e la precisione della misura, si consiglia di scegliere una caduta di almeno 10 m. Si noti anche che cadute troppo elevate aumentano la probabilità che il volo sia disturbato, ad es. da refoli d’aria, aumentando la variabilità e riducendo la potenza dei test.</p>
+</div>
+</div>
+</section>
+<section id="obiettivi" class="level2">
+<h2 class="anchored" data-anchor-id="obiettivi">Obiettivi</h2>
+<p>Vogliamo:</p>
+<ul>
+<li>evidenziare se c’è correlazione tra i fattori</li>
+<li>determinare se è sufficiente un modello lineare di primo grado o se è necessario un modello di secondo grado</li>
+<li>definire l’opportuno modello empirico che mi predica il tempo di discesa da un’altezza di riferimento (scelta arbitrariamente) in funzione dei tre fattori</li>
+<li>un’indicazione del modello migliore</li>
+</ul>
+</section>
+<section id="modalità" class="level2">
+<h2 class="anchored" data-anchor-id="modalità">Modalità</h2>
+<ul>
+<li>Procedere mediante la definizione di un <strong>piano fattoriale con 4 fattori</strong></li>
+<li>Verificare se il modello di primo grado è sufficiente mediante un piano fattoriale aumentato</li>
+<li>Se necessario ricorrere a un <em>CCD</em> per valutare le curvature</li>
+<li>Decidere in autonomia se replicare il piano o se ricorrere a frazionamenti</li>
+<li>Lavorare in <strong>massimo due persone</strong> per esperimento</li>
+<li>Utilizzare la libreria <code>adas.utils</code></li>
+<li>Stilare un report in PDF per ogni gruppo, partendo da un documento di analisi <code>.Rmd</code></li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+La relazione
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La relazione finale deve chiaramente evidenziare tutti i passi dell’esperimento, includa la preparazione dei campioni e la conduzione dei test, anche mediante fotografie. Idealmente, deve essere suddivisa in sezioni principali:</p>
+<ul>
+<li>Introduzione e obiettivi</li>
+<li>Modalità sperimentali: preparazione dei campioni</li>
+<li>Piano fattoriale, conduzione e analisi delle misure</li>
+<li>Conclusioni</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="nota-produzione-del-report-finale" class="level2">
+<h2 class="anchored" data-anchor-id="nota-produzione-del-report-finale">Nota: produzione del report finale</h2>
+<p>Il report finale sarà accettato <strong>esclusivamente</strong> in forma di un unico documento PDF (massimo 100MB).</p>
+<p>Per creare il PDF a partire dal notebook <code>.Rmd</code> è necessario installare LaTeX. In RStudio, seguire queste istruzioni:</p>
+<ol type="1">
+<li>installare il pacchetto <code>tinytex</code>: <code>install.packages("tinytex")</code></li>
+<li>installare LaTeX: <code>tinytex::install_tinytex()</code></li>
+<li>installare il pacchetto italiano di LaTeX: <code>tinytex::tlmgr_install("babel-italian")</code></li>
+</ol>
+<p>L’ultimo punto è opzionale, ma fornisce il supporto per la sillabazione italiana e la traduzione delle etichette (ad es. <em>Figura</em> invece di <em>Figure</em>), <strong>a patto di inserire</strong> nell’intestazione del documento, a livello di indentazione 0:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">header-includes</span><span class="kw">:</span><span class="at"> \usepackage[italian]{babel}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ad esempio, un’intestazione minima potrebbe essere la seguente (si noti anche la modalità di definizione della dimensione delle figure nel chunck di setup e la modalità di inserimento dei riferimenti alle figure):</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Elicottero di carta"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Esperimento fattoriale"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Marco Rossi (123567), Matteo Rizzi (123456)"</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "`r Sys.Date()`"</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="an">output:</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">  pdf_document: </span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">    number_sections: true</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="an">header-includes:</span><span class="co"> \usepackage[italian]{babel}</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup, include=FALSE}</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">echo =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">fig.align =</span> <span class="st">"center"</span>,</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">fig.dim =</span> <span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">5</span>), <span class="co"># rapporto L/H figure</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">out.width=</span><span class="st">"10cm"</span>   <span class="co"># dimensioni effettive figure</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="fu"># Figure e plot</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>Per includere una figura flottante bisogna specificare la didascalia </span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>con <span class="in">`fig.cap`</span>, come in Figura \ref{fig:pressure}.</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="in">```{r pressure, echo=FALSE, fig.cap="Figura esempio"}</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pressure)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>Si noti che \LaTeX &nbsp;posiziona con libertà le figure flottanti nel</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>testo, cercando di minimizzare il numero di pagine e di spazi vuoti.</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>Non cercare di posizionare manualmente le figure: i riferimenti alle</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>etichette servono proprio a questo scopo.</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="fu"># Equazioni</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>Anche alle equazioni è possibile fare riferimento. Anzitutto bisogna</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>inserire una equazione *fuori linea* (cioè non in linea col testo),</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>associandole una *label*:</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>y = a + bx + cx^2 \label{eq:model}</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>Poi si può fare riferimento all'Eq. \ref{eq:model} in questo modo.</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>Le equazioni inserite con il doppio dollaro invece non sono numerate:</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>y = ax + b</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>$$</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -292,12 +531,12 @@ cookieconsent.run({
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
+      button.setAttribute("title", "Copiato!");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
+        button.setAttribute("data-bs-title", "Copiato!");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",
@@ -674,7 +913,7 @@ cookieconsent.run({
 </div>   
     <div class="nav-footer-center">
 
-<div class="toc-actions"><ul><li><a href="https://github.com/pbosetti/teaching_site/blob/main/various.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/pbosetti/teaching_site/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/pbosetti/teaching_site/blob/main/elicottero.qmd" class="toc-action"><i class="bi bi-github"></i>Mostra il codice</a></li><li><a href="https://github.com/pbosetti/teaching_site/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">

@@ -2076,7 +2076,7 @@ Paolo Bosetti
     </div>
 </div>
 
-  <p class="date"><em>Ultimo aggiornamento:</em> 01/10/2025</p>
+  <p class="date"><em>Ultimo aggiornamento:</em> 06/11/2025</p>
 </section>
 <section>
 <section id="introduzione-a-r" class="title-slide slide level1 center">
@@ -2548,7 +2548,7 @@ Levels: B &lt; A &lt; C &lt; E &lt; D</code></pre>
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a></a><span class="fu">system.time</span>(m <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="dv">1</span><span class="sc">:</span><span class="fl">1E6</span>))</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user  system elapsed 
-  0.002   0.000   0.002 </code></pre>
+  0.002   0.000   0.001 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a></a>m</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -2988,6 +2988,17 @@ x,y,z
 <span data-code-cell="annotated-cell-68" data-code-lines="16" data-code-annotation="2">solo quando si usa pipe, se non ci sono argomenti le parentesi sono opzionali</span>
 </dd>
 </dl>
+</section>
+<section id="help-in-linea" class="slide level2">
+<h2>Help in linea</h2>
+<ul>
+<li>L’help in linea per unafunzione può essere ottenuto con il comando <code>?&lt;nome funzione&gt;</code>, ad esempio <code>?summary</code> (senza parentesi)</li>
+<li>Alcune funzioni però, come <code>summary()</code>, sono <strong>funzioni generiche</strong>, e il loro help è scarno</li>
+<li>Le funzioni generiche dirottano la chiamata a una <em>funzione specifica</em> definita dalla classe del primo argomento</li>
+<li>Il nome della funzione specifica è del tipo <code>summary.lm()</code>, che è la funzione realmente chiamata quando a passo un modello lineare (es. <code>summary(df.lm)</code>)</li>
+<li>Alla fine dell’help per la generica (<em>See also</em>) c’è l’elenco delle funzioni specifiche note, che vanno consultate per i dettagli di funzionamento desiderati</li>
+<li>In alternativa si può cercare direttamente <code>?summary.lm</code></li>
+</ul>
 
 
 </section></section>
