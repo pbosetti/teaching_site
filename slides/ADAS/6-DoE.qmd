@@ -102,10 +102,10 @@ Se in un esperimento con un'unica variabile indipendente il fattore assume una *
 ```{r}
 data <- tribble (
   ~A, ~B, ~resa, ~Yates, ~An, ~Bn,
-  "A-", "B-", 20, "$(1)$", -1, -1,
-  "A+", "B-", 50, "$a$", 1, -1,
-  "A-", "B+", 30, "$b$", -1, 1,
-  "A+", "B+", 12, "$ab$", 1, 1
+  "A-", "B-", 20, "(1)", -1, -1,
+  "A+", "B-", 50, "a", 1, -1,
+  "A-", "B+", 30, "b", -1, 1,
+  "A+", "B+", 12, "ab", 1, 1
 )
 ```
 
@@ -139,7 +139,7 @@ Quando i livelli di tutti i fattori sono solo due, si può usare l'**ordine di Y
 -   I trattamenti si indicano con combinazioni di lettere minuscole
     -   lettera presente significa fattore a livello alto
     -   lettera assente significa fattore a livello basso
-    -   se tutte le lettere sono assente si scrive $(1)$
+    -   se tutte le lettere sono assenti si scrive $(1)$
 
 ::: aside
 Nell'esempio alla slide precedente, i trattamenti sono $(1), a, b$
@@ -175,7 +175,7 @@ $$
 ::: column
 ```{r}
 ggplot(data, aes(x=A, y=B)) +
-  geom_label(aes(x=A, y=B, label=resa))
+  geom_label(aes(x=A, y=B, label=paste0(Yates,"=",resa)))
 A <- with(data, (resa[2]+resa[4])/2 - (resa[1]+resa[3])/2)
 B <- with(data, (resa[3]+resa[4])/2 - (resa[1]+resa[2])/2)
 AB <- with(data, (resa[1]+resa[4])/2 - (resa[2]+resa[3])/2)
@@ -244,7 +244,9 @@ grd %>% mutate(
 :::
 :::
 
+:::callout-important
 **NOTA**: né la superficie di risposta né i grafici di interazione dànno alcuna informazione sulla **significatività statistica** degli effetti
+:::
 
 
 ## Piani fattoriali $k^2$
@@ -379,7 +381,9 @@ Eseguendo gli esperimenti secondo il *run order* eventuali effetti **ignoti e in
 * la varianza globale aumenta ($SS_\mathrm{tot}$)
 * l'effetto relativo dei fattori non viene alterato ($SS_X$)
 
+:::callout-note
 **Nota**: una *ripetizione* è una replica dell'intero esperimento, non della sola operazione di misura
+:::
 
 :::
 :::{.column style="font-size: 60%;"}
@@ -415,7 +419,10 @@ df.lm <- lm(Vita~Angolo*Velocità*I(Angolo^2)*I(Velocità^2), data=df)
 
 dove, ricordiamo $(\alpha\beta)$ non è un prodotto, ma rappresenta il coefficiente di un prodotto di fattori $A$ e $B$
 
-**È necessario valutare normalità e assenza di pattern nei residui**
+:::callout-important
+È necessario valutare normalità e assenza di pattern nei residui
+:::
+
 :::
 :::column
 
@@ -910,7 +917,7 @@ car::boxCox(data.lm)
 :::
 :::
 
-:::aside
+:::callout-note
 Ogni volta che un modello lineare è **sospetto** (in una **regressione** o nell'**analisi di un piano fattoriale**) è opportuno tentare con una trasformazione Box-Cox. Nei PF, a volte la trasformazione Box-Cox può **semplificare il modello** (cioè ridurre il numero di fattori o interazioni significativi)
 :::
 
