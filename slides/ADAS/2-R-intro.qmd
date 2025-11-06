@@ -693,3 +693,11 @@ rnorm(100) %>%
 1. le righe successive alla prima vanno **indentate**
 2. solo quando si usa pipe, se non ci sono argomenti le parentesi sono opzionali
 
+## Help in linea
+
+* L'help in linea per unafunzione può essere ottenuto con il comando `?<nome funzione>`, ad esempio `?summary` (senza parentesi)
+* Alcune funzioni però, come `summary()`, sono **funzioni generiche**, e il loro help è scarno
+* Le funzioni generiche dirottano la chiamata a una *funzione specifica* definita dalla classe del primo argomento
+* Il nome della funzione specifica è del tipo `summary.lm()`, che è la funzione realmente chiamata quando a passo un modello lineare (es. `summary(df.lm)`)
+* Alla fine dell'help per la generica (*See also*) c'è l'elenco delle funzioni specifiche note, che vanno consultate per i dettagli di funzionamento desiderati
+* In alternativa si può cercare direttamente `?summary.lm`

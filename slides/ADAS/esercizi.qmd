@@ -253,3 +253,117 @@ prod %>%
   geom_line(aes(y=mean), linetype=2)
 ```
 
+# Regressione
+
+Carichiamo i dati e dividiamoli già in due gruppi *training* e *validation* (80:20):
+
+```{r}
+set.seed(0)
+df <- examples_url("regression.csv") %>% 
+  read_csv(show_col_types = F) %>% 
+  mutate(train = sample(c(T,F), size=n(), replace=T, prob=c(0.8, 0.2)))
+
+df %>% 
+  ggplot(aes(x=x, y=y)) +
+  geom_point(aes(color=train))
+```
+
+Confrontiamo due regressioni lineari, una col modello $y=a + b\log(x)$, una col modello $y=a + b/x^{0.1}$:
+
+```{r}
+df %>% filter(train) %>% 
+  ggplot(aes(x=x, y=y)) +
+  geom_point() +
+  geom_smooth(
+    method = "lm",
+    formula = y ~ I(x^0.1)
+  ) +
+  geom_smooth(
+    method = "lm",
+    formula = y ~ log(x),
+    color="red"
+  )
+```
+
+```{r}
+summary(lm(y~log(x), data=df))
+summary(lm(y~I(x^0.1), data=df))
+```
+
+
+Difficile dire quale sia meglio, anche se $R^2$ del modello logaritmico è leggermente più elevato. Proviamo con la cross-validazione, confrontando diverse potenze oltre al logaritmo:
+
+```{r}
+library(modelr)
+models <- c(
+  map(1:15, \(n) lm(y~I(x^(1/n)), data=filter(df, train))),
+  list(lm(y~log(x), data=filter(df, train)))
+)
+
+tibble(
+  n = seq_along(models),
+  train = map_dbl(models, ~ rmse(., filter(df, train))),
+  valid = map_dbl(models, ~ rmse(., filter(df, !train)))
+) %>% 
+  pivot_longer(-n, names_to = "type", values_to = "RMSE") %>% 
+  ggplot(aes(x=n, y=RMSE, fill=type)) + 
+  geom_col(position = "dodge")
+```
+
+L'ultima barra corrisponde al modello logaritmico. Si osserva che RMSE di tale modello per i dati di training e per quelli di valdazione è effettivamente il minimo, anche se l'esponente $1/15$ produce risultati ancora migliori di $1/10$. Tutavia, per $n\gt10$ non si osservano sensibili miglioramenti per l'RMSE sui dati di validazione.
+
+Osserviamo infine i residui per verificare l'assenza di *pattern*:
+
+```{r}
+df %>% 
+  add_residuals(lm(y~log(x), data=df), var="log") %>% 
+  add_residuals(lm(y~I(x^0.1), data=df), var="pow") %>% 
+  select(x, log, pow) %>% 
+  pivot_longer(-x, names_to = "model", values_to = "residual") %>% 
+  ggplot(aes(x=x, y=residual, color=model)) + 
+  geom_point()
+```
+
+In entrambi i casi non si notano pattern significativi. Dal punto di vista fisico, è più frequente trovare relazioni logaritmiche che del tipo $y\propto x^{0.1}$, quindi accettiamo il modello logaritmico.
+
+:::callout-note
+Il grafico di RMSE in funzione del grado sopra riportato non mostra un minimo perché stiamo confrontando lo stesso modello con parametri (l'esponente) differenti e non diversi modelli. Quindi, il modello esponenziale non può **perdere di generalità*, cioè non rischiamo sovra-adattamento al diminuire dell'esponente.
+
+Piuttosto, l'approccio corretto sarebbe quello di regredire anche l'esponente, trattandolo come il coefficiente di una regressione **non-lineare**, cioè regredire il modello $y~a + bx^{1/c}$, dove $c$ compare ovviamente in una relazione non lineare con gli altri coefficienti $a$ e $b$.
+:::
+
+Proviamo con una regressione ai minimi quadrati inserendo anche l'esponente $1/c$ come parametro di regressione:
+
+```{r}
+f <- \(x, a, b, c) a + b*x^(1/c)
+df.nls <- nls(y ~ f(x, a, b, c),
+    data = df,
+    start = list(
+      a = 1, b=1, c=2
+    ),
+    trace=T
+)
+```
+
+Si noti come il valore ottimale di $c$ risulta in effetti moto più alto:
+
+```{r}
+df.nls
+```
+
+Confrontando la regressione non-lineare con il modello logaritmico si osserva come stanno entrambi nella stessa banda di confidenza, quindi continuiamo a preferire il modello logaritmico:
+
+```{r}
+df %>% 
+  add_predictions(df.nls) %>% 
+  ggplot(aes(x=x)) +
+  geom_point(aes(y=y)) +
+  geom_line(aes(y=pred), color="red") + 
+  geom_smooth(
+    aes(y=y),
+    method = "lm",
+    formula = y ~ log(x),
+    linetype=2
+  )
+```
+

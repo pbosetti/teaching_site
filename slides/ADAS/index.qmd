@@ -86,6 +86,8 @@ Le slide sono interattive. I comandi più utili sono:
 Il codice R sviluppato durante le lezioni è disponibile su GitHub: [github.com/pbosetti/adas-25](https://github.com/pbosetti/adas-25){target="_blank"}.
 
 
-## Esercizi
+## Esercizi e Esperimento dell'elicottero
 
 Trovate [qui](esercizi.html) alcuni esercizi risolti.
+
+È possibile lavorare **per gruppi indipendenti di massimo 2 persone** all'[esperimento dell'elicottero](/elicottero.qmd). Per le modalità di consegna, vedere Moodle.
