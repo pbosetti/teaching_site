@@ -114,7 +114,7 @@ diamonds %>%
   mutate(size = cut(carat, breaks = 5), .after=carat) %>% 
   select(size:clarity, price) %>% 
   group_by(size,cut) %>% 
-  summarise(
+  reframe(
     probs = seq(0, 100, length.out=5),
     price = quantile(price),
     .groups="keep"

@@ -34,6 +34,8 @@ website:
             text: Design of Experiments
           - href: slides/ADAS/7-serie_temporali.qmd
             text: Serie temporali
+          - href: slides/ADAS/8-strumenti.qmd
+            text: Strumenti di misura
       - text: DESAnED
         menu:
           - href: desaned.qmd
