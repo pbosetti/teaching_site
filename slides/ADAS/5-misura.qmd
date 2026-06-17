@@ -8,6 +8,12 @@ institute: "Università di Trento, Dipartimento di Ingegneria Industriale"
 date: "`r Sys.time()`"
 date-format: "[*Ultimo aggiornamento:* ]DD/MM/YYYY"
 format: 
+  typst: 
+    toc: true
+    toc-title: "Indice"
+    toc-depth: 2
+    toc-numbered: true
+    number-sections: true 
   revealjs:
     width: 1280
     height: 720
@@ -23,6 +29,8 @@ format:
     fig-height: 4
     fig-dpi: 300
     lang: it-IT
+revealjs-plugins:
+  - tabset
 execute: 
   cache: true
 ---
@@ -148,6 +156,20 @@ u_{x\mathrm{rel}}=\frac{u_x}{|\bar x|}
 $$
 
 :::
+
+## Incertezza standard
+
+l'**incertezza standard** può essere valutata
+
+- mediante metodi statistici, come alla pagina precedente: in questo caso si parla di incertezza standard di **tipo A**
+- mediante l’uso di tutte le informazioni rilevanti possibili: incertezza standard di **tipo B**; essa è preferibile quando non si disponga di campione sufficiente di misure
+
+Per **informazioni rilevanti** si intende ad esempio:
+
+* dati di precedenti misurazioni
+* specifiche tecniche del costruttore dello strumento
+* certificati di taratura
+* esperienza o conoscenza generale degli strumenti di interesse
 
 
 ## Norma GUM (ISO/IEC 98-3:2008)
@@ -689,7 +711,7 @@ Nel caso in cui le $x_i$ siano tutte indipendenti, cioè $u_{i,j}=0~\forall i\ne
 $$
 u_y = \sqrt{\sum_{i=1}^n \left(\frac{\partial f}{\partial x_i}\right)^2 u_i^2}
 $$
-nota come **legge di propagazione delle incertezze**
+nota come **legge di propagazione delle incertezze** a partire dalle incertezze delle componenti (di **tipo A** o di **tipo B**)
 
 Le derivate parziali che compaiono nella LPI sono dette **coefficienti di sensibilità** e vanno valutati nel valore medio della rispettiva variabile $x_i$.
 

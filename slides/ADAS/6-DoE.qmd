@@ -8,6 +8,12 @@ institute: "Università di Trento, Dipartimento di Ingegneria Industriale"
 date: "`r Sys.time()`"
 date-format: "[*Ultimo aggiornamento:* ]DD/MM/YYYY"
 format: 
+  typst: 
+    toc: true
+    toc-title: "Indice"
+    toc-depth: 2
+    toc-numbered: true
+    number-sections: true 
   revealjs:
     width: 1280
     height: 720
@@ -23,6 +29,8 @@ format:
     fig-height: 4
     fig-dpi: 300
     lang: it-IT
+revealjs-plugins:
+  - tabset
 execute: 
   cache: true
 ---

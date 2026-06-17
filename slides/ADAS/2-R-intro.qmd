@@ -9,6 +9,12 @@ date: "`r Sys.time()`"
 date-format: "[*Ultimo aggiornamento:* ]DD/MM/YYYY"
 engine: knitr
 format: 
+  typst: 
+    toc: true
+    toc-title: "Indice"
+    toc-depth: 2
+    toc-numbered: true
+    number-sections: true
   revealjs:
     width: 1280
     height: 720
@@ -30,6 +36,8 @@ format:
     lang: it-IT
 filters:
   - webr
+revealjs-plugins:
+  - tabset
 webr:
   show-startup-message: false 
   cell-options:

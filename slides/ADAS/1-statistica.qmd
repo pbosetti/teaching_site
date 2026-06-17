@@ -9,6 +9,12 @@ date: "`r Sys.time()`"
 date-format: "[*Ultimo aggiornamento:* ]DD/MM/YYYY"
 engine: knitr
 format: 
+  typst: 
+    toc: true
+    toc-title: "Indice"
+    toc-depth: 2
+    toc-numbered: true
+    number-sections: true
   revealjs:
     width: 1280
     height: 720
@@ -30,6 +36,7 @@ format:
     lang: it-IT
 revealjs-plugins:
   - quiz
+  - tabset
 filters:
   - webr
 webr:
@@ -54,6 +61,7 @@ theme_set(theme_gray()+theme(legend.position = "bottom"))
 # Statistica descrittiva
 
 La Statistica Descrittiva serve a descrivere il comportamento di variabili aleatorie
+
 
 ## Variabili aleatorie (o stocastiche)
 

@@ -7,7 +7,7 @@ project:
 website:
   title: "Paolo Bosetti"
   reader-mode: true
-  google-analytics: "G-77EMP7T5YY"
+  google-analytics: "G-29BJBS8CG3"
   cookie-consent:
     type: express
     style: simple
@@ -36,24 +36,24 @@ website:
             text: Serie temporali
           - href: slides/ADAS/8-strumenti.qmd
             text: Strumenti di misura
-      - text: DESAnED
-        menu:
-          - href: desaned.qmd
-            text: Table of Contents
-          - href: /desaned/1-statistics.html
-            text: Statistics
-          - href: /desaned/2-R-intro.html
-            text: Intro to R language
-          - href: /desaned/3-regression.html
-            text: Regression
-          - href: /desaned/4-kfold.html
-            text: K-Fold validation
-          - href: /desaned/5-DoE.html
+      # - text: DESAnED
+      #   menu:
+      #     - href: desaned.qmd
+      #       text: Table of Contents
+      #     - href: /desaned/1-statistics.html
+      #       text: Statistics
+      #     - href: /desaned/2-R-intro.html
+      #       text: Intro to R language
+      #     - href: /desaned/3-regression.html
+      #       text: Regression
+      #     - href: /desaned/4-kfold.html
+      #       text: K-Fold validation
+      #     - href: /desaned/5-DoE.html
       #       text: Design of Experiments
       # - various.qmd
       - data.qmd
       - text: "Blog"
-        href: /blog/index.html
+        href: https://paolobosetti.quarto.pub/blog/index.html
       - about.qmd
     right:
       - href: https://github.com/pbosetti/teaching_site

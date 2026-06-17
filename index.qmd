@@ -20,12 +20,6 @@ Course for the Master Degree in Mechatronics Engineering, given in English
   
 - Lesson on [K-Fold Cross Validation](slides/ADAS/kfold.html){target="_blank"} (also [as a document](kfold.html))
 
-## Design of Experiments and Statistical Analysis of Experimental Data (DESAnED) 🇬🇧
-
-PhD Seminar, given in English
-
-- Table of contents with [all slides](/desaned)
-
 
 ## Analisi dei Dati e Statistica (ADAS) 🇮🇹
 
