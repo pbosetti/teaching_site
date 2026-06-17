@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="it" xml:lang="it"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.30">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,6 +10,9 @@
 
 <title>Elicottero – Paolo Bosetti</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -74,10 +77,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9cab13ab368637c9b11f28b9f12f2aa5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-a8d3a0d6a87638e656f595b15ccf3562.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -135,7 +138,7 @@ cookieconsent.run({
 <style>html{ scroll-behavior: smooth; }</style>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -148,7 +151,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -197,32 +200,36 @@ window.Quarto = {
  <span class="dropdown-text">Intro</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./slides/ADAS/1-statistica.html">
+    <a class="dropdown-item" href="./slides/ADAS/1-statistica.pdf">
  <span class="dropdown-text">Statistica</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./slides/ADAS/2-R-intro.html">
+    <a class="dropdown-item" href="./slides/ADAS/2-R-intro.pdf">
  <span class="dropdown-text">Linguaggio R</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./slides/ADAS/3-regressione.html">
+    <a class="dropdown-item" href="./slides/ADAS/3-regressione.pdf">
  <span class="dropdown-text">Regressione</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./slides/ADAS/4-bootstrap.html">
+    <a class="dropdown-item" href="./slides/ADAS/4-bootstrap.pdf">
  <span class="dropdown-text">Bootstrap</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./slides/ADAS/5-misura.html">
+    <a class="dropdown-item" href="./slides/ADAS/5-misura.pdf">
  <span class="dropdown-text">Misura</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./slides/ADAS/6-DoE.html">
+    <a class="dropdown-item" href="./slides/ADAS/6-DoE.pdf">
  <span class="dropdown-text">Design of Experiments</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./slides/ADAS/7-serie_temporali.html">
+    <a class="dropdown-item" href="./slides/ADAS/7-serie_temporali.pdf">
  <span class="dropdown-text">Serie temporali</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./slides/ADAS/8-strumenti.pdf">
+ <span class="dropdown-text">Strumenti di misura</span></a>
   </li>  
     </ul>
   </li>
@@ -334,7 +341,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Data di modifica</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">6 novembre 2025</p>
+      <p class="date-modified">17 giugno 2026</p>
     </div>
   </div>
     
@@ -388,7 +395,7 @@ Nota
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-La resa, o indice di merito
+<span class="screen-reader-only">Importante</span>La resa, o indice di merito
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -423,7 +430,7 @@ La resa, o indice di merito
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-La relazione
+<span class="screen-reader-only">Importante</span>La relazione
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -447,9 +454,9 @@ La relazione
 <li>installare il pacchetto italiano di LaTeX: <code>tinytex::tlmgr_install("babel-italian")</code></li>
 </ol>
 <p>L’ultimo punto è opzionale, ma fornisce il supporto per la sillabazione italiana e la traduzione delle etichette (ad es. <em>Figura</em> invece di <em>Figure</em>), <strong>a patto di inserire</strong> nell’intestazione del documento, a livello di indentazione 0:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">header-includes</span><span class="kw">:</span><span class="at"> \usepackage[italian]{babel}</span></span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">header-includes</span><span class="kw">:</span><span class="at"> \usepackage[italian]{babel}</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Ad esempio, un’intestazione minima potrebbe essere la seguente (si noti anche la modalità di definizione della dimensione delle figure nel chunck di setup e la modalità di inserimento dei riferimenti alle figure):</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Elicottero di carta"</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Esperimento fattoriale"</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Marco Rossi (123567), Matteo Rizzi (123456)"</span></span>
@@ -500,7 +507,7 @@ La relazione
 <span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>y = ax + b</span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>$$</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>$$</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 </section>
@@ -557,13 +564,14 @@ La relazione
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

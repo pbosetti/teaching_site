@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.30">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Untitled – Paolo Bosetti</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -73,10 +76,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9cab13ab368637c9b11f28b9f12f2aa5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-a8d3a0d6a87638e656f595b15ccf3562.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -167,32 +170,36 @@ cookieconsent.run({
  <span class="dropdown-text">Intro</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../slides/ADAS/1-statistica.html">
+    <a class="dropdown-item" href="../../slides/ADAS/1-statistica.pdf">
  <span class="dropdown-text">Statistica</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../slides/ADAS/2-R-intro.html">
+    <a class="dropdown-item" href="../../slides/ADAS/2-R-intro.pdf">
  <span class="dropdown-text">Linguaggio R</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../slides/ADAS/3-regressione.html">
+    <a class="dropdown-item" href="../../slides/ADAS/3-regressione.pdf">
  <span class="dropdown-text">Regressione</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../slides/ADAS/4-bootstrap.html">
+    <a class="dropdown-item" href="../../slides/ADAS/4-bootstrap.pdf">
  <span class="dropdown-text">Bootstrap</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../slides/ADAS/5-misura.html">
+    <a class="dropdown-item" href="../../slides/ADAS/5-misura.pdf">
  <span class="dropdown-text">Misura</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../slides/ADAS/6-DoE.html">
+    <a class="dropdown-item" href="../../slides/ADAS/6-DoE.pdf">
  <span class="dropdown-text">Design of Experiments</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../slides/ADAS/7-serie_temporali.html">
+    <a class="dropdown-item" href="../../slides/ADAS/7-serie_temporali.pdf">
  <span class="dropdown-text">Serie temporali</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../slides/ADAS/8-strumenti.pdf">
+ <span class="dropdown-text">Strumenti di misura</span></a>
   </li>  
     </ul>
   </li>
@@ -288,7 +295,7 @@ cookieconsent.run({
 
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>n1<span class="ot">=</span><span class="dv">10</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>n1<span class="ot">=</span><span class="dv">10</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>n2<span class="ot">=</span><span class="dv">10</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>y1<span class="ot">=</span><span class="fl">13.59213</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>y2<span class="ot">=</span><span class="fl">10.30381</span></span>
@@ -296,18 +303,18 @@ cookieconsent.run({
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>s2<span class="ot">=</span><span class="fl">2.24027</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>F0 <span class="ot">=</span> s1<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>s2<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">pf</span>(F0, n1<span class="dv">-1</span>, n2<span class="dv">-1</span>, <span class="at">lower.tail =</span> F) <span class="sc">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">pf</span>(F0, n1<span class="dv">-1</span>, n2<span class="dv">-1</span>, <span class="at">lower.tail =</span> F) <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.06192649</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sp <span class="ot">=</span> <span class="fu">sqrt</span>(((n1<span class="dv">-1</span>)<span class="sc">*</span>s1<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (n2<span class="dv">-1</span>)<span class="sc">*</span>s2<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(n1 <span class="sc">+</span> n2 <span class="sc">-</span> <span class="dv">2</span>))</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sp <span class="ot">=</span> <span class="fu">sqrt</span>(((n1<span class="dv">-1</span>)<span class="sc">*</span>s1<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (n2<span class="dv">-1</span>)<span class="sc">*</span>s2<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(n1 <span class="sc">+</span> n2 <span class="sc">-</span> <span class="dv">2</span>))</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>t0 <span class="ot">=</span> (y1 <span class="sc">-</span> y2) <span class="sc">/</span> (sp<span class="sc">*</span><span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">/</span>n1 <span class="sc">+</span> <span class="dv">1</span><span class="sc">/</span>n2))</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>t0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>t0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.129375</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pt</span>(<span class="fu">abs</span>(t0), n1 <span class="sc">+</span> n2 <span class="sc">-</span> <span class="dv">2</span>, <span class="at">lower.tail =</span> F)<span class="sc">*</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pt</span>(<span class="fu">abs</span>(t0), n1 <span class="sc">+</span> n2 <span class="sc">-</span> <span class="dv">2</span>, <span class="at">lower.tail =</span> F)<span class="sc">*</span><span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.04728212</code></pre>
 </div>
@@ -367,13 +374,14 @@ cookieconsent.run({
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

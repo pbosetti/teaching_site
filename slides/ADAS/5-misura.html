@@ -8,8 +8,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.30">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.38">
 
   <meta name="author" content="Paolo Bosetti">
   <title>Paolo Bosetti – Misura, Incertezza, Taratura</title>
@@ -19,6 +19,9 @@
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -31,7 +34,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-7959e9c508be0453617036fd3007b339.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-8bb6472916a85a0bcf405482043425c1.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-77EMP7T5YY"></script>
 
   <script type="text/plain" cookie-consent="tracking">
@@ -159,8 +162,8 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Misura, Incertezza, Taratura</h1>
-  <p class="subtitle"></p><p>Analisi Dati e Statistica, 2025–26<br>
-<img data-src="images/by-nc-sa.png" height="30"></p><p></p>
+  <p class="subtitle">Analisi Dati e Statistica, 2025–26<br>
+<img data-src="images/by-nc-sa.png" height="30"></p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -173,7 +176,7 @@ Paolo Bosetti
     </div>
 </div>
 
-  <p class="date"><em>Ultimo aggiornamento:</em> 06/11/2025</p>
+  <p class="date"><em>Ultimo aggiornamento:</em> 17/06/2026</p>
 </section>
 <section>
 <section id="misura" class="title-slide slide level1 center">
@@ -268,6 +271,21 @@ u_{x\mathrm{rel}}=\frac{u_x}{|\bar x|}
 \]</span></li>
 </ul>
 </div>
+</section>
+<section id="incertezza-standard" class="slide level2">
+<h2>Incertezza standard</h2>
+<p>l’<strong>incertezza standard</strong> può essere valutata</p>
+<ul>
+<li>mediante metodi statistici, come alla pagina precedente: in questo caso si parla di incertezza standard di <strong>tipo A</strong></li>
+<li>mediante l’uso di tutte le informazioni rilevanti possibili: incertezza standard di <strong>tipo B</strong>; essa è preferibile quando non si disponga di campione sufficiente di misure</li>
+</ul>
+<p>Per <strong>informazioni rilevanti</strong> si intende ad esempio:</p>
+<ul>
+<li>dati di precedenti misurazioni</li>
+<li>specifiche tecniche del costruttore dello strumento</li>
+<li>certificati di taratura</li>
+<li>esperienza o conoscenza generale degli strumenti di interesse</li>
+</ul>
 </section>
 <section id="norma-gum-isoiec-98-32008-2" class="slide level2">
 <h2>Norma GUM (ISO/IEC 98-3:2008)</h2>
@@ -722,7 +740,7 @@ u_y^2 &amp;= \sum_{j=1}^k\sum_{i=1}^k \frac{\partial f}{\partial x_i}\frac{\part
 <h2>Metodo analitico</h2>
 <p>Nel caso in cui le <span class="math inline">\(x_i\)</span> siano tutte indipendenti, cioè <span class="math inline">\(u_{i,j}=0~\forall i\neq j\)</span>, vale la relazione semplificata: <span class="math display">\[
 u_y = \sqrt{\sum_{i=1}^n \left(\frac{\partial f}{\partial x_i}\right)^2 u_i^2}
-\]</span> nota come <strong>legge di propagazione delle incertezze</strong></p>
+\]</span> nota come <strong>legge di propagazione delle incertezze</strong> a partire dalle incertezze delle componenti (di <strong>tipo A</strong> o di <strong>tipo B</strong>)</p>
 <p>Le derivate parziali che compaiono nella LPI sono dette <strong>coefficienti di sensibilità</strong> e vanno valutati nel valore medio della rispettiva variabile <span class="math inline">\(x_i\)</span>.</p>
 <p>Il valore dei coefficienti di sensibilità consente di determinare quale delle misure combinande contribuisce maggiormente all’incertezza della misura combinata</p>
 <p><strong>Volendo migliorare la misura combinata</strong> conviene investire soprattutto sulle misure combinande con un maggiore coefficiente di sensibilità</p>
@@ -864,6 +882,7 @@ V=(20.4\pm0.2)~\mathrm{l}
   <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
   <script src="../../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-js-tabset/tabset.js"></script>
   <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -1057,7 +1076,7 @@ V=(20.4\pm0.2)~\mathrm{l}
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, RevealJsTabset, QuartoSupport,
 
           RevealMath,
           RevealNotes,
@@ -1152,13 +1171,14 @@ V=(20.4\pm0.2)~\mathrm{l}
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

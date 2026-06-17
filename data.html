@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.30">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,6 +10,9 @@
 
 <title>Example Data – Paolo Bosetti</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -74,10 +77,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9cab13ab368637c9b11f28b9f12f2aa5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-a8d3a0d6a87638e656f595b15ccf3562.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -168,32 +171,36 @@ cookieconsent.run({
  <span class="dropdown-text">Intro</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./slides/ADAS/1-statistica.html">
+    <a class="dropdown-item" href="./slides/ADAS/1-statistica.pdf">
  <span class="dropdown-text">Statistica</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./slides/ADAS/2-R-intro.html">
+    <a class="dropdown-item" href="./slides/ADAS/2-R-intro.pdf">
  <span class="dropdown-text">Linguaggio R</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./slides/ADAS/3-regressione.html">
+    <a class="dropdown-item" href="./slides/ADAS/3-regressione.pdf">
  <span class="dropdown-text">Regressione</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./slides/ADAS/4-bootstrap.html">
+    <a class="dropdown-item" href="./slides/ADAS/4-bootstrap.pdf">
  <span class="dropdown-text">Bootstrap</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./slides/ADAS/5-misura.html">
+    <a class="dropdown-item" href="./slides/ADAS/5-misura.pdf">
  <span class="dropdown-text">Misura</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./slides/ADAS/6-DoE.html">
+    <a class="dropdown-item" href="./slides/ADAS/6-DoE.pdf">
  <span class="dropdown-text">Design of Experiments</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./slides/ADAS/7-serie_temporali.html">
+    <a class="dropdown-item" href="./slides/ADAS/7-serie_temporali.pdf">
  <span class="dropdown-text">Serie temporali</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./slides/ADAS/8-strumenti.pdf">
+ <span class="dropdown-text">Strumenti di misura</span></a>
   </li>  
     </ul>
   </li>
@@ -298,7 +305,7 @@ cookieconsent.run({
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">20251106</p>
+      <p class="date-modified">20260617</p>
     </div>
   </div>
     
@@ -314,18 +321,18 @@ cookieconsent.run({
 <h2 class="anchored" data-anchor-id="loading-the-data-files">Loading the data files</h2>
 <p>Each data file can be separately loaded from the URLs reported <a href="#list-of-csv-files">down below</a>. Nonetheless, you can also exploit the ability of R <code>read.*</code> functions to open a file directly from its URL. To do so, it can be useful to use the <code>adas.utils::examples_url()</code> function that builds the URL based on the file name:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">examples_url</span>(<span class="st">"timeseries.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">examples_url</span>(<span class="st">"timeseries.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "https://paolobosetti.quarto.pub/data/timeseries.csv"</code></pre>
 </div>
 </div>
 <p>Then, just pipe it with the proper file-reading function, e.g.:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">examples_url</span>(<span class="st">"timeseries.csv"</span>) <span class="sc">%&gt;%</span> <span class="fu">read_csv</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">examples_url</span>(<span class="st">"timeseries.csv"</span>) <span class="sc">%&gt;%</span> <span class="fu">read_csv</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>or</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">examples_url</span>(<span class="st">"3dprint.dat"</span>) <span class="sc">%&gt;%</span> <span class="fu">read_table</span>(<span class="at">comment=</span><span class="st">"#"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">examples_url</span>(<span class="st">"3dprint.dat"</span>) <span class="sc">%&gt;%</span> <span class="fu">read_table</span>(<span class="at">comment=</span><span class="st">"#"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="list-of-csv-files" class="level2">
@@ -380,7 +387,7 @@ cookieconsent.run({
 <h1>Example</h1>
 <p>Let’s look at the <code>train.csv</code> file from the Titanic dataset. We load the dataset and perform some basic data manipulation to only keep the relevant columns. We also classify the passengers into age classes.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>titanic <span class="ot">&lt;-</span> <span class="fu">examples_url</span>(<span class="st">"train.csv"</span>) <span class="sc">%&gt;%</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>titanic <span class="ot">&lt;-</span> <span class="fu">examples_url</span>(<span class="st">"train.csv"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>(<span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Survived =</span> <span class="fu">as.logical</span>(Survived),</span>
@@ -397,7 +404,7 @@ cookieconsent.run({
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    AgeClass,</span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    Fare</span>
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>titanic <span class="sc">%&gt;%</span> <span class="fu">head</span>() <span class="sc">%&gt;%</span> knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>titanic <span class="sc">%&gt;%</span> <span class="fu">head</span>() <span class="sc">%&gt;%</span> knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <thead>
@@ -472,11 +479,11 @@ cookieconsent.run({
 </div>
 <p>Let’s plot the survival rate by age and sex class, as a histogram.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>titanic <span class="sc">%&gt;%</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>titanic <span class="sc">%&gt;%</span> </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>AgeClass, <span class="at">fill=</span>Survived)) <span class="sc">+</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Sex) <span class="sc">+</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Survival by Age Class"</span>, <span class="at">x=</span><span class="st">"Age Class"</span>, <span class="at">y=</span><span class="st">"Count"</span>, <span class="at">fill=</span><span class="st">"Survived"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Survival by Age Class"</span>, <span class="at">x=</span><span class="st">"Age Class"</span>, <span class="at">y=</span><span class="st">"Count"</span>, <span class="at">fill=</span><span class="st">"Survived"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -487,7 +494,7 @@ cookieconsent.run({
 </div>
 <p>In a more refined way, we can build a <a href="./slides/ADAS/3-regressione.html#regressione-lineare-generalizzata">generalized linear model of binomial type</a>🇮🇹 to predict the survival rate based on the fare, age class, and sex:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">glm</span>(Survived <span class="sc">~</span> Fare <span class="sc">+</span> AgeClass <span class="sc">+</span> Sex, <span class="at">data=</span>titanic, <span class="at">family=</span>binomial)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">glm</span>(Survived <span class="sc">~</span> Fare <span class="sc">+</span> AgeClass <span class="sc">+</span> Sex, <span class="at">data=</span>titanic, <span class="at">family=</span>binomial)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>pred <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Fare =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">500</span>, <span class="dv">5</span>),</span>
@@ -504,7 +511,7 @@ cookieconsent.run({
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Sex) <span class="sc">+</span></span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">"Predicted Survival"</span>, <span class="at">color=</span><span class="st">"Age Class"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span><span class="st">"Predicted Survival"</span>, <span class="at">color=</span><span class="st">"Age Class"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -519,7 +526,7 @@ cookieconsent.run({
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-A word to the wise
+<span class="screen-reader-only">Tip</span>A word to the wise
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -582,13 +589,14 @@ A word to the wise
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

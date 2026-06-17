@@ -8,8 +8,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.30">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.38">
 
   <meta name="author" content="Paolo Bosetti">
   <title>Paolo Bosetti – Introduzione al Corso</title>
@@ -19,6 +19,9 @@
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -31,7 +34,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-44d0e237181fb805f0ded45a57e4bee1.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-a6cbc6c6636a19529b3a887ca101beff.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-77EMP7T5YY"></script>
 
   <script type="text/plain" cookie-consent="tracking">
@@ -159,8 +162,8 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Introduzione al Corso</h1>
-  <p class="subtitle"></p><p>Analisi Dati e Statistica, 2025–26<br>
-<img data-src="images/by-nc-sa.png" height="30"></p><p></p>
+  <p class="subtitle">Analisi Dati e Statistica, 2025–26<br>
+<img data-src="images/by-nc-sa.png" height="30"></p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -173,7 +176,7 @@ Paolo Bosetti
     </div>
 </div>
 
-  <p class="date"><em>Ultimo aggiornamento:</em> 06/11/2025</p>
+  <p class="date"><em>Ultimo aggiornamento:</em> 17/06/2026</p>
 </section>
 <section>
 <section id="introduzione-al-corso" class="title-slide slide level1 center">
@@ -627,13 +630,14 @@ Paolo Bosetti
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

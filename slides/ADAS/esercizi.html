@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="it" xml:lang="it"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.30">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,6 +10,9 @@
 
 <title>Esercizi – Paolo Bosetti</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -74,10 +77,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9cab13ab368637c9b11f28b9f12f2aa5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-a8d3a0d6a87638e656f595b15ccf3562.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -135,7 +138,7 @@ cookieconsent.run({
 <style>html{ scroll-behavior: smooth; }</style>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -148,7 +151,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -197,32 +200,36 @@ window.Quarto = {
  <span class="dropdown-text">Intro</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../slides/ADAS/1-statistica.html">
+    <a class="dropdown-item" href="../../slides/ADAS/1-statistica.pdf">
  <span class="dropdown-text">Statistica</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../slides/ADAS/2-R-intro.html">
+    <a class="dropdown-item" href="../../slides/ADAS/2-R-intro.pdf">
  <span class="dropdown-text">Linguaggio R</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../slides/ADAS/3-regressione.html">
+    <a class="dropdown-item" href="../../slides/ADAS/3-regressione.pdf">
  <span class="dropdown-text">Regressione</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../slides/ADAS/4-bootstrap.html">
+    <a class="dropdown-item" href="../../slides/ADAS/4-bootstrap.pdf">
  <span class="dropdown-text">Bootstrap</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../slides/ADAS/5-misura.html">
+    <a class="dropdown-item" href="../../slides/ADAS/5-misura.pdf">
  <span class="dropdown-text">Misura</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../slides/ADAS/6-DoE.html">
+    <a class="dropdown-item" href="../../slides/ADAS/6-DoE.pdf">
  <span class="dropdown-text">Design of Experiments</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../slides/ADAS/7-serie_temporali.html">
+    <a class="dropdown-item" href="../../slides/ADAS/7-serie_temporali.pdf">
  <span class="dropdown-text">Serie temporali</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../slides/ADAS/8-strumenti.pdf">
+ <span class="dropdown-text">Strumenti di misura</span></a>
   </li>  
     </ul>
   </li>
@@ -344,7 +351,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Data di modifica</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">6 novembre 2025</p>
+      <p class="date-modified">17 giugno 2026</p>
     </div>
   </div>
     
@@ -402,7 +409,7 @@ Nota
 <section id="test-di-student-1" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="test-di-student-1"><span class="header-section-number">2.1</span> Test di Student</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>c1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="fl">11.7</span>, <span class="fl">9.7</span>, <span class="dv">11</span>, <span class="fl">12.5</span>, <span class="fl">12.7</span>, <span class="fl">9.9</span>, <span class="fl">11.4</span>, <span class="fl">9.2</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>c1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="fl">11.7</span>, <span class="fl">9.7</span>, <span class="dv">11</span>, <span class="fl">12.5</span>, <span class="fl">12.7</span>, <span class="fl">9.9</span>, <span class="fl">11.4</span>, <span class="fl">9.2</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>c2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">12.5</span>, <span class="fl">15.1</span>, <span class="fl">14.4</span>, <span class="fl">12.5</span>, <span class="fl">14.9</span>, <span class="fl">14.4</span>, <span class="fl">13.2</span>, <span class="fl">11.2</span>, <span class="fl">12.6</span>, <span class="fl">14.8</span>, <span class="fl">13.9</span>, <span class="fl">11.9</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>c1.m <span class="ot">&lt;-</span> <span class="fu">mean</span>(c1)</span>
@@ -413,18 +420,18 @@ Nota
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>t0 <span class="ot">&lt;-</span> <span class="fu">abs</span>(c1.m <span class="sc">-</span> c2.m) <span class="sc">/</span> (Sp <span class="sc">*</span> <span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">/</span>n1 <span class="sc">+</span> <span class="dv">1</span><span class="sc">/</span>n2))</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>p.value <span class="ot">&lt;-</span> <span class="fu">pt</span>(t0, n1 <span class="sc">+</span> n2 <span class="sc">-</span><span class="dv">2</span>, <span class="at">lower.tail=</span><span class="cn">FALSE</span>) <span class="sc">*</span> <span class="dv">2</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"t0:"</span>, t0, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>))</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"t0:"</span>, t0, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>t0: 4.09946306243968 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"p-value:"</span>, p.value))</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"p-value:"</span>, p.value))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>p-value: 0.00061049441430277</code></pre>
 </div>
 </div>
 <p>Per verifica:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(c1, c2, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(c1, c2, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Two Sample t-test
@@ -444,7 +451,7 @@ mean of x mean of y
 <h2 data-number="2.2" class="anchored" data-anchor-id="potenza-del-test-di-student-1"><span class="header-section-number">2.2</span> Potenza del test di Student</h2>
 <p>A due lati:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(c2, <span class="at">mu=</span><span class="fl">12.7</span>)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(c2, <span class="at">mu=</span><span class="fl">12.7</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One Sample t-test
@@ -461,7 +468,7 @@ mean of x
 </div>
 <p>A un lato:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(t <span class="ot">&lt;-</span> <span class="fu">t.test</span>(c2, <span class="at">mu=</span><span class="fl">12.7</span>, <span class="at">alternative=</span><span class="st">"greater"</span>, <span class="at">conf.level =</span> <span class="fl">0.99</span>))</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(t <span class="ot">&lt;-</span> <span class="fu">t.test</span>(c2, <span class="at">mu=</span><span class="fl">12.7</span>, <span class="at">alternative=</span><span class="st">"greater"</span>, <span class="at">conf.level =</span> <span class="fl">0.99</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One Sample t-test
@@ -495,24 +502,35 @@ Nota
 <section id="manipolazione-dati-1" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="manipolazione-dati-1"><span class="header-section-number">2.3</span> Manipolazione dati</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span> </span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">size =</span> <span class="fu">cut</span>(carat, <span class="at">breaks =</span> <span class="dv">5</span>), <span class="at">.after=</span>carat) <span class="sc">%&gt;%</span> </span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(size<span class="sc">:</span>clarity, price) <span class="sc">%&gt;%</span> </span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(size,cut) <span class="sc">%&gt;%</span> </span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">reframe</span>(</span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">probs =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="at">length.out=</span><span class="dv">5</span>),</span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">price =</span> <span class="fu">quantile</span>(price),</span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups=</span><span class="st">"keep"</span></span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">probs =</span> <span class="fu">paste0</span>(probs, <span class="st">"%"</span>)) <span class="sc">%&gt;%</span> </span>
 <span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> probs, <span class="at">values_from =</span> price) <span class="sc">%&gt;%</span> </span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 14%">
+<col style="width: 11%">
+<col style="width: 8%">
+<col style="width: 13%">
+<col style="width: 11%">
+<col style="width: 13%">
+<col style="width: 8%">
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">size</th>
 <th style="text-align: left;">cut</th>
+<th style="text-align: left;">.groups</th>
 <th style="text-align: right;">0%</th>
 <th style="text-align: right;">25%</th>
 <th style="text-align: right;">50%</th>
@@ -524,6 +542,7 @@ Nota
 <tr class="odd">
 <td style="text-align: left;">(0.195,1.16]</td>
 <td style="text-align: left;">Fair</td>
+<td style="text-align: left;">keep</td>
 <td style="text-align: right;">337</td>
 <td style="text-align: right;">1715.00</td>
 <td style="text-align: right;">2684.5</td>
@@ -533,6 +552,7 @@ Nota
 <tr class="even">
 <td style="text-align: left;">(0.195,1.16]</td>
 <td style="text-align: left;">Good</td>
+<td style="text-align: left;">keep</td>
 <td style="text-align: right;">327</td>
 <td style="text-align: right;">896.50</td>
 <td style="text-align: right;">2258.0</td>
@@ -542,6 +562,7 @@ Nota
 <tr class="odd">
 <td style="text-align: left;">(0.195,1.16]</td>
 <td style="text-align: left;">Very Good</td>
+<td style="text-align: left;">keep</td>
 <td style="text-align: right;">336</td>
 <td style="text-align: right;">773.00</td>
 <td style="text-align: right;">1975.0</td>
@@ -551,6 +572,7 @@ Nota
 <tr class="even">
 <td style="text-align: left;">(0.195,1.16]</td>
 <td style="text-align: left;">Premium</td>
+<td style="text-align: left;">keep</td>
 <td style="text-align: right;">326</td>
 <td style="text-align: right;">882.00</td>
 <td style="text-align: right;">1826.5</td>
@@ -560,6 +582,7 @@ Nota
 <tr class="odd">
 <td style="text-align: left;">(0.195,1.16]</td>
 <td style="text-align: left;">Ideal</td>
+<td style="text-align: left;">keep</td>
 <td style="text-align: right;">326</td>
 <td style="text-align: right;">827.00</td>
 <td style="text-align: right;">1389.0</td>
@@ -569,6 +592,7 @@ Nota
 <tr class="even">
 <td style="text-align: left;">(1.16,2.12]</td>
 <td style="text-align: left;">Fair</td>
+<td style="text-align: left;">keep</td>
 <td style="text-align: right;">2336</td>
 <td style="text-align: right;">5334.00</td>
 <td style="text-align: right;">7388.0</td>
@@ -578,6 +602,7 @@ Nota
 <tr class="odd">
 <td style="text-align: left;">(1.16,2.12]</td>
 <td style="text-align: left;">Good</td>
+<td style="text-align: left;">keep</td>
 <td style="text-align: right;">3098</td>
 <td style="text-align: right;">6686.50</td>
 <td style="text-align: right;">8820.0</td>
@@ -587,6 +612,7 @@ Nota
 <tr class="even">
 <td style="text-align: left;">(1.16,2.12]</td>
 <td style="text-align: left;">Very Good</td>
+<td style="text-align: left;">keep</td>
 <td style="text-align: right;">2774</td>
 <td style="text-align: right;">6945.25</td>
 <td style="text-align: right;">9526.0</td>
@@ -596,6 +622,7 @@ Nota
 <tr class="odd">
 <td style="text-align: left;">(1.16,2.12]</td>
 <td style="text-align: left;">Premium</td>
+<td style="text-align: left;">keep</td>
 <td style="text-align: right;">2360</td>
 <td style="text-align: right;">6604.75</td>
 <td style="text-align: right;">9384.5</td>
@@ -605,6 +632,7 @@ Nota
 <tr class="even">
 <td style="text-align: left;">(1.16,2.12]</td>
 <td style="text-align: left;">Ideal</td>
+<td style="text-align: left;">keep</td>
 <td style="text-align: right;">3168</td>
 <td style="text-align: right;">7155.50</td>
 <td style="text-align: right;">9761.0</td>
@@ -614,6 +642,7 @@ Nota
 <tr class="odd">
 <td style="text-align: left;">(2.12,3.09]</td>
 <td style="text-align: left;">Fair</td>
+<td style="text-align: left;">keep</td>
 <td style="text-align: right;">5405</td>
 <td style="text-align: right;">7069.00</td>
 <td style="text-align: right;">12500.0</td>
@@ -623,6 +652,7 @@ Nota
 <tr class="even">
 <td style="text-align: left;">(2.12,3.09]</td>
 <td style="text-align: left;">Good</td>
+<td style="text-align: left;">keep</td>
 <td style="text-align: right;">9068</td>
 <td style="text-align: right;">13751.50</td>
 <td style="text-align: right;">14613.5</td>
@@ -632,6 +662,7 @@ Nota
 <tr class="odd">
 <td style="text-align: left;">(2.12,3.09]</td>
 <td style="text-align: left;">Very Good</td>
+<td style="text-align: left;">keep</td>
 <td style="text-align: right;">6512</td>
 <td style="text-align: right;">13782.00</td>
 <td style="text-align: right;">15753.0</td>
@@ -641,6 +672,7 @@ Nota
 <tr class="even">
 <td style="text-align: left;">(2.12,3.09]</td>
 <td style="text-align: left;">Premium</td>
+<td style="text-align: left;">keep</td>
 <td style="text-align: right;">6357</td>
 <td style="text-align: right;">13717.00</td>
 <td style="text-align: right;">15857.5</td>
@@ -650,6 +682,7 @@ Nota
 <tr class="odd">
 <td style="text-align: left;">(2.12,3.09]</td>
 <td style="text-align: left;">Ideal</td>
+<td style="text-align: left;">keep</td>
 <td style="text-align: right;">8709</td>
 <td style="text-align: right;">14548.75</td>
 <td style="text-align: right;">16427.0</td>
@@ -659,6 +692,7 @@ Nota
 <tr class="even">
 <td style="text-align: left;">(3.09,4.05]</td>
 <td style="text-align: left;">Fair</td>
+<td style="text-align: left;">keep</td>
 <td style="text-align: right;">9823</td>
 <td style="text-align: right;">10745.50</td>
 <td style="text-align: right;">11668.0</td>
@@ -668,6 +702,7 @@ Nota
 <tr class="odd">
 <td style="text-align: left;">(3.09,4.05]</td>
 <td style="text-align: left;">Very Good</td>
+<td style="text-align: left;">keep</td>
 <td style="text-align: right;">15984</td>
 <td style="text-align: right;">15984.00</td>
 <td style="text-align: right;">15984.0</td>
@@ -677,6 +712,7 @@ Nota
 <tr class="even">
 <td style="text-align: left;">(3.09,4.05]</td>
 <td style="text-align: left;">Premium</td>
+<td style="text-align: left;">keep</td>
 <td style="text-align: right;">12300</td>
 <td style="text-align: right;">15223.00</td>
 <td style="text-align: right;">15223.0</td>
@@ -686,6 +722,7 @@ Nota
 <tr class="odd">
 <td style="text-align: left;">(3.09,4.05]</td>
 <td style="text-align: left;">Ideal</td>
+<td style="text-align: left;">keep</td>
 <td style="text-align: right;">12545</td>
 <td style="text-align: right;">12555.50</td>
 <td style="text-align: right;">12566.0</td>
@@ -695,6 +732,7 @@ Nota
 <tr class="even">
 <td style="text-align: left;">(4.05,5.01]</td>
 <td style="text-align: left;">Fair</td>
+<td style="text-align: left;">keep</td>
 <td style="text-align: right;">17329</td>
 <td style="text-align: right;">17673.50</td>
 <td style="text-align: right;">18018.0</td>
@@ -711,7 +749,7 @@ Nota
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Osservazioni
+<span class="screen-reader-only">Nota</span>Osservazioni
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -728,10 +766,10 @@ Osservazioni
 <h2 data-number="2.4" class="anchored" data-anchor-id="dati-di-produzione-1"><span class="header-section-number">2.4</span> Dati di produzione</h2>
 <p>Osserviamo il file di dati originale:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">examples_url</span>(<span class="st">"prod_defects.csv"</span>) <span class="sc">%&gt;%</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">examples_url</span>(<span class="st">"prod_defects.csv"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_file</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">substr</span>(<span class="dv">1</span>,<span class="dv">250</span>) <span class="sc">%&gt;%</span> <span class="co"># solo i primi 250 caratteri</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>()</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>()</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Difetti in produzione su 50 settimane
 # S: numero settimana
@@ -752,16 +790,16 @@ S,M1,M2,M3
 <p>È evidente che il file contiene dei commenti inizianti con <code>#</code> e che i dati non sono <em>tidy</em>.</p>
 <p>Importiamo quindi la tabella e trasformiamola in formato <em>tidy</em>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>prod <span class="ot">&lt;-</span> <span class="fu">examples_url</span>(<span class="st">"prod_defects.csv"</span>) <span class="sc">%&gt;%</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>prod <span class="ot">&lt;-</span> <span class="fu">examples_url</span>(<span class="st">"prod_defects.csv"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>(<span class="at">comment =</span> <span class="st">"#"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>S, <span class="at">names_to=</span><span class="st">"Macchina"</span>, <span class="at">values_to=</span><span class="st">"Difetti"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Settimana=</span>S)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Settimana=</span>S)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Visualizziamo i dati:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>prod <span class="sc">%&gt;%</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>prod <span class="sc">%&gt;%</span> </span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Settimana,<span class="at">y=</span>Difetti, <span class="at">color=</span>Macchina)) <span class="sc">+</span> </span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -772,20 +810,20 @@ S,M1,M2,M3
 </div>
 <p>Creiamo una tabella di appoggio per i limiti:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>limits <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>limits <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>Macchina, <span class="sc">~</span>max,</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"M1"</span>, <span class="dv">27</span>,</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"M2"</span>, <span class="dv">32</span>,</span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"M3"</span>, <span class="dv">100</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Uniamo le due tabelle e calcoliamo il rapporto:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>prod <span class="sc">%&gt;%</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>prod <span class="sc">%&gt;%</span> </span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(limits, <span class="at">by =</span> <span class="fu">join_by</span>(Macchina)) <span class="sc">%&gt;%</span> </span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">`</span><span class="at">Dif.rel.</span><span class="st">`</span><span class="ot">=</span>(Difetti<span class="sc">/</span>max<span class="sc">*</span><span class="dv">100</span>) <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Settimana, <span class="at">y=</span><span class="st">`</span><span class="at">Dif.rel.</span><span class="st">`</span>, <span class="at">color=</span>Macchina)) <span class="sc">+</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -796,14 +834,14 @@ S,M1,M2,M3
 </div>
 <p>Per il calcolo della media progressiva possiamo usare una mappa, calcolando la media dei valori da 1 a <span class="math inline">\(i\)</span>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">examples_url</span>(<span class="st">"prod_defects.csv"</span>) <span class="sc">%&gt;%</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">examples_url</span>(<span class="st">"prod_defects.csv"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>(<span class="at">comment =</span> <span class="st">"#"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">M1.m =</span> <span class="fu">map_dbl</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">n</span>(), \(i) <span class="fu">mean</span>(M1[<span class="dv">1</span><span class="sc">:</span>i])),</span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">M2.m =</span> <span class="fu">map_dbl</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">n</span>(), \(i) <span class="fu">mean</span>(M2[<span class="dv">1</span><span class="sc">:</span>i])),</span>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">M3.m =</span> <span class="fu">map_dbl</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">n</span>(), \(i) <span class="fu">mean</span>(M3[<span class="dv">1</span><span class="sc">:</span>i]))</span>
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n=</span><span class="dv">10</span>)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n=</span><span class="dv">10</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 50 Columns: 4
 ── Column specification ────────────────────────────────────────────────────────
@@ -833,12 +871,12 @@ dbl (4): S, M1, M2, M3
 <p>Per farlo partiamo dalla tabella <em>tidy</em> (<code>prod</code>). Non possiamo applicare direttamente una mappa, perché otterremo la media progressiva <strong>di tutti i difetti</strong> mescolando le varie macchine.</p>
 <p>Possiamo però sfruttare <code>group_by</code>, che consente di operare su una tabella <strong>per gruppi</strong>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>prod <span class="sc">%&gt;%</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>prod <span class="sc">%&gt;%</span> </span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Macchina) <span class="sc">%&gt;%</span> </span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">map_dbl</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">n</span>(), <span class="sc">~</span> <span class="fu">mean</span>(Difetti[<span class="dv">1</span><span class="sc">:</span>.]))</span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n=</span><span class="dv">3</span>)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n=</span><span class="dv">3</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 9 × 4
 # Groups:   Macchina [3]
@@ -871,7 +909,7 @@ Importante
 </div>
 <p>Ora mettiamo tutto assieme, con l’attenzione di calcolare la media progressiva <strong>per la difettosità relativa</strong> (e non per il conteggio):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>prod <span class="sc">%&gt;%</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>prod <span class="sc">%&gt;%</span> </span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calcolo difettosità relativa</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(limits, <span class="at">by =</span> <span class="fu">join_by</span>(Macchina)) <span class="sc">%&gt;%</span> </span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">`</span><span class="at">Dif.rel.</span><span class="st">`</span><span class="ot">=</span>(Difetti<span class="sc">/</span>max<span class="sc">*</span><span class="dv">100</span>) <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
@@ -884,7 +922,7 @@ Importante
 <span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Grafico</span></span>
 <span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Settimana, <span class="at">color=</span>Macchina)) <span class="sc">+</span></span>
 <span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span><span class="st">`</span><span class="at">Dif.rel.</span><span class="st">`</span>)) <span class="sc">+</span></span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>mean), <span class="at">linetype=</span><span class="dv">2</span>)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>mean), <span class="at">linetype=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -899,14 +937,14 @@ Importante
 <h1 data-number="3"><span class="header-section-number">3</span> Regressione</h1>
 <p>Carichiamo i dati e dividiamoli già in due gruppi <em>training</em> e <em>validation</em> (80:20):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">examples_url</span>(<span class="st">"regression.csv"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>(<span class="at">show_col_types =</span> F) <span class="sc">%&gt;%</span> </span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">train =</span> <span class="fu">sample</span>(<span class="fu">c</span>(T,F), <span class="at">size=</span><span class="fu">n</span>(), <span class="at">replace=</span>T, <span class="at">prob=</span><span class="fu">c</span>(<span class="fl">0.8</span>, <span class="fl">0.2</span>)))</span>
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
 <span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y)) <span class="sc">+</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>train))</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span>train))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -917,7 +955,7 @@ Importante
 </div>
 <p>Confrontiamo due regressioni lineari, una col modello <span class="math inline">\(y=a + b\log(x)\)</span>, una col modello <span class="math inline">\(y=a + b/x^{0.1}\)</span>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(train) <span class="sc">%&gt;%</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(train) <span class="sc">%&gt;%</span> </span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y)) <span class="sc">+</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(</span>
@@ -928,7 +966,7 @@ Importante
 <span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"lm"</span>,</span>
 <span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">formula =</span> y <span class="sc">~</span> <span class="fu">log</span>(x),</span>
 <span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">color=</span><span class="st">"red"</span></span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -938,7 +976,7 @@ Importante
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(y<span class="sc">~</span><span class="fu">log</span>(x), <span class="at">data=</span>df))</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(y<span class="sc">~</span><span class="fu">log</span>(x), <span class="at">data=</span>df))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -959,7 +997,7 @@ Residual standard error: 0.73 on 48 degrees of freedom
 Multiple R-squared:  0.9501,    Adjusted R-squared:  0.949 
 F-statistic: 913.6 on 1 and 48 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(y<span class="sc">~</span><span class="fu">I</span>(x<span class="sc">^</span><span class="fl">0.1</span>), <span class="at">data=</span>df))</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(y<span class="sc">~</span><span class="fu">I</span>(x<span class="sc">^</span><span class="fl">0.1</span>), <span class="at">data=</span>df))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -983,7 +1021,7 @@ F-statistic: 870.5 on 1 and 48 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <p>Difficile dire quale sia meglio, anche se <span class="math inline">\(R^2\)</span> del modello logaritmico è leggermente più elevato. Proviamo con la cross-validazione, confrontando diverse potenze oltre al logaritmo:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(modelr)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(modelr)</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>models <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>, \(n) <span class="fu">lm</span>(y<span class="sc">~</span><span class="fu">I</span>(x<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span>n)), <span class="at">data=</span><span class="fu">filter</span>(df, train))),</span>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(<span class="fu">lm</span>(y<span class="sc">~</span><span class="fu">log</span>(x), <span class="at">data=</span><span class="fu">filter</span>(df, train)))</span>
@@ -996,7 +1034,7 @@ F-statistic: 870.5 on 1 and 48 DF,  p-value: &lt; 2.2e-16</code></pre>
 <span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
 <span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>n, <span class="at">names_to =</span> <span class="st">"type"</span>, <span class="at">values_to =</span> <span class="st">"RMSE"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>n, <span class="at">y=</span>RMSE, <span class="at">fill=</span>type)) <span class="sc">+</span> </span>
-<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"dodge"</span>)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"dodge"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1008,13 +1046,13 @@ F-statistic: 870.5 on 1 and 48 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>L’ultima barra corrisponde al modello logaritmico. Si osserva che RMSE di tale modello per i dati di training e per quelli di valdazione è effettivamente il minimo, anche se l’esponente <span class="math inline">\(1/15\)</span> produce risultati ancora migliori di <span class="math inline">\(1/10\)</span>. Tutavia, per <span class="math inline">\(n\gt10\)</span> non si osservano sensibili miglioramenti per l’RMSE sui dati di validazione.</p>
 <p>Osserviamo infine i residui per verificare l’assenza di <em>pattern</em>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_residuals</span>(<span class="fu">lm</span>(y<span class="sc">~</span><span class="fu">log</span>(x), <span class="at">data=</span>df), <span class="at">var=</span><span class="st">"log"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_residuals</span>(<span class="fu">lm</span>(y<span class="sc">~</span><span class="fu">I</span>(x<span class="sc">^</span><span class="fl">0.1</span>), <span class="at">data=</span>df), <span class="at">var=</span><span class="st">"pow"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(x, log, pow) <span class="sc">%&gt;%</span> </span>
 <span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>x, <span class="at">names_to =</span> <span class="st">"model"</span>, <span class="at">values_to =</span> <span class="st">"residual"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>residual, <span class="at">color=</span>model)) <span class="sc">+</span> </span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1040,14 +1078,14 @@ Nota
 </div>
 <p>Proviamo con una regressione ai minimi quadrati inserendo anche l’esponente <span class="math inline">\(1/c\)</span> come parametro di regressione:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> \(x, a, b, c) a <span class="sc">+</span> b<span class="sc">*</span>x<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span>c)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> \(x, a, b, c) a <span class="sc">+</span> b<span class="sc">*</span>x<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span>c)</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>df.nls <span class="ot">&lt;-</span> <span class="fu">nls</span>(y <span class="sc">~</span> <span class="fu">f</span>(x, a, b, c),</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> df,</span>
 <span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">start =</span> <span class="fu">list</span>(</span>
 <span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">a =</span> <span class="dv">1</span>, <span class="at">b=</span><span class="dv">1</span>, <span class="at">c=</span><span class="dv">2</span></span>
 <span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    ),</span>
 <span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">trace=</span>T</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>11457.91    (1.99e+01): par = (1 1 2)
 1102.181    (6.55e+00): par = (4.304996 7.951322 7.461343)
@@ -1060,7 +1098,7 @@ Nota
 </div>
 <p>Si noti come il valore ottimale di <span class="math inline">\(c\)</span> risulta in effetti moto più alto:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>df.nls</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>df.nls</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Nonlinear regression model
   model: y ~ f(x, a, b, c)
@@ -1075,7 +1113,7 @@ Achieved convergence tolerance: 1.71e-06</code></pre>
 </div>
 <p>Confrontando la regressione non-lineare con il modello logaritmico si osserva come stanno entrambi nella stessa banda di confidenza, quindi continuiamo a preferire il modello logaritmico:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_predictions</span>(df.nls) <span class="sc">%&gt;%</span> </span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>x)) <span class="sc">+</span></span>
 <span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y=</span>y)) <span class="sc">+</span></span>
@@ -1085,7 +1123,7 @@ Achieved convergence tolerance: 1.71e-06</code></pre>
 <span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"lm"</span>,</span>
 <span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">formula =</span> y <span class="sc">~</span> <span class="fu">log</span>(x),</span>
 <span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype=</span><span class="dv">2</span></span>
-<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1150,13 +1188,14 @@ Achieved convergence tolerance: 1.71e-06</code></pre>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

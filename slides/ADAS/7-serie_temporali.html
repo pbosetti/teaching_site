@@ -8,8 +8,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.30">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.38">
 
   <meta name="author" content="Paolo Bosetti">
   <title>Paolo Bosetti – Serie Temporali</title>
@@ -19,6 +19,9 @@
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -97,7 +100,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-7959e9c508be0453617036fd3007b339.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-8bb6472916a85a0bcf405482043425c1.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-77EMP7T5YY"></script>
 
   <script type="text/plain" cookie-consent="tracking">
@@ -225,8 +228,8 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Serie Temporali</h1>
-  <p class="subtitle"></p><p>Analisi Dati e Statistica, 2025–26<br>
-<img data-src="images/by-nc-sa.png" height="30"></p><p></p>
+  <p class="subtitle">Analisi Dati e Statistica, 2025–26<br>
+<img data-src="images/by-nc-sa.png" height="30"></p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -239,7 +242,7 @@ Paolo Bosetti
     </div>
 </div>
 
-  <p class="date"><em>Ultimo aggiornamento:</em> 06/11/2025</p>
+  <p class="date"><em>Ultimo aggiornamento:</em> 17/06/2026</p>
 </section>
 <section>
 <section id="serie-temporali" class="title-slide slide level1 center">
@@ -723,11 +726,11 @@ y_t &amp;= \nu_t + 1/\theta \nu_{t-1}, ~\nu_t\sim\mathcal{N}(0, \theta^2)
 \]</span> siano <strong>tutte strettamente fuori dal cerchio unitario</strong> sul piano complesso</p>
 <p>Ad esempio: <span class="math inline">\(\mathrm{ARMA}(2,2)\)</span> con <span class="math inline">\(\Phi_2(z)= 1 + 0.9z + 0.1z^2\)</span> e <span class="math inline">\(\Theta_q(z) = 1 + 2z + 15z^2\)</span>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">abs</span>(<span class="fu">polyroot</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="sc">-</span><span class="fl">0.9</span>, <span class="sc">-</span><span class="fl">0.1</span>)))</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">abs</span>(<span class="fu">polyroot</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="sc">-</span><span class="fl">0.9</span>, <span class="sc">-</span><span class="fl">0.1</span>)))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  1 10</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">abs</span>(<span class="fu">polyroot</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">15</span>)))</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">abs</span>(<span class="fu">polyroot</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">15</span>)))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.2581989 0.2581989</code></pre>
 </div>
@@ -756,13 +759,13 @@ x_t = 0.5x_{t-1}-0.5w_{t-1} + w_t
 \]</span></p>
 <p>In questa forma il processo sembra <span class="math inline">\(\mathrm{ARMA}(2,2)\)</span>, tuttavia possiamo scomporre i due polinomi in fattori, usando <code>polyroot()</code> per calcolare le radici:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="co"># per Phi:</span></span>
-<span id="cb5-2"><a></a><span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="fu">polyroot</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="sc">-</span><span class="fl">0.4</span>, <span class="sc">-</span><span class="fl">0.45</span>))</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="co"># per Phi:</span></span>
+<span id="cb5-2"><a></a><span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="fu">polyroot</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="sc">-</span><span class="fl">0.4</span>, <span class="sc">-</span><span class="fl">0.45</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -0.9-6.887768e-21i  0.5+2.125854e-21i</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="co"># per Theta:</span></span>
-<span id="cb7-2"><a></a><span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="fu">polyroot</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">0.25</span>))</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="co"># per Theta:</span></span>
+<span id="cb7-2"><a></a><span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="fu">polyroot</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">0.25</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.5+0i 0.5+0i</code></pre>
 </div>
@@ -836,7 +839,7 @@ x_t=0.9x_{t-1}+0.5w_{t-1}+w_t
 <div class="columns">
 <div class="column" style="font-size: 70%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>forecast<span class="sc">::</span><span class="fu">auto.arima</span>(AirPassengers, <span class="at">lambda=</span><span class="st">"auto"</span>, <span class="at">trace=</span>T)</span></code><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>forecast<span class="sc">::</span><span class="fu">auto.arima</span>(AirPassengers, <span class="at">lambda=</span><span class="st">"auto"</span>, <span class="at">trace=</span>T)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
  ARIMA(2,1,2)(1,1,1)[12]                    : -890.0518
@@ -954,6 +957,7 @@ AIC=-897.18   AICc=-896.99   BIC=-888.55</code></pre>
   <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
   <script src="../../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-js-tabset/tabset.js"></script>
   <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -1147,7 +1151,7 @@ AIC=-897.18   AICc=-896.99   BIC=-888.55</code></pre>
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, RevealJsTabset, QuartoSupport,
 
           RevealMath,
           RevealNotes,
@@ -1242,13 +1246,14 @@ AIC=-897.18   AICc=-896.99   BIC=-888.55</code></pre>
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

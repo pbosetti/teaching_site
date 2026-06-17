@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="it-IT"><head>
+<script src="../../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.38">
+
+  <meta name="author" content="Paolo Bosetti">
+  <title>Paolo Bosetti – Strumenti di misura</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-8bb6472916a85a0bcf405482043425c1.css">
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-77EMP7T5YY"></script>
+
+  <script type="text/plain" cookie-consent="tracking">
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-77EMP7T5YY', { 'anonymize_ip': true});
+  </script>
+  
+  <script type="text/javascript" charset="UTF-8">
+  document.addEventListener('DOMContentLoaded', function () {
+  cookieconsent.run({
+    "notice_banner_type":"simple",
+    "consent_type":"express",
+    "palette":"light",
+    "language":"en",
+    "page_load_consent_levels":["strictly-necessary"],
+    "notice_banner_reject_button_hide":false,
+    "preferences_center_close_button_hide":false,
+    "website_name":""
+    ,
+  "language":"it-IT"
+    });
+  });
+  </script> 
+    
+  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Strumenti di misura</h1>
+  <p class="subtitle">Analisi Dati e Statistica, 2025–26<br>
+<img data-src="images/by-nc-sa.png" height="30"></p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Paolo Bosetti 
+</div>
+        <p class="quarto-title-affiliation">
+            Università di Trento, Dipartimento di Ingegneria Industriale
+          </p>
+    </div>
+</div>
+
+  <p class="date"><em>Ultimo aggiornamento:</em> 17/06/2026</p>
+</section>
+<section>
+<section id="catena-di-misura" class="title-slide slide level1 center">
+<h1>Catena di misura</h1>
+<p>È un sistema composto da una serie di strumenti collegati che elaborano un segnale per ottenere una misurazione</p>
+</section>
+<section id="definizioni" class="slide level2">
+<h2>Definizioni</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><strong>misurando</strong>: oggetto fisico della misurazione</li>
+<li><strong>trasduttore</strong>: dispositivo che converte una grandezza fisica in un’altra</li>
+<li><strong>condizionatore</strong>: dispositivo che migliore il segnale fisico prodotto dal trasduttore</li>
+<li><strong>conversione AD</strong>: trasforma un segnale analogico in un segnale digitale</li>
+<li><strong>acquisizione</strong>: opera sul segnale digitale (visualizzazione, registrazione, elaborazione, ecc.)</li>
+</ul>
+</div><div class="column">
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<svg width="480" height="384" viewbox="0.00 0.00 165.18 332.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none; display: block; margin: auto auto auto auto">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 328)">
+<title>catena</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-328 161.18,-328 161.18,4 -4,4"></polygon>
+<!-- misurando -->
+<g id="node1" class="node">
+<title>misurando</title>
+<polygon fill="none" stroke="black" points="133.47,-324 23.71,-324 23.71,-288 133.47,-288 133.47,-324"></polygon>
+<text text-anchor="middle" x="78.59" y="-300" font-family="Helvetica,sans-Serif" font-size="20.00">misurando</text>
+</g>
+<!-- trasduttore -->
+<g id="node2" class="node">
+<title>trasduttore</title>
+<polygon fill="none" stroke="black" points="134.2,-252 22.98,-252 22.98,-216 134.2,-216 134.2,-252"></polygon>
+<text text-anchor="middle" x="78.59" y="-228" font-family="Helvetica,sans-Serif" font-size="20.00">trasduttore</text>
+</g>
+<!-- misurando&#45;&gt;trasduttore -->
+<g id="edge1" class="edge">
+<title>misurando-&gt;trasduttore</title>
+<path fill="none" stroke="black" d="M78.59,-287.7C78.59,-279.98 78.59,-270.71 78.59,-262.11"></path>
+<polygon fill="black" stroke="black" points="82.09,-262.1 78.59,-252.1 75.09,-262.1 82.09,-262.1"></polygon>
+</g>
+<!-- condizionatore -->
+<g id="node3" class="node">
+<title>condizionatore</title>
+<polygon fill="none" stroke="black" points="151.68,-180 5.5,-180 5.5,-144 151.68,-144 151.68,-180"></polygon>
+<text text-anchor="middle" x="78.59" y="-156" font-family="Helvetica,sans-Serif" font-size="20.00">condizionatore</text>
+</g>
+<!-- trasduttore&#45;&gt;condizionatore -->
+<g id="edge2" class="edge">
+<title>trasduttore-&gt;condizionatore</title>
+<path fill="none" stroke="black" d="M78.59,-215.7C78.59,-207.98 78.59,-198.71 78.59,-190.11"></path>
+<polygon fill="black" stroke="black" points="82.09,-190.1 78.59,-180.1 75.09,-190.1 82.09,-190.1"></polygon>
+</g>
+<!-- conversione AD -->
+<g id="node4" class="node">
+<title>conversione AD</title>
+<polygon fill="none" stroke="black" points="157.27,-108 -0.09,-108 -0.09,-72 157.27,-72 157.27,-108"></polygon>
+<text text-anchor="middle" x="78.59" y="-84" font-family="Helvetica,sans-Serif" font-size="20.00">conversione AD</text>
+</g>
+<!-- condizionatore&#45;&gt;conversione AD -->
+<g id="edge3" class="edge">
+<title>condizionatore-&gt;conversione AD</title>
+<path fill="none" stroke="black" d="M78.59,-143.7C78.59,-135.98 78.59,-126.71 78.59,-118.11"></path>
+<polygon fill="black" stroke="black" points="82.09,-118.1 78.59,-108.1 75.09,-118.1 82.09,-118.1"></polygon>
+</g>
+<!-- acquisizione -->
+<g id="node5" class="node">
+<title>acquisizione</title>
+<polygon fill="none" stroke="black" points="141.66,-36 15.52,-36 15.52,0 141.66,0 141.66,-36"></polygon>
+<text text-anchor="middle" x="78.59" y="-12" font-family="Helvetica,sans-Serif" font-size="20.00">acquisizione</text>
+</g>
+<!-- conversione AD&#45;&gt;acquisizione -->
+<g id="edge4" class="edge">
+<title>conversione AD-&gt;acquisizione</title>
+<path fill="none" stroke="black" d="M78.59,-71.7C78.59,-63.98 78.59,-54.71 78.59,-46.11"></path>
+<polygon fill="black" stroke="black" points="82.09,-46.1 78.59,-36.1 75.09,-46.1 82.09,-46.1"></polygon>
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="esempio-misura-estensimetrica" class="slide level2">
+<h2>Esempio: misura estensimetrica</h2>
+<div class="center">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/catena_di_misura.png" width="800"></p>
+<figcaption>Catena di misura: da deformazione elastica a misura numerica digitalizzata</figcaption>
+</figure>
+</div>
+</div>
+</section></section>
+<section>
+<section id="trasduttori-di-posizione" class="title-slide slide level1 center">
+<h1>Trasduttori di posizione</h1>
+<p>Cioè come rilevare la posizione di un oggetto mobile</p>
+</section>
+<section id="trasduttore-capacitivo" class="slide level2">
+<h2>Trasduttore capacitivo</h2>
+<div class="columns">
+<div class="column">
+<p>La <strong>capacità</strong> è espressa da: <span class="math inline">\(C=\varepsilon_r A/d\)</span></p>
+<ul>
+<li>adatto per misure di spostamento con <span class="math inline">\(d\)</span> molto piccolo e elevata sensibilità (ordine dei nanometri)</li>
+<li><strong>non è lineare</strong> (varia con <span class="math inline">\(1/d\)</span>)</li>
+<li>elevata impedenza, quindi necessita di schermatura</li>
+<li>sensibile a <span class="math inline">\(\varepsilon_r\)</span> (temperatura, umidità)</li>
+</ul>
+</div><div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/capacitore.png"></p>
+<figcaption>Capacitore</figcaption>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="trasduttore-induttivo-diretto" class="slide level2">
+<h2>Trasduttore induttivo diretto</h2>
+<div class="columns">
+<div class="column">
+<p>Sfruttando la <strong>variazione di induttanza</strong> che risulta da uno spostamento dell’armatura:</p>
+<ul>
+<li>Semplice</li>
+<li>Sensibile a effetti ambientali</li>
+</ul>
+</div><div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/induttore.png" width="600"></p>
+<figcaption>Induttanza variabile</figcaption>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="trasduttore-induttivo-differenziale" class="slide level2">
+<h2>Trasduttore induttivo differenziale</h2>
+<div class="columns">
+<div class="column">
+<p><strong>Linear Variable Differential Transformer</strong>: sfrutta la <strong>differenza</strong> tra due avvolgimenti secondari per movimenti opposti del core:</p>
+<ul>
+<li>più complesso e costoso</li>
+<li>auto-compensato per gli effetti ambientali</li>
+<li>più sensibile</li>
+</ul>
+</div><div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/LVDT.gif" width="400"></p>
+<figcaption>LVDT</figcaption>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="trasduttore-resistivo" class="slide level2">
+<h2>Trasduttore resistivo</h2>
+<div class="columns">
+<div class="column">
+<p>Sfrutta una variazione di resistenza in un circuito parallelo <span class="math inline">\(R_{T} = (1-\Delta)R_v \frac{1}{\Delta R_v + R_{sc}}\)</span></p>
+<ul>
+<li>economico</li>
+<li>corse discretamente lunghe</li>
+<li>usura</li>
+<li>misura rumorosa</li>
+</ul>
+</div><div class="column">
+<p><img data-src="images/resistore1.jpg" width="600"> <img data-src="images/resistore2.jpg"></p>
+</div></div>
+</section>
+<section id="trasduttore-interferometrico" class="slide level2">
+<h2>Trasduttore interferometrico</h2>
+<div class="columns">
+<div class="column">
+<p>È basato su un conteggio di oscillazioni su una misura di intensità luminosa</p>
+<ul>
+<li>Risoluzione almeno nanometrica, dell’ordine della lunghezza d’onda</li>
+<li>Lunghezze molto grandi (nel vuoto anche milioni di kilometri)</li>
+<li>Sensibile alle proprietà ottiche del mezzo (funzione della temperatura e umidità, se è aria)</li>
+</ul>
+</div><div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://cdn.hackaday.io/images/original/1096171741369142473.gif"></p>
+<figcaption>Interferometria laser</figcaption>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="trasduttore-con-fotodiodo-a-quadrante" class="slide level2">
+<h2>Trasduttore con fotodiodo a quadrante</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>Un fascio laser illumina 4 fotodiodi disposti a quadrante</li>
+<li>La <strong>differenza</strong> tra le correnti generate tra fotodiodi affiancati è proporzionale allo spostamento del fascio in <span class="math inline">\(X\)</span> e in <span class="math inline">\(Y\)</span></li>
+<li>Sensibilità molto elevata</li>
+<li>Corsa limitata</li>
+<li>Bassa <strong>linearità</strong></li>
+</ul>
+</div><div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/quadrante.png"></p>
+<figcaption>Fotodiodo a quadrante</figcaption>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="encoder-a-riga-ottica-relativi" class="slide level2">
+<h2>Encoder a riga ottica (relativi)</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>Misurano uno spostamento rispetto a un riferimento per <strong>conteggio</strong> di una serie di impulsi</li>
+<li>Gli impulsi derivano da una griglia di alternanze (trasparente/opaco, poli N/S)</li>
+<li>Due griglie sfasate di 1/4 di periodo consentono di valutare la <strong>direzione</strong> di moto</li>
+<li>Risoluzione fino a 0.1 µm</li>
+</ul>
+</div><div class="column" style="text-align: center;">
+<p><img data-src="https://ars.els-cdn.com/content/image/3-s2.0-B9780128146415500032-u18-05-9780128146415.jpg" width="400"> <img data-src="https://cdn.phidgets.com/docs/images/thumb/e/ef/QuadratureDirection.jpg/300px-QuadratureDirection.jpg" alt="Encoder lineare relativo"></p>
+</div></div>
+</section>
+<section id="encoder-a-riga-ottica-assoluti" class="slide level2">
+<h2>Encoder a riga ottica (assoluti)</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>Ogni posizione è identificata in maniera <strong>univoca</strong> da una sequenza di segnali binari (bianco/nero, N/S)</li>
+<li>Non serve un contatore e la misura è assoluta, non relativa a uno 0</li>
+<li>Serve un numero di detector <span class="math inline">\(n\)</span> (segnali) che dipende dal <strong>numero di posizioni</strong> <span class="math inline">\(N\)</span>: <span class="math inline">\(n=\lceil\log_2(N)\rceil\)</span></li>
+</ul>
+</div><div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://www.linearmotiontips.com/wp-content/uploads/2021/01/US-Digital-Absolute-Encoder-Disk.jpg"></p>
+<figcaption>Encoder assoluto (rotativo)</figcaption>
+</figure>
+</div>
+</div></div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Nota</strong></p>
+</div>
+<div class="callout-content">
+<p>La notazione <span class="math inline">\(\lceil x \rceil\)</span> indica l’arrotondamento all’intero superiore (<em>ceiling</em>)</p>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="celle-di-carico-e-misure-di-forza" class="title-slide slide level1 center">
+<h1>Celle di carico e misure di forza</h1>
+<p>Da misure di deformazione a misure di forza</p>
+</section>
+<section id="principali-metodi-per-misurare-una-forza" class="slide level2">
+<h2>Principali metodi per misurare una forza</h2>
+<ul>
+<li>Bilanciando la forza incognita contro la forza gravitazionale che agisce su una massa nota</li>
+<li>Misurando l’accelerazione di una massa nota sotto l’azione della forza incognita</li>
+<li>Bilanciando una forza magnetica che agisce contro la forza incognita</li>
+<li>Misurando il cambiamento di frequenza propria di un cavo messo in tensione dalla forza incognita</li>
+<li>Misurando la deformazione di un elemento elastico a cui si applica la forza incognita</li>
+</ul>
+</section>
+<section id="bilancia-analitica" class="slide level2">
+<h2>Bilancia analitica</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>Concettualmente semplice</li>
+<li>Può essere puramente meccanica</li>
+<li>Precisione dipende dalla qualità delle lavorazioni</li>
+</ul>
+</div><div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/bilancia_analitica.jpg"></p>
+<figcaption>Bilance analitiche</figcaption>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="trasduttore-accelerometrico" class="slide level2">
+<h2>Trasduttore accelerometrico</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>Da <span class="math inline">\(F=Ma\)</span>, nota la massa e misurando l’accelerazione si risale alla forza applicata</li>
+<li>È adatta a <strong>misure dinamiche</strong>, in cui la forza è variabile nel tempo</li>
+<li>Richiede l’<strong>accelerometro</strong>, che è a sua volta uno strumento di misura (con un trasduttore interno che misura uno spostamento o una deformazione di una massa nota)</li>
+</ul>
+</div><div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/bilancia_accelerometro.jpg" width="300"></p>
+<figcaption>Misura accelerometrica</figcaption>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="bilancia-elettromagnetica" class="slide level2">
+<h2>Bilancia elettromagnetica</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>Sono basate su un <strong>trasduttore di posizione</strong></li>
+<li>Lo scostamento rispetto a una posizione di riferimento è mantenuto nullo alimentando proporzionalmente un avvolgimento elettromagnetico</li>
+<li>La la corrente che alimenta l’avvolgimento è proporzionale alla forza incognita</li>
+<li>la bilancia può essere molto più compatta e più pronta delle bilance analitiche</li>
+<li><strong>richiede un’alimentazione e un controllore</strong></li>
+</ul>
+</div><div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/bilancia_elettromagnetica.jpg"></p>
+<figcaption>Bilancia elettromagnetica</figcaption>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="bilancia-a-vibrazione" class="slide level2">
+<h2>Bilancia a vibrazione</h2>
+<ul>
+<li>La frequenza di vibrazione di una corda tesa dipende dalla tensione</li>
+<li>Il trasduttore è un <strong>analizzatore di spettro</strong>, in grado di convertire un suono (vibrazione) in una misura di frequenza</li>
+</ul>
+</section>
+<section id="dinamometro-a-elementi-deformabili-cella-di-carico" class="slide level2">
+<h2>Dinamometro a elementi deformabili (cella di carico)</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>Il trasduttore converte una <strong>deformazione meccanica</strong> in un segnale elettrico</li>
+<li>È adatto sia a misure statiche che a misure dinamiche</li>
+<li>È possibile compensare gli effetti interferenti e modificanti della temperatura</li>
+</ul>
+</div><div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/bilancia_estensimetrica.jpg"></p>
+<figcaption>Celle di carico estensimetriche</figcaption>
+</figure>
+</div>
+</div></div>
+</section></section>
+<section>
+<section id="trasduttori-di-deformazione" class="title-slide slide level1 center">
+<h1>Trasduttori di deformazione</h1>
+<p>Cioè come rilevare l’intensità della deformazione di un corpo</p>
+</section>
+<section id="sforzo-e-deformazione-in-campo-elastico" class="slide level2">
+<h2>Sforzo e deformazione in campo elastico</h2>
+<div class="columns">
+<div class="column">
+<p>In campo elastico la deformazione di un solido è <strong>reversibile e lineare</strong></p>
+<ul>
+<li>Vale la <strong>legge di Newton</strong>: <span class="math inline">\(\sigma = E \varepsilon\)</span> dove <span class="math inline">\(\sigma = F/A\)</span> e <span class="math inline">\(\varepsilon=\Delta L / L_0\)</span></li>
+<li><span class="math inline">\(E\)</span> è il <strong>modulo di Young</strong>, o modulo elastico, ed è una proprietà del materiale</li>
+<li>La legge di Newton consente di misurare uno stato di sforzo a partire da uno stato di deformazione</li>
+</ul>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="8-strumenti_files/figure-revealjs/unnamed-chunk-2-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="stati-tensionali-multiassiali" class="slide level2">
+<h2>Stati tensionali multiassiali</h2>
+<p>Sforzo e deformazione sono rappresentati da <strong>tensori</strong>: in ogni punto assumono valori nelle tre direzioni spaziali.</p>
+<p>Ad esempio in 2-D:</p>
+<div class="columns">
+<div class="column">
+<h3 id="sforzi-tensionali">Sforzi tensionali:</h3>
+<p>Deformazioni (<span class="math inline">\(\varepsilon\)</span>): <span class="math display">\[
+\varepsilon_x = \frac{\sigma_x}{E}- \nu \frac{\sigma_y}{E},~~~\varepsilon_y = \frac{\sigma_y}{E}- \nu \frac{\sigma_x}{E}
+\]</span> Quindi: <span class="math display">\[
+\sigma_x = \frac{E(\varepsilon_x + \nu\varepsilon_y)}{1-\nu^2},~~~ \sigma_y = \frac{E(\varepsilon_y + \nu\varepsilon_x)}{1-\nu^2}
+\]</span></p>
+</div><div class="column">
+<h3 id="sforzo-a-taglio">Sforzo a taglio:</h3>
+<p>Sforzo (<span class="math inline">\(\gamma\)</span>) e deformazione (<span class="math inline">\(\tau\)</span>) di taglio <span class="math display">\[
+\gamma_{xy} = \frac{\tau_{xy}}{G}
+\]</span></p>
+<p>Dove il modulo di taglio <span class="math inline">\(G\)</span> è: <span class="math display">\[
+G=\frac{E}{2(1+\nu)}
+\]</span></p>
+</div></div>
+</section>
+<section id="stati-tensionali-multiassiali-1" class="slide level2">
+<h2>Stati tensionali multiassiali</h2>
+<p>Quindi, se posso misurare lo stato tensionale (deformazioni), posso ricavare lo stato di sforzo (sollecitazione) e capire quanto un dato sistema è <strong>in sicurezza</strong></p>
+<p>La misurazione dello stato tensionale può essere</p>
+<ul>
+<li><strong>puntuale</strong>, cioè localizzata su un’area/volume più piccolo possibile, tipicamente comparabile al grado di omogeneità del materiale</li>
+<li><strong>media</strong>, cioè valutata su una lunghezza base elevata, in modo da mediare l’effetto di variazioni locali</li>
+</ul>
+</section>
+<section id="come-si-misurano" class="slide level2">
+<h2>Come si misurano</h2>
+<ul>
+<li><strong>Estensimetri meccanici (a leva meccanica)</strong>: sono stati i primi ad essere sviluppati in ambito industriale, ma non avendo un accettabile rapporto tra livello di accuratezza e costi di realizzazione, sono stati soppiantati da altri tipi. Un altro limite è costituito dal fatto che gli elementi meccanici presentano inevitabilmente <strong>inerzia e attriti</strong> che non consentono di fare misure di deformazioni dinamiche</li>
+<li><strong>Estensimetri ottici</strong> (a leva ottica, fotoelastici, interferometrici): garantiscono elevate accuratezze, ma a causa dell’elevato costo sono generalmente impiegati solo in laboratori metrologici</li>
+<li><strong>Estensimetri acustici</strong>: usano il principio della corda vibrante, ovvero il fatto che una corda vibrante emette onde sonore a differente frequenza a seconda della tensione della corda</li>
+<li><strong>Estensimetri elettrici a resistenza</strong>: i più diffusi e più economici, realizzabili in diverse dimensioni, generalmente di ottima accuratezza, con facile circuito di lettura</li>
+</ul>
+</section>
+<section id="trasduttore-estensimetrico-a-resistenza" class="slide level2">
+<h2>Trasduttore estensimetrico a resistenza</h2>
+<div class="columns">
+<div class="column">
+<p>Sono basati su principio che l’allungamento di un conduttore provoca una aumento di resisteza proporzionale all’allungamento stesso</p>
+<p>La sensibilità è aumentata ripiegando il conduttore su se stesso più volte</p>
+<ul>
+<li>Un <strong>estensimetro</strong> (<em>strain gauge</em>) fornisce una misura puntuale (mediata sulla lunghezza della <em>patch</em>)</li>
+<li>Un <strong>estensometro</strong> (<em>extensometer</em>) fornisce una misura media mediante un meccanismo a leve che deforma un estensimetro</li>
+</ul>
+</div><div class="column" style="text-align: center;">
+<p><img data-src="images/estensimetro.png" alt="Estensimetro"> <img data-src="images/estensometro.png" alt="Estensometro"></p>
+</div></div>
+</section>
+<section id="leggi-dellestensimetria" class="slide level2">
+<h2>Leggi dell’estensimetria</h2>
+<p>La resistenza elettrica è <span class="math inline">\(R=\rho L/A\)</span>, con <span class="math inline">\(L\)</span> lunghezza, <span class="math inline">\(A\)</span> sezione e <span class="math inline">\(\rho\)</span> resistività</p>
+<p>In termini di variazione:</p>
+<p><span class="math display">\[\begin{align}
+\frac{\Delta R}{R} &amp;= \frac{1}{R}\left( \frac{\partial R}{\partial\rho}\Delta \rho + \frac{\partial R}{\partial L}\Delta L +\frac{\partial R}{\partial A}\Delta A \right) = \frac{A}{\rho L}\left(\Delta \rho \frac{L}{A} + \Delta L \frac{\rho}{A} - \Delta A (\rho L)\right) \\
+&amp;=\frac{\Delta \rho}{\rho} + \frac{\Delta L}{L} - \frac{\Delta A}{A}
+\end{align}\]</span></p>
+<p>Rappresentando l’area mediante un fattore di forma <span class="math inline">\(C\)</span> e un parametro caratteristico <span class="math inline">\(D\)</span> si ha:</p>
+<p><span class="math display">\[
+A=CD^2 \rightarrow \frac{\Delta A}{A} = 2\frac{\Delta D}{D} \rightarrow \frac{\Delta R}{R} = \frac{\Delta \rho}{\rho} + \frac{\Delta L}{L} - 2\frac{\Delta D}{D}
+\]</span></p>
+</section>
+<section id="leggi-dellestensimetria-1" class="slide level2">
+<h2>Leggi dell’estensimetria</h2>
+<p>Siccome <span class="math inline">\(\varepsilon_t = -\nu \varepsilon_l\)</span>, risulta che <span class="math inline">\(\Delta D/D = -\nu\Delta L/L\)</span>, e quindi:</p>
+<p><span class="math display">\[
+\frac{\Delta R}{R} = \frac{\Delta \rho}{\rho} + \frac{\Delta L}{L} - 2\left(-\nu\frac{\Delta L}{L}\right) = \frac{\Delta \rho}{\rho} + \frac{\Delta L}{L} (1 +2\nu)
+\]</span></p>
+<div class="columns">
+<div class="column">
+<p>Sostituendo <span class="math inline">\(\varepsilon_l = \Delta L/L\)</span> si ha la <strong>prima legge dell’estensimetria</strong>:</p>
+<p><span class="math display">\[\begin{align}
+\frac{\Delta R}{R} &amp;= \varepsilon_l\frac{\Delta \rho}{\rho \varepsilon_l}+\varepsilon_l(1+2\nu) \\
+&amp;= \varepsilon_l\left(\frac{\Delta \rho}{\rho \varepsilon_l}+1+2\nu\right) =\varepsilon_l G_F
+\end{align}\]</span></p>
+</div><div class="column">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Nota</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><span class="math inline">\(\Delta \rho/(\rho \varepsilon_l)\)</span> è la <strong>sensibilità piezoresistiva</strong> (per metalli: <span class="math inline">\(s_p\simeq 0.4\)</span>); non dipende da <span class="math inline">\(\varepsilon_l\)</span></li>
+<li><span class="math inline">\(1 + 2\nu\)</span> è la <strong>sensibilità geometrica</strong> (<span class="math inline">\(\nu \simeq 0.3\)</span>, quindi <span class="math inline">\(s_g \simeq 1.6\)</span>)</li>
+<li><span class="math inline">\(G_F\)</span> è il <em>gauge factor</em></li>
+</ul>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="effetto-della-temperatura" class="slide level2">
+<h2>Effetto della temperatura</h2>
+<p>La temperatura ha effetto:</p>
+<ul>
+<li><strong>interferente</strong>, perché la variazione di resistenza dovuta alla dilatazione termica e all’effetto termoresistivo (<span class="math inline">\(\rho=\rho(T)\)</span>) si sommano alla misura</li>
+<li><strong>modificante</strong>, perché la temperatura modifica il valore del gauge factor per via della <strong>sensibilità piezoresistiva</strong> <span class="math inline">\(\Delta \rho/(\varepsilon_l \rho)\)</span></li>
+</ul>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Nota</strong></p>
+</div>
+<div class="callout-content">
+<p>Questi termini vanno compensati o automaticamente, o note le relazioni con la temperatura, e comunque sempre mediante controllo statistico (<strong>casualizzazione della sequenza</strong>)</p>
+</div>
+</div>
+</div>
+</section>
+<section id="effetto-interferente-della-temperatura" class="slide level2">
+<h2>Effetto interferente della temperatura</h2>
+<p>Effetto termoresistivo: la <strong>resistività</strong> <span class="math inline">\(\rho_T\)</span> alla temperatura <span class="math inline">\(T\)</span> è</p>
+<p><span class="math display">\[
+\rho_T - \rho_0= \rho_0\alpha_\rho \Delta T
+\]</span> e quindi, in termini di variazione di resistenza rispetto alla temperatura di riferimento <span class="math inline">\(T_0\)</span>: <span class="math display">\[
+\Delta R_\rho = R(T) - R(T_0) = R_0\alpha_\rho\Delta T
+\]</span></p>
+<p>Cioè: <span class="math inline">\(\frac{\Delta R_\rho}{R_0} = \alpha_\rho\Delta T\)</span></p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Nota</strong></p>
+</div>
+<div class="callout-content">
+<p>Il coefficiente <span class="math inline">\(\alpha_\rho\)</span> è il coefficiente di sensibilità termica della resistività; la relazione può considerarsi lineare per variazioni modeste di temperatura (decina di gradi C)</p>
+</div>
+</div>
+</div>
+</section>
+<section id="effetto-interferente-della-temperatura-1" class="slide level2">
+<h2>Effetto interferente della temperatura</h2>
+<p>Effetto della dilatazione termica: la variazione di temperatura agisce dilatando sia l’estensimetro che il materiale, in modo potenzialmente differente. Ne consegue una deformazione dell’estensimetro:</p>
+<p><span class="math display">\[
+\Delta L_{\Delta T} = L_0 (\alpha_m - \alpha_g)\Delta T\rightarrow\frac{\Delta L_{\Delta T}}{L_0}=\varepsilon_{\Delta T}=(\alpha_m - \alpha_g)\Delta T
+\]</span></p>
+<p>In termini di variazione di resistenza associata:</p>
+<p><span class="math display">\[
+\frac{\Delta R_{\Delta L}}{R_0} = G_F(\alpha_m - \alpha_g)\Delta T
+\]</span> Combinando:</p>
+<p><span class="math display">\[
+\frac{\Delta R_{\Delta T}}{R_0} = \frac{\Delta R_{\Delta L}}{R_0} + \frac{\Delta R_\rho}{R_0} = \left(\alpha_\rho + G_F(\alpha_m - \alpha_g) \right)\Delta T
+\]</span></p>
+</section>
+<section id="autocompensazione" class="slide level2">
+<h2>Autocompensazione</h2>
+<p>Dato che:</p>
+<p><span class="math display">\[
+\frac{\Delta R_{\Delta T}}{R_0} = \left(\alpha_\rho + G_F(\alpha_m - \alpha_g) \right)\Delta T
+\]</span></p>
+<p>in certi casi è possibile scegliere un materiale dello strain gauge (e quindi un valore di <span class="math inline">\(\alpha_g\)</span>) tale che sia</p>
+<p><span class="math display">\[
+G_F(\alpha_m - \alpha_g)\approx\alpha_\rho
+\]</span> e, quindi, risulti <span class="math inline">\(\frac{\Delta R_{\Delta T}}{R_0} \approx 0\)</span></p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Nota</strong></p>
+</div>
+<div class="callout-content">
+<p>In questo caso lo strain gauge si dice <strong>autocompensato in temperatura</strong></p>
+</div>
+</div>
+</div>
+</section>
+<section id="effetto-modificante-della-temperatura" class="slide level2">
+<h2>Effetto modificante della temperatura</h2>
+<ul>
+<li>L’effetto modificante è connesso alla dipendenza dalla temperatura del termine piezoresistivo che compare nella formula del fattore di taratura <span class="math inline">\(G_F\)</span></li>
+<li>I materiali comunemente adottati per gli estensimetri elettrici a resistenza, e in particolare la costantana, manifestano un ridotto contributo piezoresistivo al fattore di taratura, di conseguenza anche l’effetto modificante non ha rilevanza nell’impiego a temperatura ambiente, in particolare indicata con <span class="math inline">\(T_0=24^\circ\mathrm{C}\)</span> per un campo di temperature compreso in <span class="math inline">\(\pm25^\circ\mathrm{C}\)</span> rispetto <span class="math inline">\(T_0\)</span>, l’eventuale correzione da apportare al fattore di taratura è minore del 0.5% e quindi solitamente dello stesso ordine di grandezza dell’incertezza con cui è noto tale parametro</li>
+<li>La compensazione dell’effetto <span class="math inline">\(G_F=G_F(T)\)</span> viene calibrata empiricamente dal costruttore che fornisce la <strong>sensitività</strong> <span class="math inline">\(\beta\)</span> in: <span class="math display">\[
+G_F(T) = G_{F,0} (1 - \beta(T- T_0))
+\]</span></li>
+</ul>
+</section>
+<section id="misura-della-variazione-di-resistenza" class="slide level2">
+<h2>Misura della variazione di resistenza</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>Le misure differenziali sono sempre preferibili perché danno maggiore <strong>sensibilità</strong></li>
+<li>Nel circuito a <strong>ponte di Wheatstone</strong> se le resistenze sono tutte uguali il ponte è detto <strong>bilanciato</strong> e <span class="math inline">\(V_\mathrm{out}=0\)</span></li>
+<li>In generale vale:</li>
+</ul>
+<p><span class="math display">\[
+V_\mathrm{out} = \frac{V_\mathrm{in}}{4}\left( \frac{\Delta R_1}{R_1} -  \frac{\Delta R_2}{R_2} + \frac{\Delta R_3}{R_3} - \frac{\Delta R_4}{R_4}\right)
+\]</span></p>
+</div><div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://www.allaboutcircuits.com/uploads/articles/wheatstone_bridge_for_calculator.jpg"></p>
+<figcaption>Ponte di Wheatstone</figcaption>
+</figure>
+</div>
+</div></div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Nota</strong></p>
+</div>
+<div class="callout-content">
+<p>Cioè: variazioni su rami adiacenti si sottraggono; variazioni su rami opposti si sommano!</p>
+</div>
+</div>
+</div>
+</section>
+<section id="misura-della-variazione-di-resistenza-quarto-di-ponte" class="slide level2">
+<h2>Misura della variazione di resistenza: quarto di ponte</h2>
+<div class="columns">
+<div class="column">
+<p>Se una delle 4 resistenze è un estensimetro resistivo:</p>
+<p><span class="math display">\[
+V_\mathrm{out} = \frac{V_\mathrm{in}}{4}\left( \frac{\Delta R_1}{R_1}\right) = \frac{V_\mathrm{in}}{4}G_F\varepsilon_l
+\]</span></p>
+</div><div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://www.allaboutcircuits.com/uploads/articles/wheatstone_bridge_for_calculator.jpg"></p>
+<figcaption>Ponte di Wheatstone</figcaption>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="misura-della-variazione-di-resistenza-mezzo-ponte" class="slide level2">
+<h2>Misura della variazione di resistenza: mezzo ponte</h2>
+<div class="columns">
+<div class="column">
+<p>Se sue resistenze adiacenti sono ER, la seconda può compensare la temperatura:</p>
+<p><span class="math display">\[
+V_\mathrm{out} = \frac{V_\mathrm{in}}{4}\left( \frac{\Delta R_1}{R_1} - \frac{\Delta R_2}{R_2}\right)
+\]</span> Se sue resistenze opposte sono ER, la combinazione aumenta la sensibilità:</p>
+<p><span class="math display">\[
+V_\mathrm{out} = \frac{V_\mathrm{in}}{4}\left( \frac{\Delta R_1}{R_1} + \frac{\Delta R_3}{R_3}\right)
+\]</span></p>
+</div><div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://www.allaboutcircuits.com/uploads/articles/wheatstone_bridge_for_calculator.jpg"></p>
+<figcaption>Ponte di Wheatstone</figcaption>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="misura-della-variazione-di-resistenza-ponte-intero" class="slide level2">
+<h2>Misura della variazione di resistenza: ponte intero</h2>
+<div class="columns">
+<div class="column">
+<p>Si usano 4 ER, a due a due compensati in temperatura e raddoppiando la sensibilità</p>
+<p><span class="math display">\[
+V_\mathrm{out} = \frac{V_\mathrm{in}}{4}\left( \frac{\Delta R_1}{R_1} -  \frac{\Delta R_2}{R_2} + \frac{\Delta R_3}{R_3} - \frac{\Delta R_4}{R_4}\right)
+\]</span></p>
+</div><div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://www.allaboutcircuits.com/uploads/articles/wheatstone_bridge_for_calculator.jpg"></p>
+<figcaption>Ponte di Wheatstone</figcaption>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="dinamometro-a-mensola" class="slide level2">
+<h2>Dinamometro a mensola</h2>
+<div class="columns">
+<div class="column">
+<p>Nell’esercizio sul dinamometro a mensola si è usata l’espressione: <span class="math display">\[
+V=3/2GV_i\frac{lG_F}{EBH^2}F+V_0
+\]</span> Per una trave snella la deformazione massima è: <span class="math display">\[
+\varepsilon_l = \frac{6l}{EBH^2}F
+\]</span></p>
+</div><div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/cantilever.jpg" width="500"></p>
+<figcaption>Dinamometro a mensola</figcaption>
+</figure>
+</div>
+</div></div>
+<p>e per il quarto di ponte si ha (con <span class="math inline">\(V_i=GV_\mathrm{in}\)</span> e <span class="math inline">\(V_0\)</span> che è la <strong>tara</strong>): <span class="math display">\[\begin{align}
+V_\mathrm{out} &amp;= \frac{V_\mathrm{in}}{4}\left( \frac{\Delta R_1}{R_1}\right) = \frac{V_\mathrm{in}}{4}G_F\varepsilon_l \\
+\frac{V}{V_\mathrm{in}} &amp;= \frac{\varepsilon_l}{4}G_F = \frac{6l}{4EBH^2}F G_F = 3/2\frac{lG_F}{EBH^2}F
+\end{align}\]</span></p>
+</section></section>
+<section>
+<section id="digitalizzazione" class="title-slide slide level1 center">
+<h1>Digitalizzazione</h1>
+<p>Cioè conversione di un segnale analogico in digitale</p>
+</section>
+<section id="digitalizzazione-di-un-segnale" class="slide level2">
+<h2>Digitalizzazione di un segnale</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li>Il trasduttore generalmente produce un segnale <strong>debole</strong> che va <strong>condizionato</strong> prima possibile</li>
+<li>Cioè, va collegato con cavi schermati di qualità e più corti possibile ad un convertitore/amplificatore</li>
+<li>Il segnale amplificato (in tensione o in corrente) va <strong>digitalizzato</strong> cioè convertito in un valore su scala discreta, e <strong>codificato</strong>, cioè rappresentato in valore numerico</li>
+<li>Il numero di bit del convertitore dà il numero di livelli: es. 8 bit significa 256 livelli</li>
+</ul>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="8-strumenti_files/figure-revealjs/unnamed-chunk-3-1.png" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+
+
+
+<aside><div>
+<p>Per massimizzare le prestazioni è importante calibrare il guadagno dell’amplificatore in modo da sfruttare il più possibile la <strong>gamma dinamica</strong> del convertitore, perché viceversa l’amplificazione sul segnale digitale rende più evidente la quantizzazione (serie in <strong>rosso</strong>)</p>
+</div></aside></section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>paolo.bosetti@unitn.it — <a href="https://paolobosetti.quarto.pub/slides/ADAS/">https://paolobosetti.quarto.pub/slides/ADAS/</a></p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-js-tabset/tabset.js"></script>
+  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+
+        height: 720,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, RevealJsTabset, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copiato!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copiato!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/pbosetti\.github\.io\/teaching_site\/");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+            let selectedAnnoteEl;
+            const selectorForAnnotation = ( cell, annotation) => {
+              let cellAttr = 'data-code-cell="' + cell + '"';
+              let lineAttr = 'data-code-annotation="' +  annotation + '"';
+              const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+              return selector;
+            }
+            const selectCodeLines = (annoteEl) => {
+              const doc = window.document;
+              const targetCell = annoteEl.getAttribute("data-target-cell");
+              const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+              const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+              const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+              const lineIds = lines.map((line) => {
+                return targetCell + "-" + line;
+              })
+              let top = null;
+              let height = null;
+              let parent = null;
+              if (lineIds.length > 0) {
+                  //compute the position of the single el (top and bottom and make a div)
+                  const el = window.document.getElementById(lineIds[0]);
+                  top = el.offsetTop;
+                  height = el.offsetHeight;
+                  parent = el.parentElement.parentElement;
+                if (lineIds.length > 1) {
+                  const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+                  const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+                  height = bottom - top;
+                }
+                if (top !== null && height !== null && parent !== null) {
+                  // cook up a div (if necessary) and position it 
+                  let div = window.document.getElementById("code-annotation-line-highlight");
+                  if (div === null) {
+                    div = window.document.createElement("div");
+                    div.setAttribute("id", "code-annotation-line-highlight");
+                    div.style.position = 'absolute';
+                    parent.appendChild(div);
+                  }
+                  div.style.top = top - 2 + "px";
+                  div.style.height = height + 4 + "px";
+                  div.style.left = 0;
+                  let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+                  if (gutterDiv === null) {
+                    gutterDiv = window.document.createElement("div");
+                    gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                    gutterDiv.style.position = 'absolute';
+                    const codeCell = window.document.getElementById(targetCell);
+                    const gutter = codeCell.querySelector('.code-annotation-gutter');
+                    gutter.appendChild(gutterDiv);
+                  }
+                  gutterDiv.style.top = top - 2 + "px";
+                  gutterDiv.style.height = height + 4 + "px";
+                }
+                selectedAnnoteEl = annoteEl;
+              }
+            };
+            const unselectCodeLines = () => {
+              const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+              elementsIds.forEach((elId) => {
+                const div = window.document.getElementById(elId);
+                if (div) {
+                  div.remove();
+                }
+              });
+              selectedAnnoteEl = undefined;
+            };
+              // Handle positioning of the toggle
+          window.addEventListener(
+            "resize",
+            throttle(() => {
+              elRect = undefined;
+              if (selectedAnnoteEl) {
+                selectCodeLines(selectedAnnoteEl);
+              }
+            }, 10)
+          );
+          function throttle(fn, ms) {
+          let throttle = false;
+          let timer;
+            return (...args) => {
+              if(!throttle) { // first call gets through
+                  fn.apply(this, args);
+                  throttle = true;
+              } else { // all the others get throttled
+                  if(timer) clearTimeout(timer); // cancel #2
+                  timer = setTimeout(() => {
+                    fn.apply(this, args);
+                    timer = throttle = false;
+                  }, ms);
+              }
+            };
+          }
+            // Attach click handler to the DT
+            const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+            for (const annoteDlNode of annoteDls) {
+              annoteDlNode.addEventListener('click', (event) => {
+                const clickedEl = event.target;
+                if (clickedEl !== selectedAnnoteEl) {
+                  unselectCodeLines();
+                  const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+                  if (activeEl) {
+                    activeEl.classList.remove('code-annotation-active');
+                  }
+                  selectCodeLines(clickedEl);
+                  clickedEl.classList.add('code-annotation-active');
+                } else {
+                  // Unselect the line
+                  unselectCodeLines();
+                  clickedEl.classList.remove('code-annotation-active');
+                }
+              });
+            }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

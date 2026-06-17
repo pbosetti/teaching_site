@@ -8,11 +8,11 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.30">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.38">
 
   <meta name="author" content="Paolo Bosetti">
-  <meta name="dcterms.date" content="2025-11-06">
+  <meta name="dcterms.date" content="2026-06-17">
   <title>Paolo Bosetti – Esperimenti di taratura</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -20,6 +20,9 @@
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -98,7 +101,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-7959e9c508be0453617036fd3007b339.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-8bb6472916a85a0bcf405482043425c1.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-77EMP7T5YY"></script>
 
   <script type="text/plain" cookie-consent="tracking">
@@ -239,7 +242,7 @@ Paolo Bosetti
     </div>
 </div>
 
-  <p class="date">2025-11-06</p>
+  <p class="date">2026-06-17</p>
 </section>
 <section>
 <section id="esperimento-virtuale" class="title-slide slide level1 center">
@@ -447,8 +450,8 @@ b_M =&amp; h\tan\delta\cos\delta
 <p>Per il report usare il template <code>report.Rmd</code> sulla <a href="https://github.com/pbosetti/ADAS-24">repository GitHub del corso</a> (cliccare <a href="https://raw.githubusercontent.com/pbosetti/ADAS-24/main/report.Rmd">qui per scaricare direttamente il file</a>)</p>
 <p>Il report richiede la libreria <code>memor</code>: per installarla procedere come segue:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>)</span>
-<span id="cb1-2"><a></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"hebrewseniorlife/memor"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>)</span>
+<span id="cb1-2"><a></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"hebrewseniorlife/memor"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Seguire gli esempi e le indicazioni contenute nel template per l’inserimento di figure e tabelle e per la creazione di riferimenti</p>
 
@@ -757,13 +760,14 @@ b_M =&amp; h\tan\delta\cos\delta
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy
