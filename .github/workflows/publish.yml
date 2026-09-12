@@ -31,7 +31,12 @@ jobs:
       - name: Install system packages
         run: |
           sudo apt-get update
-          sudo apt-get install -y cmake libcurl4-openssl-dev libfontconfig1-dev libfreetype6-dev libx11-dev pandoc
+          # librsvg2-bin provides rsvg-convert, which Quarto needs to turn SVG
+          # figures into PDF for the LaTeX pass (e.g. slides/ADAS/images/catena.svg)
+          sudo apt-get install -y cmake libcurl4-openssl-dev libfontconfig1-dev libfreetype6-dev libx11-dev pandoc librsvg2-bin
+
+      - name: Verify rsvg-convert is available
+        run: rsvg-convert --version
 
       - name: Install TinyTeX
         shell: bash
