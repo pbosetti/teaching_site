@@ -38,14 +38,14 @@
     }
   </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-8bb6472916a85a0bcf405482043425c1.css">
-  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-29BJBS8CG3"></script>
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KV5S6RSHJ3"></script>
 
   <script type="text/plain" cookie-consent="tracking">
 
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-29BJBS8CG3', { 'anonymize_ip': true});
+  gtag('config', 'G-KV5S6RSHJ3', { 'anonymize_ip': true});
   </script>
   
   <script type="text/javascript" charset="UTF-8">
@@ -440,7 +440,7 @@ y_N
 </div></div>
 
 <aside><div>
-<p>Il metodo più robusto per identificare il sovra-adattamento è detto <strong><em>K-fold cross-validation</em></strong>, vedi anche <a href="https://paolobosetti.quarto.pub/kfold.html" class="uri">https://paolobosetti.quarto.pub/kfold.html</a></p>
+<p>Il metodo più robusto per identificare il sovra-adattamento è detto <strong><em>K-fold cross-validation</em></strong>, vedi anche <a href="https://pbosetti.github.io/teaching_site/slides/ADAS/kfold.html" class="uri">https://pbosetti.github.io/teaching_site/slides/ADAS/kfold.html</a></p>
 </div></aside></section>
 <section id="bande-di-predizione" class="slide level2">
 <h2>Bande di Predizione</h2>
@@ -1015,7 +1015,7 @@ y_i &amp;=  \hat y_i + g(\varepsilon_i) \\
         }
           var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
           var mailtoRegex = new RegExp(/^mailto:/);
-            var filterRegex = new RegExp("https:\/\/pbosetti\.github\.io\/teaching_site\/");
+            var filterRegex = new RegExp('/' + window.location.host + '/');
           var isInternal = (href) => {
               return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
           }

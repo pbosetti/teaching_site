@@ -104,14 +104,14 @@
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-8bb6472916a85a0bcf405482043425c1.css">
-  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-29BJBS8CG3"></script>
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KV5S6RSHJ3"></script>
 
   <script type="text/plain" cookie-consent="tracking">
 
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-29BJBS8CG3', { 'anonymize_ip': true});
+  gtag('config', 'G-KV5S6RSHJ3', { 'anonymize_ip': true});
   </script>
   
   <script type="text/javascript" charset="UTF-8">
@@ -770,7 +770,7 @@ x_t = 0.5x_{t-1}-0.5w_{t-1} + w_t
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-label="1"></a><span class="co"># per Theta:</span></span>
 <span id="cb7-2"><a aria-label="2"></a><span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="fu">polyroot</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">0.25</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.5+0i 0.5+0i</code></pre>
+<pre><code>[1] 0.5-5.551115e-17i 0.5+5.551115e-17i</code></pre>
 </div>
 </div>
 
@@ -845,7 +845,7 @@ x_t=0.9x_{t-1}+0.5w_{t-1}+w_t
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-label="1"></a>forecast<span class="sc">::</span><span class="fu">auto.arima</span>(AirPassengers, <span class="at">lambda=</span><span class="st">"auto"</span>, <span class="at">trace=</span>T)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
- ARIMA(2,1,2)(1,1,1)[12]                    : -890.0522
+ ARIMA(2,1,2)(1,1,1)[12]                    : Inf
  ARIMA(0,1,0)(0,1,0)[12]                    : -845.0766
  ARIMA(1,1,0)(1,1,0)[12]                    : -885.6939
  ARIMA(0,1,1)(0,1,1)[12]                    : -896.9901
@@ -1271,7 +1271,7 @@ AIC=-897.18   AICc=-896.99   BIC=-888.55</code></pre>
         }
           var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
           var mailtoRegex = new RegExp(/^mailto:/);
-            var filterRegex = new RegExp("https:\/\/pbosetti\.github\.io\/teaching_site\/");
+            var filterRegex = new RegExp('/' + window.location.host + '/');
           var isInternal = (href) => {
               return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
           }

@@ -32,7 +32,7 @@
     "href": "slides/ADAS/index.html#repository-del-codice",
     "title": "Analisi Dati e Statistica",
     "section": "Repository del codice",
-    "text": "Repository del codice\nIl codice R sviluppato durante le lezioni è disponibile su GitHub: github.com/pbosetti/adas-25."
+    "text": "Repository del codice\nIl codice R sviluppato durante le lezioni è disponibile su GitHub: github.com/pbosetti/ADAS-26."
   },
   {
     "objectID": "slides/ADAS/index.html#esercizi-e-esperimento-dellelicottero",
@@ -74,7 +74,7 @@
     "href": "slides/ADAS/bilancia.html#dati-ordinati-regressione",
     "title": "Esperimenti di taratura",
     "section": "Dati ordinati, regressione",
-    "text": "Dati ordinati, regressione\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRisulta: \\(a = 0.9551407\\) e \\(F_M=28.4649367\\), \\(R^2=1-\\frac{SS_\\mathrm{res}}{SS_\\mathrm{tot}}=1-\\frac{\\sum (y_i - \\widehat y_i)}{\\sum (y_i - \\bar y)^2} = 0.9865372\\)"
+    "text": "Dati ordinati, regressione\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRisulta: \\(a = 0.9551407\\) e \\(F_M=28.4649355\\), \\(R^2=1-\\frac{SS_\\mathrm{res}}{SS_\\mathrm{tot}}=1-\\frac{\\sum (y_i - \\widehat y_i)}{\\sum (y_i - \\bar y)^2} = 0.9865372\\)"
   },
   {
     "objectID": "slides/ADAS/bilancia.html#dati-casualizzati-regressione",
@@ -312,7 +312,7 @@
     "href": "slides/ADAS/7-serie_temporali.html#ridondanza-1",
     "title": "Serie Temporali",
     "section": "Ridondanza",
-    "text": "Ridondanza\nAd esempio, consideriamo il processo \\(x_t=0.4x_{t-1}+0.45x_{t-2}+w_t + w_{t-1}+0.25w_{t-2}\\), che usando l’operatore \\(B\\) diventa:\n\\[\n(1-0.4B-0.45B^2)x_t = (1+B+0.25B^2)w_t.\n\\]\nIn questa forma il processo sembra \\(\\mathrm{ARMA}(2,2)\\), tuttavia possiamo scomporre i due polinomi in fattori, usando polyroot() per calcolare le radici:\n\n# per Phi:\n-1/polyroot(c(1, -0.4, -0.45))\n\n[1] -0.9-6.887768e-21i  0.5+2.125854e-21i\n\n# per Theta:\n-1/polyroot(c(1, 1, 0.25))\n\n[1] 0.5+0i 0.5+0i\n\n\n\n\nNota: se \\(z_i,~ i=1,\\dots,n\\) sono le radici del polinomio \\(p(z)\\) di grado \\(n\\), allora il polinomio può essere scomposto nei fattori \\((1-1/z_1 z)\\cdot(1-1/z_2 z)\\dots(1-1/z_n z)\\)."
+    "text": "Ridondanza\nAd esempio, consideriamo il processo \\(x_t=0.4x_{t-1}+0.45x_{t-2}+w_t + w_{t-1}+0.25w_{t-2}\\), che usando l’operatore \\(B\\) diventa:\n\\[\n(1-0.4B-0.45B^2)x_t = (1+B+0.25B^2)w_t.\n\\]\nIn questa forma il processo sembra \\(\\mathrm{ARMA}(2,2)\\), tuttavia possiamo scomporre i due polinomi in fattori, usando polyroot() per calcolare le radici:\n\n# per Phi:\n-1/polyroot(c(1, -0.4, -0.45))\n\n[1] -0.9-6.887768e-21i  0.5+2.125854e-21i\n\n# per Theta:\n-1/polyroot(c(1, 1, 0.25))\n\n[1] 0.5-5.551115e-17i 0.5+5.551115e-17i\n\n\n\n\nNota: se \\(z_i,~ i=1,\\dots,n\\) sono le radici del polinomio \\(p(z)\\) di grado \\(n\\), allora il polinomio può essere scomposto nei fattori \\((1-1/z_1 z)\\cdot(1-1/z_2 z)\\dots(1-1/z_n z)\\)."
   },
   {
     "objectID": "slides/ADAS/7-serie_temporali.html#ridondanza-2",
@@ -354,7 +354,7 @@
     "href": "slides/ADAS/7-serie_temporali.html#regressione",
     "title": "Serie Temporali",
     "section": "Regressione",
-    "text": "Regressione\nLa libreria R forecast fornisce la funzione auto.arima() che valuta gli indicatori su una griglia di combinazioni dei sette parametri e fornisce la regressione migliore:\n\n\n\nforecast::auto.arima(AirPassengers, lambda=\"auto\", trace=T)\n\n\n ARIMA(2,1,2)(1,1,1)[12]                    : -890.0522\n ARIMA(0,1,0)(0,1,0)[12]                    : -845.0766\n ARIMA(1,1,0)(1,1,0)[12]                    : -885.6939\n ARIMA(0,1,1)(0,1,1)[12]                    : -896.9901\n ARIMA(0,1,1)(0,1,0)[12]                    : -860.1426\n ARIMA(0,1,1)(1,1,1)[12]                    : -895.2944\n ARIMA(0,1,1)(0,1,2)[12]                    : -895.3558\n ARIMA(0,1,1)(1,1,0)[12]                    : -889.5331\n ARIMA(0,1,1)(1,1,2)[12]                    : Inf\n ARIMA(0,1,0)(0,1,1)[12]                    : -880.0685\n ARIMA(1,1,1)(0,1,1)[12]                    : -896.1031\n ARIMA(0,1,2)(0,1,1)[12]                    : -895.698\n ARIMA(1,1,0)(0,1,1)[12]                    : -893.2768\n ARIMA(1,1,2)(0,1,1)[12]                    : -894.0835\n\n Best model: ARIMA(0,1,1)(0,1,1)[12]                    \n\n\nSeries: AirPassengers \nARIMA(0,1,1)(0,1,1)[12] \nBox Cox transformation: lambda= -0.2947046 \n\nCoefficients:\n          ma1     sma1\n      -0.4355  -0.5847\ns.e.   0.0908   0.0725\n\nsigma^2 = 5.856e-05:  log likelihood = 451.59\nAIC=-897.18   AICc=-896.99   BIC=-888.55\n\n\n\n\nSerie temporaleStabilizzata"
+    "text": "Regressione\nLa libreria R forecast fornisce la funzione auto.arima() che valuta gli indicatori su una griglia di combinazioni dei sette parametri e fornisce la regressione migliore:\n\n\n\nforecast::auto.arima(AirPassengers, lambda=\"auto\", trace=T)\n\n\n ARIMA(2,1,2)(1,1,1)[12]                    : Inf\n ARIMA(0,1,0)(0,1,0)[12]                    : -845.0766\n ARIMA(1,1,0)(1,1,0)[12]                    : -885.6939\n ARIMA(0,1,1)(0,1,1)[12]                    : -896.9901\n ARIMA(0,1,1)(0,1,0)[12]                    : -860.1426\n ARIMA(0,1,1)(1,1,1)[12]                    : -895.2944\n ARIMA(0,1,1)(0,1,2)[12]                    : -895.3558\n ARIMA(0,1,1)(1,1,0)[12]                    : -889.5331\n ARIMA(0,1,1)(1,1,2)[12]                    : Inf\n ARIMA(0,1,0)(0,1,1)[12]                    : -880.0685\n ARIMA(1,1,1)(0,1,1)[12]                    : -896.1031\n ARIMA(0,1,2)(0,1,1)[12]                    : -895.698\n ARIMA(1,1,0)(0,1,1)[12]                    : -893.2768\n ARIMA(1,1,2)(0,1,1)[12]                    : -894.0835\n\n Best model: ARIMA(0,1,1)(0,1,1)[12]                    \n\n\nSeries: AirPassengers \nARIMA(0,1,1)(0,1,1)[12] \nBox Cox transformation: lambda= -0.2947046 \n\nCoefficients:\n          ma1     sma1\n      -0.4355  -0.5847\ns.e.   0.0908   0.0725\n\nsigma^2 = 5.856e-05:  log likelihood = 451.59\nAIC=-897.18   AICc=-896.99   BIC=-888.55\n\n\n\n\nSerie temporaleStabilizzata"
   },
   {
     "objectID": "slides/ADAS/7-serie_temporali.html#previsione",
@@ -641,7 +641,7 @@
     "href": "slides/ADAS/3-regressione.html#sovra-adattamento",
     "title": "Regressione",
     "section": "Sovra-adattamento",
-    "text": "Sovra-adattamento\n\n\nSe il grado del modello è eccessivo, il modello tende a inseguire i singoli punti\nIl valore di \\(R^2\\) cresce, raggiungendo 1 quando il grado è uguale al numero di osservazioni meno 1\nTuttavia il modello perde di generalità e non riesce più a predirre correttamente nuovi valori acquisiti in un secondo momento (le crocette rosse in figura)\nIl sovra-adattamento ha effetti particolarmente drammatici in caso di estrapolazione, cioè quando si valuta il modello al di fuori dell’intervallo in cui è stato regredito\n\n\n\n\n\n\n\n\n\n\n\n\n\nIl metodo più robusto per identificare il sovra-adattamento è detto K-fold cross-validation, vedi anche https://paolobosetti.quarto.pub/kfold.html"
+    "text": "Sovra-adattamento\n\n\nSe il grado del modello è eccessivo, il modello tende a inseguire i singoli punti\nIl valore di \\(R^2\\) cresce, raggiungendo 1 quando il grado è uguale al numero di osservazioni meno 1\nTuttavia il modello perde di generalità e non riesce più a predirre correttamente nuovi valori acquisiti in un secondo momento (le crocette rosse in figura)\nIl sovra-adattamento ha effetti particolarmente drammatici in caso di estrapolazione, cioè quando si valuta il modello al di fuori dell’intervallo in cui è stato regredito\n\n\n\n\n\n\n\n\n\n\n\n\n\nIl metodo più robusto per identificare il sovra-adattamento è detto K-fold cross-validation, vedi anche https://pbosetti.github.io/teaching_site/slides/ADAS/kfold.html"
   },
   {
     "objectID": "slides/ADAS/3-regressione.html#bande-di-predizione",
@@ -1446,7 +1446,7 @@
     "href": "slides/ADAS/0-intro.html#il-linguaggio-r",
     "title": "Introduzione al Corso",
     "section": "Il linguaggio R",
-    "text": "Il linguaggio R\n\nÈ un linguaggio nativamente grafico e nato per l’analisi statistica\nUseremo un ambiente (RStudio) che consente di preparare report e documenti integrando testo, dati e algoritmi\nLo stesso linguaggio sarà usato anche nei corsi:\n\nAnalisi dei dati per l’Ingegneria (2° anno comune, 1° modulo)\nMisure, sensori ed elaborazione dei segnali (2° anno comune)\nLaboratorio di chimica per materiali, energia, ambiente (3° anno Materiali)"
+    "text": "Il linguaggio R\n\nÈ un linguaggio nativamente grafico e nato per l’analisi statistica\nUseremo un ambiente (Positron/Quarto) che consente di preparare report e documenti integrando testo, dati e algoritmi\nLo stesso linguaggio sarà usato anche nei corsi:\n\nAnalisi dei dati per l’Ingegneria (2° anno comune, 1° modulo)\nMisure, sensori ed elaborazione dei segnali (2° anno comune)\nLaboratorio di chimica per materiali, energia, ambiente (3° anno Materiali)"
   },
   {
     "objectID": "slides/ADAS/0-intro.html#modalità-desame",
@@ -1456,11 +1456,18 @@
     "text": "Modalità d’esame\nL’esame è in due parti, tipicamente nello stesso giorno\n\nprova pratica (mattina): sulla piattaforma Moodle esamionline vengono proposti una serie di esercizi in R\nOgni esercizio ha un punteggio prefissato\nGli esercizi vengono corretti automaticamente con revisione manuale per quelli che risultano errati. Il voto massimo è 26/30\nprova orale (pomeriggio): per chi desidera migliorare il voto (fino al massimo di 30/30L). L’orale può anche peggiorare il voto della prova pratica\n\n\nNon è possibile sostenere l’orale in una sessione differente dalla prova pratica"
   },
   {
-    "objectID": "slides/ADAS/0-intro.html#modalità-desame-a.a.-202425",
-    "href": "slides/ADAS/0-intro.html#modalità-desame-a.a.-202425",
+    "objectID": "slides/ADAS/0-intro.html#modalità-desame-a.a.-202627",
+    "href": "slides/ADAS/0-intro.html#modalità-desame-a.a.-202627",
     "title": "Introduzione al Corso",
-    "section": "Modalità d’esame (A.A. 2024–25)",
-    "text": "Modalità d’esame (A.A. 2024–25)\nATTENZIONE: questo corso è uno di due moduli: l’esame è quindi solo una prova parziale e non viene verbalizzato\nIl voto finale verrà verbalizzato solo dopo aver superato entrambi i moduli, inclusa cioè la prova parziale del primo modulo (prof. Bertolazzi)\nTra il superamento dei due moduli non possono passare più di 4 appelli (cioè il secondo, quale che sia l’ordine, deve essere superato al massimo al 5° appello successivo al superamento del primo)\n\nRicordarsi di iscriversi anche all’appello di registrazione!"
+    "section": "Modalità d’esame (A.A. 2026–27)",
+    "text": "Modalità d’esame (A.A. 2026–27)\nATTENZIONE: questo corso è uno di due moduli: l’esame è quindi solo una prova parziale e non viene verbalizzato\nIl voto finale verrà verbalizzato solo dopo aver superato entrambi i moduli, inclusa cioè la prova parziale del primo modulo (prof. Bertolazzi)\nTra il superamento dei due moduli non possono passare più di 4 appelli (cioè il secondo, quale che sia l’ordine, deve essere superato al massimo al 5° appello successivo al superamento del primo)\n\nRicordarsi di iscriversi anche all’appello di registrazione!"
+  },
+  {
+    "objectID": "slides/ADAS/0-intro.html#prova-in-itinere",
+    "href": "slides/ADAS/0-intro.html#prova-in-itinere",
+    "title": "Introduzione al Corso",
+    "section": "Prova in itinere",
+    "text": "Prova in itinere\nÈ offerta la possibilità di sostenere la prova in itinere che, con le stesse modalità dell’esame finale, copre solo la prima metà del corso\nChi supera e accetta la prova in itinere può sostenere solo metà dell’esame finale, cioè rispondendo solo alle domande relative alla seconda metà del corso\nIn questo caso il voto finale sarà la media dei due voti, arrotondata all’intero più vicino"
   },
   {
     "objectID": "slides/ADAS/0-intro.html#argomenti-del-corso",
@@ -1474,28 +1481,28 @@
     "href": "slides/ADAS/0-intro.html#materiale-didattico",
     "title": "Introduzione al Corso",
     "section": "Materiale didattico",
-    "text": "Materiale didattico\n\nMoodle\nTesto di riferimento: online, su https://paolobosetti.quarto.pub/slides/ADAS\nCodice sviluppato in classe: Il codice R sarà gradualmente pubblicato e aggiornato su GitHub: https://github.com/pbosetti/ADAS-25"
+    "text": "Materiale didattico\n\nMoodle\nTesto di riferimento: online, su https://pbosetti.github.io/teaching_site/slides/ADAS\nCodice sviluppato in classe: Il codice R sarà gradualmente pubblicato e aggiornato su GitHub: https://github.com/pbosetti/ADAS-26"
   },
   {
     "objectID": "slides/ADAS/2-R-intro.html#link-utili",
     "href": "slides/ADAS/2-R-intro.html#link-utili",
     "title": "Introduzione al Linguaggio R",
     "section": "Link utili",
-    "text": "Link utili\n\nGNU-R: https://cran.mirror.garr.it/CRAN/\nRStudio: https://posit.co/downloads/\nCheat sheet: https://posit.co/resources/cheatsheets/\nTidyverse: https://tidyverse.org\nMateriale corso: https://github.com/pbosetti/ADAS-25"
+    "text": "Link utili\n\nGNU-R: https://cran.mirror.garr.it/CRAN/\nPositron: https://positron.posit.co\nRStudio: https://posit.co/downloads/\nCheat sheet: https://posit.co/resources/cheatsheets/\nTidyverse: https://tidyverse.org\nMateriale corso: https://github.com/pbosetti/ADAS-25"
   },
   {
-    "objectID": "slides/ADAS/2-R-intro.html#ambiente-rstudio",
-    "href": "slides/ADAS/2-R-intro.html#ambiente-rstudio",
+    "objectID": "slides/ADAS/2-R-intro.html#ambiente-positron",
+    "href": "slides/ADAS/2-R-intro.html#ambiente-positron",
     "title": "Introduzione al Linguaggio R",
-    "section": "Ambiente RStudio",
-    "text": "Ambiente RStudio\n\nInstallazione: prima R, poi RStudio\nSolo su windows, installare anche Rtools\nRStudio lavora su cartelle o (meglio) progetti (.Rproj)\nUn progetto contiene anche impostazioni specifiche e comuni ai file nella cartella\nUna sessione di RStudio può operare su un unico progetto\nSi possono aprire più sessioni contemporaneamente\nRStudio è un ambiente molto potente e complesso, adatto anche alla compilazione di report tecnici, articoli, libri e presentazioni (come questa)\n\n\n\nNota: Queste slide contengono una versione ridotta e integrata di R, utile per provare in diretta il codice qui illustrato: cliccare sull’icona del prompt in basso a sinistra, o premere il tasto §."
+    "section": "Ambiente Positron",
+    "text": "Ambiente Positron\n\nInstallazione: prima R, poi RStudio\nSolo su windows, installare anche Rtools\nPositron lavora su progetti, o cartelle\nUn progetto contiene anche impostazioni specifiche e comuni ai file nella cartella\nUna sessione di Positron può operare su un unico progetto\nSi possono aprire più sessioni contemporaneamente\nPositron è un ambiente molto potente e complesso, adatto anche alla compilazione di report tecnici, articoli, libri e presentazioni (come questa), e può gestire anche linguaggi diversi da R (come Python, C, C++, ecc.)\n\n\n\nNota: Queste slide contengono una versione ridotta e integrata di R, utile per provare in diretta il codice qui illustrato: cliccare sull’icona del prompt in basso a sinistra, o premere il tasto §."
   },
   {
     "objectID": "slides/ADAS/2-R-intro.html#il-linguaggio-r",
     "href": "slides/ADAS/2-R-intro.html#il-linguaggio-r",
     "title": "Introduzione al Linguaggio R",
     "section": "Il linguaggio R",
-    "text": "Il linguaggio R\n\nR è un linguaggio ad alto livello, declarativo, interpretato, a sintassi C-like\nR è sia un linguaggio, sia un interprete\nR è un dynamically typed language\nR è utilizzato sia in modalità script che in modalità interattiva\nR è nato come versione GNU open source di S, un linguaggio proprietario per analisi statistiche\nRStudio è una IDE proprietaria (ma free) per R"
+    "text": "Il linguaggio R\n\nR è un linguaggio ad alto livello, declarativo, interpretato, a sintassi C-like\nR è sia un linguaggio, sia un interprete\nR è un dynamically typed language\nR è utilizzato sia in modalità script che in modalità interattiva\nR è nato come versione GNU open source di S, un linguaggio proprietario per analisi statistiche\nPositron è una IDE Open Source per R, basata su Visual Studio Code\nPositron è l’alternativa moderna a RStudio"
   },
   {
     "objectID": "slides/ADAS/2-R-intro.html#assegnazioni",
@@ -1635,7 +1642,7 @@
     "href": "slides/ADAS/2-R-intro.html#differenza-tra---e",
     "title": "Introduzione al Linguaggio R",
     "section": "Differenza tra <- e =",
-    "text": "Differenza tra &lt;- e =\n\nL’operatore = come assegnazione è valido solo al top-level\nL’operatore &lt;- è valido ovunque, anche come argomento di funzione:\n\n\nsystem.time(m &lt;- mean(1:1E6))\n\n   user  system elapsed \n  0.002   0.000   0.002 \n\nm\n\n[1] 500000.5"
+    "text": "Differenza tra &lt;- e =\n\nL’operatore = come assegnazione è valido solo al top-level\nL’operatore &lt;- è valido ovunque, anche come argomento di funzione:\n\n\nsystem.time(m &lt;- mean(1:1E6))\n\n   user  system elapsed \n  0.007   0.000   0.007 \n\nm\n\n[1] 500000.5"
   },
   {
     "objectID": "slides/ADAS/2-R-intro.html#dataframe",
@@ -1768,7 +1775,7 @@
     "href": "slides/ADAS/2-R-intro.html#tidyverse",
     "title": "Introduzione al Linguaggio R",
     "section": "Tidyverse",
-    "text": "Tidyverse\nAssieme a RStudio è emersa una new wave di librerie R che modificano radicalmente l’approccio. Vanno sotto il nome collettivo di tidyverse\n\n\n\nggplot2: grafici\npurrr: programmazione funzionale\ndplyr: manipolazione dati\nstringr: manipolazione stringhe\n\n\n\ntibble: data frame migliorati\nreadr: importazione dati\ntidyr: preparazione dati\nlubridate: manipolazione date"
+    "text": "Tidyverse\nAssieme a Positron (e RStudio) è emersa una new wave di librerie R che modificano radicalmente l’approccio. Vanno sotto il nome collettivo di tidyverse\n\n\n\nggplot2: grafici\npurrr: programmazione funzionale\ndplyr: manipolazione dati\nstringr: manipolazione stringhe\n\n\n\ntibble: data frame migliorati\nreadr: importazione dati\ntidyr: preparazione dati\nlubridate: manipolazione date"
   },
   {
     "objectID": "slides/ADAS/2-R-intro.html#tidyverse-1",
@@ -2167,7 +2174,7 @@
     "href": "slides/ADAS/8-strumenti.html#definizioni",
     "title": "Strumenti di misura",
     "section": "Definizioni",
-    "text": "Definizioni\n\n\n\nmisurando: oggetto fisico della misurazione\ntrasduttore: dispositivo che converte una grandezza fisica in un’altra\ncondizionatore: dispositivo che migliore il segnale fisico prodotto dal trasduttore\nconversione AD: trasforma un segnale analogico in un segnale digitale\nacquisizione: opera sul segnale digitale (visualizzazione, registrazione, elaborazione, ecc.)\n\n\n\n\n\n\n\n\n\ncatena\n\n\n\nmisurando\n\nmisurando\n\n\n\ntrasduttore\n\ntrasduttore\n\n\n\nmisurando-&gt;trasduttore\n\n\n\n\n\ncondizionatore\n\ncondizionatore\n\n\n\ntrasduttore-&gt;condizionatore\n\n\n\n\n\nconversione AD\n\nconversione AD\n\n\n\ncondizionatore-&gt;conversione AD\n\n\n\n\n\nacquisizione\n\nacquisizione\n\n\n\nconversione AD-&gt;acquisizione"
+    "text": "Definizioni\n\n\n\nmisurando: oggetto fisico della misurazione\ntrasduttore: dispositivo che converte una grandezza fisica in un’altra\ncondizionatore: dispositivo che migliore il segnale fisico prodotto dal trasduttore\nconversione AD: trasforma un segnale analogico in un segnale digitale\nacquisizione: opera sul segnale digitale (visualizzazione, registrazione, elaborazione, ecc.)"
   },
   {
     "objectID": "slides/ADAS/8-strumenti.html#esempio-misura-estensimetrica",
@@ -2405,7 +2412,7 @@
     "href": "slides/ADAS/esercizi.html",
     "title": "Esercizi",
     "section": "",
-    "text": "Si hanno due campioni da 9 e 12 elementi. Il primo ha i valori 12, 11.7, 9.7, 11, 12.5, 12.7, 9.9, 11.4, 9.2; il secondo 12.5, 15.1, 14.4, 12.5, 14.9, 14.4, 13.2, 11.2, 12.6, 14.8, 13.9, 11.9. Assumendo che i campioni abbiano la stessa varianza, effettuare un test di Student a due lati senza utilizzare la funzione t.test().\n\n\n\nConsideriamo il secondo campione dell’esercizio precedente. Risulta \\(\\bar y_2 = 13.45\\). Verificare con la funzione t.test() l’ipotesi che il valore atteso della popolazione d’origine sia diverso da \\(\\mu_2 = 12.7\\). Dato che nella fattispecie risulta \\(\\bar y_2 &gt; \\mu_2\\), effettuare anche un test a un lato e discutere il risultato in termini di potenza del test.\nQual è il valore minimo di \\(\\mu_2\\) che ci porta a rigettare \\(H_0\\) con una probabilità d’errore minore del 1%?\n\n\n\nConsiderare il dataset ggplot2::diamonds che riporta il prezzo di vendita di diamanti in funzione delle loro caratteristiche morfologiche.\nRaggruppare la dimensione in carati (carat) in cinque gruppi di caratura. Costruire una tabella che riporti, per ciascun gruppo e per ciascuna categoria di taglio (cut), il minimo, il massimo e i tre quartili del prezzo di vendita, in colonne separate.\n\n\n\nLa tabella dati prod_defects.csv sul sito http://paolobosetti.quarto.pub/data.html#list-of-csv-files contiene dei dati di difettosità (come numero difetti per settimana) su 50 settimane di un impianto di produzione con tre macchine, M1, M2 e M3. Per le tre macchine i limiti massimi di difettosità sono, rispettivamente, 27, 32 e 100.\nCreare una tabella che riporti, per ognuna delle 50 settimane, la difettosità in percentuale sul massimo per ciascuna macchina e realizzare il corrispondente grafico.\nPer ogni macchina, aggiungere anche il calcolo della media progressiva, cioè il valor medio dei campioni dal primo all’i-esimo.\n\n\n\n\n\n\nNota\n\n\n\nRicordare che tutte le tabelle presenti in http://paolobosetti.quarto.pub/data.html possono essere caricate direttamente dalle funzioni read_table() o read_csv() passando l’URL generato come adas.utils::examples_url(\"nome_del_file.csv\")."
+    "text": "Si hanno due campioni da 9 e 12 elementi. Il primo ha i valori 12, 11.7, 9.7, 11, 12.5, 12.7, 9.9, 11.4, 9.2; il secondo 12.5, 15.1, 14.4, 12.5, 14.9, 14.4, 13.2, 11.2, 12.6, 14.8, 13.9, 11.9. Assumendo che i campioni abbiano la stessa varianza, effettuare un test di Student a due lati senza utilizzare la funzione t.test().\n\n\n\nConsideriamo il secondo campione dell’esercizio precedente. Risulta \\(\\bar y_2 = 13.45\\). Verificare con la funzione t.test() l’ipotesi che il valore atteso della popolazione d’origine sia diverso da \\(\\mu_2 = 12.7\\). Dato che nella fattispecie risulta \\(\\bar y_2 &gt; \\mu_2\\), effettuare anche un test a un lato e discutere il risultato in termini di potenza del test.\nQual è il valore minimo di \\(\\mu_2\\) che ci porta a rigettare \\(H_0\\) con una probabilità d’errore minore del 1%?\n\n\n\nConsiderare il dataset ggplot2::diamonds che riporta il prezzo di vendita di diamanti in funzione delle loro caratteristiche morfologiche.\nRaggruppare la dimensione in carati (carat) in cinque gruppi di caratura. Costruire una tabella che riporti, per ciascun gruppo e per ciascuna categoria di taglio (cut), il minimo, il massimo e i tre quartili del prezzo di vendita, in colonne separate.\n\n\n\nLa tabella dati prod_defects.csv sul sito https://pbosetti.github.io/teaching_site/data.html#list-of-csv-files contiene dei dati di difettosità (come numero difetti per settimana) su 50 settimane di un impianto di produzione con tre macchine, M1, M2 e M3. Per le tre macchine i limiti massimi di difettosità sono, rispettivamente, 27, 32 e 100.\nCreare una tabella che riporti, per ognuna delle 50 settimane, la difettosità in percentuale sul massimo per ciascuna macchina e realizzare il corrispondente grafico.\nPer ogni macchina, aggiungere anche il calcolo della media progressiva, cioè il valor medio dei campioni dal primo all’i-esimo.\n\n\n\n\n\n\nNota\n\n\n\nRicordare che tutte le tabelle presenti in https://pbosetti.github.io/teaching_site/data.html possono essere caricate direttamente dalle funzioni read_table() o read_csv() passando l’URL generato come adas.utils::examples_url(\"nome_del_file.csv\")."
   },
   {
     "objectID": "slides/ADAS/esercizi.html#test-di-student",
@@ -2433,7 +2440,7 @@
     "href": "slides/ADAS/esercizi.html#dati-di-produzione",
     "title": "Esercizi",
     "section": "",
-    "text": "La tabella dati prod_defects.csv sul sito http://paolobosetti.quarto.pub/data.html#list-of-csv-files contiene dei dati di difettosità (come numero difetti per settimana) su 50 settimane di un impianto di produzione con tre macchine, M1, M2 e M3. Per le tre macchine i limiti massimi di difettosità sono, rispettivamente, 27, 32 e 100.\nCreare una tabella che riporti, per ognuna delle 50 settimane, la difettosità in percentuale sul massimo per ciascuna macchina e realizzare il corrispondente grafico.\nPer ogni macchina, aggiungere anche il calcolo della media progressiva, cioè il valor medio dei campioni dal primo all’i-esimo.\n\n\n\n\n\n\nNota\n\n\n\nRicordare che tutte le tabelle presenti in http://paolobosetti.quarto.pub/data.html possono essere caricate direttamente dalle funzioni read_table() o read_csv() passando l’URL generato come adas.utils::examples_url(\"nome_del_file.csv\")."
+    "text": "La tabella dati prod_defects.csv sul sito https://pbosetti.github.io/teaching_site/data.html#list-of-csv-files contiene dei dati di difettosità (come numero difetti per settimana) su 50 settimane di un impianto di produzione con tre macchine, M1, M2 e M3. Per le tre macchine i limiti massimi di difettosità sono, rispettivamente, 27, 32 e 100.\nCreare una tabella che riporti, per ognuna delle 50 settimane, la difettosità in percentuale sul massimo per ciascuna macchina e realizzare il corrispondente grafico.\nPer ogni macchina, aggiungere anche il calcolo della media progressiva, cioè il valor medio dei campioni dal primo all’i-esimo.\n\n\n\n\n\n\nNota\n\n\n\nRicordare che tutte le tabelle presenti in https://pbosetti.github.io/teaching_site/data.html possono essere caricate direttamente dalle funzioni read_table() o read_csv() passando l’URL generato come adas.utils::examples_url(\"nome_del_file.csv\")."
   },
   {
     "objectID": "slides/ADAS/esercizi.html#test-di-student-1",

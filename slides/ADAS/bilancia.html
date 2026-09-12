@@ -105,14 +105,14 @@
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-8bb6472916a85a0bcf405482043425c1.css">
-  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-29BJBS8CG3"></script>
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KV5S6RSHJ3"></script>
 
   <script type="text/plain" cookie-consent="tracking">
 
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-29BJBS8CG3', { 'anonymize_ip': true});
+  gtag('config', 'G-KV5S6RSHJ3', { 'anonymize_ip': true});
   </script>
   
   <script type="text/javascript" charset="UTF-8">
@@ -390,7 +390,7 @@ b_M =&amp; h\tan\delta\cos\delta
 </div>
 </div>
 </div></div>
-<p>Risulta: <span class="math inline">\(a = 0.9551407\)</span> e <span class="math inline">\(F_M=28.4649367\)</span>, <span class="math inline">\(R^2=1-\frac{SS_\mathrm{res}}{SS_\mathrm{tot}}=1-\frac{\sum (y_i - \widehat y_i)}{\sum (y_i - \bar y)^2} = 0.9865372\)</span></p>
+<p>Risulta: <span class="math inline">\(a = 0.9551407\)</span> e <span class="math inline">\(F_M=28.4649355\)</span>, <span class="math inline">\(R^2=1-\frac{SS_\mathrm{res}}{SS_\mathrm{tot}}=1-\frac{\sum (y_i - \widehat y_i)}{\sum (y_i - \bar y)^2} = 0.9865372\)</span></p>
 </section>
 <section id="dati-casualizzati-regressione" class="slide level2">
 <h2>Dati casualizzati, regressione</h2>
@@ -785,7 +785,7 @@ b_M =&amp; h\tan\delta\cos\delta
         }
           var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
           var mailtoRegex = new RegExp(/^mailto:/);
-            var filterRegex = new RegExp("https:\/\/pbosetti\.github\.io\/teaching_site\/");
+            var filterRegex = new RegExp('/' + window.location.host + '/');
           var isInternal = (href) => {
               return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
           }

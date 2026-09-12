@@ -104,14 +104,14 @@
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-8bb6472916a85a0bcf405482043425c1.css">
-  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-29BJBS8CG3"></script>
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KV5S6RSHJ3"></script>
 
   <script type="text/plain" cookie-consent="tracking">
 
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-29BJBS8CG3', { 'anonymize_ip': true});
+  gtag('config', 'G-KV5S6RSHJ3', { 'anonymize_ip': true});
   </script>
   
   <script type="text/javascript" charset="UTF-8">
@@ -2095,22 +2095,23 @@ Paolo Bosetti
 <h2>Link utili</h2>
 <ul>
 <li>GNU-R: <a href="https://cran.mirror.garr.it/CRAN/">https://cran.mirror.garr.it/CRAN/</a></li>
+<li>Positron: <a href="https://positron.posit.co">https://positron.posit.co</a></li>
 <li>RStudio: <a href="https://posit.co/downloads/">https://posit.co/downloads/</a></li>
 <li>Cheat sheet: <a href="https://posit.co/resources/cheatsheets/">https://posit.co/resources/cheatsheets/</a></li>
 <li>Tidyverse: <a href="https://tidyverse.org">https://tidyverse.org</a></li>
 <li>Materiale corso: <a href="https://github.com/pbosetti/ADAS-25">https://github.com/pbosetti/ADAS-25</a></li>
 </ul>
 </section>
-<section id="ambiente-rstudio" class="slide level2">
-<h2>Ambiente RStudio</h2>
+<section id="ambiente-positron" class="slide level2">
+<h2>Ambiente Positron</h2>
 <ul>
-<li>Installazione: <a href="https://cran.mirror.garr.it/CRAN/">prima R</a>, <a href="https://posit.co/downloads/">poi RStudio</a></li>
+<li>Installazione: <a href="https://cran.mirror.garr.it/CRAN/">prima R</a>, <a href="https://positron.posit.co">poi RStudio</a></li>
 <li><strong>Solo su windows</strong>, installare anche <a href="https://cran.mirror.garr.it/CRAN/bin/windows/Rtools/">Rtools</a></li>
-<li>RStudio lavora su cartelle o (meglio) <strong>progetti</strong> (<code>.Rproj</code>)</li>
+<li>Positron lavora su progetti, o <strong>cartelle</strong></li>
 <li>Un progetto contiene anche impostazioni specifiche e comuni ai file nella cartella</li>
-<li>Una <strong>sessione</strong> di RStudio può operare su un unico progetto</li>
+<li>Una <strong>sessione</strong> di Positron può operare su un unico progetto</li>
 <li>Si possono aprire più sessioni contemporaneamente</li>
-<li>RStudio è un ambiente molto potente e complesso, adatto anche alla compilazione di <em>report</em> tecnici, articoli, libri e presentazioni (come questa)</li>
+<li>Positron è un ambiente molto potente e complesso, adatto anche alla compilazione di <em>report</em> tecnici, articoli, libri e presentazioni (come questa), e può gestire anche linguaggi diversi da R (come Python, C, C++, ecc.)</li>
 </ul>
 
 <aside><div>
@@ -2124,7 +2125,8 @@ Paolo Bosetti
 <li>R è un <em>dynamically typed language</em></li>
 <li>R è utilizzato sia in <strong>modalità script</strong> che in <strong>modalità interattiva</strong></li>
 <li>R è nato come versione GNU open source di S, un linguaggio proprietario per analisi statistiche</li>
-<li>RStudio è una IDE proprietaria (ma free) per R</li>
+<li>Positron è una IDE Open Source per R, basata su Visual Studio Code</li>
+<li>Positron è l’alternativa moderna a <strong>RStudio</strong></li>
 </ul>
 </section>
 <section id="assegnazioni" class="slide level2">
@@ -2554,7 +2556,7 @@ Levels: B &lt; A &lt; C &lt; E &lt; D</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a aria-label="1"></a><span class="fu">system.time</span>(m <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="dv">1</span><span class="sc">:</span><span class="fl">1E6</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user  system elapsed 
-  0.002   0.000   0.002 </code></pre>
+  0.007   0.000   0.007 </code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a aria-label="1"></a>m</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -2892,7 +2894,7 @@ x,y,z
 </section>
 <section id="tidyverse" class="slide level2">
 <h2>Tidyverse</h2>
-<p>Assieme a RStudio è emersa una <em>new wave</em> di librerie R che modificano radicalmente l’approccio. Vanno sotto il nome collettivo di <a href="https://www.tidyverse.org"><code>tidyverse</code></a></p>
+<p>Assieme a Positron (e RStudio) è emersa una <em>new wave</em> di librerie R che modificano radicalmente l’approccio. Vanno sotto il nome collettivo di <a href="https://www.tidyverse.org"><code>tidyverse</code></a></p>
 <div class="columns">
 <div class="column">
 <ul>
@@ -3334,7 +3336,7 @@ x,y,z
         }
           var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
           var mailtoRegex = new RegExp(/^mailto:/);
-            var filterRegex = new RegExp("https:\/\/pbosetti\.github\.io\/teaching_site\/");
+            var filterRegex = new RegExp('/' + window.location.host + '/');
           var isInternal = (href) => {
               return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
           }
