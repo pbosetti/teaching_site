@@ -1642,7 +1642,7 @@
     "href": "slides/ADAS/2-R-intro.html#differenza-tra---e",
     "title": "Introduzione al Linguaggio R",
     "section": "Differenza tra <- e =",
-    "text": "Differenza tra &lt;- e =\n\nL’operatore = come assegnazione è valido solo al top-level\nL’operatore &lt;- è valido ovunque, anche come argomento di funzione:\n\n\nsystem.time(m &lt;- mean(1:1E6))\n\n   user  system elapsed \n  0.007   0.000   0.007 \n\nm\n\n[1] 500000.5"
+    "text": "Differenza tra &lt;- e =\n\nL’operatore = come assegnazione è valido solo al top-level\nL’operatore &lt;- è valido ovunque, anche come argomento di funzione:\n\n\nsystem.time(m &lt;- mean(1:1E6))\n\n   user  system elapsed \n  0.004   0.000   0.004 \n\nm\n\n[1] 500000.5"
   },
   {
     "objectID": "slides/ADAS/2-R-intro.html#dataframe",
