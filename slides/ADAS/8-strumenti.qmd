@@ -203,8 +203,8 @@ Sfrutta una variazione di resistenza in un circuito parallelo $R_{T} = (1-\Delta
 :::
 
 :::{.column style="text-align: center;"}
-![](https://ars.els-cdn.com/content/image/3-s2.0-B9780128146415500032-u18-05-9780128146415.jpg){width=400}
-![Encoder lineare relativo](https://cdn.phidgets.com/docs/images/thumb/e/ef/QuadratureDirection.jpg/300px-QuadratureDirection.jpg)
+![](images/encoder_relativo.jpg){width=400}
+![Encoder lineare relativo](images/encoder_quadratura.jpg)
 :::
 :::
 
@@ -219,7 +219,7 @@ Sfrutta una variazione di resistenza in un circuito parallelo $R_{T} = (1-\Delta
 :::
 
 :::column
-![Encoder assoluto (rotativo)](https://www.linearmotiontips.com/wp-content/uploads/2021/01/US-Digital-Absolute-Encoder-Disk.jpg)
+![Encoder assoluto (rotativo)](images/encoder_assoluto.jpg)
 :::
 :::
 
@@ -550,7 +550,7 @@ $$
 :::
 
 :::column
-![Ponte di Wheatstone](https://www.allaboutcircuits.com/uploads/articles/wheatstone_bridge_for_calculator.jpg)
+![Ponte di Wheatstone](images/wheatstone_bridge.jpg)
 :::
 :::
 
@@ -573,7 +573,7 @@ $$
 :::
 
 :::column
-![Ponte di Wheatstone](https://www.allaboutcircuits.com/uploads/articles/wheatstone_bridge_for_calculator.jpg)
+![Ponte di Wheatstone](images/wheatstone_bridge.jpg)
 :::
 :::
 
@@ -596,7 +596,7 @@ $$
 :::
 
 :::column
-![Ponte di Wheatstone](https://www.allaboutcircuits.com/uploads/articles/wheatstone_bridge_for_calculator.jpg)
+![Ponte di Wheatstone](images/wheatstone_bridge.jpg)
 :::
 :::
 
@@ -614,7 +614,7 @@ $$
 :::
 
 :::column
-![Ponte di Wheatstone](https://www.allaboutcircuits.com/uploads/articles/wheatstone_bridge_for_calculator.jpg)
+![Ponte di Wheatstone](images/wheatstone_bridge.jpg)
 :::
 :::
 

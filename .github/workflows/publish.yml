@@ -8,6 +8,7 @@ name: Quarto Publish
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Check out repository
         uses: actions/checkout@v4 
@@ -37,6 +38,7 @@ jobs:
       
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
+        timeout-minutes: 20
         with:
           target: quarto-pub
           QUARTO_PUB_AUTH_TOKEN: ${{ secrets.QUARTO_PUB_AUTH_TOKEN }}

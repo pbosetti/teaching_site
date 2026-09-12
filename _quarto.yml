@@ -7,7 +7,7 @@ project:
 website:
   title: "Paolo Bosetti"
   reader-mode: true
-  google-analytics: "G-29BJBS8CG3"
+  google-analytics: "G-KV5S6RSHJ3"
   cookie-consent:
     type: express
     style: simple
