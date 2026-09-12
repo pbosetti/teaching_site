@@ -64,19 +64,20 @@ Noi utilizzeremo R perché specifico per la statistica, orientato alla grafica e
 
 ## Link utili
 * GNU-R: [https://cran.mirror.garr.it/CRAN/](https://cran.mirror.garr.it/CRAN/)
+* Positron: [https://positron.posit.co](https://positron.posit.co)
 * RStudio: [https://posit.co/downloads/](https://posit.co/downloads/)
 * Cheat sheet: [https://posit.co/resources/cheatsheets/](https://posit.co/resources/cheatsheets/)
 * Tidyverse: [https://tidyverse.org](https://tidyverse.org)
 * Materiale corso: [https://github.com/pbosetti/ADAS-25](https://github.com/pbosetti/ADAS-25)
 
-## Ambiente RStudio
-* Installazione: [prima R](https://cran.mirror.garr.it/CRAN/), [poi RStudio](https://posit.co/downloads/)
+## Ambiente Positron
+* Installazione: [prima R](https://cran.mirror.garr.it/CRAN/), [poi RStudio](https://positron.posit.co)
 * **Solo su windows**, installare anche [Rtools](https://cran.mirror.garr.it/CRAN/bin/windows/Rtools/)
-* RStudio lavora su cartelle o (meglio) **progetti** (`.Rproj`)
+* Positron lavora su progetti, o **cartelle**
 * Un progetto contiene anche impostazioni specifiche e comuni ai file nella cartella
-* Una **sessione** di RStudio può operare su un unico progetto
+* Una **sessione** di Positron può operare su un unico progetto
 * Si possono aprire più sessioni contemporaneamente
-* RStudio è un ambiente molto potente e complesso, adatto anche alla compilazione di *report* tecnici, articoli, libri e presentazioni (come questa)
+* Positron è un ambiente molto potente e complesso, adatto anche alla compilazione di *report* tecnici, articoli, libri e presentazioni (come questa), e può gestire anche linguaggi diversi da R (come Python, C, C++, ecc.)
 
 :::aside
 **Nota**: Queste slide contengono una versione ridotta e integrata di R, utile per provare in diretta il codice qui illustrato: cliccare sull'icona del prompt in basso a sinistra, [o premere il tasto `§`]{.bgreen}.
@@ -88,7 +89,8 @@ Noi utilizzeremo R perché specifico per la statistica, orientato alla grafica e
 * R è un *dynamically typed language*
 * R è utilizzato sia in **modalità script** che in **modalità interattiva**
 * R è nato come versione GNU open source di S, un linguaggio proprietario per analisi statistiche
-* RStudio è una IDE proprietaria (ma free) per R
+* Positron è una IDE Open Source per R, basata su Visual Studio Code
+* Positron è l'alternativa moderna a **RStudio**
 
 ## Assegnazioni
 Ogni linguaggio usa delle **variabili** per memorizzare valori ed oggetti mediante un'operazione di **assegnazione**:
@@ -609,7 +611,7 @@ Altri argomenti opzionali servono per personalizzare il risultato.
 
 
 ## Tidyverse
-Assieme a RStudio è emersa una *new wave* di librerie R che modificano radicalmente l'approccio. Vanno sotto il nome collettivo di [`tidyverse`](https://www.tidyverse.org)
+Assieme a Positron (e RStudio) è emersa una *new wave* di librerie R che modificano radicalmente l'approccio. Vanno sotto il nome collettivo di [`tidyverse`](https://www.tidyverse.org)
 
 :::columns
 :::column

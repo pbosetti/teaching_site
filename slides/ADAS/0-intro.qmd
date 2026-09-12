@@ -117,7 +117,7 @@ Imparare l'uso di un **linguaggio e software di analisi dati** (R + RStudio) è 
 ## Il linguaggio R
 
 * È un linguaggio nativamente grafico e nato per l'analisi statistica
-* Useremo un ambiente (RStudio) che consente di preparare report e documenti integrando testo, dati e algoritmi
+* Useremo un ambiente (Positron/Quarto) che consente di preparare report e documenti integrando testo, dati e algoritmi
 * Lo stesso linguaggio sarà usato anche nei corsi:
   - *Analisi dei dati per l'Ingegneria* (2° anno comune, 1° modulo)
   - *Misure, sensori ed elaborazione dei segnali* (2° anno comune)
@@ -138,7 +138,7 @@ L'esame è in due parti, tipicamente nello stesso giorno
 Non è possibile sostenere l'orale in una sessione differente dalla prova pratica
 :::
 
-## Modalità d'esame (A.A. 2024--25)
+## Modalità d'esame (A.A. 2026--27)
 **ATTENZIONE**: questo corso è uno di due moduli: l'esame è quindi solo una prova parziale e **non viene verbalizzato**
 
 Il voto finale verrà verbalizzato **solo dopo aver superato** entrambi i moduli, inclusa cioè la **prova parziale del primo modulo** (prof. Bertolazzi)
@@ -148,6 +148,15 @@ Tra il superamento dei due moduli non possono passare più di 4 appelli (cioè i
 :::{.fragment .highlight-red style="font-size: 125%; margin-top: 50px;"}
 Ricordarsi di iscriversi anche all'appello di registrazione!
 :::
+
+## Prova in itinere
+
+È offerta la possibilità di sostenere la prova in itinere che, con le stesse modalità dell'esame finale, copre solo la prima metà del corso
+
+Chi supera e accetta la prova in itinere può sostenere solo metà dell'esame finale, cioè rispondendo solo alle domande relative alla seconda metà del corso
+
+In questo caso il voto finale sarà la media dei due voti, arrotondata all'intero più vicino
+
 
 ## Argomenti del corso 
 :::{.incremental}
@@ -163,5 +172,5 @@ Ricordarsi di iscriversi anche all'appello di registrazione!
 ## Materiale didattico
 
 * **Moodle**
-* **Testo di riferimento**: online, su <https://paolobosetti.quarto.pub/slides/ADAS>
-* **Codice sviluppato in classe**: Il codice R sarà gradualmente pubblicato e aggiornato su GitHub: [https://github.com/pbosetti/ADAS-25](https://github.com/pbosetti/ADAS-25){target="_blank"}
+* **Testo di riferimento**: online, su <https://pbosetti.github.io/teaching_site/slides/ADAS>
+* **Codice sviluppato in classe**: Il codice R sarà gradualmente pubblicato e aggiornato su GitHub: [https://github.com/pbosetti/ADAS-26](https://github.com/pbosetti/ADAS-26){target="_blank"}
