@@ -54,13 +54,17 @@ jobs:
         run: |
           quarto render . --log-level debug --log quarto-render.log
 
+      # Diagnostics only: must never be able to fail the build.
+      # NOTE: no `head` here - it closes the pipe, SIGPIPEs sort, and steps
+      # run under `bash -e -o pipefail`, which would fail the step.
       - name: Report site size
         shell: bash
+        continue-on-error: true
         run: |
           echo "Total _site size: $(du -sh _site | cut -f1)"
           echo "10 largest files:"
-          find _site -type f -printf '%s\t%p\n' | sort -rn | head -10 \
-            | awk -F'\t' '{printf "  %7.2f MB  %s\n", $1/1048576, $2}'
+          find _site -type f -printf '%s\t%p\n' | sort -rn \
+            | awk -F'\t' 'NR<=10 {printf "  %7.2f MB  %s\n", $1/1048576, $2}'
 
       - name: Show render log tail (for diagnosing hangs/timeouts)
         if: failure()
