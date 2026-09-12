@@ -8,8 +8,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.9.38">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.18">
 
   <meta name="author" content="Paolo Bosetti">
   <title>Paolo Bosetti – Design of Experiments</title>
@@ -22,10 +22,13 @@
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
     */
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -162,13 +165,13 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Design of Experiments</h1>
-  <p class="subtitle">Analisi Dati e Statistica, 2025–26<br>
+  <p class="subtitle">Analisi Dati e Statistica, 2026–27<br>
 <img data-src="images/by-nc-sa.png" height="30"></p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Paolo Bosetti 
+Paolo Bosetti
 </div>
         <p class="quarto-title-affiliation">
             Università di Trento, Dipartimento di Ingegneria Industriale
@@ -176,7 +179,7 @@ Paolo Bosetti
     </div>
 </div>
 
-  <p class="date"><em>Ultimo aggiornamento:</em> 17/06/2026</p>
+  <p class="date"><em>Ultimo aggiornamento:</em> 12/09/2026</p>
 </section>
 <section>
 <section id="design-and-analysis-of-experiments" class="title-slide slide level1 center">
@@ -240,10 +243,10 @@ Paolo Bosetti
 <li>Cambiamo <strong>un livello alla volta</strong></li>
 <li>Valutiamo ogni trattamento <strong>1 sola volta</strong></li>
 <li>Valutiamo gli <strong>effetti</strong> di <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span>: <span class="math display">\[
-\begin{align}
+\begin{aligned}
 A &amp;= 50 - 20 = 30\\
 B &amp;= 30 - 20 = 10
-\end{align}
+\end{aligned}
 \]</span></li>
 </ul>
 </div><div class="column">
@@ -283,11 +286,11 @@ B &amp;= 30 - 20 = 10
 <p>In questo secondo esempio misuriamo la risposta dei trattamenti <span class="math inline">\((1), a, b, ab\)</span></p>
 <p>Possiamo stimare sia gli effetti di <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span> che l’<strong>interazione</strong> <span class="math inline">\(AB\)</span>:</p>
 <p><span class="math display">\[
-\begin{align}
+\begin{aligned}
 A &amp;= \frac{a+ab}{2} - \frac{(1) + b}{2} = 6\\
 B &amp;= \frac{b+ab}{2} - \frac{(1) + a}{2} = -14 \\
 AB &amp;= \frac{a+b}{2} - \frac{(1)+ab}{2} = -24
-\end{align}
+\end{aligned}
 \]</span></p>
 </div><div class="column">
 <div class="cell">
@@ -385,27 +388,27 @@ y_{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_{ij} + \varepsilon_{ijk};\qua
 <div class="column">
 <p><span class="math display">\[
 \textrm{A)}~\left\{
-\begin{align}
+\begin{aligned}
 H_0&amp;: \alpha_1 = \alpha_2 = \dots =\alpha_a = 0 \\
 H_1&amp;: \alpha_i \ne 0\quad\textrm{per almeno un}~i
-\end{align}
+\end{aligned}
 \right.
 \]</span></p>
 <p><span class="math display">\[
 \textrm{B)}~\left\{
-\begin{align}
+\begin{aligned}
 H_0&amp;: \beta_1 = \beta_2 = \dots =\beta_b = 0 \\
 H_1&amp;: \beta_j \ne 0\quad\textrm{per almeno un}~j
-\end{align}
+\end{aligned}
 \right.
 \]</span></p>
 </div><div class="column">
 <p><span class="math display">\[
 \textrm{AB)}~\left\{
-\begin{align}
+\begin{aligned}
 H_0&amp;: (\alpha\beta)_{ij} =   0\quad \forall~(i,j) \\
 H_1&amp;: (\alpha\beta)_{ij} \ne 0\quad \textrm{per almeno una}~(i,j)
-\end{align}
+\end{aligned}
 \right.
 \]</span></p>
 </div></div>
@@ -1038,12 +1041,13 @@ H_1&amp;: (\alpha\beta)_{ij} \ne 0\quad \textrm{per almeno una}~(i,j)
 <div class="columns">
 <div class="column">
 <p>Formuliamo il modello di regressione completo di secondo grado:</p>
-<p><span class="math display">\[\begin{align}
+<p><span class="math display">\[
+\begin{aligned}
 \hat y = &amp; \mu + \alpha_1 x_1 + \beta_1 x_2 + (\alpha\beta)_1x_1x_2 + \\
          &amp; + \alpha_2x_1^2 + \beta_2x_2^2 + (\alpha\beta)_{2,1}x_1^2x_2 + \\
          &amp; + (\alpha\beta)_{1,2}x_1x_2^2 + (\alpha\beta)_{2,2}x_1^2x_2^2
-      
-\end{align}\]</span></p>
+\end{aligned}
+\]</span></p>
 <p>dove, ricordiamo <span class="math inline">\((\alpha\beta)\)</span> non è un prodotto, ma rappresenta il coefficiente di un prodotto di fattori <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span></p>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
@@ -1219,12 +1223,13 @@ H_1&amp;: (\alpha\beta)_{ij} \ne 0\quad \textrm{per almeno una}~(i,j)
 </div>
 </div>
 </div></div>
-<p>Quindi l’equazione di regressione diventa: <span class="math display">\[\begin{align}
+<p>Quindi l’equazione di regressione diventa: <span class="math display">\[
+\begin{aligned}
 \hat y = &amp; \mu + \alpha_1 x_1 + \beta_1 x_2 + (\alpha\beta)_1x_1x_2 + \\
          &amp;  + \alpha_2x_1^2 + (\alpha\beta)_{1,2}x_1x_2^2 + \\
          &amp;  + (\alpha\beta)_{2,2}x_1^2x_2^2
-      
-\end{align}\]</span></p>
+\end{aligned}
+\]</span></p>
 </section>
 <section id="esempio-passo-6." class="slide level2">
 <h2>Esempio — passo 6.</h2>
@@ -1501,19 +1506,19 @@ H_1&amp;: (\alpha\beta)_{ij} \ne 0\quad \textrm{per almeno una}~(i,j)
 <div class="columns">
 <div class="column">
 <p>Per gli effetti: <span class="math display">\[
-\begin{align}
+\begin{aligned}
 A &amp;= \frac{-(1)+a-b+ab}{2r} \\
 B &amp;= \frac{-(1)-a+b+ab}{2r} \\
 AB &amp;= \frac{+(1)-a-b+ab}{2r}
-\end{align}
+\end{aligned}
 \]</span></p>
 </div><div class="column">
 <p>Per le somme quadratiche: <span class="math display">\[
-\begin{align}
+\begin{aligned}
 SS_A &amp;=&amp; \frac{(-(1)+a-b+ab)^2}{4r} \\
 SS_B &amp;=&amp; \frac{(-(1)-a+b+ab)^2}{4r} \\
 SS_{AB} &amp;=&amp; \frac{(+(1)-a-b+ab)^2}{4r}
-\end{align}
+\end{aligned}
 \]</span></p>
 </div></div>
 <p>In generale: <span class="math inline">\(\mathrm{Ef}(X) = \frac{2}{2^nr}\mathrm{Contrast}(X)\)</span> e <span class="math inline">\(\mathit{SS}(X) = \frac{1}{2^nr}\mathrm{Contrast}(X)^2\)</span> dove il <strong>contrasto</strong> del fattore <span class="math inline">\(\mathrm{Contrast}(X)\)</span> è calcolato usando i segni della relativa colonna <span class="math inline">\(X\)</span> per i trattamenti nell’ordine di Yates (es. <span class="math inline">\(\mathrm{Contrast}(AB)=+(1)-a-b+ab\)</span>)</p>
@@ -1914,10 +1919,10 @@ y_i^{(\lambda)} =
 <section id="alias-e-informazioni-perdute" class="slide level2">
 <h2><em>Alias</em> e informazioni perdute</h2>
 <p>In un PF frazionato <span class="math inline">\(2^{3-1}\)</span> con relazione definente <span class="math inline">\(I=ABC\)</span>, consideriamo questi effetti: <span class="math display">\[
-\begin{align}
+\begin{aligned}
 A  &amp;= (-(1)+a-b+ab-c+ac-bc+abc)/(2r) \\
 BC &amp;= (\underline{+(1)}+a-b\underline{-ab}-c\underline{-ac} \underline{+bc}+abc)/(2r)
-\end{align}
+\end{aligned}
 \]</span> Siccome i trattamenti sottolineati <strong>non sono testati</strong>, l’effetto <span class="math inline">\(A\)</span> risulta indistinguibile dall’effetto <span class="math inline">\(BC\)</span></p>
 <p>Si dice che <span class="math inline">\(A\)</span> <strong>è in <em>alias</em></strong> con <span class="math inline">\(BC\)</span></p>
 <p>Data una certa relazione definente, le possibili strutture di alias possono essere ricavate dalla relazione stessa mediante un’<strong>algebra</strong> dedicata: <span class="math inline">\(I\cdot X=X\)</span>, <span class="math inline">\(X\cdot X = X\)</span>, <span class="math inline">\(X\cdot Y=XY\)</span>.</p>
@@ -1968,7 +1973,7 @@ BC &amp;= (\underline{+(1)}+a-b\underline{-ab}-c\underline{-ac} \underline{+bc}+
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
-<p>paolo.bosetti@unitn.it — <a href="https://paolobosetti.quarto.pub/slides/ADAS/">https://paolobosetti.quarto.pub/slides/ADAS/</a></p>
+<p>paolo.bosetti@unitn.it — <a href="https://pbosetti.github.io/teaching_site/slides/ADAS/">https://pbosetti.github.io/teaching_site/slides/ADAS/</a></p>
 </div>
 </div></div>
 
@@ -2157,7 +2162,7 @@ BC &amp;= (\underline{+(1)}+a-b\underline{-ab}-c\underline{-ac} \underline{+bc}+
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],

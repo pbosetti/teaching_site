@@ -8,8 +8,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.9.38">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.18">
 
   <meta name="author" content="Paolo Bosetti">
   <title>Paolo Bosetti – K-Fold Cross Validation</title>
@@ -22,10 +22,13 @@
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
     */
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -234,7 +237,7 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Paolo Bosetti 
+Paolo Bosetti
 </div>
         <p class="quarto-title-affiliation">
             Dpt. of Industrial Engineering, University of Trento
@@ -301,12 +304,12 @@ Paolo Bosetti
 <p>So let’s build a linear model of degree 1 and plot the data with the regression line:</p>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>data.lm <span class="ot">&lt;-</span><span class="fu">lm</span>(y<span class="sc">~</span>x <span class="sc">-</span> <span class="dv">1</span>, <span class="at">data=</span>data)</span>
-<span id="cb1-2"><a></a>data <span class="sc">%&gt;%</span> </span>
-<span id="cb1-3"><a></a>  <span class="fu">add_predictions</span>(data.lm) <span class="sc">%&gt;%</span></span>
-<span id="cb1-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>x)) <span class="sc">+</span></span>
-<span id="cb1-5"><a></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y=</span>y)) <span class="sc">+</span></span>
-<span id="cb1-6"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>pred))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-label="1"></a>data.lm <span class="ot">&lt;-</span><span class="fu">lm</span>(y<span class="sc">~</span>x <span class="sc">-</span> <span class="dv">1</span>, <span class="at">data=</span>data)</span>
+<span id="cb1-2"><a aria-label="2"></a>data <span class="sc">%&gt;%</span> </span>
+<span id="cb1-3"><a aria-label="3"></a>  <span class="fu">add_predictions</span>(data.lm) <span class="sc">%&gt;%</span></span>
+<span id="cb1-4"><a aria-label="4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>x)) <span class="sc">+</span></span>
+<span id="cb1-5"><a aria-label="5"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y=</span>y)) <span class="sc">+</span></span>
+<span id="cb1-6"><a aria-label="6"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>pred))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div>
@@ -325,10 +328,10 @@ Paolo Bosetti
 </ul>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>data <span class="sc">%&gt;%</span> </span>
-<span id="cb2-2"><a></a>  <span class="fu">add_residuals</span>(data.lm) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>resid)) <span class="sc">+</span></span>
-<span id="cb2-4"><a></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-label="1"></a>data <span class="sc">%&gt;%</span> </span>
+<span id="cb2-2"><a aria-label="2"></a>  <span class="fu">add_residuals</span>(data.lm) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-3"><a aria-label="3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>resid)) <span class="sc">+</span></span>
+<span id="cb2-4"><a aria-label="4"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div>
@@ -364,12 +367,12 @@ Paolo Bosetti
 <h2>Multiple regression</h2>
 <p>Let’s see how it works. We first build a list of arguments:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>deg <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span></span>
-<span id="cb3-2"><a></a>args <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb3-3"><a></a>  <span class="sc">~</span>y, <span class="sc">~</span>x,</span>
-<span id="cb3-4"><a></a>  <span class="fu">map</span>(deg, <span class="sc">~</span><span class="fu">as.formula</span>(<span class="fu">paste0</span>(<span class="st">"~poly(x,"</span>, ., <span class="st">")"</span>)))</span>
-<span id="cb3-5"><a></a>) <span class="sc">%&gt;%</span> </span>
-<span id="cb3-6"><a></a>  <span class="fu">unlist</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-label="1"></a>deg <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span></span>
+<span id="cb3-2"><a aria-label="2"></a>args <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb3-3"><a aria-label="3"></a>  <span class="sc">~</span>y, <span class="sc">~</span>x,</span>
+<span id="cb3-4"><a aria-label="4"></a>  <span class="fu">map</span>(deg, <span class="sc">~</span><span class="fu">as.formula</span>(<span class="fu">paste0</span>(<span class="st">"~poly(x,"</span>, ., <span class="st">")"</span>)))</span>
+<span id="cb3-5"><a aria-label="5"></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-6"><a aria-label="6"></a>  <span class="fu">unlist</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Now <code>args</code> is a list of formulas like <code>~y</code>, <code>~x</code>, <code>~poly(x, 2)</code>, <code>~poly(x, 3)</code>, etc.</p>
 
@@ -380,10 +383,10 @@ Paolo Bosetti
 <h2>Multiple regression</h2>
 <p>Now the <code>formulas()</code> function wants <code>n</code> parameters, each being a formula, while we have a list of formulas. We can solve this problem by using <code>do.call()</code> function, which calls a given function passing each element of a list as a separate argument:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>fits <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">fit_with</span>(</span>
-<span id="cb4-2"><a></a>  lm, </span>
-<span id="cb4-3"><a></a>  <span class="at">.formulas=</span><span class="fu">do.call</span>(formulas, args)</span>
-<span id="cb4-4"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-label="1"></a>fits <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">fit_with</span>(</span>
+<span id="cb4-2"><a aria-label="2"></a>  lm, </span>
+<span id="cb4-3"><a aria-label="3"></a>  <span class="at">.formulas=</span><span class="fu">do.call</span>(formulas, args)</span>
+<span id="cb4-4"><a aria-label="4"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Now <code>fits</code> is a list or regression results, with polynomials from degree 1 to 12</p>
 </section>
@@ -414,18 +417,18 @@ Paolo Bosetti
 <h2>Quality of regression</h2>
 <p>We use <code>map_dbl()</code> to map these functions over the list of polynomial degrees. The resulting table is then used to make a plot:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">tibble</span>(</span>
-<span id="cb5-2"><a></a>  <span class="at">degree=</span><span class="fu">c</span>(<span class="dv">1</span>,deg), <span class="co"># deg starts from 2!</span></span>
-<span id="cb5-3"><a></a>  <span class="at">rsquare=</span>fits <span class="sc">%&gt;%</span> <span class="fu">map_dbl</span>(<span class="sc">~</span><span class="fu">rsquare</span>(., data)),</span>
-<span id="cb5-4"><a></a>  <span class="at">rmse=</span>fits <span class="sc">%&gt;%</span> <span class="fu">map_dbl</span>(<span class="sc">~</span><span class="fu">rmse</span>(., data))</span>
-<span id="cb5-5"><a></a>) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-6"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>degree)) <span class="sc">+</span></span>
-<span id="cb5-7"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>rmse), <span class="at">color=</span><span class="st">"blue"</span>) <span class="sc">+</span></span>
-<span id="cb5-8"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>rsquare<span class="sc">*</span><span class="dv">4</span>), <span class="at">color=</span><span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb5-9"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">sec.axis =</span> <span class="fu">sec_axis</span>(</span>
-<span id="cb5-10"><a></a>    \(x) scales<span class="sc">::</span><span class="fu">rescale</span>(x, <span class="at">from=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">4</span>), <span class="at">to=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>)),</span>
-<span id="cb5-11"><a></a>    <span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.1</span>),</span>
-<span id="cb5-12"><a></a>    <span class="at">name=</span><span class="st">"R squared"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-label="1"></a><span class="fu">tibble</span>(</span>
+<span id="cb5-2"><a aria-label="2"></a>  <span class="at">degree=</span><span class="fu">c</span>(<span class="dv">1</span>,deg), <span class="co"># deg starts from 2!</span></span>
+<span id="cb5-3"><a aria-label="3"></a>  <span class="at">rsquare=</span>fits <span class="sc">%&gt;%</span> <span class="fu">map_dbl</span>(<span class="sc">~</span><span class="fu">rsquare</span>(., data)),</span>
+<span id="cb5-4"><a aria-label="4"></a>  <span class="at">rmse=</span>fits <span class="sc">%&gt;%</span> <span class="fu">map_dbl</span>(<span class="sc">~</span><span class="fu">rmse</span>(., data))</span>
+<span id="cb5-5"><a aria-label="5"></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-6"><a aria-label="6"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>degree)) <span class="sc">+</span></span>
+<span id="cb5-7"><a aria-label="7"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>rmse), <span class="at">color=</span><span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb5-8"><a aria-label="8"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>rsquare<span class="sc">*</span><span class="dv">4</span>), <span class="at">color=</span><span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb5-9"><a aria-label="9"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">sec.axis =</span> <span class="fu">sec_axis</span>(</span>
+<span id="cb5-10"><a aria-label="10"></a>    \(x) scales<span class="sc">::</span><span class="fu">rescale</span>(x, <span class="at">from=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">4</span>), <span class="at">to=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>)),</span>
+<span id="cb5-11"><a aria-label="11"></a>    <span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.1</span>),</span>
+<span id="cb5-12"><a aria-label="12"></a>    <span class="at">name=</span><span class="st">"R squared"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 <p>The <span class="math inline">\(R^2\)</span> increases pretty quickly and saturates after degree 3. The RMSE decreases sharply and monothonically. It’s hard to figure out the point where overfitting starts</p>
@@ -463,10 +466,10 @@ Paolo Bosetti
 <h2>In R</h2>
 <p>In fact, the folds are defined by randomly sampling the initial dataset, so that the resulting RMSE (or any other metric) is also a random variable. Repeating the K-fold 100 times makes the whole process more robust:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>ctrl <span class="ot">&lt;-</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">"repeatedcv"</span>, <span class="at">number=</span><span class="dv">5</span>, <span class="at">repeats=</span><span class="dv">100</span>)</span>
-<span id="cb6-2"><a></a>model <span class="ot">&lt;-</span> <span class="fu">train</span>(y<span class="sc">~</span><span class="fu">poly</span>(x,<span class="dv">8</span>), <span class="at">data=</span>data, <span class="at">method=</span><span class="st">"lm"</span>, <span class="at">trControl=</span>ctrl)</span>
-<span id="cb6-3"><a></a></span>
-<span id="cb6-4"><a></a>model</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-label="1"></a>ctrl <span class="ot">&lt;-</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">"repeatedcv"</span>, <span class="at">number=</span><span class="dv">5</span>, <span class="at">repeats=</span><span class="dv">100</span>)</span>
+<span id="cb6-2"><a aria-label="2"></a>model <span class="ot">&lt;-</span> <span class="fu">train</span>(y<span class="sc">~</span><span class="fu">poly</span>(x,<span class="dv">8</span>), <span class="at">data=</span>data, <span class="at">method=</span><span class="st">"lm"</span>, <span class="at">trControl=</span>ctrl)</span>
+<span id="cb6-3"><a aria-label="3"></a></span>
+<span id="cb6-4"><a aria-label="4"></a>model</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Linear Regression 
 
@@ -528,14 +531,14 @@ Tuning parameter 'intercept' was held constant at a
 </div>
 <p>Now we want to repeat the K-fold validation over the list of formulas corresponding to the set of polynomials with degrees from 1 to 12. We use again the <code>map()</code> function:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>fit_quality <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb8-2"><a></a>  <span class="at">degree=</span><span class="fu">c</span>(<span class="dv">1</span>,deg),</span>
-<span id="cb8-3"><a></a>  <span class="at">results=</span><span class="fu">map</span>(degree, <span class="cf">function</span>(n) {</span>
-<span id="cb8-4"><a></a>    fm <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"y~poly(x,"</span>, n, <span class="st">")"</span>) <span class="sc">%&gt;%</span> <span class="fu">as.formula</span>()</span>
-<span id="cb8-5"><a></a>    <span class="fu">train</span>(fm, <span class="at">data=</span>data, <span class="at">method=</span><span class="st">"lm"</span>, <span class="at">trControl=</span>ctrl)<span class="sc">$</span>results</span>
-<span id="cb8-6"><a></a>    })</span>
-<span id="cb8-7"><a></a>) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-8"><a></a>  <span class="fu">unnest</span>(<span class="at">cols=</span>results)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-label="1"></a>fit_quality <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb8-2"><a aria-label="2"></a>  <span class="at">degree=</span><span class="fu">c</span>(<span class="dv">1</span>,deg),</span>
+<span id="cb8-3"><a aria-label="3"></a>  <span class="at">results=</span><span class="fu">map</span>(degree, <span class="cf">function</span>(n) {</span>
+<span id="cb8-4"><a aria-label="4"></a>    fm <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"y~poly(x,"</span>, n, <span class="st">")"</span>) <span class="sc">%&gt;%</span> <span class="fu">as.formula</span>()</span>
+<span id="cb8-5"><a aria-label="5"></a>    <span class="fu">train</span>(fm, <span class="at">data=</span>data, <span class="at">method=</span><span class="st">"lm"</span>, <span class="at">trControl=</span>ctrl)<span class="sc">$</span>results</span>
+<span id="cb8-6"><a aria-label="6"></a>    })</span>
+<span id="cb8-7"><a aria-label="7"></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-8"><a aria-label="8"></a>  <span class="fu">unnest</span>(<span class="at">cols=</span>results)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="smaller">
 <p>Note the <code>unnest()</code> function at the end: the model field <code>$results</code> is actualy a table, so without that function in <code>fit_quality</code> we would get a column <code>results</code> that contains a list of tables. The <code>unnest()</code> function flattens this list of tables in place.</p>
@@ -546,14 +549,14 @@ Tuning parameter 'intercept' was held constant at a
 <p>Now we can finally make a plot of the metrics as a function of the polynomial degree:</p>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>fit_quality <span class="sc">%&gt;%</span> </span>
-<span id="cb9-2"><a></a>  <span class="fu">select</span>(<span class="sc">-</span>intercept, <span class="sc">-</span><span class="fu">starts_with</span>(<span class="st">"Rsquared"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-3"><a></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>degree, <span class="at">names_to =</span> <span class="st">"metric"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>degree, <span class="at">y=</span>value, <span class="at">group=</span>metric, <span class="at">color=</span>metric)) <span class="sc">+</span> </span>
-<span id="cb9-5"><a></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb9-6"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb9-7"><a></a>  <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
-<span id="cb9-8"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="fu">c</span>(<span class="dv">1</span>,deg))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-label="1"></a>fit_quality <span class="sc">%&gt;%</span> </span>
+<span id="cb9-2"><a aria-label="2"></a>  <span class="fu">select</span>(<span class="sc">-</span>intercept, <span class="sc">-</span><span class="fu">starts_with</span>(<span class="st">"Rsquared"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-3"><a aria-label="3"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>degree, <span class="at">names_to =</span> <span class="st">"metric"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-4"><a aria-label="4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>degree, <span class="at">y=</span>value, <span class="at">group=</span>metric, <span class="at">color=</span>metric)) <span class="sc">+</span> </span>
+<span id="cb9-5"><a aria-label="5"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb9-6"><a aria-label="6"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb9-7"><a aria-label="7"></a>  <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb9-8"><a aria-label="8"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="fu">c</span>(<span class="dv">1</span>,deg))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div>
@@ -800,7 +803,7 @@ Tuning parameter 'intercept' was held constant at a
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],

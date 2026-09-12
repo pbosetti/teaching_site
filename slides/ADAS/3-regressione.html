@@ -8,8 +8,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.9.38">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.18">
 
   <meta name="author" content="Paolo Bosetti">
   <title>Paolo Bosetti – Regressione</title>
@@ -22,10 +22,13 @@
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
     */
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -162,13 +165,13 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Regressione</h1>
-  <p class="subtitle">Analisi Dati e Statistica, 2025–26<br>
+  <p class="subtitle">Analisi Dati e Statistica, 2026–27<br>
 <img data-src="images/by-nc-sa.png" height="30"></p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Paolo Bosetti 
+Paolo Bosetti
 </div>
         <p class="quarto-title-affiliation">
             Università di Trento, Dipartimento di Ingegneria Industriale
@@ -176,7 +179,7 @@ Paolo Bosetti
     </div>
 </div>
 
-  <p class="date"><em>Ultimo aggiornamento:</em> 17/06/2026</p>
+  <p class="date"><em>Ultimo aggiornamento:</em> 12/09/2026</p>
 </section>
 <section>
 <section id="regressione" class="title-slide slide level1 center">
@@ -689,7 +692,7 @@ y_i &amp;=  \hat y_i + g(\varepsilon_i) \\
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
-<p>paolo.bosetti@unitn.it — <a href="https://paolobosetti.quarto.pub/slides/ADAS/">https://paolobosetti.quarto.pub/slides/ADAS/</a></p>
+<p>paolo.bosetti@unitn.it — <a href="https://pbosetti.github.io/teaching_site/slides/ADAS/">https://pbosetti.github.io/teaching_site/slides/ADAS/</a></p>
 </div>
 </div></div>
 
@@ -878,7 +881,7 @@ y_i &amp;=  \hat y_i + g(\varepsilon_i) \\
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],

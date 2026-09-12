@@ -8,8 +8,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.9.38">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.18">
 
   <meta name="author" content="Paolo Bosetti">
   <title>Paolo Bosetti – Statistica Descrittiva e Inferenziale</title>
@@ -22,10 +22,13 @@
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
     */
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -2000,13 +2003,13 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Statistica Descrittiva e Inferenziale</h1>
-  <p class="subtitle">Analisi Dati e Statistica, 2025–26<br>
+  <p class="subtitle">Analisi Dati e Statistica, 2026–27<br>
 <img data-src="images/by-nc-sa.png" height="30"></p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Paolo Bosetti 
+Paolo Bosetti
 </div>
         <p class="quarto-title-affiliation">
             Università di Trento, Dipartimento di Ingegneria Industriale
@@ -2014,7 +2017,7 @@ Paolo Bosetti
     </div>
 </div>
 
-  <p class="date"><em>Ultimo aggiornamento:</em> 17/06/2026</p>
+  <p class="date"><em>Ultimo aggiornamento:</em> 12/09/2026</p>
 </section>
 <section>
 <section id="statistica-descrittiva" class="title-slide slide level1 center">
@@ -2150,11 +2153,11 @@ Paolo Bosetti
 <h2>Proprietà degli operatori</h2>
 <p>Gli operatori valore atteso e varianza godono delle seguenti proprietà:</p>
 <p><span class="math display">\[
-\begin{array}{l}
-E(c)&amp;=&amp;c\\
-E(x)&amp;=&amp;\mu\\
-E(cx)&amp;=&amp;cE(x)=c\mu\\
-V(c)&amp;=&amp;0\\
+\begin{array}{rcl}
+E(c) &amp;=&amp; c\\
+E(x) &amp;=&amp; \mu\\
+E(cx) &amp;=&amp; cE(x)=c\mu\\
+V(c) &amp;=&amp; 0\\
 V(x)&amp;=&amp;\sigma^2\\
 V(cx)&amp;=&amp;c^2V(x)=c^2\sigma^2\\
 E(x+y)&amp;=&amp;E(x)+E(y)=\mu_x+\mu_y\\
@@ -3262,10 +3265,10 @@ p\textrm{-value} &amp;=&amp; CDF_t^{\pm}(t_0, k)
 <p>Il test a due campioni sopra visto assume che i due campioni siano <strong>omoschedastici</strong>. Se non lo sono, è necessario rivedere la definizione di <span class="math inline">\(t_0\)</span> come segue (<strong>Test di Welch</strong>): <span class="math display">\[
 t_0 = \frac{\bar{y_1} - \bar{y_2}}{\sqrt{S_1^2/n_1 + S_2^2/n_2}};~~~\nu=\frac{(S_1^2/n_1 + S_2^2/n_2)^2}{\frac{(S_1^2/n_1)^2}{n_1-1}+\frac{(S_2^2/n_2)^2}{n_2-1}}
 \]</span> L’ipotesi di omoschedasticità va preliminarmente verificata con un <strong>test della varianza</strong>: <span class="math display">\[
-\begin{eqnarray}
+\begin{aligned}
 H_0 :~&amp; \sigma^2_1 = \sigma^2_2 \\
 H_1 :~&amp; \sigma^2_1 \neq \sigma^2_2
-\end{eqnarray},~~~F_0=\frac{S^2_1}{S^2_2}\sim\mathcal{F}_{n_1-1, n_2-1}
+\end{aligned},~~~F_0=\frac{S^2_1}{S^2_2}\sim\mathcal{F}_{n_1-1, n_2-1}
 \]</span> Cioè se il <em>p</em>-value associato a <span class="math inline">\(F_0\)</span> è piccolo, si assume che i campioni non siano omoschedastici e quindi si effettua il test di Welch; altrimenti vale il test di Student</p>
 </section>
 <section id="il-test-di-student-accoppiato" class="slide level2">
@@ -3840,10 +3843,10 @@ F_0 = \frac{SS_{tr}/(a-1)}{SS_E/(N-a)}=\frac{MS_{tr}}{MS_E} \sim F_{a-1,N-a}
 <h2>Test di Tukey</h2>
 <p>Il test valuta <strong>contemporaneamente</strong> tutte le seguenti coppie di ipotesi: <span class="math display">\[
 \left.
-\begin{eqnarray}
+\begin{array}{rcl}
 H_0&amp;:&amp;~\mu_i=\mu_j \\
 H_1&amp;:&amp;~\mu_i\neq \mu_j
-\end{eqnarray}
+\end{array}
 \right\} ~~\forall i\neq j
 \]</span> Per ogni coppia <span class="math inline">\((i,j),~i\neq j\)</span> si ha la statistica di test: <span class="math display">\[
 q_{0,ij}=\frac{|\bar y_{i.}-\bar y_{j.}|}{S_{p,ij}\sqrt{2/n}}\sim\mathcal{Q}_{a,k}
@@ -4037,7 +4040,7 @@ H_1:~&amp;\mu \neq \mu_0 + \sigma
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
-<p>paolo.bosetti@unitn.it — <a href="https://paolobosetti.quarto.pub/slides/ADAS/">https://paolobosetti.quarto.pub/slides/ADAS/</a></p>
+<p>paolo.bosetti@unitn.it — <a href="https://pbosetti.github.io/teaching_site/slides/ADAS/">https://pbosetti.github.io/teaching_site/slides/ADAS/</a></p>
 </div>
 </div></div>
 
@@ -4228,7 +4231,7 @@ H_1:~&amp;\mu \neq \mu_0 + \sigma
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],

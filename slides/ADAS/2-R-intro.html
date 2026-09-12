@@ -8,8 +8,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.9.38">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.18">
 
   <meta name="author" content="Paolo Bosetti">
   <title>Paolo Bosetti – Introduzione al Linguaggio R</title>
@@ -22,10 +22,13 @@
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
     */
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -2065,13 +2068,13 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Introduzione al Linguaggio R</h1>
-  <p class="subtitle">Analisi Dati e Statistica, 2025–26<br>
+  <p class="subtitle">Analisi Dati e Statistica, 2026–27<br>
 <img data-src="images/by-nc-sa.png" height="30"></p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Paolo Bosetti 
+Paolo Bosetti
 </div>
         <p class="quarto-title-affiliation">
             Università di Trento, Dipartimento di Ingegneria Industriale
@@ -2079,7 +2082,7 @@ Paolo Bosetti
     </div>
 </div>
 
-  <p class="date"><em>Ultimo aggiornamento:</em> 17/06/2026</p>
+  <p class="date"><em>Ultimo aggiornamento:</em> 12/09/2026</p>
 </section>
 <section>
 <section id="introduzione-a-r" class="title-slide slide level1 center">
@@ -2128,26 +2131,26 @@ Paolo Bosetti
 <h2>Assegnazioni</h2>
 <p>Ogni linguaggio usa delle <strong>variabili</strong> per memorizzare valori ed oggetti mediante un’operazione di <strong>assegnazione</strong>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>a <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb1-2"><a></a><span class="co"># ma anche</span></span>
-<span id="cb1-3"><a></a>b <span class="ot">=</span> <span class="dv">2</span></span>
-<span id="cb1-4"><a></a><span class="co"># tuttavia si preferisce la notazione a freccia, </span></span>
-<span id="cb1-5"><a></a><span class="co"># perché funziona anche così:</span></span>
-<span id="cb1-6"><a></a><span class="dv">3</span> <span class="ot">-&gt;</span> c</span>
-<span id="cb1-7"><a></a><span class="co"># per visualizzare il valore di una variabile:</span></span>
-<span id="cb1-8"><a></a>c</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-label="1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb1-2"><a aria-label="2"></a><span class="co"># ma anche</span></span>
+<span id="cb1-3"><a aria-label="3"></a>b <span class="ot">=</span> <span class="dv">2</span></span>
+<span id="cb1-4"><a aria-label="4"></a><span class="co"># tuttavia si preferisce la notazione a freccia, </span></span>
+<span id="cb1-5"><a aria-label="5"></a><span class="co"># perché funziona anche così:</span></span>
+<span id="cb1-6"><a aria-label="6"></a><span class="dv">3</span> <span class="ot">-&gt;</span> c</span>
+<span id="cb1-7"><a aria-label="7"></a><span class="co"># per visualizzare il valore di una variabile:</span></span>
+<span id="cb1-8"><a aria-label="8"></a>c</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="co"># in un colpo solo, assegnazione e visualizzazione:</span></span>
-<span id="cb3-2"><a></a>(d <span class="ot">&lt;-</span> <span class="st">"stringa"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-label="1"></a><span class="co"># in un colpo solo, assegnazione e visualizzazione:</span></span>
+<span id="cb3-2"><a aria-label="2"></a>(d <span class="ot">&lt;-</span> <span class="st">"stringa"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "stringa"</code></pre>
 </div>
 </div>
 <p>L’esecuzione di un comando fornisce direttamente un risultato:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="dv">12</span><span class="sc">*</span><span class="dv">12</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-label="1"></a><span class="dv">12</span><span class="sc">*</span><span class="dv">12</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 144</code></pre>
 </div>
@@ -2189,19 +2192,19 @@ Paolo Bosetti
 <li>Quando si mescolano tipi differenti, ad es. in un vettore, R li trasforma in un tipo comune:</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">c</span>(<span class="dv">1</span>L, <span class="dv">7</span>, <span class="st">"2"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-label="1"></a><span class="fu">c</span>(<span class="dv">1</span>L, <span class="dv">7</span>, <span class="st">"2"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "1" "7" "2"</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">c</span>(T, <span class="dv">0</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-label="1"></a><span class="fu">c</span>(T, <span class="dv">0</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1 0</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">as.numeric</span>(<span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"1"</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-label="1"></a><span class="fu">as.numeric</span>(<span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"1"</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] NA  1</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">as.character</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">1.7</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a aria-label="1"></a><span class="fu">as.character</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">1.7</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "1"   "1.7"</code></pre>
 </div>
@@ -2209,14 +2212,14 @@ Paolo Bosetti
 </section>
 <section id="vettori" class="slide level2">
 <h2>Vettori</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="co"># Si costruiscono con l'operatore/funzione c():</span></span>
-<span id="cb15-2"><a></a>v1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">2</span>, <span class="fl">7.5</span>, <span class="dv">3</span>)</span>
-<span id="cb15-3"><a></a><span class="co"># oppure con una sequenza:</span></span>
-<span id="cb15-4"><a></a>v2 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb15-5"><a></a><span class="co"># anche con passo specificato:</span></span>
-<span id="cb15-6"><a></a>v3 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="fl">0.5</span>)</span>
-<span id="cb15-7"><a></a><span class="co"># Le funzioni si chiamano con le parentesi tonde, </span></span>
-<span id="cb15-8"><a></a><span class="co"># separando argomenti con ,</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a aria-label="1"></a><span class="co"># Si costruiscono con l'operatore/funzione c():</span></span>
+<span id="cb15-2"><a aria-label="2"></a>v1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">2</span>, <span class="fl">7.5</span>, <span class="dv">3</span>)</span>
+<span id="cb15-3"><a aria-label="3"></a><span class="co"># oppure con una sequenza:</span></span>
+<span id="cb15-4"><a aria-label="4"></a>v2 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb15-5"><a aria-label="5"></a><span class="co"># anche con passo specificato:</span></span>
+<span id="cb15-6"><a aria-label="6"></a>v3 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="fl">0.5</span>)</span>
+<span id="cb15-7"><a aria-label="7"></a><span class="co"># Le funzioni si chiamano con le parentesi tonde, </span></span>
+<span id="cb15-8"><a aria-label="8"></a><span class="co"># separando argomenti con ,</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Si noti in questo caso l’output per <code>v3</code>:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -2230,23 +2233,23 @@ Paolo Bosetti
 <h2>Vettori</h2>
 <p>Le variabili sono nativamente dei vettori. Gli scalari sono solo vettori di dimensione 1:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>a <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb17-2"><a></a><span class="fu">length</span>(a)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a aria-label="1"></a>a <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb17-2"><a aria-label="2"></a><span class="fu">length</span>(a)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">length</span>(v3)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a aria-label="1"></a><span class="fu">length</span>(v3)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 19</code></pre>
 </div>
 </div>
 <p>Le funzioni e gli operatori agiscono quindi sempre su vettori (sono <em>vettorializzati</em>):</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>a <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a aria-label="1"></a>a <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 20</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>v3 <span class="sc">+</span> <span class="dv">2</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a aria-label="1"></a>v3 <span class="sc">+</span> <span class="dv">2</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1]  3.0  3.5  4.0  4.5  5.0  5.5  6.0  6.5  7.0  7.5  8.0
 [12]  8.5  9.0  9.5 10.0 10.5 11.0 11.5 12.0</code></pre>
@@ -2278,15 +2281,15 @@ Paolo Bosetti
 <ul>
 <li>Si costruiscono con la funzione <code>matrix()</code></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>(m1 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">2</span>, <span class="dv">5</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a aria-label="1"></a>(m1 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">2</span>, <span class="dv">5</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>la funzione <code>array()</code> costruisce matrici <em>n</em>-dimensionali</li>
 <li>Una matrice è un vettore con attributo <code>dim</code>:</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="fu">attr</span>(m1, <span class="st">"dim"</span>)</span>
-<span id="cb26-2"><a></a>v <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span></span>
-<span id="cb26-3"><a></a><span class="fu">attr</span>(v, <span class="st">"dim"</span>) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>) <span class="co"># equivale a dim(m) &lt;- c(2,2)</span></span>
-<span id="cb26-4"><a></a>v</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a aria-label="1"></a><span class="fu">attr</span>(m1, <span class="st">"dim"</span>)</span>
+<span id="cb26-2"><a aria-label="2"></a>v <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span></span>
+<span id="cb26-3"><a aria-label="3"></a><span class="fu">attr</span>(v, <span class="st">"dim"</span>) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>) <span class="co"># equivale a dim(m) &lt;- c(2,2)</span></span>
+<span id="cb26-4"><a aria-label="4"></a>v</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="fattori" class="slide level2">
 <h2>Fattori</h2>
@@ -2295,20 +2298,20 @@ Paolo Bosetti
 <li>Rappresenta variabili categoriche (ordinate o non)</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>(vf <span class="ot">&lt;-</span> <span class="fu">factor</span>(LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>], <span class="at">levels=</span>LETTERS[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">4</span>)], <span class="at">ordered=</span>T))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a aria-label="1"></a>(vf <span class="ot">&lt;-</span> <span class="fu">factor</span>(LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>], <span class="at">levels=</span>LETTERS[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">4</span>)], <span class="at">ordered=</span>T))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] A B C D E
 Levels: B &lt; A &lt; C &lt; E &lt; D</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="fu">class</span>(vf)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a aria-label="1"></a><span class="fu">class</span>(vf)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "ordered" "factor" </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="fu">typeof</span>(vf)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a aria-label="1"></a><span class="fu">typeof</span>(vf)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "integer"</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a>vf[<span class="dv">1</span>] <span class="sc">&lt;</span> vf[<span class="dv">3</span>]</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a aria-label="1"></a>vf[<span class="dv">1</span>] <span class="sc">&lt;</span> vf[<span class="dv">3</span>]</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
@@ -2319,18 +2322,18 @@ Levels: B &lt; A &lt; C &lt; E &lt; D</code></pre>
 <p>Una stringa può essere pensata come un vettore di caratteri di lunghezza maggiore di 1.</p>
 <p>Le funzioni di manipolazione di stringhe più comuni sono <code>cat()</code>, <code>paste()</code> e <code>paste0()</code>. La prima serve a stampare la stringa tale e quale:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a><span class="fu">cat</span>(<span class="st">"Ciao!"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a aria-label="1"></a><span class="fu">cat</span>(<span class="st">"Ciao!"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Ciao!</code></pre>
 </div>
 </div>
 <p>Le due funzioni <code>paste()</code> e <code>paste0()</code> servono a unire due o più stringhe, la prima inserendo uno spazio in mezzo, la seconda senza spazio:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a><span class="fu">paste</span>(<span class="st">"Ciao,"</span>, <span class="st">"Mondo!"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a aria-label="1"></a><span class="fu">paste</span>(<span class="st">"Ciao,"</span>, <span class="st">"Mondo!"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Ciao, Mondo!"</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a><span class="fu">paste0</span>(<span class="st">"Ciao,"</span>, <span class="st">"Mondo!"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a aria-label="1"></a><span class="fu">paste0</span>(<span class="st">"Ciao,"</span>, <span class="st">"Mondo!"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Ciao,Mondo!"</code></pre>
 </div>
@@ -2344,19 +2347,19 @@ Levels: B &lt; A &lt; C &lt; E &lt; D</code></pre>
 <li>se un indice manca, significa “tutte le righe|colonne”</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a></a>v3[<span class="dv">3</span>]</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a aria-label="1"></a>v3[<span class="dv">3</span>]</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a></a>m1[<span class="dv">1</span>,<span class="dv">1</span>]</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a aria-label="1"></a>m1[<span class="dv">1</span>,<span class="dv">1</span>]</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a></a>m1[<span class="dv">2</span>,]</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a aria-label="1"></a>m1[<span class="dv">2</span>,]</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  2  4  6  8 10</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a></a>m1[,]</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a aria-label="1"></a>m1[,]</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1] [,2] [,3] [,4] [,5]
 [1,]    1    3    5    7    9
@@ -2370,18 +2373,18 @@ Levels: B &lt; A &lt; C &lt; E &lt; D</code></pre>
 <li>Un indice può essere anche un vettore di posizioni o un vettore di valori booleani</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a></a>v1[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">1</span>)] <span class="co"># estrae solo gli elementi 2, 4, e 1</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a aria-label="1"></a>v1[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">1</span>)] <span class="co"># estrae solo gli elementi 2, 4, e 1</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  2  3 10</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a></a>v2[v2 <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>] <span class="co"># estrae gli elementi divisibili per 2</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a aria-label="1"></a>v2[v2 <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>] <span class="co"># estrae gli elementi divisibili per 2</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  2  4  6  8 10</code></pre>
 </div>
 </div>
 <p>Il secondo caso funziona grazie all’<strong>operatore modulo</strong>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a></a>v2 <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span> <span class="co"># operatore modulo (resto)</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a aria-label="1"></a>v2 <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span> <span class="co"># operatore modulo (resto)</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE
 [10]  TRUE</code></pre>
@@ -2426,18 +2429,18 @@ Levels: B &lt; A &lt; C &lt; E &lt; D</code></pre>
 <li>possono essere assegnate a variabili e passate a funzioni</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a></a>my_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(x) x<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb55-2"><a></a><span class="fu">my_fun</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a aria-label="1"></a>my_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(x) x<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb55-2"><a aria-label="2"></a><span class="fu">my_fun</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  1  4  9 16 25</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a></a>your_fun <span class="ot">&lt;-</span> my_fun</span>
-<span id="cb57-2"><a></a><span class="fu">your_fun</span>(<span class="dv">6</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a aria-label="1"></a>your_fun <span class="ot">&lt;-</span> my_fun</span>
+<span id="cb57-2"><a aria-label="2"></a><span class="fu">your_fun</span>(<span class="dv">6</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 36</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a></a>my_apply <span class="ot">&lt;-</span> <span class="cf">function</span>(x, f) <span class="fu">f</span>(x)</span>
-<span id="cb59-2"><a></a><span class="fu">my_apply</span>(<span class="dv">10</span>, my_fun)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a aria-label="1"></a>my_apply <span class="ot">&lt;-</span> <span class="cf">function</span>(x, f) <span class="fu">f</span>(x)</span>
+<span id="cb59-2"><a aria-label="2"></a><span class="fu">my_apply</span>(<span class="dv">10</span>, my_fun)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 100</code></pre>
 </div>
@@ -2454,10 +2457,10 @@ Levels: B &lt; A &lt; C &lt; E &lt; D</code></pre>
 <li>Abbiamo visto cose come <code>dim(v) &lt;- c(2,3)</code>: come si dichiarano?</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a></a><span class="st">`</span><span class="at">pwr&lt;-</span><span class="st">`</span> <span class="ot">&lt;-</span> <span class="cf">function</span>(obj, value) obj <span class="sc">**</span> value</span>
-<span id="cb61-2"><a></a>a <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb61-3"><a></a><span class="fu">pwr</span>(a) <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb61-4"><a></a>a</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a aria-label="1"></a><span class="st">`</span><span class="at">pwr&lt;-</span><span class="st">`</span> <span class="ot">&lt;-</span> <span class="cf">function</span>(obj, value) obj <span class="sc">**</span> value</span>
+<span id="cb61-2"><a aria-label="2"></a>a <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb61-3"><a aria-label="3"></a><span class="fu">pwr</span>(a) <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb61-4"><a aria-label="4"></a>a</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1024</code></pre>
 </div>
@@ -2524,18 +2527,18 @@ Levels: B &lt; A &lt; C &lt; E &lt; D</code></pre>
 <li>Gli argomenti possono avere un default, in tal caso sono opzionali</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y, <span class="at">n=</span><span class="dv">10</span>, <span class="at">test=</span>F) { </span>
-<span id="cb63-2"><a></a>  <span class="fu">ifelse</span>(test, <span class="dv">0</span>, x<span class="sc">^</span>y <span class="sc">+</span> n)</span>
-<span id="cb63-3"><a></a>}</span>
-<span id="cb63-4"><a></a><span class="fu">f</span>(<span class="dv">2</span>, <span class="dv">10</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a aria-label="1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y, <span class="at">n=</span><span class="dv">10</span>, <span class="at">test=</span>F) { </span>
+<span id="cb63-2"><a aria-label="2"></a>  <span class="fu">ifelse</span>(test, <span class="dv">0</span>, x<span class="sc">^</span>y <span class="sc">+</span> n)</span>
+<span id="cb63-3"><a aria-label="3"></a>}</span>
+<span id="cb63-4"><a aria-label="4"></a><span class="fu">f</span>(<span class="dv">2</span>, <span class="dv">10</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1034</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a></a><span class="fu">f</span>(<span class="at">test=</span>F, <span class="at">y=</span><span class="dv">10</span>, <span class="at">x=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a aria-label="1"></a><span class="fu">f</span>(<span class="at">test=</span>F, <span class="at">y=</span><span class="dv">10</span>, <span class="at">x=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1034</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a></a><span class="fu">f</span>(<span class="at">test=</span>T)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a aria-label="1"></a><span class="fu">f</span>(<span class="at">test=</span>T)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0</code></pre>
 </div>
@@ -2548,12 +2551,12 @@ Levels: B &lt; A &lt; C &lt; E &lt; D</code></pre>
 <li>L’operatore <code>&lt;-</code> è valido ovunque, anche come argomento di funzione:</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a></a><span class="fu">system.time</span>(m <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="dv">1</span><span class="sc">:</span><span class="fl">1E6</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a aria-label="1"></a><span class="fu">system.time</span>(m <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="dv">1</span><span class="sc">:</span><span class="fl">1E6</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user  system elapsed 
   0.002   0.000   0.002 </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a></a>m</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a aria-label="1"></a>m</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 500000.5</code></pre>
 </div>
@@ -2566,8 +2569,8 @@ Levels: B &lt; A &lt; C &lt; E &lt; D</code></pre>
 <li>Si tratta di tabelle organizzate per colonne, internamente omogenee ma potenzialmente di tipi differenti</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">A=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">B=</span>letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>])</span>
-<span id="cb73-2"><a></a><span class="fu">head</span>(df)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a aria-label="1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">A=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">B=</span>letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>])</span>
+<span id="cb73-2"><a aria-label="2"></a><span class="fu">head</span>(df)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  A B
 1 1 a
@@ -2586,19 +2589,19 @@ Levels: B &lt; A &lt; C &lt; E &lt; D</code></pre>
 <li>Oppure selezionando una colonna con la notazione <code>$</code></li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a></a>df[<span class="dv">2</span>,<span class="dv">2</span>]</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a aria-label="1"></a>df[<span class="dv">2</span>,<span class="dv">2</span>]</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "b"</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a></a>df<span class="sc">$</span>B[<span class="dv">2</span>]</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a aria-label="1"></a>df<span class="sc">$</span>B[<span class="dv">2</span>]</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "b"</code></pre>
 </div>
 </div>
 <p>Anche in assegnazione:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a></a>df<span class="sc">$</span>C <span class="ot">&lt;-</span> LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span>
-<span id="cb79-2"><a></a><span class="fu">head</span>(df, <span class="dv">3</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a aria-label="1"></a>df<span class="sc">$</span>C <span class="ot">&lt;-</span> LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span>
+<span id="cb79-2"><a aria-label="2"></a><span class="fu">head</span>(df, <span class="dv">3</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  A B C
 1 1 a A
@@ -2618,7 +2621,7 @@ Levels: B &lt; A &lt; C &lt; E &lt; D</code></pre>
 <p>Una lista è una sequenza di coppie chiave-valore, cioè una sequenza di valori identificati da un nome, o chiave.</p>
 <p>A differenza dei vettori (che sono <strong>sempre</strong> omogenei) possono contenere valori eterogenei.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a></a>(l <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">A=</span><span class="st">"uno"</span>, <span class="at">B=</span><span class="st">"due"</span>, <span class="at">C=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a aria-label="1"></a>(l <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">A=</span><span class="st">"uno"</span>, <span class="at">B=</span><span class="st">"due"</span>, <span class="at">C=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$A
 [1] "uno"
@@ -2650,16 +2653,16 @@ $C
 <h2>Ordinamento di vettori</h2>
 <p>Per ordinare un vettore si usa la funzione <code>sort</code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb83"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a></a>v <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">10</span>)</span>
-<span id="cb83-2"><a></a><span class="fu">sort</span>(v)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb83"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a aria-label="1"></a>v <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">10</span>)</span>
+<span id="cb83-2"><a aria-label="2"></a><span class="fu">sort</span>(v)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3.389578 4.349115 6.155680 9.070275 9.173870</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb85"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a></a><span class="fu">rev</span>(<span class="fu">sort</span>(v))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb85"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a aria-label="1"></a><span class="fu">rev</span>(<span class="fu">sort</span>(v))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 9.173870 9.070275 6.155680 4.349115 3.389578</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb87"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a></a><span class="fu">sort</span>(v, <span class="at">decreasing =</span> T)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb87"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a aria-label="1"></a><span class="fu">sort</span>(v, <span class="at">decreasing =</span> T)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 9.173870 9.070275 6.155680 4.349115 3.389578</code></pre>
 </div>
@@ -2669,8 +2672,8 @@ $C
 <h2>Ordinamento di dataframe</h2>
 <p>Per riordinare un data frame si estraggono gli indici ordinati:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb89"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">A=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">B=</span><span class="fu">runif</span>(<span class="dv">5</span>))</span>
-<span id="cb89-2"><a></a>df[<span class="fu">order</span>(df<span class="sc">$</span>B),]</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb89"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a aria-label="1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">A=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">B=</span><span class="fu">runif</span>(<span class="dv">5</span>))</span>
+<span id="cb89-2"><a aria-label="2"></a>df[<span class="fu">order</span>(df<span class="sc">$</span>B),]</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  A         B
 1 1 0.2016819
@@ -2682,7 +2685,7 @@ $C
 </div>
 <p>La funzione <code>order</code> ritorna appunto gli indici di un vettore ordinati secondo i valori:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb91"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a></a><span class="fu">order</span>(df<span class="sc">$</span>B)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb91"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a aria-label="1"></a><span class="fu">order</span>(df<span class="sc">$</span>B)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1 5 4 2 3</code></pre>
 </div>
@@ -2693,22 +2696,22 @@ $C
 <h2>Campionamento</h2>
 <p><em>Campionare</em> un insieme di dati (un vettore) significa estrarre un sottoinsieme (detto <strong>campione</strong>) di valori in maniera casuale. Si esegue con la funzione <code>sample</code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb93"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="co"># senza reinserimento</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb93"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a aria-label="1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="co"># senza reinserimento</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1]  2  3  1  5  7 10  6  4  9  8</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb95"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">replace =</span> T) <span class="co"># con reinserimento</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb95"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a aria-label="1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">replace =</span> T) <span class="co"># con reinserimento</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1]  9  5  5  9  9  5  5  2 10  9</code></pre>
 </div>
 </div>
 <p>La dimensione del campione può essere uguale (caso sopra) o più piccola dell’insieme iniziale:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb97"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">size =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb97"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a aria-label="1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">size =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1 4 3 6 2</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb99"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a></a><span class="fu">sample</span>(<span class="dv">10</span>) <span class="co"># generazione interi casuali senza ripetizione</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb99"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a aria-label="1"></a><span class="fu">sample</span>(<span class="dv">10</span>) <span class="co"># generazione interi casuali senza ripetizione</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] 10  6  7  4  8  9  2  1  3  5</code></pre>
 </div>
@@ -2718,7 +2721,7 @@ $C
 <h2>Griglie</h2>
 <p>Una <strong>griglia</strong> è una matrice che contiene tutte le combinazioni (ordinate) tra <span class="math inline">\(n\)</span> vettori di dimensioni possibilmente diverse. In R viene rappresentata come un data frame e costruita con la funzione <code>expand.grid</code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb101"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a></a>(df <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">A=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">B=</span><span class="fu">c</span>(<span class="st">"-"</span>, <span class="st">"+"</span>), <span class="at">D=</span><span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>)))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb101"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a aria-label="1"></a>(df <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">A=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">B=</span><span class="fu">c</span>(<span class="st">"-"</span>, <span class="st">"+"</span>), <span class="at">D=</span><span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>)))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   A B D
 1  1 - a
@@ -2747,7 +2750,7 @@ $C
 <p>Per aggregazione si intende raggruppare righe aventi elementi comuni in un data frame e applicare ad ogni gruppo una data funzione. È utile ad esempio per il calcolo di sub-totali.</p>
 <p>In R può essere eseguita mediante la funzione <code>by</code> o la funzione <code>aggregate</code> (cambia il tipo di output):</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb103"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a></a><span class="fu">by</span>(df<span class="sc">$</span>A, <span class="at">INDICES =</span> df<span class="sc">$</span>B, <span class="at">FUN=</span>sum)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb103"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a aria-label="1"></a><span class="fu">by</span>(df<span class="sc">$</span>A, <span class="at">INDICES =</span> df<span class="sc">$</span>B, <span class="at">FUN=</span>sum)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>df$B: -
 [1] 9
@@ -2755,7 +2758,7 @@ $C
 df$B: +
 [1] 9</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb105"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a></a><span class="fu">aggregate</span>(A<span class="sc">~</span>B, <span class="at">data =</span> df, <span class="at">FUN =</span> sum)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb105"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a aria-label="1"></a><span class="fu">aggregate</span>(A<span class="sc">~</span>B, <span class="at">data =</span> df, <span class="at">FUN =</span> sum)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  B A
 1 - 9
@@ -2767,15 +2770,15 @@ df$B: +
 <h2>Tabelle di contingenza</h2>
 <p>Una tabella di contingenza conta le occorrenze tra una coppia di colonne in un data frame:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb107"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a></a><span class="fu">head</span>(airquality, <span class="at">n =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb107"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a aria-label="1"></a><span class="fu">head</span>(airquality, <span class="at">n =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Ozone Solar.R Wind Temp Month Day
 1    41     190  7.4   67     5   1
 2    36     118  8.0   72     5   2
 3    12     149 12.6   74     5   3</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb109"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a></a><span class="fu">with</span>(airquality, <span class="fu">table</span>(<span class="at">OzHi =</span> Ozone <span class="sc">&gt;</span> <span class="dv">80</span>, Month, </span>
-<span id="cb109-2"><a></a>                       <span class="at">useNA =</span> <span class="st">"ifany"</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb109"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a aria-label="1"></a><span class="fu">with</span>(airquality, <span class="fu">table</span>(<span class="at">OzHi =</span> Ozone <span class="sc">&gt;</span> <span class="dv">80</span>, Month, </span>
+<span id="cb109-2"><a aria-label="2"></a>                       <span class="at">useNA =</span> <span class="st">"ifany"</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       Month
 OzHi     5  6  7  8  9
@@ -2804,8 +2807,8 @@ OzHi     5  6  7  8  9
 <li>È anche utile <code>tapply()</code>, che opera su una tabella analogamente alle funzioni di aggregazione:</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb111"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a></a><span class="fu">round</span>(<span class="fu">with</span>(airquality, </span>
-<span id="cb111-2"><a></a>           <span class="fu">tapply</span>(Ozone, Month, mean, <span class="at">na.rm=</span>T)), <span class="dv">1</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb111"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a aria-label="1"></a><span class="fu">round</span>(<span class="fu">with</span>(airquality, </span>
+<span id="cb111-2"><a aria-label="2"></a>           <span class="fu">tapply</span>(Ozone, Month, mean, <span class="at">na.rm=</span>T)), <span class="dv">1</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   5    6    7    8    9 
 23.6 29.4 59.1 60.0 31.4 </code></pre>
@@ -2813,7 +2816,7 @@ OzHi     5  6  7  8  9
 </div>
 <p>Con <code>aggregate()</code> si farebbe:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb113"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a></a><span class="fu">aggregate</span>(Ozone<span class="sc">~</span>Month, <span class="at">data=</span>airquality, <span class="at">FUN=</span>mean, <span class="at">ra.rm=</span>T)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb113"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a aria-label="1"></a><span class="fu">aggregate</span>(Ozone<span class="sc">~</span>Month, <span class="at">data=</span>airquality, <span class="at">FUN=</span>mean, <span class="at">ra.rm=</span>T)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Month    Ozone
 1     5 23.61538
@@ -2847,7 +2850,7 @@ x y z
 2.1 2.5 3.9
 3.8 2.2 6.8</code></pre>
 <p>Un simile file può essere importato come data frame in questo modo:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb116"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a></a>df <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"data_file.txt"</span>, <span class="at">header=</span>T, <span class="at">sep=</span><span class="st">" "</span>, <span class="at">comment.char=</span><span class="st">"#"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb116"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a aria-label="1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"data_file.txt"</span>, <span class="at">header=</span>T, <span class="at">sep=</span><span class="st">" "</span>, <span class="at">comment.char=</span><span class="st">"#"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <p>La funzione <code>read.table()</code> dispone di numerose opzioni che consentono di gestire tutti i possibili casi in cui file contenga campi separati da caratteri specifici (spazi od altro)</p>
 </section>
 <section id="input-da-file-1" class="slide level2">
@@ -2859,7 +2862,7 @@ x     y     z
 2.1   2.5   3.9
 3.8   2.2   6.8</code></pre>
 <p>Un simile file può essere importato come data frame in questo modo:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb118"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a></a>df <span class="ot">&lt;-</span> <span class="fu">read.fwf</span>(<span class="st">"data_file.txt"</span>, <span class="at">widths=</span><span class="dv">5</span>, <span class="at">header=</span>T, <span class="at">skip=</span><span class="dv">1</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb118"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a aria-label="1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.fwf</span>(<span class="st">"data_file.txt"</span>, <span class="at">widths=</span><span class="dv">5</span>, <span class="at">header=</span>T, <span class="at">skip=</span><span class="dv">1</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Il parametro <code>skip=1</code> richiede di saltare la prima linea (commento)</p>
 </section>
 <section id="input-da-file-csv" class="slide level2">
@@ -2884,7 +2887,7 @@ x,y,z
 <li><code>write.csv()</code> e <code>write.csv2()</code></li>
 </ul>
 <p>Tutte queste funzioni hanno due argomenti obbligatori: il data frame da salvare e il file di destinazione:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb120"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a></a><span class="fu">write.csv</span>(df, <span class="st">"data.csv"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb120"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a aria-label="1"></a><span class="fu">write.csv</span>(df, <span class="st">"data.csv"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Altri argomenti opzionali servono per personalizzare il risultato.</p>
 </section>
 <section id="tidyverse" class="slide level2">
@@ -2931,56 +2934,56 @@ x,y,z
 </section>
 <section id="notazione-infissa" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Notazione infissa</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb121"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb121-1" class="hljs-ln-code"><a></a><span class="co"># creo l'istogramma di un campione di 10 elementi da 100 numeri casuali</span></span>
-<span id="cb121-2" class="hljs-ln-code"><a></a><span class="co"># infissa:</span></span>
-<span id="cb121-3" class="hljs-ln-code"><a></a><span class="fu">hist</span>(<span class="fu">sample</span>(<span class="fu">rnorm</span>(<span class="dv">100</span>), <span class="dv">10</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb121"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb121-1" class="hljs-ln-code"><a aria-label="1"></a><span class="co"># creo l'istogramma di un campione di 10 elementi da 100 numeri casuali</span></span>
+<span id="cb121-2" class="hljs-ln-code"><a aria-label="2"></a><span class="co"># infissa:</span></span>
+<span id="cb121-3" class="hljs-ln-code"><a aria-label="3"></a><span class="fu">hist</span>(<span class="fu">sample</span>(<span class="fu">rnorm</span>(<span class="dv">100</span>), <span class="dv">10</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Poco leggibile, il primo passo dell’algoritmo è quello più interno</p>
 </section>
 <section id="notazione-infissa-sequenziata" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Notazione infissa, sequenziata</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb122"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb122-1" class="hljs-ln-code"><a></a><span class="co"># creo l'istogramma di un campione di 10 elementi da 100 numeri casuali</span></span>
-<span id="cb122-2" class="hljs-ln-code"><a></a><span class="co"># infissa:</span></span>
-<span id="cb122-3" class="hljs-ln-code"><a></a><span class="fu">hist</span>(<span class="fu">sample</span>(<span class="fu">rnorm</span>(<span class="dv">100</span>), <span class="dv">10</span>))</span>
-<span id="cb122-4" class="hljs-ln-code"><a></a></span>
-<span id="cb122-5" class="hljs-ln-code"><a></a><span class="co"># infissa sequenziata:</span></span>
-<span id="cb122-6" class="hljs-ln-code"><a></a>s <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
-<span id="cb122-7" class="hljs-ln-code"><a></a>c <span class="ot">&lt;-</span> <span class="fu">sample</span>(s, <span class="dv">10</span>)</span>
-<span id="cb122-8" class="hljs-ln-code"><a></a><span class="fu">hist</span>(c)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb122"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb122-1" class="hljs-ln-code"><a aria-label="1"></a><span class="co"># creo l'istogramma di un campione di 10 elementi da 100 numeri casuali</span></span>
+<span id="cb122-2" class="hljs-ln-code"><a aria-label="2"></a><span class="co"># infissa:</span></span>
+<span id="cb122-3" class="hljs-ln-code"><a aria-label="3"></a><span class="fu">hist</span>(<span class="fu">sample</span>(<span class="fu">rnorm</span>(<span class="dv">100</span>), <span class="dv">10</span>))</span>
+<span id="cb122-4" class="hljs-ln-code"><a aria-label="4"></a></span>
+<span id="cb122-5" class="hljs-ln-code"><a aria-label="5"></a><span class="co"># infissa sequenziata:</span></span>
+<span id="cb122-6" class="hljs-ln-code"><a aria-label="6"></a>s <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb122-7" class="hljs-ln-code"><a aria-label="7"></a>c <span class="ot">&lt;-</span> <span class="fu">sample</span>(s, <span class="dv">10</span>)</span>
+<span id="cb122-8" class="hljs-ln-code"><a aria-label="8"></a><span class="fu">hist</span>(c)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Più leggibile, l’algoritmo è più evidente, ma richiede la creazione di variabili intermedie</p>
 </section>
 <section id="notazione-prefissa" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Notazione prefissa</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb123"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb123-1" class="hljs-ln-code"><a></a><span class="co"># creo l'istogramma di un campione di 10 elementi da 100 numeri casuali</span></span>
-<span id="cb123-2" class="hljs-ln-code"><a></a><span class="co"># infissa:</span></span>
-<span id="cb123-3" class="hljs-ln-code"><a></a><span class="fu">hist</span>(<span class="fu">sample</span>(<span class="fu">rnorm</span>(<span class="dv">100</span>), <span class="dv">10</span>))</span>
-<span id="cb123-4" class="hljs-ln-code"><a></a></span>
-<span id="cb123-5" class="hljs-ln-code"><a></a><span class="co"># infissa sequenziata:</span></span>
-<span id="cb123-6" class="hljs-ln-code"><a></a>s <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
-<span id="cb123-7" class="hljs-ln-code"><a></a>c <span class="ot">&lt;-</span> <span class="fu">sample</span>(s, <span class="dv">10</span>)</span>
-<span id="cb123-8" class="hljs-ln-code"><a></a><span class="fu">hist</span>(c)</span>
-<span id="cb123-9" class="hljs-ln-code"><a></a></span>
-<span id="cb123-10" class="hljs-ln-code"><a></a><span class="co"># prefissa con pipe:</span></span>
-<span id="cb123-11" class="hljs-ln-code"><a></a><span class="fu">rnorm</span>(<span class="dv">100</span>) <span class="sc">%&gt;%</span> <span class="fu">sample</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span> <span class="fu">hist</span>()</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb123"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb123-1" class="hljs-ln-code"><a aria-label="1"></a><span class="co"># creo l'istogramma di un campione di 10 elementi da 100 numeri casuali</span></span>
+<span id="cb123-2" class="hljs-ln-code"><a aria-label="2"></a><span class="co"># infissa:</span></span>
+<span id="cb123-3" class="hljs-ln-code"><a aria-label="3"></a><span class="fu">hist</span>(<span class="fu">sample</span>(<span class="fu">rnorm</span>(<span class="dv">100</span>), <span class="dv">10</span>))</span>
+<span id="cb123-4" class="hljs-ln-code"><a aria-label="4"></a></span>
+<span id="cb123-5" class="hljs-ln-code"><a aria-label="5"></a><span class="co"># infissa sequenziata:</span></span>
+<span id="cb123-6" class="hljs-ln-code"><a aria-label="6"></a>s <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb123-7" class="hljs-ln-code"><a aria-label="7"></a>c <span class="ot">&lt;-</span> <span class="fu">sample</span>(s, <span class="dv">10</span>)</span>
+<span id="cb123-8" class="hljs-ln-code"><a aria-label="8"></a><span class="fu">hist</span>(c)</span>
+<span id="cb123-9" class="hljs-ln-code"><a aria-label="9"></a></span>
+<span id="cb123-10" class="hljs-ln-code"><a aria-label="10"></a><span class="co"># prefissa con pipe:</span></span>
+<span id="cb123-11" class="hljs-ln-code"><a aria-label="11"></a><span class="fu">rnorm</span>(<span class="dv">100</span>) <span class="sc">%&gt;%</span> <span class="fu">sample</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span> <span class="fu">hist</span>()</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Molto più leggibile, l’algoritmo sequenziale è evidente, non sono necessarie variabili intermedie</p>
 </section>
 <section id="notazione-prefissa-1" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Notazione prefissa</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="annotated-cell-68"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="annotated-cell-68-1" class="hljs-ln-code"><a href="#annotated-cell-68-1"></a><span class="co"># creo l'istogramma di un campione di 10 elementi da 100 numeri casuali</span></span>
-<span id="annotated-cell-68-2" class="hljs-ln-code"><a href="#annotated-cell-68-2"></a><span class="co"># infissa:</span></span>
-<span id="annotated-cell-68-3" class="hljs-ln-code"><a href="#annotated-cell-68-3"></a><span class="fu">hist</span>(<span class="fu">sample</span>(<span class="fu">rnorm</span>(<span class="dv">100</span>), <span class="dv">10</span>))</span>
-<span id="annotated-cell-68-4" class="hljs-ln-code"><a href="#annotated-cell-68-4"></a></span>
-<span id="annotated-cell-68-5" class="hljs-ln-code"><a href="#annotated-cell-68-5"></a><span class="co"># infissa sequenziata:</span></span>
-<span id="annotated-cell-68-6" class="hljs-ln-code"><a href="#annotated-cell-68-6"></a>s <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
-<span id="annotated-cell-68-7" class="hljs-ln-code"><a href="#annotated-cell-68-7"></a>c <span class="ot">&lt;-</span> <span class="fu">sample</span>(s, <span class="dv">10</span>)</span>
-<span id="annotated-cell-68-8" class="hljs-ln-code"><a href="#annotated-cell-68-8"></a><span class="fu">hist</span>(c)</span>
-<span id="annotated-cell-68-9" class="hljs-ln-code"><a href="#annotated-cell-68-9"></a></span>
-<span id="annotated-cell-68-10" class="hljs-ln-code"><a href="#annotated-cell-68-10"></a><span class="co"># prefissa con pipe:</span></span>
-<span id="annotated-cell-68-11" class="hljs-ln-code"><a href="#annotated-cell-68-11"></a><span class="fu">rnorm</span>(<span class="dv">100</span>) <span class="sc">%&gt;%</span> <span class="fu">sample</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span> <span class="fu">hist</span>()</span>
-<span id="annotated-cell-68-12" class="hljs-ln-code"><a href="#annotated-cell-68-12"></a></span>
-<span id="annotated-cell-68-13" class="hljs-ln-code"><a href="#annotated-cell-68-13"></a><span class="co"># anche su più righe:</span></span>
-<span id="annotated-cell-68-14" class="hljs-ln-code"><a href="#annotated-cell-68-14"></a><span class="fu">rnorm</span>(<span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
-<a class="code-annotation-anchor hljs-ln-code" data-target-cell="annotated-cell-68" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-68-15" class="code-annotation-target hljs-ln-code"><a href="#annotated-cell-68-15"></a>  <span class="fu">sample</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
-<a class="code-annotation-anchor hljs-ln-code" data-target-cell="annotated-cell-68" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-68-16" class="code-annotation-target hljs-ln-code"><a href="#annotated-cell-68-16"></a>  hist</span><div class="code-annotation-gutter-bg hljs-ln-code"></div><div class="code-annotation-gutter hljs-ln-code"></div></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="annotated-cell-68"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="annotated-cell-68-1" class="hljs-ln-code"><a href="#annotated-cell-68-1" aria-label="1"></a><span class="co"># creo l'istogramma di un campione di 10 elementi da 100 numeri casuali</span></span>
+<span id="annotated-cell-68-2" class="hljs-ln-code"><a href="#annotated-cell-68-2" aria-label="2"></a><span class="co"># infissa:</span></span>
+<span id="annotated-cell-68-3" class="hljs-ln-code"><a href="#annotated-cell-68-3" aria-label="3"></a><span class="fu">hist</span>(<span class="fu">sample</span>(<span class="fu">rnorm</span>(<span class="dv">100</span>), <span class="dv">10</span>))</span>
+<span id="annotated-cell-68-4" class="hljs-ln-code"><a href="#annotated-cell-68-4" aria-label="4"></a></span>
+<span id="annotated-cell-68-5" class="hljs-ln-code"><a href="#annotated-cell-68-5" aria-label="5"></a><span class="co"># infissa sequenziata:</span></span>
+<span id="annotated-cell-68-6" class="hljs-ln-code"><a href="#annotated-cell-68-6" aria-label="6"></a>s <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="annotated-cell-68-7" class="hljs-ln-code"><a href="#annotated-cell-68-7" aria-label="7"></a>c <span class="ot">&lt;-</span> <span class="fu">sample</span>(s, <span class="dv">10</span>)</span>
+<span id="annotated-cell-68-8" class="hljs-ln-code"><a href="#annotated-cell-68-8" aria-label="8"></a><span class="fu">hist</span>(c)</span>
+<span id="annotated-cell-68-9" class="hljs-ln-code"><a href="#annotated-cell-68-9" aria-label="9"></a></span>
+<span id="annotated-cell-68-10" class="hljs-ln-code"><a href="#annotated-cell-68-10" aria-label="10"></a><span class="co"># prefissa con pipe:</span></span>
+<span id="annotated-cell-68-11" class="hljs-ln-code"><a href="#annotated-cell-68-11" aria-label="11"></a><span class="fu">rnorm</span>(<span class="dv">100</span>) <span class="sc">%&gt;%</span> <span class="fu">sample</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span> <span class="fu">hist</span>()</span>
+<span id="annotated-cell-68-12" class="hljs-ln-code"><a href="#annotated-cell-68-12" aria-label="12"></a></span>
+<span id="annotated-cell-68-13" class="hljs-ln-code"><a href="#annotated-cell-68-13" aria-label="13"></a><span class="co"># anche su più righe:</span></span>
+<span id="annotated-cell-68-14" class="hljs-ln-code"><a href="#annotated-cell-68-14" aria-label="14"></a><span class="fu">rnorm</span>(<span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<a class="code-annotation-anchor hljs-ln-code" data-target-cell="annotated-cell-68" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-68-15" class="code-annotation-target hljs-ln-code"><a href="#annotated-cell-68-15" aria-label="15"></a>  <span class="fu">sample</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<a class="code-annotation-anchor hljs-ln-code" data-target-cell="annotated-cell-68" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-68-16" class="code-annotation-target hljs-ln-code"><a href="#annotated-cell-68-16" aria-label="16"></a>  hist</span><div class="code-annotation-gutter-bg hljs-ln-code"></div><div class="code-annotation-gutter hljs-ln-code"></div></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-68" data-target-annotation="1">1</dt>
 <dd>
@@ -3008,7 +3011,7 @@ x,y,z
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
-<p>paolo.bosetti@unitn.it — <a href="https://paolobosetti.quarto.pub/slides/ADAS/">https://paolobosetti.quarto.pub/slides/ADAS/</a></p>
+<p>paolo.bosetti@unitn.it — <a href="https://pbosetti.github.io/teaching_site/slides/ADAS/">https://pbosetti.github.io/teaching_site/slides/ADAS/</a></p>
 </div>
 </div></div>
 
@@ -3197,7 +3200,7 @@ x,y,z
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],

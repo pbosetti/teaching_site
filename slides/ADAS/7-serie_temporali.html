@@ -8,8 +8,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.9.38">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.18">
 
   <meta name="author" content="Paolo Bosetti">
   <title>Paolo Bosetti – Serie Temporali</title>
@@ -22,10 +22,13 @@
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
     */
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -228,13 +231,13 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Serie Temporali</h1>
-  <p class="subtitle">Analisi Dati e Statistica, 2025–26<br>
+  <p class="subtitle">Analisi Dati e Statistica, 2026–27<br>
 <img data-src="images/by-nc-sa.png" height="30"></p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Paolo Bosetti 
+Paolo Bosetti
 </div>
         <p class="quarto-title-affiliation">
             Università di Trento, Dipartimento di Ingegneria Industriale
@@ -242,7 +245,7 @@ Paolo Bosetti
     </div>
 </div>
 
-  <p class="date"><em>Ultimo aggiornamento:</em> 17/06/2026</p>
+  <p class="date"><em>Ultimo aggiornamento:</em> 12/09/2026</p>
 </section>
 <section>
 <section id="serie-temporali" class="title-slide slide level1 center">
@@ -451,9 +454,9 @@ Paolo Bosetti
 <p>Si definiscono:</p>
 <ul>
 <li><strong>Operatore <em>backshift</em></strong>: è l’operatore <span class="math inline">\(B^n\)</span> tale per cui <span class="math inline">\(B^n x_t := x_{t-n}\)</span></li>
-<li><strong>Operatore differenza</strong>: è l’operatore <span class="math inline">\(\nabla\)</span> tale per cui <span class="math inline">\(\nabla x_t := x_t - x_{t-1}=(1-B)x_t\)</span>. Risulta quindi che <span class="math inline">\(\nabla^dx_t=(1-B)^dx_t\)</span>, e quindi ad esempio <span class="math inline">\(\nabla^2x_t=(1-B)^2x_t=x_t-2x_{t-1}+x_{t-2}\)</span></li>
+<li><strong>Operatore differenza</strong>: è l’operatore <span class="math inline">\(\nabla\)</span> tale per cui <span class="math inline">\(\nabla x_t := x_t - x_{t-1}=(1-B)x_t\)</span>. Risulta quindi che <span class="math inline">\(\nabla^d x_t=(1-B)^d x_t\)</span>, e quindi ad esempio <span class="math inline">\(\nabla^2x_t=(1-B)^2x_t=x_t-2x_{t-1}+x_{t-2}\)</span></li>
 </ul>
-<p>Quindi ad esempio la differenziazione <span class="math inline">\(\nabla^2x_t\)</span> è l’equivalente discreto della derivata seconda <span class="math inline">\(\frac{d^2}{dt^2}x(t)\)</span> per la funzione continua <span class="math inline">\(x(t)\)</span></p>
+<p>Quindi ad esempio la differenziazione <span class="math inline">\(\nabla^2x_t\)</span> è l’equivalente discreto della derivata seconda <span class="math inline">\(\frac{d^2}{d t^2}x(t)\)</span> per la funzione continua <span class="math inline">\(x(t)\)</span></p>
 </section>
 <section id="stabilizzazione-e-acf" class="slide level2">
 <h2>Stabilizzazione e ACF</h2>
@@ -686,10 +689,10 @@ x_t=\phi_1 x_{t-1} + \phi_2 x_{t-2}+\dots+\phi_p x_{t-p} + w_t + \theta_1 w_{t-1
 <p>I processi <span class="math inline">\(\mathrm{ARMA}(p,q)\)</span> sono adatti solo a descrivere serie <strong>stazionarie</strong> in senso ampio</p>
 <p>Abbiamo visto però che un processo non stazionario può essere reso tale per differenziazione di un opportuno grado <span class="math inline">\(d\)</span></p>
 <p>Un processo <span class="math inline">\(x_t\)</span> è detto <span class="math inline">\(\mathrm{ARIMA}(p,d,q)\)</span> quando <span class="math inline">\(\nabla^d x_t = (1-B)^d x_t\)</span> 2è un processo <span class="math inline">\(\mathrm{ARMA}(p,q)\)</span></p>
-<p>In generale, quando <span class="math inline">\(E(\nabla^dx_t)=0\)</span> il processo <span class="math inline">\(\mathrm{ARIMA}(p,d,q)\)</span> può essere scritto come: <span class="math display">\[
-\Phi_p(B)\nabla^dx_t=\Theta_q(B)w_t
-\]</span> Se invece il valore atteso <span class="math inline">\(E(\nabla^dx_t)=\mu\)</span>, allora: <span class="math display">\[
-\Phi_p(B)\nabla^dx_t=\delta + \Theta_q(B)w_t,~~~\delta=\mu(1-\phi_1-\dots-\phi_p)
+<p>In generale, quando <span class="math inline">\(E(\nabla^d x_t)=0\)</span> il processo <span class="math inline">\(\mathrm{ARIMA}(p,d,q)\)</span> può essere scritto come: <span class="math display">\[
+\Phi_p(B)\nabla^d x_t=\Theta_q(B)w_t
+\]</span> Se invece il valore atteso <span class="math inline">\(E(\nabla^d x_t)=\mu\)</span>, allora: <span class="math display">\[
+\Phi_p(B)\nabla^d x_t=\delta + \Theta_q(B)w_t,~~~\delta=\mu(1-\phi_1-\dots-\phi_p)
 \]</span></p>
 </section>
 <section id="stabilità-e-unicità-dei-modelli" class="slide level2">
@@ -726,11 +729,11 @@ y_t &amp;= \nu_t + 1/\theta \nu_{t-1}, ~\nu_t\sim\mathcal{N}(0, \theta^2)
 \]</span> siano <strong>tutte strettamente fuori dal cerchio unitario</strong> sul piano complesso</p>
 <p>Ad esempio: <span class="math inline">\(\mathrm{ARMA}(2,2)\)</span> con <span class="math inline">\(\Phi_2(z)= 1 + 0.9z + 0.1z^2\)</span> e <span class="math inline">\(\Theta_q(z) = 1 + 2z + 15z^2\)</span>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">abs</span>(<span class="fu">polyroot</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="sc">-</span><span class="fl">0.9</span>, <span class="sc">-</span><span class="fl">0.1</span>)))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-label="1"></a><span class="fu">abs</span>(<span class="fu">polyroot</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="sc">-</span><span class="fl">0.9</span>, <span class="sc">-</span><span class="fl">0.1</span>)))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  1 10</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">abs</span>(<span class="fu">polyroot</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">15</span>)))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-label="1"></a><span class="fu">abs</span>(<span class="fu">polyroot</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">15</span>)))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.2581989 0.2581989</code></pre>
 </div>
@@ -759,13 +762,13 @@ x_t = 0.5x_{t-1}-0.5w_{t-1} + w_t
 \]</span></p>
 <p>In questa forma il processo sembra <span class="math inline">\(\mathrm{ARMA}(2,2)\)</span>, tuttavia possiamo scomporre i due polinomi in fattori, usando <code>polyroot()</code> per calcolare le radici:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="co"># per Phi:</span></span>
-<span id="cb5-2"><a></a><span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="fu">polyroot</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="sc">-</span><span class="fl">0.4</span>, <span class="sc">-</span><span class="fl">0.45</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-label="1"></a><span class="co"># per Phi:</span></span>
+<span id="cb5-2"><a aria-label="2"></a><span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="fu">polyroot</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="sc">-</span><span class="fl">0.4</span>, <span class="sc">-</span><span class="fl">0.45</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -0.9-6.887768e-21i  0.5+2.125854e-21i</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="co"># per Theta:</span></span>
-<span id="cb7-2"><a></a><span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="fu">polyroot</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">0.25</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-label="1"></a><span class="co"># per Theta:</span></span>
+<span id="cb7-2"><a aria-label="2"></a><span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="fu">polyroot</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">0.25</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.5+0i 0.5+0i</code></pre>
 </div>
@@ -839,10 +842,10 @@ x_t=0.9x_{t-1}+0.5w_{t-1}+w_t
 <div class="columns">
 <div class="column" style="font-size: 70%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>forecast<span class="sc">::</span><span class="fu">auto.arima</span>(AirPassengers, <span class="at">lambda=</span><span class="st">"auto"</span>, <span class="at">trace=</span>T)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-label="1"></a>forecast<span class="sc">::</span><span class="fu">auto.arima</span>(AirPassengers, <span class="at">lambda=</span><span class="st">"auto"</span>, <span class="at">trace=</span>T)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
- ARIMA(2,1,2)(1,1,1)[12]                    : -890.0518
+ ARIMA(2,1,2)(1,1,1)[12]                    : -890.0522
  ARIMA(0,1,0)(0,1,0)[12]                    : -845.0766
  ARIMA(1,1,0)(1,1,0)[12]                    : -885.6939
  ARIMA(0,1,1)(0,1,1)[12]                    : -896.9901
@@ -945,7 +948,7 @@ AIC=-897.18   AICc=-896.99   BIC=-888.55</code></pre>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
-<p>paolo.bosetti@unitn.it — <a href="https://paolobosetti.quarto.pub/slides/ADAS/">https://paolobosetti.quarto.pub/slides/ADAS/</a></p>
+<p>paolo.bosetti@unitn.it — <a href="https://pbosetti.github.io/teaching_site/slides/ADAS/">https://pbosetti.github.io/teaching_site/slides/ADAS/</a></p>
 </div>
 </div></div>
 
@@ -1134,7 +1137,7 @@ AIC=-897.18   AICc=-896.99   BIC=-888.55</code></pre>
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
