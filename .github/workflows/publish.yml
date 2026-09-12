@@ -9,50 +9,61 @@ jobs:
   build-deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    permissions:
+      contents: write
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4 
+        uses: actions/checkout@v4
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
-        
+
       - name: Install R
         uses: r-lib/actions/setup-r@v2
         with:
           r-version: '4.6.1'
-      
+
       - name: Install system packages
         run: |
           sudo apt-get update
           sudo apt-get install -y cmake libcurl4-openssl-dev libfontconfig1-dev libfreetype6-dev libx11-dev pandoc
-          
+
       - name: Install TinyTeX
         shell: bash
         run: |
           quarto install tinytex
-      
-      - name: Install R Dependencies 
+
+      - name: Install R Dependencies
         uses: r-lib/actions/setup-renv@v2
         with:
           cache-version: 1
-      
-      - name: Render (debug)
+
+      - name: Render
         shell: bash
-        timeout-minutes: 18
+        timeout-minutes: 20
         run: |
           quarto render . --log-level debug --log quarto-render.log
 
-      - name: Show render log tail (always, for diagnosing hangs/timeouts)
-        if: always()
+      - name: Report site size
+        shell: bash
+        run: |
+          echo "Total _site size: $(du -sh _site | cut -f1)"
+          echo "10 largest files:"
+          find _site -type f -printf '%s\t%p\n' | sort -rn | head -10 \
+            | awk -F'\t' '{printf "  %7.2f MB  %s\n", $1/1048576, $2}'
+
+      - name: Show render log tail (for diagnosing hangs/timeouts)
+        if: failure()
         shell: bash
         run: |
           echo "--- last 400 lines of quarto-render.log ---"
           tail -n 400 quarto-render.log || echo "(no log file found)"
 
-      - name: Publish
+      - name: Publish to GitHub Pages
         uses: quarto-dev/quarto-actions/publish@v2
         timeout-minutes: 10
         with:
-          target: quarto-pub
+          target: gh-pages
           render: false
-          QUARTO_PUB_AUTH_TOKEN: ${{ secrets.QUARTO_PUB_AUTH_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
