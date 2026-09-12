@@ -16,7 +16,7 @@ format:
     preview-links: auto
     theme: [default, ../slides.scss]
     chalkboard: true
-    footer: "paolo.bosetti@unitn.it --- [https://paolobosetti.quarto.pub](https://paolobosetti.quarto.pub)"
+    footer: "paolo.bosetti@unitn.it --- [https://pbosetti.github.io/teaching_site/](https://pbosetti.github.io/teaching_site/)"
     fig-width: 5
     fig-height: 4
     fig-dpi: 150

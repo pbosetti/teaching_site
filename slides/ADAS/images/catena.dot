@@ -1,0 +1,8 @@
+digraph "catena" {
+  rankdir="TB"
+  node [shape="box" fontname="Helvetica" fontsize=20]
+  misurando -> trasduttore
+  trasduttore -> condizionatore
+  condizionatore -> "conversione AD"
+  "conversione AD" -> acquisizione
+}

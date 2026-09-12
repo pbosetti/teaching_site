@@ -5,6 +5,11 @@ on:
 
 name: Quarto Publish
 
+# Only one publish at a time: concurrent runs would race to push to gh-pages
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build-deploy:
     runs-on: ubuntu-latest

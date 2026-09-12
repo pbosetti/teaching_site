@@ -357,7 +357,7 @@ df %>% ggplot(aes(x=x)) +
 :::
 
 ::: aside
-Il metodo più robusto per identificare il sovra-adattamento è detto ***K-fold cross-validation***, vedi anche <https://paolobosetti.quarto.pub/kfold.html>
+Il metodo più robusto per identificare il sovra-adattamento è detto ***K-fold cross-validation***, vedi anche <https://pbosetti.github.io/teaching_site/slides/ADAS/kfold.html>
 :::
 
 ## Bande di Predizione

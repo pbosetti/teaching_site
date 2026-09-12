@@ -58,16 +58,11 @@ library(patchwork)
 :::
 
 :::column
-```{dot}
-digraph "catena" {
-  rankdir="TB"
-  node [shape="box" fontname="Helvetica" fontsize=20]
-  misurando -> trasduttore
-  trasduttore -> condizionatore
-  condizionatore -> "conversione AD"
-  "conversione AD" -> acquisizione
-}
-```
+<!-- Static render of images/catena.dot. A ```{dot} cell here would make
+     Quarto launch headless Chrome to rasterise the graph for the PDF pass,
+     which hangs intermittently on CI runners and stalls the whole build.
+     Regenerate with: dot -Tsvg images/catena.dot -o images/catena.svg -->
+![](images/catena.svg){width=260}
 :::
 :::
 

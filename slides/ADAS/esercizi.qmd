@@ -47,14 +47,14 @@ Raggruppare la dimensione in carati (`carat`) in **cinque gruppi di caratura**. 
 
 ## Dati di produzione
 
-La tabella dati `prod_defects.csv` sul sito <http://paolobosetti.quarto.pub/data.html#list-of-csv-files> contiene dei dati di difettosità (come numero difetti per settimana) su 50 settimane di un impianto di produzione con tre macchine, `M1`, `M2` e `M3`. Per le tre macchine i limiti massimi di difettosità sono, rispettivamente, 27, 32 e 100.
+La tabella dati `prod_defects.csv` sul sito <https://pbosetti.github.io/teaching_site/data.html#list-of-csv-files> contiene dei dati di difettosità (come numero difetti per settimana) su 50 settimane di un impianto di produzione con tre macchine, `M1`, `M2` e `M3`. Per le tre macchine i limiti massimi di difettosità sono, rispettivamente, 27, 32 e 100.
 
 Creare una tabella che riporti, per ognuna delle 50 settimane, la difettosità in percentuale sul massimo per ciascuna macchina e realizzare il corrispondente grafico.
 
 Per ogni macchina, aggiungere anche il calcolo della *media progressiva*, cioè il valor medio dei campioni dal primo all'i-esimo.
 
 ::: callout-note
-Ricordare che tutte le tabelle presenti in <http://paolobosetti.quarto.pub/data.html> possono essere caricate direttamente dalle funzioni `read_table()` o `read_csv()` passando l'URL generato come `adas.utils::examples_url("nome_del_file.csv")`. 
+Ricordare che tutte le tabelle presenti in <https://pbosetti.github.io/teaching_site/data.html> possono essere caricate direttamente dalle funzioni `read_table()` o `read_csv()` passando l'URL generato come `adas.utils::examples_url("nome_del_file.csv")`. 
 :::
 
 # Risposte

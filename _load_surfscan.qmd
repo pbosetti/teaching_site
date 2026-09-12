@@ -6,7 +6,7 @@ author: "Paolo Bosetti"
 ```{r setup, include=FALSE}
 library(tidyverse)
 example_url <- function(example) {
-  url = paste0("https://paolobosetti.quarto.pub/data/", example)
+  url = paste0("https://pbosetti.github.io/teaching_site/data/", example)
   return(url)
 }
 ```
