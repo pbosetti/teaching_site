@@ -1,0 +1,13 @@
+"$schema" = "https://cdn.posit.co/publisher/schemas/posit-publishing-schema-v3.json"
+type = "html"
+entrypoint = "robust_decision_matrix.html"
+title = "Robust Decision Matrix"
+source = "robust_decision_matrix.qmd"
+files = [
+    "/robust_decision_matrix.html",
+    "/robust_decision_matrix_files",
+    "/.posit/publish/Robust Decision Matrix-MNI7.toml",
+    "/.posit/publish/deployments/deployment-KMP5.toml",
+]
+validate = true
+product_type = "connect_cloud"

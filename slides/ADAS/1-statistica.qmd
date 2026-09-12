@@ -1,7 +1,7 @@
 ---
 title: "Statistica Descrittiva e Inferenziale"
 subtitle: |
-  Analisi Dati e Statistica, 2025--26 \
+  Analisi Dati e Statistica, 2026--27 \
   ![](images/by-nc-sa.png){height=30}
 author: "Paolo Bosetti"
 institute: "Università di Trento, Dipartimento di Ingegneria Industriale"
@@ -9,12 +9,17 @@ date: "`r Sys.time()`"
 date-format: "[*Ultimo aggiornamento:* ]DD/MM/YYYY"
 engine: knitr
 format: 
-  typst: 
+  pdf: 
     toc: true
     toc-title: "Indice"
     toc-depth: 2
     toc-numbered: true
     number-sections: true
+    include-in-header:
+      text: |
+        % CSS-equivalent names used in \color{} inside math (MathJax accepts them, xcolor does not)
+        \definecolor{darkred}{HTML}{8B0000}
+        \definecolor{darkblue}{HTML}{00008B}
   revealjs:
     width: 1280
     height: 720
@@ -25,7 +30,7 @@ format:
     preview-links: auto
     theme: [default, ../slides.scss]
     chalkboard: true
-    footer: "paolo.bosetti@unitn.it --- [https://paolobosetti.quarto.pub/slides/ADAS/](https://paolobosetti.quarto.pub/slides/ADAS/)"
+    footer: "paolo.bosetti@unitn.it --- [https://pbosetti.github.io/teaching_site/slides/ADAS/](https://pbosetti.github.io/teaching_site/slides/ADAS/)"
     fig-width: 5
     fig-height: 4
     fig-dpi: 300
@@ -218,11 +223,11 @@ Questo perché ovviamente la probabilità di riscontrare un qualsiasi valore dev
 Gli operatori valore atteso e varianza godono delle seguenti proprietà:
 
 $$ 
-\begin{array}{l}
-E(c)&=&c\\
-E(x)&=&\mu\\
-E(cx)&=&cE(x)=c\mu\\
-V(c)&=&0\\
+\begin{array}{rcl}
+E(c) &=& c\\
+E(x) &=& \mu\\
+E(cx) &=& cE(x)=c\mu\\
+V(c) &=& 0\\
 V(x)&=&\sigma^2\\
 V(cx)&=&c^2V(x)=c^2\sigma^2\\
 E(x+y)&=&E(x)+E(y)=\mu_x+\mu_y\\
@@ -1183,10 +1188,10 @@ t_0 = \frac{\bar{y_1} - \bar{y_2}}{\sqrt{S_1^2/n_1 + S_2^2/n_2}};~~~\nu=\frac{(S
 $$
 L'ipotesi di omoschedasticità va preliminarmente verificata con un **test della varianza**:
 $$
-\begin{eqnarray}
+\begin{aligned}
 H_0 :~& \sigma^2_1 = \sigma^2_2 \\
 H_1 :~& \sigma^2_1 \neq \sigma^2_2
-\end{eqnarray},~~~F_0=\frac{S^2_1}{S^2_2}\sim\mathcal{F}_{n_1-1, n_2-1}
+\end{aligned},~~~F_0=\frac{S^2_1}{S^2_2}\sim\mathcal{F}_{n_1-1, n_2-1}
 $$
 Cioè se il *p*-value associato a $F_0$ è piccolo, si assume che i campioni non siano omoschedastici e quindi si effettua il test di Welch; altrimenti vale il test di Student
 
@@ -1760,10 +1765,10 @@ Non sappiamo comunque quanti e quali trattamenti siano significativi. Per studia
 Il test valuta **contemporaneamente** tutte le seguenti coppie di ipotesi:
 $$
 \left.
-\begin{eqnarray}
+\begin{array}{rcl}
 H_0&:&~\mu_i=\mu_j \\
 H_1&:&~\mu_i\neq \mu_j
-\end{eqnarray}
+\end{array}
 \right\} ~~\forall i\neq j
 $$
 Per ogni coppia $(i,j),~i\neq j$ si ha la statistica di test:

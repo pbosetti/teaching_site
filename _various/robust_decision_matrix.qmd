@@ -1,0 +1,150 @@
+---
+author: "Paolo Bosetti"
+title: "Robust Decision Matrix"
+date-modified: "`{r} Sys.time()`"
+date-format: "YYYYMMDD"
+---
+
+# Rationale
+
+Robust decision making is based on the concept of **robustness**: a decision is robust if it performs well across a wide range of plausible futures. In this context, we can define a **robust decision matrix** as a tool to evaluate the robustness of different decisions based on the subject **confidence** balanced by their **knowledge**.
+
+The combination of confidence and knowledge is called **belief** and can be used to evaluate the robustness of a decision.
+
+Being $p(k) \in [0.5,1]$ the **knowledge** value and $p(c) \in [0,1]$ the **confidence** value, we can define a **belief** value as:
+
+$$
+B = p(k)p(c) + (1-p(k))(1-p(c))
+$$
+
+* A belief close to 1 means that the subject believes that a given alternative is strongly positive (i.e., it is likely to be the best choice).
+* A belief close to 0 means that the subject believes that a given alternative is strongly negative (i.e., it is likely to be the worst choice).
+* A belief close to 0.5 means that the subject is uncertain about the alternative (i.e., it is likely to be neither the best nor the worst choice).
+
+Graphically, you can use the following tool to calculate your belief on a given alternative based on your knowledge and confidence:
+
+* Knowledge levels:
+  * Very low: $p(k) = 0.5$; corresponds to the layman level of knowledge, where the subject has no specific expertise or understanding of the topic.
+  * Low: $p(k) = 0.625$: corresponds to a basic level of knowledge, where the subject has some understanding of the topic but lacks depth and breadth of knowledge.
+  * Medium: $p(k) = 0.75$: corresponds to the level of knowledge of someone that has studied or has been trained on the matter
+  * High: $p(k) = 0.875$: corresponds to the levelo of knowlede of a professional that routinely works on the matter
+  * Very high: $p(k) = 1.0$: corresponds to the level of knowledge of a scholar that has dedicated their life to the study of the matter
+* Confidence levels:
+  * Very low: $p(c) = 0.0$: the alternative is considered to be the worst choice, and the subject is very confident.
+  * Low: $p(c) = 0.25$: the alternative is considered to be a bad choice, and the subject is somewhat confident.
+  * Medium: $p(c) = 0.5$: the alternative is considered to be an uncertain choice, and the subject is neutral.
+  * High: $p(c) = 0.75$: the alternative is considered to be a good choice, and the subject is somewhat confident.
+  * Very high: $p(c) = 1.0$: the alternative is considered to be the best choice, and the subject is very confident.
+
+For each entry in the decision matrix, you can calculate the belief value and use it to evaluate the robustness of the decision. A decision with a high belief value is more likely to be robust, while a decision with a low belief value is less likely to be robust.
+
+```{ojs}
+//| echo: false
+viewof knowledge = Inputs.range([0.5, 1.0], {
+  value: 0.75,
+  step: 0.01,
+  label: "knowledge p(k)"
+})
+
+viewof confidence = Inputs.range([0.0, 1.0], {
+  value: 0.50,
+  step: 0.01,
+  label: "confidence p(c)"
+})
+
+{
+  const x_min = 0.5;
+  const x_max = 1.0;
+  const y_min = 0.0;
+  const y_max = 1.0;
+  const x_ticks = [0.5, 0.625, 0.75, 0.875, 1.0];
+  const y_ticks = [0.0, 0.25, 0.5, 0.75, 1.0];
+  const x_labels = new Map([
+    [0.5, "Very low"],
+    [0.625, "Low"],
+    [0.75, "Medium"],
+    [0.875, "High"],
+    [1.0, "Very high"]
+  ]);
+  const y_labels = new Map([
+    [0.0, "Very low"],
+    [0.25, "Low"],
+    [0.5, "Medium"],
+    [0.75, "High"],
+    [1.0, "Very high"]
+  ]);
+  const thresholds = d3.range(0.05, 1.0, 0.05);
+  const figure_width = Math.min(typeof width === "undefined" ? 760 : width, 760);
+  const belief = (k, c) => k * c + (1 - k) * (1 - c);
+  const B = belief(knowledge, confidence);
+
+  return Plot.plot({
+    width: figure_width,
+    height: Math.round(figure_width * 0.68),
+    marginTop: 28,
+    marginRight: 100,
+    marginBottom: 70,
+    marginLeft: 90,
+    title: `belief B = ${B.toFixed(3)}`,
+    grid: false,
+    x: {
+      domain: [x_min, x_max],
+      axis: null
+    },
+    y: {
+      domain: [y_min, y_max],
+      axis: null
+    },
+    color: {
+      type: "diverging",
+      domain: [0, 1],
+      pivot: 0.5,
+      scheme: "RdBu",
+      reverse: true,
+      legend: true,
+      label: "belief B"
+    },
+    marks: [
+      Plot.gridX(x_ticks),
+      Plot.gridY(y_ticks),
+      Plot.contour({
+        x1: x_min,
+        x2: x_max,
+        y1: y_min,
+        y2: y_max,
+        value: belief,
+        fill: "value",
+        thresholds,
+        stroke: "#1f2328",
+        strokeWidth: 0.8
+      }),
+      Plot.ruleX([knowledge], {
+        stroke: "#111827",
+        strokeWidth: 2
+      }),
+      Plot.ruleY([confidence], {
+        stroke: "#111827",
+        strokeWidth: 2
+      }),
+      Plot.dot([{knowledge, confidence}], {
+        x: "knowledge",
+        y: "confidence",
+        fill: "#111827",
+        r: 4.5
+      }),
+      Plot.axisX(x_ticks, {
+        anchor: "bottom",
+        label: "knowledge p(k)",
+        tickFormat: (d) => x_labels.get(d),
+        lineWidth: 8
+      }),
+      Plot.axisY(y_ticks, {
+        anchor: "left",
+        label: "confidence p(c)",
+        tickFormat: (d) => y_labels.get(d)
+      }),
+      Plot.frame()
+    ]
+  });
+}
+```

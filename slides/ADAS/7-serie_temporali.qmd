@@ -1,14 +1,14 @@
 ---
 title: "Serie Temporali"
 subtitle: |
-  Analisi Dati e Statistica, 2025--26 \
+  Analisi Dati e Statistica, 2026--27 \
   ![](images/by-nc-sa.png){height=30}
 author: "Paolo Bosetti"
 institute: "Università di Trento, Dipartimento di Ingegneria Industriale"
 date: "`r Sys.time()`"
 date-format: "[*Ultimo aggiornamento:* ]DD/MM/YYYY"
 format: 
-  typst: 
+  pdf: 
     toc: true
     toc-title: "Indice"
     toc-depth: 2
@@ -24,7 +24,7 @@ format:
     preview-links: auto
     theme: [default, ../slides.scss]
     chalkboard: true
-    footer: "paolo.bosetti@unitn.it --- [https://paolobosetti.quarto.pub/slides/ADAS/](https://paolobosetti.quarto.pub/slides/ADAS/)"
+    footer: "paolo.bosetti@unitn.it --- [https://pbosetti.github.io/teaching_site/slides/ADAS/](https://pbosetti.github.io/teaching_site/slides/ADAS/)"
     fig-width: 5
     fig-height: 4
     fig-dpi: 300
@@ -315,9 +315,9 @@ Come si differenzia una ST?
 Si definiscono:
 
 * **Operatore *backshift***: è l'operatore $B^n$ tale per cui $B^n x_t := x_{t-n}$
-* **Operatore differenza**: è l'operatore $\nabla$ tale per cui $\nabla x_t := x_t - x_{t-1}=(1-B)x_t$. Risulta quindi che $\nabla^dx_t=(1-B)^dx_t$, e quindi ad esempio $\nabla^2x_t=(1-B)^2x_t=x_t-2x_{t-1}+x_{t-2}$
+* **Operatore differenza**: è l'operatore $\nabla$ tale per cui $\nabla x_t := x_t - x_{t-1}=(1-B)x_t$. Risulta quindi che $\nabla^d x_t=(1-B)^d x_t$, e quindi ad esempio $\nabla^2x_t=(1-B)^2x_t=x_t-2x_{t-1}+x_{t-2}$
 
-Quindi ad esempio la differenziazione $\nabla^2x_t$ è l'equivalente discreto della derivata seconda $\frac{d^2}{dt^2}x(t)$ per la funzione continua $x(t)$
+Quindi ad esempio la differenziazione $\nabla^2x_t$ è l'equivalente discreto della derivata seconda $\frac{d^2}{d t^2}x(t)$ per la funzione continua $x(t)$
 
 ## Stabilizzazione e ACF
 
@@ -614,13 +614,13 @@ Abbiamo visto però che un processo non stazionario può essere reso tale per di
 
 Un processo $x_t$ è detto $\mathrm{ARIMA}(p,d,q)$ quando $\nabla^d x_t = (1-B)^d x_t$ 2è un processo $\mathrm{ARMA}(p,q)$
 
-In generale, quando $E(\nabla^dx_t)=0$ il processo $\mathrm{ARIMA}(p,d,q)$ può essere scritto come:
+In generale, quando $E(\nabla^d x_t)=0$ il processo $\mathrm{ARIMA}(p,d,q)$ può essere scritto come:
 $$
-\Phi_p(B)\nabla^dx_t=\Theta_q(B)w_t
+\Phi_p(B)\nabla^d x_t=\Theta_q(B)w_t
 $$
-Se invece il valore atteso $E(\nabla^dx_t)=\mu$, allora:
+Se invece il valore atteso $E(\nabla^d x_t)=\mu$, allora:
 $$
-\Phi_p(B)\nabla^dx_t=\delta + \Theta_q(B)w_t,~~~\delta=\mu(1-\phi_1-\dots-\phi_p)
+\Phi_p(B)\nabla^d x_t=\delta + \Theta_q(B)w_t,~~~\delta=\mu(1-\phi_1-\dots-\phi_p)
 $$
 
 ## Stabilità e unicità dei modelli

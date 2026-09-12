@@ -1,14 +1,14 @@
 ---
 title: "Strumenti di misura"
 subtitle: |
-  Analisi Dati e Statistica, 2025--26 \
+  Analisi Dati e Statistica, 2026--27 \
   ![](images/by-nc-sa.png){height=30}
 author: "Paolo Bosetti"
 institute: "Università di Trento, Dipartimento di Ingegneria Industriale"
 date: "`r Sys.time()`"
 date-format: "[*Ultimo aggiornamento:* ]DD/MM/YYYY"
 format: 
-  typst: 
+  pdf: 
     toc: true
     toc-title: "Indice"
     toc-depth: 2
@@ -24,7 +24,7 @@ format:
     preview-links: auto
     theme: [default, ../slides.scss]
     chalkboard: true
-    footer: "paolo.bosetti@unitn.it --- [https://paolobosetti.quarto.pub/slides/ADAS/](https://paolobosetti.quarto.pub/slides/ADAS/)"
+    footer: "paolo.bosetti@unitn.it --- [https://pbosetti.github.io/teaching_site/slides/ADAS/](https://pbosetti.github.io/teaching_site/slides/ADAS/)"
     fig-width: 5
     fig-height: 4
     fig-dpi: 300
@@ -129,7 +129,7 @@ Sfruttando la **variazione di induttanza** che risulta da uno spostamento dell'a
 :::
 
 :::column
-![LVDT](images/LVDT.gif){width=400}
+![LVDT](images/LVDT.png){width=400}
 :::
 :::
 
@@ -165,7 +165,12 @@ Sfrutta una variazione di resistenza in un circuito parallelo $R_{T} = (1-\Delta
 :::
 
 :::column
-![Interferometria laser](https://cdn.hackaday.io/images/original/1096171741369142473.gif)
+::: {.content-visible when-format="html"}
+![Interferometria laser](images/interferometry.gif)
+:::
+::: {.content-visible when-format="pdf"}
+![Interferometria laser](images/interferometry.png)
+:::
 :::
 :::
 

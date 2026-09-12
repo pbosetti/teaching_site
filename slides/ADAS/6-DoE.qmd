@@ -1,14 +1,14 @@
 ---
 title: "Design of Experiments"
 subtitle: |
-  Analisi Dati e Statistica, 2025--26 \
+  Analisi Dati e Statistica, 2026--27 \
   ![](images/by-nc-sa.png){height=30}
 author: "Paolo Bosetti"
 institute: "Università di Trento, Dipartimento di Ingegneria Industriale"
 date: "`r Sys.time()`"
 date-format: "[*Ultimo aggiornamento:* ]DD/MM/YYYY"
 format: 
-  typst: 
+  pdf: 
     toc: true
     toc-title: "Indice"
     toc-depth: 2
@@ -24,7 +24,7 @@ format:
     preview-links: auto
     theme: [default, ../slides.scss]
     chalkboard: true
-    footer: "paolo.bosetti@unitn.it --- [https://paolobosetti.quarto.pub/slides/ADAS/](https://paolobosetti.quarto.pub/slides/ADAS/)"
+    footer: "paolo.bosetti@unitn.it --- [https://pbosetti.github.io/teaching_site/slides/ADAS/](https://pbosetti.github.io/teaching_site/slides/ADAS/)"
     fig-width: 5
     fig-height: 4
     fig-dpi: 300
@@ -124,10 +124,10 @@ data <- tribble (
 -   Cambiamo **un livello alla volta**
 -   Valutiamo ogni trattamento **1 sola volta**
 -   Valutiamo gli **effetti** di $A$ e $B$: $$
-    \begin{align}
+    \begin{aligned}
     A &= `r data$resa[2]` - `r data$resa[1]` = `r data$resa[2]-data$resa[1]`\\
     B &= `r data$resa[3]` - `r data$resa[1]` = `r data$resa[3]-data$resa[1]`
-    \end{align}
+    \end{aligned}
     $$
 :::
 
@@ -172,11 +172,11 @@ In questo secondo esempio misuriamo la risposta dei trattamenti $(1), a, b, ab$
 Possiamo stimare sia gli effetti di $A$ e $B$ che l'**interazione** $AB$: 
 
 $$
-\begin{align}
+\begin{aligned}
 A &= \frac{a+ab}{2} - \frac{(1) + b}{2} = `r A`\\
 B &= \frac{b+ab}{2} - \frac{(1) + a}{2} = `r B` \\
 AB &= \frac{a+b}{2} - \frac{(1)+ab}{2} = `r AB`
-\end{align}
+\end{aligned}
 $$
 :::
 
@@ -274,19 +274,19 @@ Come tale, l'esperimento può essere studiato con un'ANOVA a due fattori (o **AN
 ::: column
 $$
 \textrm{A)}~\left\{
-\begin{align}
+\begin{aligned}
 H_0&: \alpha_1 = \alpha_2 = \dots =\alpha_a = 0 \\
 H_1&: \alpha_i \ne 0\quad\textrm{per almeno un}~i
-\end{align}
+\end{aligned}
 \right.
 $$ 
 
 $$
 \textrm{B)}~\left\{
-\begin{align}
+\begin{aligned}
 H_0&: \beta_1 = \beta_2 = \dots =\beta_b = 0 \\
 H_1&: \beta_j \ne 0\quad\textrm{per almeno un}~j
-\end{align}
+\end{aligned}
 \right.
 $$
 :::
@@ -294,10 +294,10 @@ $$
 ::: column
 $$
 \textrm{AB)}~\left\{
-\begin{align}
+\begin{aligned}
 H_0&: (\alpha\beta)_{ij} =   0\quad \forall~(i,j) \\
 H_1&: (\alpha\beta)_{ij} \ne 0\quad \textrm{per almeno una}~(i,j)
-\end{align}
+\end{aligned}
 \right.
 $$
 :::
@@ -413,12 +413,13 @@ df %>%
 Formuliamo il modello di regressione completo di secondo grado:
 
 
-\begin{align}
+$$
+\begin{aligned}
 \hat y = & \mu + \alpha_1 x_1 + \beta_1 x_2 + (\alpha\beta)_1x_1x_2 + \\
          & + \alpha_2x_1^2 + \beta_2x_2^2 + (\alpha\beta)_{2,1}x_1^2x_2 + \\
          & + (\alpha\beta)_{1,2}x_1x_2^2 + (\alpha\beta)_{2,2}x_1^2x_2^2
-      
-\end{align}
+\end{aligned}
+$$
 
 ```{r}
 df.lm <- lm(Vita~Angolo*Velocità*I(Angolo^2)*I(Velocità^2), data=df)
@@ -489,12 +490,13 @@ anova(df.lm) %>% tibble() %>%
 :::
 
 Quindi l'equazione di regressione diventa: 
-\begin{align}
+$$
+\begin{aligned}
 \hat y = & \mu + \alpha_1 x_1 + \beta_1 x_2 + (\alpha\beta)_1x_1x_2 + \\
          &  + \alpha_2x_1^2 + (\alpha\beta)_{1,2}x_1x_2^2 + \\
          &  + (\alpha\beta)_{2,2}x_1^2x_2^2
-      
-\end{align}
+\end{aligned}
+$$
 
 
 ## Esempio --- passo 6.
@@ -630,21 +632,21 @@ La matrice degli effetti contiene le informazioni per calcolare gli **effetti** 
 :::column
 Per gli effetti:
 $$
-\begin{align}
+\begin{aligned}
 A &= \frac{-(1)+a-b+ab}{2r} \\
 B &= \frac{-(1)-a+b+ab}{2r} \\
 AB &= \frac{+(1)-a-b+ab}{2r}
-\end{align}
+\end{aligned}
 $$
 :::
 :::column
 Per le somme quadratiche:
 $$
-\begin{align}
+\begin{aligned}
 SS_A &=& \frac{(-(1)+a-b+ab)^2}{4r} \\
 SS_B &=& \frac{(-(1)-a+b+ab)^2}{4r} \\
 SS_{AB} &=& \frac{(+(1)-a-b+ab)^2}{4r}
-\end{align}
+\end{aligned}
 $$
 :::
 :::
@@ -1008,10 +1010,10 @@ La matrice degli effetti per un PF frazionato $2^{n-1}$ più la relazione define
 
 In un PF frazionato $2^{3-1}$ con relazione definente $I=ABC$, consideriamo questi effetti:
 $$
-\begin{align}
+\begin{aligned}
 A  &= (-(1)+a-b+ab-c+ac-bc+abc)/(2r) \\
 BC &= (\underline{+(1)}+a-b\underline{-ab}-c\underline{-ac} \underline{+bc}+abc)/(2r)
-\end{align}
+\end{aligned}
 $$
 Siccome i trattamenti sottolineati **non sono testati**, l'effetto $A$ risulta indistinguibile dall'effetto $BC$
 
