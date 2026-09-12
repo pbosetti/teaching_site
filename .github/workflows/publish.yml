@@ -36,9 +36,23 @@ jobs:
         with:
           cache-version: 1
       
-      - name: Render and Publish
+      - name: Render (debug)
+        shell: bash
+        timeout-minutes: 18
+        run: |
+          quarto render . --log-level debug --log quarto-render.log
+
+      - name: Show render log tail (always, for diagnosing hangs/timeouts)
+        if: always()
+        shell: bash
+        run: |
+          echo "--- last 400 lines of quarto-render.log ---"
+          tail -n 400 quarto-render.log || echo "(no log file found)"
+
+      - name: Publish
         uses: quarto-dev/quarto-actions/publish@v2
-        timeout-minutes: 20
+        timeout-minutes: 10
         with:
           target: quarto-pub
+          render: false
           QUARTO_PUB_AUTH_TOKEN: ${{ secrets.QUARTO_PUB_AUTH_TOKEN }}
