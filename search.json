@@ -767,7 +767,7 @@
     "href": "slides/ADAS/1-statistica.html#probabilità-e-densità-di-probabilità",
     "title": "Statistica Descrittiva e Inferenziale",
     "section": "Probabilità e densità di probabilità",
-    "text": "Probabilità e densità di probabilità\n\nProbabilità (o frequenza): per una v.a. discreta, corrisponde al rapporto tra il numero di osservazioni di un dato valore e il numero totale di osservazioni\nDensità di probabilità: per una v.a. continua, la probabilità di riscontrare esattamente un dato valore è nulla, quindi ci si riferisce ad una probabilità di riscontrare un valore all’interno di un dato intervallo. La densità di probabilità è la derivata di tale valore\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nProbabilità cumulata (Cumulated Distribution Function): \\(p(x_0) = P(x\\leq x_0)\\)\nDensità di probabilità (Probability Density Function): \\(f(x) = \\frac{d}{dx} p(x)\\)\nVale anche \\(p(x_0) = \\int_{-\\infty}^{x_0}f(x) \\mathrm d x\\)"
+    "text": "Probabilità e densità di probabilità\n\nProbabilità (o frequenza): per una v.a. discreta, corrisponde al rapporto tra il numero di osservazioni di un dato valore e il numero totale di osservazioni\nDensità di probabilità: per una v.a. continua, la probabilità di riscontrare esattamente un dato valore è nulla, quindi ci si riferisce ad una probabilità di riscontrare un valore minore (o maggiore) di un dato valore. La densità di probabilità è la derivata di tale probabilità\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nProbabilità cumulata (Cumulated Distribution Function): \\(p(x_0) = P(x\\leq x_0)\\)\nDensità di probabilità (Probability Density Function): \\(f(x) = \\frac{d}{dx} p(x)\\)\nVale anche \\(p(x_0) = \\int_{-\\infty}^{x_0}f(x) \\mathrm d x\\)"
   },
   {
     "objectID": "slides/ADAS/1-statistica.html#probabilità-e-densità-di-probabilità-1",
@@ -810,6 +810,13 @@
     "title": "Statistica Descrittiva e Inferenziale",
     "section": "Stime",
     "text": "Stime\nDato che ogni campione è estratto casualmente, ogni stima è una variabile aleatoria\nPiù grande è il campione, più la stima si avvicina alla proprietà corrispondente: si ha convergenza in distribuzione"
+  },
+  {
+    "objectID": "slides/ADAS/1-statistica.html#stime-1",
+    "href": "slides/ADAS/1-statistica.html#stime-1",
+    "title": "Statistica Descrittiva e Inferenziale",
+    "section": "Stime",
+    "text": "Stime\nAncora meglio, per un campione di \\(N=5000\\) elementi:"
   },
   {
     "objectID": "slides/ADAS/1-statistica.html#valore-atteso-e-varianza-della-media-campionaria",
@@ -1642,7 +1649,7 @@
     "href": "slides/ADAS/2-R-intro.html#differenza-tra---e",
     "title": "Introduzione al Linguaggio R",
     "section": "Differenza tra <- e =",
-    "text": "Differenza tra &lt;- e =\n\nL’operatore = come assegnazione è valido solo al top-level\nL’operatore &lt;- è valido ovunque, anche come argomento di funzione:\n\n\nsystem.time(m &lt;- mean(1:1E6))\n\n   user  system elapsed \n  0.004   0.000   0.004 \n\nm\n\n[1] 500000.5"
+    "text": "Differenza tra &lt;- e =\n\nL’operatore = come assegnazione è valido solo al top-level\nL’operatore &lt;- è valido ovunque, anche come argomento di funzione:\n\n\nsystem.time(m &lt;- mean(1:1E6))\n\n   user  system elapsed \n  0.007   0.000   0.007 \n\nm\n\n[1] 500000.5"
   },
   {
     "objectID": "slides/ADAS/2-R-intro.html#dataframe",

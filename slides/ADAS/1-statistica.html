@@ -8,7 +8,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/quarto-contrib/qrcodejs-v1.0.0/qrcode.js"></script><meta charset="utf-8">
   <meta name="generator" content="quarto-1.10.18">
 
   <meta name="author" content="Paolo Bosetti">
@@ -2017,8 +2018,22 @@ Paolo Bosetti
     </div>
 </div>
 
-  <p class="date"><em>Ultimo aggiornamento:</em> 12/09/2026</p>
+  <p class="date"><em>Ultimo aggiornamento:</em> 13/09/2026</p>
 </section>
+<section id="link-alle-slide" class="title-slide slide level1 center">
+<h1>Link alle slide</h1>
+<div id="" class="qrcode"></div>
+<script type="text/javascript">
+(function() {
+  var script = document.currentScript;
+  var qrcode = script.previousElementSibling;
+  qrcode.qrcode = new QRCode(qrcode, {"colorDark":"#000000","colorLight":"#ffffff","height":"500","text":"https//pbosetti.github.io/teaching_site/slides/ADAS/1-statistica.html","width":"500"});
+  script.remove();
+})();
+</script>
+    
+</section>
+
 <section>
 <section id="statistica-descrittiva" class="title-slide slide level1 center">
 <h1>Statistica descrittiva</h1>
@@ -2120,7 +2135,7 @@ Paolo Bosetti
 <h2>Probabilità e densità di probabilità</h2>
 <ul>
 <li><p><strong>Probabilità</strong> (o <strong>frequenza</strong>): per una v.a. discreta, corrisponde al rapporto tra il numero di osservazioni di un dato valore e il numero totale di osservazioni</p></li>
-<li><p><strong>Densità di probabilità</strong>: per una v.a. continua, la probabilità di riscontrare esattamente un dato valore è nulla, quindi ci si riferisce ad una probabilità di riscontrare un valore all’interno di un dato intervallo. La densità di probabilità è la derivata di tale valore</p></li>
+<li><p><strong>Densità di probabilità</strong>: per una v.a. continua, la probabilità di riscontrare esattamente un dato valore è nulla, quindi ci si riferisce ad una probabilità di riscontrare un valore minore (o maggiore) di un dato valore. La densità di probabilità è la derivata di tale probabilità</p></li>
 </ul>
 <div class="columns">
 <div class="column" style="width:45%;">
@@ -2207,6 +2222,11 @@ S^2 &amp;=&amp; \frac{\sum_{i=1}^n (x_i - \bar x)^2}{n-1}
 <p>Più grande è il campione, più la stima si avvicina alla proprietà corrispondente: si ha <strong>convergenza in distribuzione</strong></p>
 
 <img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-5-1.png" width="1500" class="r-stretch"></section>
+<section id="stime-1" class="slide level2">
+<h2>Stime</h2>
+<p>Ancora meglio, per un campione di <span class="math inline">\(N=5000\)</span> elementi:</p>
+
+<img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-6-1.png" width="1500" class="r-stretch"></section>
 <section id="valore-atteso-e-varianza-della-media-campionaria" class="slide level2">
 <h2>Valore atteso e varianza della media campionaria</h2>
 <p>Valore atteso della media:</p>
@@ -2281,7 +2301,7 @@ S^2 &amp;=&amp; \frac{\sum_{i=1}^n (x_i - \bar x)^2}{n-1}
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-6-1.png" width="1500"></p>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-7-1.png" width="1500"></p>
 </figure>
 </div>
 </div>
@@ -2303,7 +2323,7 @@ S^2 &amp;=&amp; \frac{\sum_{i=1}^n (x_i - \bar x)^2}{n-1}
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-7-1.png" width="1500"></p>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-8-1.png" width="1500"></p>
 </figure>
 </div>
 </div>
@@ -2314,7 +2334,7 @@ S^2 &amp;=&amp; \frac{\sum_{i=1}^n (x_i - \bar x)^2}{n-1}
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-8-1.png" width="1500"></p>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-9-1.png" width="1500"></p>
 </figure>
 </div>
 </div>
@@ -2364,7 +2384,7 @@ p(x)=\binom{n}{x}p_s^x(1-p_s)^{n-x},~~~x\in{0,1\dots,n}
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-9-1.png" width="1500"></p>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-10-1.png" width="1500"></p>
 </figure>
 </div>
 </div>
@@ -2408,7 +2428,7 @@ p(x)=\frac{e^{-\lambda}\lambda^x}{x!},~~~\forall x\in\mathbb{N}^+
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-10-1.png" width="1500"></p>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-11-1.png" width="1500"></p>
 </figure>
 </div>
 </div>
@@ -2447,7 +2467,7 @@ p(x)=p_s(1-p_s)^{x-1},~~~x \in\mathbb{N}^+
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-11-1.png" width="1500"></p>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-12-1.png" width="1500"></p>
 </figure>
 </div>
 </div>
@@ -2497,7 +2517,7 @@ f(x)=\begin{cases} 1/(b-a),&amp;x\in[a, b] \\
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-12-1.png" width="1500"></p>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-13-1.png" width="1500"></p>
 </figure>
 </div>
 </div>
@@ -2537,7 +2557,7 @@ f(x) =\frac{1}{\sigma \sqrt{2 \pi}}e^{-\frac{1}{2}\left[\frac{x-\mu}{\sigma}\rig
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-13-1.png" width="1500"></p>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-14-1.png" width="1500"></p>
 </figure>
 </div>
 </div>
@@ -2612,7 +2632,7 @@ f(x)=\frac{1}{2^{k/2}\Gamma(k/2)}x^{k/2-1}e^{-y/2}
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-14-1.png" width="1500"></p>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-15-1.png" width="1500"></p>
 </figure>
 </div>
 </div>
@@ -2655,7 +2675,7 @@ f(x)=\frac{\Gamma\left((k-1)/2\right)}{\sqrt{k\pi}\Gamma(k/2)}\frac{1}{((x^2/k)+
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-15-1.png" width="1500"></p>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-16-1.png" width="1500"></p>
 </figure>
 </div>
 </div>
@@ -2694,7 +2714,7 @@ f(x)=\frac{\Gamma\left(\frac{u+v}{2}\right)\left(\frac{u}{v}\right)^{u/2}x^{(u/2
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-16-1.png" width="1500"></p>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-17-1.png" width="1500"></p>
 </figure>
 </div>
 </div>
@@ -2725,7 +2745,7 @@ f(x)=\frac{\Gamma\left(\frac{u+v}{2}\right)\left(\frac{u}{v}\right)^{u/2}x^{(u/2
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-17-1.png" width="1500"></p>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-18-1.png" width="1500"></p>
 </figure>
 </div>
 </div>
@@ -2736,7 +2756,7 @@ f(x)=\frac{\Gamma\left(\frac{u+v}{2}\right)\left(\frac{u}{v}\right)^{u/2}x^{(u/2
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-18-1.png" width="1500"></p>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-19-1.png" width="1500"></p>
 </figure>
 </div>
 </div>
@@ -2747,7 +2767,7 @@ f(x)=\frac{\Gamma\left(\frac{u+v}{2}\right)\left(\frac{u}{v}\right)^{u/2}x^{(u/2
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-19-1.png" width="1500"></p>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-20-1.png" width="1500"></p>
 </figure>
 </div>
 </div>
@@ -2888,7 +2908,7 @@ H_1:~&amp;\mu_1 \neq \mu_2 \\
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-21-1.png" width="1500"></p>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-22-1.png" width="1500"></p>
 </figure>
 </div>
 </div>
@@ -2951,7 +2971,7 @@ p\mathrm{-value} = 2\mathrm{CDF}^+_t(|t_0|,n_1+n_2-2)
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-22-1.png" width="1500"></p>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-23-1.png" width="1500"></p>
 </figure>
 </div>
 </div>
@@ -3313,7 +3333,7 @@ P\left( -t_{\alpha/2,n_1+n_2-2}\leqslant\frac{(\bar y_1-\bar y_2)-(\mu_1-\mu_2)}
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-25-1.png" width="1500"></p>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-26-1.png" width="1500"></p>
 </figure>
 </div>
 </div>
@@ -3372,7 +3392,7 @@ P\left( -t_{\alpha/2,n_1+n_2-2}\leqslant\frac{(\bar y_1-\bar y_2)-(\mu_1-\mu_2)}
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-27-1.png" width="1500"></p>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-28-1.png" width="1500"></p>
 </figure>
 </div>
 </div>
@@ -3426,10 +3446,10 @@ G_0 &amp;&gt;&amp; \frac{n-1}{n}\sqrt{\frac{t^2_{\alpha/(2n),n-2}}{n-2+t^2_{\alp
 <div class="cell quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-28-1.png" width="1500"></p>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-29-1.png" width="1500"></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-28-2.png" width="1500"></p>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-29-2.png" width="1500"></p>
 </div>
 </div>
 </div>
@@ -3438,7 +3458,7 @@ G_0 &amp;&gt;&amp; \frac{n-1}{n}\sqrt{\frac{t^2_{\alpha/(2n),n-2}}{n-2+t^2_{\alp
 <section id="sturges-e-scott" class="slide level2">
 <h2>Sturges e Scott</h2>
 
-<img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-29-1.png" width="1500" class="r-stretch"></section>
+<img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-30-1.png" width="1500" class="r-stretch"></section>
 <section id="analisi-di-normalità-grafico-quantile-quantile" class="slide level2">
 <h2>Analisi di normalità: grafico quantile-quantile</h2>
 <div class="columns">
@@ -3527,7 +3547,7 @@ G_0 &amp;&gt;&amp; \frac{n-1}{n}\sqrt{\frac{t^2_{\alpha/(2n),n-2}}{n-2+t^2_{\alp
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-31-1.png" width="1500"></p>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-32-1.png" width="1500"></p>
 </figure>
 </div>
 </div>
@@ -3541,7 +3561,7 @@ G_0 &amp;&gt;&amp; \frac{n-1}{n}\sqrt{\frac{t^2_{\alpha/(2n),n-2}}{n-2+t^2_{\alp
 <section id="analisi-di-normalità-grafico-quantile-quantile-1" class="slide level2">
 <h2>Analisi di normalità: grafico quantile-quantile</h2>
 
-<img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-32-1.png" width="1500" class="r-stretch"></section>
+<img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-33-1.png" width="1500" class="r-stretch"></section>
 <section id="analisi-di-normalità-test-del-chi-quadro" class="slide level2">
 <h2>Analisi di normalità: test del Chi-Quadro</h2>
 <p>È un test statistico per verificare l’ipotesi nulla che un dato campione provenga da una data (a scelta!) distribuzione</p>
@@ -3575,7 +3595,7 @@ X_0^2 = \sum_{i=1}^k \frac{(O_i-E_i)^2}{E_i} \sim \chi_{k-p-1}^2
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-33-1.png" width="1500"></p>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-34-1.png" width="1500"></p>
 </figure>
 </div>
 </div>
@@ -3674,7 +3694,7 @@ X_0^2 = \sum_{i=1}^k \frac{(O_i-E_i)^2}{E_i} \sim \chi_{k-p-1}^2
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-35-1.png" width="1500"></p>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-36-1.png" width="1500"></p>
 </figure>
 </div>
 </div>
@@ -3868,7 +3888,7 @@ q_{0,ij}=\frac{|\bar y_{i.}-\bar y_{j.}|}{S_{p,ij}\sqrt{2/n}}\sim\mathcal{Q}_{a,
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-37-1.png" width="1500"></p>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-38-1.png" width="1500"></p>
 </figure>
 </div>
 </div>
@@ -3961,7 +3981,7 @@ q_{0,ij}=\frac{|\bar y_{i.}-\bar y_{j.}|}{S_{p,ij}\sqrt{2/n}}\sim\mathcal{Q}_{a,
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-40-1.png" width="1500"></p>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-41-1.png" width="1500"></p>
 </figure>
 </div>
 </div>
@@ -3984,7 +4004,7 @@ q_{0,ij}=\frac{|\bar y_{i.}-\bar y_{j.}|}{S_{p,ij}\sqrt{2/n}}\sim\mathcal{Q}_{a,
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-42-1.png" width="1500"></p>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-43-1.png" width="1500"></p>
 </figure>
 </div>
 </div>
@@ -4014,7 +4034,7 @@ H_1:~&amp;\mu \neq \mu_0 + \sigma
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-43-1.png" width="1500"></p>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-44-1.png" width="1500"></p>
 </figure>
 </div>
 </div>
@@ -4025,7 +4045,7 @@ H_1:~&amp;\mu \neq \mu_0 + \sigma
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-44-1.png" width="1500"></p>
+<p><img data-src="1-statistica_files/figure-revealjs/unnamed-chunk-45-1.png" width="1500"></p>
 </figure>
 </div>
 </div>
