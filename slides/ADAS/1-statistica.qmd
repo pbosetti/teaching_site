@@ -63,6 +63,10 @@ library(tidyverse)
 theme_set(theme_gray()+theme(legend.position = "bottom"))
 ```
 
+# Link alle slide
+
+{{< qrcode https//pbosetti.github.io/teaching_site/slides/ADAS/1-statistica.html width=500 height=500 >}}
+
 # Statistica descrittiva
 
 La Statistica Descrittiva serve a descrivere il comportamento di variabili aleatorie
@@ -188,7 +192,7 @@ Le proprietà di una popolazione si indicano con lettere greche: $\mu$ e $\sigma
 
 -   **Probabilità** (o **frequenza**): per una v.a. discreta, corrisponde al rapporto tra il numero di osservazioni di un dato valore e il numero totale di osservazioni
 
--   **Densità di probabilità**: per una v.a. continua, la probabilità di riscontrare esattamente un dato valore è nulla, quindi ci si riferisce ad una probabilità di riscontrare un valore all'interno di un dato intervallo. La densità di probabilità è la derivata di tale valore
+-   **Densità di probabilità**: per una v.a. continua, la probabilità di riscontrare esattamente un dato valore è nulla, quindi ci si riferisce ad una probabilità di riscontrare un valore minore (o maggiore) di un dato valore. La densità di probabilità è la derivata di tale probabilità
 
 ::: columns
 ::: {.column width="45%"}
@@ -307,6 +311,29 @@ tibble(i=samples, m=m) %>% ggplot() +
   geom_hline(yintercept=mu) + 
   labs(x="# campione", y=TeX("$\\bar{x}_i$"), fill="Dimensione campione")
 ```
+
+
+## Stime
+
+Ancora meglio, per un campione di $N=5000$ elementi:
+
+```{r}
+pop <- rnorm(N, mu, 0.1)
+sample_sizes <- 10:N
+means <- c()
+for (n in sample_sizes) {
+  means <- c(means, mean(sample(pop, n)))
+}
+tibble(n=sample_sizes, m=means) %>% ggplot(aes(x=n, y=m)) +
+  # geom_line(color=gray(0.5)) +
+  geom_point(alpha=0.2) +
+  geom_hline(yintercept=mean(pop)) +
+  labs(x="Dimensione campione", y=TeX("$\\bar{x}$"))
+
+```
+
+
+
 
 ## Valore atteso e varianza della media campionaria
 

@@ -51,6 +51,10 @@ library(patchwork)
 theme_set(theme_gray()+theme(legend.position = "bottom"))
 ```
 
+# Link alle slide
+
+{{< qrcode https//pbosetti.github.io/teaching_site/slides/ADAS/7-serie_temporali.html width=500 height=500 >}}
+
 # Serie Temporali
 
 Una **serie temporale** è costituita da una serie di osservazioni di una variabile aleatoria tale per cui l'influenza di un'osservazione sulle seguenti non possa essere trascurata e---quindi---tale che la dipendenza dal tempo risulti essenziale

@@ -35,6 +35,10 @@ execute:
   cache: true
 ---
 
+# Link alle slide
+
+{{< qrcode https//pbosetti.github.io/teaching_site/slides/ADAS/5-misura.html width=500 height=500 >}}
+
 ```{r}
 options(width = 60)
 set.seed(0)

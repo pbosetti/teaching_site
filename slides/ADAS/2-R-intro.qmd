@@ -53,6 +53,9 @@ options(width = 60)
 set.seed(0)
 ```
 
+# Link alle slide
+
+{{< qrcode https//pbosetti.github.io/teaching_site/slides/ADAS/2-R-intro.html width=500 height=500 >}}
 
 # Introduzione a R
 L'analisi statistica richiede l'uso di software specifico

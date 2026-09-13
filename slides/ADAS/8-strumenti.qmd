@@ -42,6 +42,9 @@ library(latex2exp)
 library(patchwork)
 ```
 
+# Link alle slide
+
+{{< qrcode https//pbosetti.github.io/teaching_site/slides/ADAS/8-strumenti.html width=500 height=500 >}}
 
 # Catena di misura
 È un sistema composto da una serie di strumenti collegati che elaborano un segnale per ottenere una misurazione
