@@ -872,7 +872,7 @@
     "href": "slides/ADAS/1-statistica.html#distribuzione-di-poisson",
     "title": "Statistica Descrittiva e Inferenziale",
     "section": "Distribuzione di Poisson",
-    "text": "Distribuzione di Poisson\n\n\n\nDescrizioneDefinizioniEsempi\n\n\n\nProbabilità di avere un numero \\(x\\in\\mathbb{N}^+\\) di eventi che si verificano successivamente ed indipendentemente in un dato intervallo di tempo (o spazio…)\nMediamente si verificano \\(\\lambda\\in\\mathbb{R}^+\\) eventi nello stesso intervallo\nÈ nota anche come legge degli eventi rari\n\n\n\n\nSi dice che \\(x\\sim\\mathrm{Poisson}(\\lambda)\\) oppure \\(x\\sim\\mathcal{P}(\\lambda)\\) quando la probabilità è: \\[\np(x)=\\frac{e^{-\\lambda}\\lambda^x}{x!},~~~\\forall x\\in\\mathbb{N}^+\n\\]\nMomenti: \\[\n\\mu=\\lambda,~~~\\sigma^2=\\lambda\n\\]\n\n\n\n\nprobabilità di riscontrare un difetto su 1 m di filo, quando ci sono mediamente 9 difetti ogni 100 m\nprobabilità di ricevere una telefonata nei prossimi 10’ in un centralino che ne riceve mediamente 250 al giorno"
+    "text": "Distribuzione di Poisson\n\n\n\nDescrizioneDefinizioniEsempi\n\n\n\nProbabilità di avere un numero \\(x\\in\\mathbb{N}^+\\) di eventi che si verificano successivamente ed indipendentemente in un dato intervallo di tempo (o spazio…)\nMediamente si verificano \\(\\lambda\\in\\mathbb{R}^+\\) eventi nello stesso intervallo\nÈ nota anche come legge degli eventi rari\n\n\n\n\nSi dice che \\(x\\sim\\mathrm{Poisson}(\\lambda)\\) oppure \\(x\\sim\\mathcal{P}(\\lambda)\\) quando la probabilità è: \\[\np(x)=\\frac{e^{-\\lambda}\\lambda^x}{x!},~~~\\forall x\\in\\mathbb{N}^+\n\\]\nMomenti: \\[\n\\mu=\\lambda,~~~\\sigma^2=\\lambda\n\\]\n\n\n\n\nprobabilità di riscontrare difetti su 1 m di filo, quando ci sono mediamente 3 difetti ogni 100 m: \\(\\lambda = 3/100\\)\nprobabilità di ricevere telefonate nei prossimi 10’ in un centralino che ne riceve mediamente 250 al giorno: \\(\\lambda = \\frac{250}{24\\cdot 60}/10\\)\nprobabilità di avere dipendenti malati in stagione di influenza, in cui mediamente 5 dipendenti a settimana sono malati: \\(\\lambda = 5\\)"
   },
   {
     "objectID": "slides/ADAS/1-statistica.html#distribuzione-geometrica",
@@ -893,7 +893,7 @@
     "href": "slides/ADAS/1-statistica.html#distribuzione-normale-o-gaussiana",
     "title": "Statistica Descrittiva e Inferenziale",
     "section": "Distribuzione normale o gaussiana",
-    "text": "Distribuzione normale o gaussiana\n\n\n\nDescrizioneDefinizioniNota\n\n\n\nRappresenta il caso in cui la probabilità di riscontrare valori via via più lontani dal valore atteso decresce asintoticamente a 0\nLa probabilità di un qualsiasi valore non è mai nulla\n\n\n\n\nSi dice che \\(x\\sim\\mathrm{Norm}(\\mu,\\sigma^2)\\) oppure \\(x\\sim\\mathcal{N}(\\mu,\\sigma^2)\\) quando la PDF è: \\[\nf(x) =\\frac{1}{\\sigma \\sqrt{2 \\pi}}e^{-\\frac{1}{2}\\left[\\frac{x-\\mu}{\\sigma}\\right]^2}\n\\]\nMomenti: coincidono con i due parametri \\(\\mu\\) e \\(\\sigma^2\\)\n\n\n\nSe \\(x\\sim\\mathcal{N}(\\mu, \\sigma^2)\\) allora \\[\n\\frac{x-\\mu}{\\sigma}\\sim\\mathcal{N}(0,1)\n\\] e la distribuzione \\(\\mathcal{N}(0,1)\\) è detta normale standard.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nÈ una distribuzione che gioca un ruolo centrale, in virtù del teorema del limite centrale"
+    "text": "Distribuzione normale o gaussiana\n\n\n\nDescrizioneDefinizioniNota\n\n\n\nRappresenta il caso in cui la probabilità di riscontrare valori via via più lontani dal valore atteso decresce asintoticamente a 0\nLa probabilità di un qualsiasi valore non è mai nulla\n\n\n\n\nSi dice che \\(x\\sim\\mathrm{Norm}(\\mu,\\sigma^2)\\) oppure \\(x\\sim\\mathcal{N}(\\mu,\\sigma^2)\\) quando la PDF è: \\[\nf(x) =\\frac{1}{\\sigma \\sqrt{2 \\pi}}e^{-\\frac{1}{2}\\left[\\frac{x-\\mu}{\\sigma}\\right]^2}\n\\]\nMomenti: coincidono con i due parametri \\(\\mu\\) e \\(\\sigma^2\\)\n\n\n\nSe \\(x\\sim\\mathcal{N}(\\mu, \\sigma^2)\\) allora \\[\n\\frac{x-\\mu}{\\sigma}\\sim\\mathcal{N}(0,1)\n\\] e la distribuzione \\(\\mathcal{N}(0,1)\\) è detta normale standard.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNota\n\n\nÈ una distribuzione che gioca un ruolo centrale, in virtù del teorema del limite centrale"
   },
   {
     "objectID": "slides/ADAS/1-statistica.html#teorema-del-limite-centrale-enunciato",
@@ -921,7 +921,7 @@
     "href": "slides/ADAS/1-statistica.html#distribuzione-t-di-student",
     "title": "Statistica Descrittiva e Inferenziale",
     "section": "Distribuzione T di Student",
-    "text": "Distribuzione T di Student\n\n\n\nDescrizioneDefinizioniNota\n\n\nSiano due v.a. \\[\nz\\sim\\mathcal{N}(0,1),~x\\sim\\mathcal{X}^2_k\n\\] allora la loro combinazione \\[\nx=\\frac{z}{\\sqrt{x/k}}\n\\] è distribuita come una T di Student\n\n\n\nSi dice che \\(x\\sim\\mathrm{T}_k\\) oppure \\(x\\sim\\mathcal{T}_k\\) quando la PDF è: \\[\nf(x)=\\frac{\\Gamma\\left((k-1)/2\\right)}{\\sqrt{k\\pi}\\Gamma(k/2)}\\frac{1}{((x^2/k)+1)^{(k+1)/2}}\n\\]\nMomenti: \\[\n\\mu = 0,~~~ \\sigma^2=k/(k-2)\n\\]\n\n\n\nLa T di Student è un caso particolare della \\(\\mathcal{N}(0,1)\\): \\[\n\\lim_{k\\rightarrow+\\infty}t_k=\\mathcal{N}(0,1)\n\\] La convergenza è molto rapida: già per \\(k&gt;30\\) la differenza tra le due funzioni di distribuzione diventa trascurabile\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLa figura confronta la T di Student con la normale standard (tratteggiata)"
+    "text": "Distribuzione T di Student\n\n\n\nDescrizioneDefinizioniNota\n\n\nSiano due v.a. \\[\nz\\sim\\mathcal{N}(0,1),~x\\sim\\mathcal{X}^2_k\n\\] allora la loro combinazione \\[\nx=\\frac{z}{\\sqrt{x/k}}\n\\] è distribuita come una T di Student\n\n\n\nSi dice che \\(x\\sim\\mathrm{T}_k\\) oppure \\(x\\sim\\mathcal{T}_k\\) quando la PDF è: \\[\nf(x)=\\frac{\\Gamma\\left((k-1)/2\\right)}{\\sqrt{k\\pi}\\Gamma(k/2)}\\frac{1}{((x^2/k)+1)^{(k+1)/2}}\n\\]\nMomenti: \\[\n\\mu = 0,~~~ \\sigma^2=k/(k-2)\n\\]\n\n\n\nLa T di Student è un caso particolare della \\(\\mathcal{N}(0,1)\\): \\[\n\\lim_{k\\rightarrow+\\infty}t_k=\\mathcal{N}(0,1)\n\\] La convergenza è molto rapida: già per \\(k&gt;30\\) la differenza tra le due funzioni di distribuzione diventa trascurabile\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNota\n\n\nLa figura confronta la T di Student con la normale standard (tratteggiata)"
   },
   {
     "objectID": "slides/ADAS/1-statistica.html#distribuzione-f-di-snedecor",
@@ -956,14 +956,14 @@
     "href": "slides/ADAS/1-statistica.html#ipotesi-statistiche",
     "title": "Statistica Descrittiva e Inferenziale",
     "section": "Ipotesi statistiche",
-    "text": "Ipotesi statistiche\n\nSi è visto che media e varianza campionaria sono due stimatori e rappresentano delle variabili aleatorie\nQuindi prelevando due campioni da una popolazione le due stime di media e varianza saranno sempre differenti\nCome faccio a sapere se due campioni con media diversa provengono dalla stessa popolazione?\nPosso formulare una coppia di ipotesi alternative: \\[\n\\begin{eqnarray}\nH_0:~&\\mu_1 = \\mu_2 \\\\\nH_1:~&\\mu_1 \\neq \\mu_2 \\\\\n\\end{eqnarray}\n\\]\n\n\n\n\\(H_0\\) è detta ipotesi nulla, o debole; \\(H_1\\) è detta ipotesi alternativa, o forte"
+    "text": "Ipotesi statistiche\n\nSi è visto che media e varianza campionaria sono due stimatori e rappresentano delle variabili aleatorie\nQuindi prelevando due campioni da una popolazione le due stime di media e varianza saranno sempre differenti\nCome faccio a sapere se due campioni con media diversa provengono dalla stessa popolazione?\nPosso formulare una coppia di ipotesi alternative: \\[\n\\begin{eqnarray}\nH_0:~&\\mu_1 = \\mu_2 \\\\\nH_1:~&\\mu_1 \\neq \\mu_2 \\\\\n\\end{eqnarray}\n\\]\n\n\n\n\n\n\n\nNota\n\n\n\\(H_0\\) è detta ipotesi nulla, o debole; \\(H_1\\) è detta ipotesi alternativa, o forte"
   },
   {
     "objectID": "slides/ADAS/1-statistica.html#matrice-di-confusione",
     "href": "slides/ADAS/1-statistica.html#matrice-di-confusione",
     "title": "Statistica Descrittiva e Inferenziale",
     "section": "Matrice di confusione",
-    "text": "Matrice di confusione\n\n\nUn test di ipotesi può avere due tipi di errore:\n\nErrore di tipo I: falso positivo, o falso allarme\nErrore di tipo II: falso negativo, o mancato allarme\n\nLo scopo della statistica inferenziale è associare una probabilità a questi errori\n\n\n\n\n\n\nIpotesi nulla\nvera\nfalsa\n\n\n\n\naccettata\nOK\nErrore tipo II\n\n\nrifiutata\nErrore tipo I\nOK\n\n\n\n\n\n\nLa probabilità di un Errore di tipo I è \\(\\alpha\\), la probabilità di un Errore di tipo II è \\(\\beta\\).\nIl valore \\(1-\\beta\\) è la potenza \\(P\\) del test\n\n\nNota: \\(\\alpha \\neq 1-\\beta\\)"
+    "text": "Matrice di confusione\n\n\nUn test di ipotesi può avere due tipi di errore:\n\nErrore di tipo I: falso positivo, o falso allarme\nErrore di tipo II: falso negativo, o mancato allarme\n\nLo scopo della statistica inferenziale è associare una probabilità a questi errori\n\n\n\n\n\n\nIpotesi nulla\nvera\nfalsa\n\n\n\n\naccettata\nOK\nErrore tipo II\n\n\nrifiutata\nErrore tipo I\nOK\n\n\n\n\n\n\nLa probabilità di un Errore di tipo I è \\(\\alpha\\), la probabilità di un Errore di tipo II è \\(\\beta\\).\nIl valore \\(1-\\beta\\) è la potenza \\(P\\) del test\n\n\n\n\n\n\nNota\n\n\nNota: \\(\\alpha \\neq 1-\\beta\\)"
   },
   {
     "objectID": "slides/ADAS/1-statistica.html#test-di-student",
@@ -977,7 +977,7 @@
     "href": "slides/ADAS/1-statistica.html#test-di-student-1",
     "title": "Statistica Descrittiva e Inferenziale",
     "section": "Test di Student",
-    "text": "Test di Student\n\n\n\nI campioni C1 e C3 non avranno valori comuni: è molto probabile che vengano da popolazioni differenti\nI campioni C1 e C2 invece sono più difficili da distinguere\nIntuitivamente, \\(H_1\\) è tanto più probabile quanto più le medie sono distanti e le varianze strette\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNel grafico, i trattini verticali in basso rappresentano i valori di 10 campioni casuali estratti dalle rispettive popolazioni"
+    "text": "Test di Student\n\n\n\nI campioni C1 e C3 non avranno valori comuni: è molto probabile che vengano da popolazioni differenti\nI campioni C1 e C2 invece sono più difficili da distinguere\nIntuitivamente, \\(H_1\\) è tanto più probabile quanto più le medie sono distanti e le varianze strette\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNota\n\n\nNel grafico, i trattini verticali in basso rappresentano i valori di 10 campioni casuali estratti dalle rispettive popolazioni"
   },
   {
     "objectID": "slides/ADAS/1-statistica.html#test-di-student-2",
@@ -1026,7 +1026,7 @@
     "href": "slides/ADAS/1-statistica.html#varianti-del-test-di-student",
     "title": "Statistica Descrittiva e Inferenziale",
     "section": "Varianti del test di Student",
-    "text": "Varianti del test di Student\nIl test di Student sopra visto vale per il caso più generico. Esistono varianti del test per le seguenti condizioni, che possono combinarsi per dare luogo a 4 diversi test:\n\ntest a uno o due campioni\ntest a uno o due lati (in \\(H_1\\) la disuguaglianza è sostituita con un \\(&gt;\\) o un \\(&lt;\\))\n\nInoltre, nel caso di test a due campioni è possibile assumere che i campioni siano omoschedastici oppure no\n\n\nDue campioni sono detti omoschedastici quando provengono da popolazioni con identica varianza"
+    "text": "Varianti del test di Student\nIl test di Student sopra visto vale per il caso più generico. Esistono varianti del test per le seguenti condizioni, che possono combinarsi per dare luogo a 4 diversi test:\n\ntest a uno o due campioni\ntest a uno o due lati (in \\(H_1\\) la disuguaglianza è sostituita con un \\(&gt;\\) o un \\(&lt;\\))\n\nInoltre, nel caso di test a due campioni è possibile assumere che i campioni siano omoschedastici oppure no\n\n\n\n\n\n\nNota\n\n\nDue campioni sono detti omoschedastici quando provengono da popolazioni con identica varianza"
   },
   {
     "objectID": "slides/ADAS/1-statistica.html#varianti-del-test-di-student-1",
@@ -1089,7 +1089,7 @@
     "href": "slides/ADAS/1-statistica.html#anomalie",
     "title": "Statistica Descrittiva e Inferenziale",
     "section": "Anomalie",
-    "text": "Anomalie\nLa raccolta dei dati relativi ad un campione può essere affetta da errori:\n\nnell’operazione di misura\nnell’operazione di trascrittura del dato\n\nQuesti errori ovviamente hanno un’elevata probabilità di non concordare con il resto dei dati, cioè di essere troppo lontani dalla media in rapporto alla varianza tipica del processo.\nQuesti errori sono chiamati anomalie ed è buona norma identificarli ed eliminarli immediatamente dopo aver concluso la raccolta dei dati\n\n\nIn Inglese le anomalie sono note come outlier"
+    "text": "Anomalie\nLa raccolta dei dati relativi ad un campione può essere affetta da errori:\n\nnell’operazione di misura\nnell’operazione di trascrittura del dato\n\nQuesti errori ovviamente hanno un’elevata probabilità di non concordare con il resto dei dati, cioè di essere troppo lontani dalla media in rapporto alla varianza tipica del processo.\nQuesti errori sono chiamati anomalie ed è buona norma identificarli ed eliminarli immediatamente dopo aver concluso la raccolta dei dati\n\n\n\n\n\n\nNota\n\n\nIn Inglese le anomalie sono note come outlier"
   },
   {
     "objectID": "slides/ADAS/1-statistica.html#anomalie-metodo-grafico",
@@ -1243,7 +1243,7 @@
     "href": "slides/ADAS/1-statistica.html#test-di-tukey-1",
     "title": "Statistica Descrittiva e Inferenziale",
     "section": "Test di Tukey",
-    "text": "Test di Tukey\n\n\nGeneralmente, il risultato viene riportato in un grafico come a fianco\nLe coppie per cui l’intervallo di confidenza è a cavallo di 0 non hanno differenze significative, e viceversa\nNota: compiere altrettanti test di Student separati aumenterebbe la probabilità d’errore complessivo, che risulterebbe dalla combinazione delle probabilità d’errore dei singoli test\n\n\n\n\n\n\n\n\n\n\n\n\n\nCosa succede agli intervalli di confidenza passando da un intervallo al 95% ad un intervallo al 99%?"
+    "text": "Test di Tukey\n\n\nGeneralmente, il risultato viene riportato in un grafico come a fianco\nLe coppie per cui l’intervallo di confidenza è a cavallo di 0 non hanno differenze significative, e viceversa\nNota: compiere altrettanti test di Student separati aumenterebbe la probabilità d’errore complessivo, che risulterebbe dalla combinazione delle probabilità d’errore dei singoli test\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNota\n\n\nCosa succede agli intervalli di confidenza passando da un intervallo al 95% ad un intervallo al 99%?"
   },
   {
     "objectID": "slides/ADAS/1-statistica.html#test-di-tukey-2",
@@ -1264,7 +1264,7 @@
     "href": "slides/ADAS/1-statistica.html#il-significato-del-p-value",
     "title": "Statistica Descrittiva e Inferenziale",
     "section": "Il significato del \\(p\\)-value",
-    "text": "Il significato del \\(p\\)-value\n\n\nIl significato del \\(p\\)-value è illustrato con un esempio: si consideri un esperimento in cui si effettuano 1000 test di Student su altrettanti campioni di \\(n=15\\) elementi, ciascuno con un livello di significatività \\(\\alpha\\) del 5%\nSupponiamo che si tratti di test ad un campione, con ipotesi nulla \\(\\mu = \\mu_0\\) e ipotesi alternativa \\(\\mu \\neq \\mu_0\\), e supponiamo che tutti i campioni siano prelevati dalla stessa popolazione con valore atteso \\(\\mu_0\\)\nAllora il valore atteso delle predizioni errate (cioè quelle in cui vale \\(H_1\\)) è 5%\n\n\n\n\n\n\n\n\n\n\n\n\n\nNota 1: Lo stesso approccio frequentista è applicabile a qualsiasi altro test statistico di cui si calcoli il \\(p\\)-value\nNota 2: Vedi la versione interattiva qui: https://p4010.shinyapps.io/frequentista/"
+    "text": "Il significato del \\(p\\)-value\n\n\nIl significato del \\(p\\)-value è illustrato con un esempio: si consideri un esperimento in cui si effettuano 1000 test di Student su altrettanti campioni di \\(n=15\\) elementi, ciascuno con un livello di significatività \\(\\alpha\\) del 5%\nSupponiamo che si tratti di test ad un campione, con ipotesi nulla \\(\\mu = \\mu_0\\) e ipotesi alternativa \\(\\mu \\neq \\mu_0\\), e supponiamo che tutti i campioni siano prelevati dalla stessa popolazione con valore atteso \\(\\mu_0\\)\nAllora il valore atteso delle predizioni errate (cioè quelle in cui vale \\(H_1\\)) è 5%\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNota\n\n\nNota 1: Lo stesso approccio frequentista è applicabile a qualsiasi altro test statistico di cui si calcoli il \\(p\\)-value\nNota 2: Vedi la versione interattiva qui: https://p4010.shinyapps.io/frequentista/"
   },
   {
     "objectID": "slides/ADAS/1-statistica.html#e-se-cambiamo-n",
@@ -1649,7 +1649,7 @@
     "href": "slides/ADAS/2-R-intro.html#differenza-tra---e",
     "title": "Introduzione al Linguaggio R",
     "section": "Differenza tra <- e =",
-    "text": "Differenza tra &lt;- e =\n\nL’operatore = come assegnazione è valido solo al top-level\nL’operatore &lt;- è valido ovunque, anche come argomento di funzione:\n\n\nsystem.time(m &lt;- mean(1:1E6))\n\n   user  system elapsed \n  0.007   0.000   0.007 \n\nm\n\n[1] 500000.5"
+    "text": "Differenza tra &lt;- e =\n\nL’operatore = come assegnazione è valido solo al top-level\nL’operatore &lt;- è valido ovunque, anche come argomento di funzione:\n\n\nsystem.time(m &lt;- mean(1:1E6))\n\n   user  system elapsed \n  0.013   0.000   0.013 \n\nm\n\n[1] 500000.5"
   },
   {
     "objectID": "slides/ADAS/2-R-intro.html#dataframe",
