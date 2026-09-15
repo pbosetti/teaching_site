@@ -534,14 +534,15 @@ $$
 
 ### Esempi
 
--   probabilità di riscontrare un difetto su 1 m di filo, quando ci sono mediamente 9 difetti ogni 100 m
--   probabilità di ricevere una telefonata nei prossimi 10' in un centralino che ne riceve mediamente 250 al giorno
+-   probabilità di riscontrare difetti su 1 m di filo, quando ci sono mediamente 3 difetti ogni 100 m: $\lambda = 3/100$
+-   probabilità di ricevere telefonate nei prossimi 10' in un centralino che ne riceve mediamente 250 al giorno: $\lambda = \frac{250}{24\cdot 60}/10$
+-   probabilità di avere dipendenti malati in stagione di influenza, in cui mediamente 5 dipendenti a settimana sono malati: $\lambda = 5$
 :::
 :::
 
 ::: column
 ```{r}
-tibble(q=0:20, p=dpois(q, 5)) %>%
+tibble(q=1:20, p=dpois(q, 5)) %>%
   ggplot(aes(x=q, y=p)) + 
   geom_col(width=0.1) +
   geom_point() +
@@ -674,7 +675,7 @@ tibble(q=seq(-3.5,3.5,0.01), p=dnorm(q, 0, 1)) %>%
 :::
 :::
 
-::: aside
+:::callout-note
 È una distribuzione che gioca un ruolo centrale, in virtù del **teorema del limite centrale**
 :::
 
@@ -800,7 +801,7 @@ tibble(q=seq(-3.5,3.5,0.1), p=dt(q, 3), n=dnorm(q, 0, 1)) %>%
 :::
 :::
 
-::: aside
+:::callout-note
 La figura confronta la T di Student con la normale standard (tratteggiata)
 :::
 
@@ -933,7 +934,7 @@ H_1:~&\mu_1 \neq \mu_2 \\
 \end{eqnarray}
 $$
 
-::: aside
+:::callout-note
 $H_0$ è detta **ipotesi nulla**, o debole; $H_1$ è detta **ipotesi alternativa**, o forte
 :::
 
@@ -965,7 +966,7 @@ La probabilità di un Errore di tipo I è $\alpha$, la probabilità di un Errore
 
 Il valore $1-\beta$ è la **potenza** $P$ del test
 
-::: aside
+:::callout-note
 **Nota**: $\alpha \neq 1-\beta$
 :::
 
@@ -1029,7 +1030,7 @@ ggplot(aes(x=x)) +
 
 :::
 
-:::aside
+:::callout-note
 Nel grafico, i **trattini verticali in basso** rappresentano i valori di 10 campioni casuali estratti dalle rispettive popolazioni
 :::
 
@@ -1163,7 +1164,7 @@ Il test di Student sopra visto vale per il caso più generico. Esistono varianti
 
 Inoltre, nel caso di test a due campioni è possibile assumere che i campioni siano **omoschedastici** oppure no
 
-:::aside
+:::callout-note
 Due campioni sono detti **omoschedastici** quando provengono da popolazioni con **identica varianza**
 :::
 
@@ -1362,7 +1363,7 @@ Questi errori ovviamente hanno un'elevata probabilità di **non concordare con i
 
 Questi errori sono chiamati **anomalie** ed è buona norma identificarli ed eliminarli **immediatamente dopo aver concluso la raccolta dei dati**
 
-:::aside
+:::callout-note
 In Inglese le anomalie sono note come *outlier*
 :::
 
@@ -1849,7 +1850,7 @@ GGTukey(tk) +
 :::
 :::
 
-:::aside
+:::callout-note
 Cosa succede agli intervalli di confidenza passando da un intervallo al 95% ad un intervallo al 99%?
 :::
 
@@ -1944,7 +1945,7 @@ tibble(
 :::
 :::
 
-:::aside
+:::callout-note
 **Nota 1**: Lo stesso approccio **frequentista** è applicabile a qualsiasi altro test statistico di cui si calcoli il $p$-value
 
 **Nota 2**: Vedi la versione interattiva qui: <https://p4010.shinyapps.io/frequentista/>
