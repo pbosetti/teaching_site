@@ -995,8 +995,8 @@ $$
 ## Test di Student
 :::{.columns}
 :::{.column width="50%"}
-* I campioni C1 e C3 non avranno valori comuni: è molto probabile che vengano da popolazioni differenti
-* I campioni C1 e C2 invece sono più difficili da distinguere
+* I campioni **C1** e [C3]{.bblue} non avranno valori comuni: è molto probabile che vengano da popolazioni differenti
+* I campioni **C1** e [C2]{.bgreen} invece sono più difficili da distinguere
 * Intuitivamente, $H_1$ è tanto più probabile quanto più le medie sono distanti e le varianze strette
 
 :::
@@ -1053,7 +1053,7 @@ La $t_0$ è il rapporto tra una v.a. normale al numeratore e una v.a. $\chi^2$ a
 
 ## Test di Student
 
-* È evidente che casi come **C1 vs. C3** nel grafico precedente avranno un valore di $|t_0|$ più alto che casi come **C1 vs. C2** (rapporto tra distanza e varianza)
+* È evidente che casi come **C1** vs. [C3]{.bblue} nel grafico precedente avranno un valore di $|t_0|$ più alto che casi come **C1** vs. [C2]{.bgreen} (rapporto tra distanza e varianza)
 
 * Ma data una coppia di campioni provenienti dalla stessa popolazione la probabilità di valori elevati di $|t_0|$ è molto bassa
 
