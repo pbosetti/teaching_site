@@ -1082,7 +1082,7 @@
     "href": "slides/ADAS/1-statistica.html#calcolatrice",
     "title": "Statistica Descrittiva e Inferenziale",
     "section": "Calcolatrice",
-    "text": "Calcolatrice\nUsare il riquadro sottostante per risolvere l’esercizio precedente (provare anche con la tabella dei quantili)\nNota: la radice quadrata si ottiene con sqrt(x), l’elevamento a potenza con x^y.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+    "text": "Calcolatrice\nUsare il riquadro sottostante per risolvere l’esercizio precedente (provare anche con la tabella dei quantili)\nNota: la radice quadrata si ottiene con sqrt(x), l’elevamento a potenza con x^y."
   },
   {
     "objectID": "slides/ADAS/1-statistica.html#anomalie",
@@ -1341,7 +1341,7 @@
     "href": "data.html#loading-the-data-files",
     "title": "Example Data",
     "section": "Loading the data files",
-    "text": "Loading the data files\nEach data file can be separately loaded from the URLs reported down below. Nonetheless, you can also exploit the ability of R read.* functions to open a file directly from its URL. To do so, it can be useful to use the adas.utils::examples_url() function that builds the URL based on the file name:\n\nexamples_url(\"timeseries.csv\")\n\n[1] \"https://paolobosetti.quarto.pub/data/timeseries.csv\"\n\n\nThen, just pipe it with the proper file-reading function, e.g.:\n\nexamples_url(\"timeseries.csv\") %&gt;% read_csv()\n\nor\n\nexamples_url(\"3dprint.dat\") %&gt;% read_table(comment=\"#\")"
+    "text": "Loading the data files\nEach data file can be separately loaded from the URLs reported down below. Nonetheless, you can also exploit the ability of R read.* functions to open a file directly from its URL. To do so, it can be useful to use the adas.utils::examples_url() function that builds the URL based on the file name:\n\nexamples_url(\"timeseries.csv\")\n\n[1] \"https://pbosetti.github.io/teaching_site/data/timeseries.csv\"\n\n\nThen, just pipe it with the proper file-reading function, e.g.:\n\nexamples_url(\"timeseries.csv\") %&gt;% read_csv()\n\nor\n\nexamples_url(\"3dprint.dat\") %&gt;% read_table(comment=\"#\")"
   },
   {
     "objectID": "data.html#list-of-csv-files",
@@ -1558,7 +1558,7 @@
     "href": "slides/ADAS/2-R-intro.html#facciamo-qualche-prova",
     "title": "Introduzione al Linguaggio R",
     "section": "Facciamo qualche prova",
-    "text": "Facciamo qualche prova\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+    "text": "Facciamo qualche prova"
   },
   {
     "objectID": "slides/ADAS/2-R-intro.html#introspezione",
@@ -1607,7 +1607,7 @@
     "href": "slides/ADAS/2-R-intro.html#facciamo-qualche-prova-1",
     "title": "Introduzione al Linguaggio R",
     "section": "Facciamo qualche prova",
-    "text": "Facciamo qualche prova\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nConsiglio\n\n\nCercare nell’help in linea funzioni come %*%"
+    "text": "Facciamo qualche prova\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nConsiglio\n\n\nCercare nell’help in linea funzioni come %*%"
   },
   {
     "objectID": "slides/ADAS/2-R-intro.html#funzioni",
@@ -1635,7 +1635,7 @@
     "href": "slides/ADAS/2-R-intro.html#esercizio",
     "title": "Introduzione al Linguaggio R",
     "section": "Esercizio",
-    "text": "Esercizio\n\nEsercizioSoluzione\n\n\nScrivere una funzione sum_odd che sommi tutti gli elementi con indice dispari di un vettore numerico. La funzione deve avere un argomento x e restituire la somma di tutti gli elementi di x, usando un ciclo for.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\n\n\n\n\nAvviso\n\n\nL’uso del ciclo for è sconsigliato in R (perché è più lento di alcune alternative), ma è utile per esercitarsi con il controllo di flusso.\n\n\n\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+    "text": "Esercizio\n\nAssegnazioneSoluzione\n\n\nScrivere una funzione sum_odd che sommi tutti gli elementi con indice dispari di un vettore numerico. La funzione deve avere un argomento x e restituire la somma di tutti gli elementi di x, usando un ciclo for.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAvviso\n\n\nL’uso del ciclo for è sconsigliato in R (perché è più lento di alcune alternative), ma è utile per esercitarsi con il controllo di flusso."
   },
   {
     "objectID": "slides/ADAS/2-R-intro.html#argomenti-delle-funzioni",
@@ -1649,7 +1649,7 @@
     "href": "slides/ADAS/2-R-intro.html#differenza-tra---e",
     "title": "Introduzione al Linguaggio R",
     "section": "Differenza tra <- e =",
-    "text": "Differenza tra &lt;- e =\n\nL’operatore = come assegnazione è valido solo al top-level\nL’operatore &lt;- è valido ovunque, anche come argomento di funzione:\n\n\nsystem.time(m &lt;- mean(1:1E6))\n\n   user  system elapsed \n  0.007   0.000   0.007 \n\nm\n\n[1] 500000.5"
+    "text": "Differenza tra &lt;- e =\n\nL’operatore = come assegnazione è valido solo al top-level\nL’operatore &lt;- è valido ovunque, anche come argomento di funzione:\n\n\nsystem.time(m &lt;- mean(1:1E6))\n\n   user  system elapsed \n  0.004   0.000   0.004 \n\nm\n\n[1] 500000.5"
   },
   {
     "objectID": "slides/ADAS/2-R-intro.html#dataframe",
@@ -1666,11 +1666,11 @@
     "text": "Dataframe\n\nUn dataframe può essere indicizzato come una matrice (due indici)\nOppure selezionando una colonna con la notazione $\n\n\ndf[2,2]\n\n[1] \"b\"\n\ndf$B[2]\n\n[1] \"b\"\n\n\nAnche in assegnazione:\n\ndf$C &lt;- LETTERS[1:10]\nhead(df, 3)\n\n  A B C\n1 1 a A\n2 2 b B\n3 3 c C"
   },
   {
-    "objectID": "slides/ADAS/2-R-intro.html#esercizio-2",
-    "href": "slides/ADAS/2-R-intro.html#esercizio-2",
+    "objectID": "slides/ADAS/2-R-intro.html#esercizio-1",
+    "href": "slides/ADAS/2-R-intro.html#esercizio-1",
     "title": "Introduzione al Linguaggio R",
     "section": "Esercizio",
-    "text": "Esercizio\nDal data frame mtcars, estrarre le righe corrispondenti ai veicoli con cilindrata (disp) maggiore di 200 e peso minore di 3.5 tonnellate (wt)\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+    "text": "Esercizio\nDal data frame mtcars, estrarre le righe corrispondenti ai veicoli con cilindrata (disp) maggiore di 200 e peso minore di 3.5 tonnellate (wt)"
   },
   {
     "objectID": "slides/ADAS/2-R-intro.html#liste",
@@ -1715,11 +1715,11 @@
     "text": "Griglie\nUna griglia è una matrice che contiene tutte le combinazioni (ordinate) tra \\(n\\) vettori di dimensioni possibilmente diverse. In R viene rappresentata come un data frame e costruita con la funzione expand.grid:\n\n(df &lt;- expand.grid(A=1:2, B=c(\"-\", \"+\"), D=c(\"a\", \"b\", \"c\")))\n\n   A B D\n1  1 - a\n2  2 - a\n3  1 + a\n4  2 + a\n5  1 - b\n6  2 - b\n7  1 + b\n8  2 + b\n9  1 - c\n10 2 - c\n11 1 + c\n12 2 + c"
   },
   {
-    "objectID": "slides/ADAS/2-R-intro.html#esercizio-3",
-    "href": "slides/ADAS/2-R-intro.html#esercizio-3",
+    "objectID": "slides/ADAS/2-R-intro.html#esercizio-2",
+    "href": "slides/ADAS/2-R-intro.html#esercizio-2",
     "title": "Introduzione al Linguaggio R",
     "section": "Esercizio",
-    "text": "Esercizio\nRiordinare il dataframe df in maniera casuale:\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+    "text": "Esercizio\nRiordinare il dataframe df in maniera casuale:"
   },
   {
     "objectID": "slides/ADAS/2-R-intro.html#aggregazione",
