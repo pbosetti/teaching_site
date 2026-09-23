@@ -20,7 +20,7 @@ format:
         % CSS-equivalent names used in \color{} inside math (MathJax accepts them, xcolor does not)
         \definecolor{darkred}{HTML}{8B0000}
         \definecolor{darkblue}{HTML}{00008B}
-  revealjs:
+  live-revealjs:
     width: 1280
     height: 720
     margin: 0.1
@@ -39,20 +39,16 @@ format:
     pdf-separate-fragments: true
     link-external-icon: false
     lang: it-IT
+    webr:
+      cell-options:
+        persist: true
+
 revealjs-plugins:
   - quiz
   - tabset
-filters:
-  - webr
-webr:
-  show-startup-message: true 
-  cell-options:
-    fig-width: 8
-    fig-height: 4
-    autorun: false
-    editor-font-scale: 0.75
-  packages: ["tidyverse"]
 ---
+
+{{< include ../../_extensions/r-wasm/live/_knitr.qmd >}}
 
 ```{r setup, echo=FALSE, message=FALSE, warning=FALSE}
 options(width = 60)
@@ -1339,7 +1335,8 @@ Usare il riquadro sottostante per risolvere l'esercizio precedente (provare anch
 
 **Nota**: la radice quadrata si ottiene con `sqrt(x)`, l'elevamento a potenza con `x^y`.
 
-```{webr-r}
+:::live-split
+```{webr}
 n1=10
 n2=10
 y1=13.59213
@@ -1351,7 +1348,7 @@ pt(1.38, df=n1, lower.tail=F)
 # calcolo probabilità dalla F:
 pf(2, n1, n2, lower.tail=F)
 ```
-
+:::
 
 ## Anomalie
 La raccolta dei dati relativi ad un campione può essere **affetta da errori**:

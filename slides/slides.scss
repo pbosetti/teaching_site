@@ -99,6 +99,75 @@ $code-block-font-size: 0.75em;
   color: #008800;
 }
 
+// quarto-live code-blocks
+.reveal {
+  .card.exercise-editor {
+    --exercise-font-size: 0.6em;
+  }
+
+/* Optional: slightly more compact header */
+  .card.exercise-editor .card-header {
+    padding: 0.25em 0.5em;
+  }
+
+/* Buttons are independently sized by quarto-live */
+  .btn.btn-exercise-editor {
+    font-size: 0.55em;
+    padding: 0.15em 0.35em;
+  }
+
+  .cell-output-container {
+    font-size: 0.6em;
+  }
+
+  .exercise-cell-output pre,
+  .exercise-cell-output code {
+    font-size: inherit;
+  }
+}
+
+.reveal .live-split {
+  /* A quarto-live cell with editor on the left, output on the right */
+  .exercise-cell {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 0.8em;
+    align-items: start;
+  }
+
+  /* Important inside CSS grid: allow both sides to shrink */
+  .exercise-cell > * {
+    min-width: 0;
+  }
+
+  /* Editor */
+  .exercise-cell .card.exercise-editor {
+    grid-column: 1;
+    grid-row: 1;
+    margin: 0;
+  }
+
+  /* Dynamic webR output */
+  .exercise-cell .cell-output-container {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0;
+    min-width: 0;
+  }
+
+  .exercise-cell > div:has(> .card.exercise-editor),
+  .exercise-cell > div:has(> .cell-output-container)  {
+    display: contents;  
+  }
+  
+  .cell-output-container {
+    max-height: 65vh;
+    overflow: auto;
+    font-size: 0.65em;
+  }
+}
+
+
 .option-button {
   background-color: #efefef !important;
   color: black !important;

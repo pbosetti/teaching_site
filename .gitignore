@@ -14,3 +14,5 @@ site_libs/
 *_files
 **/*.quarto_ipynb
 .positai
+
+.DS_Store

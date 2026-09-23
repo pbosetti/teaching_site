@@ -15,7 +15,7 @@ format:
     toc-depth: 2
     toc-numbered: true
     number-sections: true
-  revealjs:
+  live-revealjs:
     width: 1280
     height: 720
     margin: 0.1
@@ -34,19 +34,14 @@ format:
     pdf-separate-fragments: true
     link-external-icon: false
     lang: it-IT
-filters:
-  - webr
+    webr:
+      cell-options:
+        persist: true
 revealjs-plugins:
   - tabset
-webr:
-  show-startup-message: false 
-  cell-options:
-    fig-width: 8
-    fig-height: 4
-    autorun: false
-    editor-font-scale: 0.75
-  # packages: ["tidyverse"]
 ---
+
+{{< include ../../_extensions/r-wasm/live/_knitr.qmd >}}
 
 ```{r}
 options(width = 60)
@@ -187,7 +182,7 @@ v3 + 2
 
 ## Facciamo qualche prova
 
-```{webr-r}
+```{webr}
 (v1 <- c(7, 2.5, 3, 1:10))
 v1[c(3,7,2)]
 ```
@@ -282,7 +277,8 @@ NOTA: `TRUE` e `FALSE` possono essere abbreviati in `T` e `F`
 
 ## Facciamo qualche prova
 
-```{webr-r}
+:::live-split
+```{webr}
 v1 <- c(10, 2, 7.5, 3)
 v2 <- 1:10
 v1[c(2,4,1)]
@@ -292,6 +288,8 @@ m1 <- matrix(1:4, nrow = 2, byrow=T)
 m2 <- matrix(c(2, 3, 1, 7, 5, 1), nrow = 2, byrow=T)
 m1 * m2 # Errore!
 ```
+:::
+
 ::: callout-tip 
 Cercare nell'help in linea funzioni come `%*%`
 :::
@@ -342,25 +340,28 @@ R supporta le tipiche istruzioni di controllo di flusso
 
 ::: panel-tabset
 
-## Esercizio
+### Assegnazione
 
 Scrivere una funzione `sum_odd` che sommi tutti gli elementi con indice dispari di un vettore numerico. La funzione deve avere un argomento `x` e restituire la somma di tutti gli elementi di `x`, usando un ciclo `for`.
 
-```{webr-r}
+:::live-split
+```{webr}
 sum_odd <-function(x) {
   # scrivi qui il codice
 }
 
 sum_odd(1:10)
 ```
+:::
 
 ::: callout-warning
 L'uso del ciclo `for` è sconsigliato in R (perché è più lento di alcune alternative), ma è utile per esercitarsi con il controllo di flusso.
 :::
 
-## Soluzione
+### Soluzione
 
-```{webr-r}
+:::live-split
+```{webr}
 sum_odd <-function(x) {
   odd <- x[c(T, F)]
   sum <- 0
@@ -372,7 +373,7 @@ sum_odd <-function(x) {
 
 sum_odd(1:10)
 ```
-
+:::
 :::
   
 ## Argomenti delle funzioni
@@ -422,7 +423,8 @@ head(df, 3)
 
 Dal data frame `mtcars`, estrarre le righe corrispondenti ai veicoli con cilindrata (`disp`) maggiore di 200 e peso minore di 3.5 tonnellate (`wt`)
 
-```{webr-r}
+
+```{webr}
 head(mtcars)
 ```
 
@@ -493,13 +495,14 @@ Una **griglia** è una matrice che contiene tutte le combinazioni (ordinate) tra
 
 Riordinare il dataframe `df` in maniera casuale:
 
-```{webr-r}
+:::live-split
+```{webr}
 df <- expand.grid(A=1:3, B=LETTERS[1:2])
 # aggiungo una colonna di numeri casuali
 # riordino df per quella colonna
 df # stampo df
 ```
-
+:::
 
 ## Aggregazione
 Per aggregazione si intende raggruppare righe aventi elementi comuni in un data frame e applicare ad ogni gruppo una data funzione. È utile ad esempio per il calcolo di sub-totali.
