@@ -1786,7 +1786,10 @@ Il *p*-value molto basso ci consente di rifiutare l'ipotesi nulla e affermare ch
 Non sappiamo comunque quanti e quali trattamenti siano significativi. Per studiare questo aspetto si utilizza il **Test di Tukey**
 
 
-## Test di Tukey
+## Test di Tukey 
+
+:::columns
+:::column
 Il test valuta **contemporaneamente** tutte le seguenti coppie di ipotesi:
 $$
 \left.
@@ -1796,10 +1799,15 @@ H_1&:&~\mu_i\neq \mu_j
 \end{array}
 \right\} ~~\forall i\neq j
 $$
+:::
+
+:::column
 Per ogni coppia $(i,j),~i\neq j$ si ha la statistica di test:
 $$
 q_{0,ij}=\frac{|\bar y_{i.}-\bar y_{j.}|}{S_{p,ij}\sqrt{2/n}}\sim\mathcal{Q}_{a,k}
 $$
+:::
+:::
 dove $n$ è la dimensione dei campioni, uguale per tutti, $a$ è il numero di trattamenti e $k$ è il numero di gradi di libertà di $MS_E$, cioè $N-a=an-a$.
 
 Per ogni coppia si calcola quindi il *p*-value dalla CDF della **distribuzione dell'intervallo studentizzato** $\mathcal{Q}$ e si calcola l'intervallo di confidenza:
