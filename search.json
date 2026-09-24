@@ -1236,7 +1236,7 @@
     "href": "slides/ADAS/1-statistica.html#test-di-tukey",
     "title": "Statistica Descrittiva e Inferenziale",
     "section": "Test di Tukey",
-    "text": "Test di Tukey\nIl test valuta contemporaneamente tutte le seguenti coppie di ipotesi: \\[\n\\left.\n\\begin{array}{rcl}\nH_0&:&~\\mu_i=\\mu_j \\\\\nH_1&:&~\\mu_i\\neq \\mu_j\n\\end{array}\n\\right\\} ~~\\forall i\\neq j\n\\] Per ogni coppia \\((i,j),~i\\neq j\\) si ha la statistica di test: \\[\nq_{0,ij}=\\frac{|\\bar y_{i.}-\\bar y_{j.}|}{S_{p,ij}\\sqrt{2/n}}\\sim\\mathcal{Q}_{a,k}\n\\] dove \\(n\\) è la dimensione dei campioni, uguale per tutti, \\(a\\) è il numero di trattamenti e \\(k\\) è il numero di gradi di libertà di \\(MS_E\\), cioè \\(N-a=an-a\\).\nPer ogni coppia si calcola quindi il p-value dalla CDF della distribuzione dell’intervallo studentizzato \\(\\mathcal{Q}\\) e si calcola l’intervallo di confidenza: \\[\n\\bar y_{i.}-\\bar y_{j.}-q_{\\alpha,a,N-a}\\frac{S_{p,ij}}{\\sqrt{n}} \\leqslant \\mu_i-\\mu_j\n\\leqslant \\bar y_{i.}-\\bar y_{j.}+q_{\\alpha,a,N-a}\\frac{S_{p,ij}}{\\sqrt{n}}\n\\]"
+    "text": "Test di Tukey\n\n\nIl test valuta contemporaneamente tutte le seguenti coppie di ipotesi: \\[\n\\left.\n\\begin{array}{rcl}\nH_0&:&~\\mu_i=\\mu_j \\\\\nH_1&:&~\\mu_i\\neq \\mu_j\n\\end{array}\n\\right\\} ~~\\forall i\\neq j\n\\]\n\nPer ogni coppia \\((i,j),~i\\neq j\\) si ha la statistica di test: \\[\nq_{0,ij}=\\frac{|\\bar y_{i.}-\\bar y_{j.}|}{S_{p,ij}\\sqrt{2/n}}\\sim\\mathcal{Q}_{a,k}\n\\]\n\ndove \\(n\\) è la dimensione dei campioni, uguale per tutti, \\(a\\) è il numero di trattamenti e \\(k\\) è il numero di gradi di libertà di \\(MS_E\\), cioè \\(N-a=an-a\\).\nPer ogni coppia si calcola quindi il p-value dalla CDF della distribuzione dell’intervallo studentizzato \\(\\mathcal{Q}\\) e si calcola l’intervallo di confidenza: \\[\n\\bar y_{i.}-\\bar y_{j.}-q_{\\alpha,a,N-a}\\frac{S_{p,ij}}{\\sqrt{n}} \\leqslant \\mu_i-\\mu_j\n\\leqslant \\bar y_{i.}-\\bar y_{j.}+q_{\\alpha,a,N-a}\\frac{S_{p,ij}}{\\sqrt{n}}\n\\]"
   },
   {
     "objectID": "slides/ADAS/1-statistica.html#test-di-tukey-1",
@@ -1649,7 +1649,7 @@
     "href": "slides/ADAS/2-R-intro.html#differenza-tra---e",
     "title": "Introduzione al Linguaggio R",
     "section": "Differenza tra <- e =",
-    "text": "Differenza tra &lt;- e =\n\nL’operatore = come assegnazione è valido solo al top-level\nL’operatore &lt;- è valido ovunque, anche come argomento di funzione:\n\n\nsystem.time(m &lt;- mean(1:1E6))\n\n   user  system elapsed \n  0.004   0.000   0.004 \n\nm\n\n[1] 500000.5"
+    "text": "Differenza tra &lt;- e =\n\nL’operatore = come assegnazione è valido solo al top-level\nL’operatore &lt;- è valido ovunque, anche come argomento di funzione:\n\n\nsystem.time(m &lt;- mean(1:1E6))\n\n   user  system elapsed \n  0.007   0.000   0.007 \n\nm\n\n[1] 500000.5"
   },
   {
     "objectID": "slides/ADAS/2-R-intro.html#dataframe",

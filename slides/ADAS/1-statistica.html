@@ -185,7 +185,7 @@ Paolo Bosetti
     </div>
 </div>
 
-  <p class="date"><em>Ultimo aggiornamento:</em> 23/09/2026</p>
+  <p class="date"><em>Ultimo aggiornamento:</em> 24/09/2026</p>
 </section>
 <section id="link-alle-slide" class="title-slide slide level1 center">
 <h1>Link alle slide</h1>
@@ -2109,6 +2109,8 @@ F_0 = \frac{SS_{tr}/(a-1)}{SS_E/(N-a)}=\frac{MS_{tr}}{MS_E} \sim F_{a-1,N-a}
 </section>
 <section id="test-di-tukey" class="slide level2">
 <h2>Test di Tukey</h2>
+<div class="columns">
+<div class="column">
 <p>Il test valuta <strong>contemporaneamente</strong> tutte le seguenti coppie di ipotesi: <span class="math display">\[
 \left.
 \begin{array}{rcl}
@@ -2116,9 +2118,13 @@ H_0&amp;:&amp;~\mu_i=\mu_j \\
 H_1&amp;:&amp;~\mu_i\neq \mu_j
 \end{array}
 \right\} ~~\forall i\neq j
-\]</span> Per ogni coppia <span class="math inline">\((i,j),~i\neq j\)</span> si ha la statistica di test: <span class="math display">\[
+\]</span></p>
+</div><div class="column">
+<p>Per ogni coppia <span class="math inline">\((i,j),~i\neq j\)</span> si ha la statistica di test: <span class="math display">\[
 q_{0,ij}=\frac{|\bar y_{i.}-\bar y_{j.}|}{S_{p,ij}\sqrt{2/n}}\sim\mathcal{Q}_{a,k}
-\]</span> dove <span class="math inline">\(n\)</span> è la dimensione dei campioni, uguale per tutti, <span class="math inline">\(a\)</span> è il numero di trattamenti e <span class="math inline">\(k\)</span> è il numero di gradi di libertà di <span class="math inline">\(MS_E\)</span>, cioè <span class="math inline">\(N-a=an-a\)</span>.</p>
+\]</span></p>
+</div></div>
+<p>dove <span class="math inline">\(n\)</span> è la dimensione dei campioni, uguale per tutti, <span class="math inline">\(a\)</span> è il numero di trattamenti e <span class="math inline">\(k\)</span> è il numero di gradi di libertà di <span class="math inline">\(MS_E\)</span>, cioè <span class="math inline">\(N-a=an-a\)</span>.</p>
 <p>Per ogni coppia si calcola quindi il <em>p</em>-value dalla CDF della <strong>distribuzione dell’intervallo studentizzato</strong> <span class="math inline">\(\mathcal{Q}\)</span> e si calcola l’intervallo di confidenza: <span class="math display">\[
 \bar y_{i.}-\bar y_{j.}-q_{\alpha,a,N-a}\frac{S_{p,ij}}{\sqrt{n}} \leqslant \mu_i-\mu_j
 \leqslant \bar y_{i.}-\bar y_{j.}+q_{\alpha,a,N-a}\frac{S_{p,ij}}{\sqrt{n}}
