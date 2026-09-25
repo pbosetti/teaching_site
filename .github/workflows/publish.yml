@@ -43,6 +43,14 @@ jobs:
         run: |
           quarto install tinytex
 
+      # setup-r points renv at Posit Package Manager only, which can lag CRAN
+      # by days (e.g. zoo 1.9-1). Keep PPM first for fast binaries and fall
+      # back to CRAN sources for anything PPM hasn't synced yet.
+      - name: Add CRAN as fallback renv repository
+        shell: bash
+        run: |
+          echo "RENV_CONFIG_REPOS_OVERRIDE=PPM=${RSPM};CRAN=https://cloud.r-project.org" >> "$GITHUB_ENV"
+
       - name: Install R Dependencies
         uses: r-lib/actions/setup-renv@v2
         with:
