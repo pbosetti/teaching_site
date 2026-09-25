@@ -1082,7 +1082,7 @@
     "href": "slides/ADAS/1-statistica.html#calcolatrice",
     "title": "Statistica Descrittiva e Inferenziale",
     "section": "Calcolatrice",
-    "text": "Calcolatrice\nUsare il riquadro sottostante per risolvere l’esercizio precedente (provare anche con la tabella dei quantili)\nNota: la radice quadrata si ottiene con sqrt(x), l’elevamento a potenza con x^y."
+    "text": "Calcolatrice\nUsare il riquadro sottostante per risolvere l’esercizio precedente (provare anche con la tabella dei quantili)\n\nEsercizioSuggerimentoSoluzione\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCalcolare prima \\(F_0\\) per un test della varianza e il suo \\(p\\)-value, ricordando che il test della varianza è a due lati.\nPoi calcolare \\(t_0\\) e il suo \\(p\\)-value, tilizzando il test di Student o di Welch a seconda del risultato del test della varianza.\nNota: la radice quadrata si ottiene con sqrt(x), l’elevamento a potenza con x^y."
   },
   {
     "objectID": "slides/ADAS/1-statistica.html#anomalie",
