@@ -1333,21 +1333,58 @@ Ho due campioni di dati, uno con $n_1=`r length(d$c1)`$, $\bar y_1 = `r mean(d$c
 
 Usare il riquadro sottostante per risolvere l'esercizio precedente (provare anche con la [tabella dei quantili](#tabella-dei-quantili))
 
-**Nota**: la radice quadrata si ottiene con `sqrt(x)`, l'elevamento a potenza con `x^y`.
+::::panel-tabset
+### Esercizio
 
 :::live-split
 ```{webr}
-n1=10
-n2=10
-y1=13.59213
-y2=10.30381
-s1=4.33921
-s2=2.24027
+#| exercise: "t_test"
+n1=10; n2=10
+y1=13.59213; y2=10.30381
+s1=4.33921; s2=2.24027
 # calcolo probabilità dalla T di Student:
 pt(1.38, df=n1, lower.tail=F)
 # calcolo probabilità dalla F:
 pf(2, n1, n2, lower.tail=F)
 ```
+:::
+
+### Suggerimento
+
+:::{ .hint exercise="t_test"}
+Calcolare prima $F_0$ per un test della varianza e il suo $p$-value, ricordando che il test della varianza è a due lati.
+
+Poi calcolare $t_0$ e il suo $p$-value, tilizzando il test di Student o di Welch a seconda del risultato del test della varianza.
+
+**Nota**: la radice quadrata si ottiene con `sqrt(x)`, l'elevamento a potenza con `x^y`.
+:::
+
+
+### Soluzione
+
+:::{.solution exercise="t_test"}
+```{webr}
+#| setup: true
+#| exercise: "t_test_sol"
+n1=10; n2=10
+y1=13.59213; y2=10.30381
+s1=4.33921; s2=2.24027
+```
+
+```{webr}
+#| exercise: "t_test_sol"
+# verifico la omoschedasticità:
+F0=s1^2/s2^2
+2*pf(F0, n1-1, n2-1, lower.tail=F)
+# p-value è > 0.05, quindi campioni omoschedastici
+
+Sp = sqrt(((n1-1)*s1^2 + (n2-1)*s2^2)/(n1+n2-2))
+T0 = (y1-y2)/(Sp*sqrt(1/n1 + 1/n2))
+2*pt(T0, df=n1+n2-2, lower.tail=F)
+# quindi µ1 != µ2, con p-value = 0.0473
+```
+:::
+
 :::
 
 ## Anomalie
