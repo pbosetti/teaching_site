@@ -1229,7 +1229,7 @@
     "href": "slides/ADAS/1-statistica.html#anova-analysis-of-variance",
     "title": "Statistica Descrittiva e Inferenziale",
     "section": "ANOVA (ANalysis Of VAriance)",
-    "text": "ANOVA (ANalysis Of VAriance)\nTornando all’esempio della resistenza dei filati misti, possiamo applicare la decomposizione della varianza ottenendo:\n\n\n\n\n\n\nDf\nSum Sq\nMean Sq\nF value\nPr(&gt;F)\n\n\n\n\nCotton\n4\n475.76\n118.94\n14.75682\n9.1e-06\n\n\nResiduals\n20\n161.20\n8.06\nNA\nNA\n\n\n\n\n\nLa tabella soprastante è detta tabella ANOVA\nIl p-value molto basso ci consente di rifiutare l’ipotesi nulla e affermare che almeno un trattamento ha effetti statisticamente significativi\nNon sappiamo comunque quanti e quali trattamenti siano significativi. Per studiare questo aspetto si utilizza il Test di Tukey"
+    "text": "ANOVA (ANalysis Of VAriance)\nTornando all’esempio della resistenza dei filati misti, possiamo applicare la decomposizione della varianza ottenendo:\n\n\n\n\n\n\nDf\nSum Sq\nMean Sq\nF value\nPr(&gt;F)\n\n\n\n\nCotton\n4\n475.76\n118.94\n14.75682\n9.1e-06\n\n\nResiduals\n20\n161.20\n8.06\nNA\nNA\n\n\n\n\n\nLa tabella soprastante è detta tabella ANOVA\nIl p-value molto basso ci consente di rifiutare l’ipotesi nulla e affermare che almeno un trattamento ha effetti statisticamente significativi\nNon sappiamo comunque quanti e quali trattamenti siano significativi. Per studiare questo aspetto si utilizza il Test di Tukey\n\n\n\n\n\n\n\nDemo interattiva\n\n\nSu https://pbosetti-anova-live.share.connect.posit.cloud è possibile interagire con un’applicazione che consente di simulare esperimenti a un fattore e più livelli, e di calcolare la tabella ANOVA."
   },
   {
     "objectID": "slides/ADAS/1-statistica.html#test-di-tukey",
