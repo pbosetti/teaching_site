@@ -1786,6 +1786,11 @@ Il *p*-value molto basso ci consente di rifiutare l'ipotesi nulla e affermare ch
 Non sappiamo comunque quanti e quali trattamenti siano significativi. Per studiare questo aspetto si utilizza il **Test di Tukey**
 
 
+::: {.callout-tip title="Demo interattiva"}
+Su [https://pbosetti-anova-live.share.connect.posit.cloud](https://pbosetti-anova-live.share.connect.posit.cloud){target="shiny"} è possibile interagire con un'applicazione che consente di simulare esperimenti a un fattore e più livelli, e di calcolare la tabella ANOVA.
+:::
+
+
 ## Test di Tukey 
 
 :::columns
