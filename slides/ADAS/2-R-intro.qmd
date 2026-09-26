@@ -125,10 +125,16 @@ Si noti il testo `[1]` all'inizio della riga di output: sarà chiaro più avanti
 
 ## Valori speciali
 * Sono definiti i seguenti valori speciali:
-  * `NA`: valore mancante
+  * `NA`: valore ignoto (Not Available)
   * `NULL`: niente
   * `Inf`: Infinito
   * `NaN`: Not a Number (esempio `0/0`)
+
+```{r}
+#| echo: TRUE
+length(c(1, NA, 3))   # c(...) è un vettore
+length(c(1, NULL, 3)) # NULL è come se non ci fosse!
+```
   
 ## Coercizione
 * Quando si mescolano tipi differenti, ad es. in un vettore, R li trasforma in un tipo comune:
@@ -179,10 +185,12 @@ v3 + 2
 
 ## Facciamo qualche prova
 
+:::live-split
 ```{webr}
 (v1 <- c(7, 2.5, 3, 1:10))
 v1[c(3,7,2)]
 ```
+:::
 
 ## Introspezione
 * Funzioni utili per ispezionare gli oggetti:
