@@ -69,7 +69,7 @@ Noi utilizzeremo R perché specifico per la statistica, orientato alla grafica e
 * Materiale corso: [https://github.com/pbosetti/ADAS-25](https://github.com/pbosetti/ADAS-25)
 
 ## Ambiente Positron
-* Installazione: [prima R](https://cran.mirror.garr.it/CRAN/), [poi RStudio](https://positron.posit.co)
+* Installazione: [prima R](https://cran.mirror.garr.it/CRAN/), [poi Positron](https://positron.posit.co)
 * **Solo su windows**, installare anche [Rtools](https://cran.mirror.garr.it/CRAN/bin/windows/Rtools/)
 * Positron lavora su progetti, o **cartelle**
 * Un progetto contiene anche impostazioni specifiche e comuni ai file nella cartella
