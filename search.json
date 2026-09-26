@@ -1502,7 +1502,7 @@
     "href": "slides/ADAS/2-R-intro.html#ambiente-positron",
     "title": "Introduzione al Linguaggio R",
     "section": "Ambiente Positron",
-    "text": "Ambiente Positron\n\nInstallazione: prima R, poi RStudio\nSolo su windows, installare anche Rtools\nPositron lavora su progetti, o cartelle\nUn progetto contiene anche impostazioni specifiche e comuni ai file nella cartella\nUna sessione di Positron può operare su un unico progetto\nSi possono aprire più sessioni contemporaneamente\nPositron è un ambiente molto potente e complesso, adatto anche alla compilazione di report tecnici, articoli, libri e presentazioni (come questa), e può gestire anche linguaggi diversi da R (come Python, C, C++, ecc.)\n\n\n\nNota: Queste slide contengono una versione ridotta e integrata di R, utile per provare in diretta il codice qui illustrato: cliccare sull’icona del prompt in basso a sinistra, o premere il tasto §."
+    "text": "Ambiente Positron\n\nInstallazione: prima R, poi Positron\nSolo su windows, installare anche Rtools\nPositron lavora su progetti, o cartelle\nUn progetto contiene anche impostazioni specifiche e comuni ai file nella cartella\nUna sessione di Positron può operare su un unico progetto\nSi possono aprire più sessioni contemporaneamente\nPositron è un ambiente molto potente e complesso, adatto anche alla compilazione di report tecnici, articoli, libri e presentazioni (come questa), e può gestire anche linguaggi diversi da R (come Python, C, C++, ecc.)"
   },
   {
     "objectID": "slides/ADAS/2-R-intro.html#il-linguaggio-r",
@@ -1649,7 +1649,7 @@
     "href": "slides/ADAS/2-R-intro.html#differenza-tra---e",
     "title": "Introduzione al Linguaggio R",
     "section": "Differenza tra <- e =",
-    "text": "Differenza tra &lt;- e =\n\nL’operatore = come assegnazione è valido solo al top-level\nL’operatore &lt;- è valido ovunque, anche come argomento di funzione:\n\n\nsystem.time(m &lt;- mean(1:1E6))\n\n   user  system elapsed \n  0.007   0.000   0.007 \n\nm\n\n[1] 500000.5"
+    "text": "Differenza tra &lt;- e =\n\nL’operatore = come assegnazione è valido solo al top-level\nL’operatore &lt;- è valido ovunque, anche come argomento di funzione:\n\n\nsystem.time(m &lt;- mean(1:1E6))\n\n   user  system elapsed \n  0.013   0.000   0.013 \n\nm\n\n[1] 500000.5"
   },
   {
     "objectID": "slides/ADAS/2-R-intro.html#dataframe",
