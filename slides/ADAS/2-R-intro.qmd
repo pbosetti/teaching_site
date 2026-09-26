@@ -77,9 +77,6 @@ Noi utilizzeremo R perché specifico per la statistica, orientato alla grafica e
 * Si possono aprire più sessioni contemporaneamente
 * Positron è un ambiente molto potente e complesso, adatto anche alla compilazione di *report* tecnici, articoli, libri e presentazioni (come questa), e può gestire anche linguaggi diversi da R (come Python, C, C++, ecc.)
 
-:::aside
-**Nota**: Queste slide contengono una versione ridotta e integrata di R, utile per provare in diretta il codice qui illustrato: cliccare sull'icona del prompt in basso a sinistra, [o premere il tasto `§`]{.bgreen}.
-:::
 
 ## Il linguaggio R
 * R è un linguaggio ad alto livello, declarativo, interpretato, a sintassi C-like
