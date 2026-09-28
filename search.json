@@ -1495,7 +1495,7 @@
     "href": "slides/ADAS/2-R-intro.html#link-utili",
     "title": "Introduzione al Linguaggio R",
     "section": "Link utili",
-    "text": "Link utili\n\nGNU-R: https://cran.mirror.garr.it/CRAN/\nPositron: https://positron.posit.co\nRStudio: https://posit.co/downloads/\nCheat sheet: https://posit.co/resources/cheatsheets/\nTidyverse: https://tidyverse.org\nMateriale corso: https://github.com/pbosetti/ADAS-25"
+    "text": "Link utili\n\nGNU-R: https://cran.mirror.garr.it/CRAN/\nPositron: https://positron.posit.co\nRStudio: https://posit.co/downloads/\nCheat sheet: https://posit.co/resources/cheatsheets/\nTidyverse: https://tidyverse.org\nMateriale corso: https://github.com/pbosetti/ADAS-26"
   },
   {
     "objectID": "slides/ADAS/2-R-intro.html#ambiente-positron",
@@ -1649,7 +1649,7 @@
     "href": "slides/ADAS/2-R-intro.html#differenza-tra---e",
     "title": "Introduzione al Linguaggio R",
     "section": "Differenza tra <- e =",
-    "text": "Differenza tra &lt;- e =\n\nL’operatore = come assegnazione è valido solo al top-level\nL’operatore &lt;- è valido ovunque, anche come argomento di funzione:\n\n\nsystem.time(m &lt;- mean(1:1E6))\n\n   user  system elapsed \n  0.007   0.000   0.007 \n\nm\n\n[1] 500000.5"
+    "text": "Differenza tra &lt;- e =\n\nL’operatore = come assegnazione è valido solo al top-level\nL’operatore &lt;- è valido ovunque, anche come argomento di funzione:\n\n\nsystem.time(m &lt;- mean(1:1E6))\n\n   user  system elapsed \n  0.009   0.000   0.010 \n\nm\n\n[1] 500000.5"
   },
   {
     "objectID": "slides/ADAS/2-R-intro.html#dataframe",
