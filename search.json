@@ -1264,7 +1264,7 @@
     "href": "slides/ADAS/1-statistica.html#il-significato-del-p-value",
     "title": "Statistica Descrittiva e Inferenziale",
     "section": "Il significato del \\(p\\)-value",
-    "text": "Il significato del \\(p\\)-value\n\n\nIl significato del \\(p\\)-value è illustrato con un esempio: si consideri un esperimento in cui si effettuano 1000 test di Student su altrettanti campioni di \\(n=15\\) elementi, ciascuno con un livello di significatività \\(\\alpha\\) del 5%\nSupponiamo che si tratti di test ad un campione, con ipotesi nulla \\(\\mu = \\mu_0\\) e ipotesi alternativa \\(\\mu \\neq \\mu_0\\), e supponiamo che tutti i campioni siano prelevati dalla stessa popolazione con valore atteso \\(\\mu_0\\)\nAllora il valore atteso delle predizioni errate (cioè quelle in cui vale \\(H_1\\)) è 5%\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNota\n\n\nNota 1: Lo stesso approccio frequentista è applicabile a qualsiasi altro test statistico di cui si calcoli il \\(p\\)-value\nNota 2: Vedi la versione interattiva qui: https://p4010.shinyapps.io/frequentista/"
+    "text": "Il significato del \\(p\\)-value\n\n\nIl significato del \\(p\\)-value è illustrato con un esempio: si consideri un esperimento in cui si effettuano 1000 test di Student su altrettanti campioni di \\(n=15\\) elementi, ciascuno con un livello di significatività \\(\\alpha\\) del 5%\nSupponiamo che si tratti di test ad un campione, con ipotesi nulla \\(\\mu = \\mu_0\\) e ipotesi alternativa \\(\\mu \\neq \\mu_0\\), e supponiamo che tutti i campioni siano prelevati dalla stessa popolazione con valore atteso \\(\\mu_0\\)\nAllora il valore atteso delle predizioni errate (cioè quelle in cui vale \\(H_1\\)) è 5%\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNota\n\n\nNota 1: Lo stesso approccio frequentista è applicabile a qualsiasi altro test statistico di cui si calcoli il \\(p\\)-value\nNota 2: Vedi la versione interattiva qui: https://pbosetti-frequentista.share.connect.posit.cloud"
   },
   {
     "objectID": "slides/ADAS/1-statistica.html#e-se-cambiamo-n",
@@ -1649,7 +1649,7 @@
     "href": "slides/ADAS/2-R-intro.html#differenza-tra---e",
     "title": "Introduzione al Linguaggio R",
     "section": "Differenza tra <- e =",
-    "text": "Differenza tra &lt;- e =\n\nL’operatore = come assegnazione è valido solo al top-level\nL’operatore &lt;- è valido ovunque, anche come argomento di funzione:\n\n\nsystem.time(m &lt;- mean(1:1E6))\n\n   user  system elapsed \n  0.009   0.000   0.010 \n\nm\n\n[1] 500000.5"
+    "text": "Differenza tra &lt;- e =\n\nL’operatore = come assegnazione è valido solo al top-level\nL’operatore &lt;- è valido ovunque, anche come argomento di funzione:\n\n\nsystem.time(m &lt;- mean(1:1E6))\n\n   user  system elapsed \n  0.007   0.000   0.007 \n\nm\n\n[1] 500000.5"
   },
   {
     "objectID": "slides/ADAS/2-R-intro.html#dataframe",
