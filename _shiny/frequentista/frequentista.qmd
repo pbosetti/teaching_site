@@ -1,0 +1,85 @@
+---
+title: "Approccio frequentista e test d'ipotesi"
+author: "Paolo Bosetti"
+format: dashboard
+server: shiny
+
+---
+
+```{r}
+#| context: setup
+library(ggplot2)
+library(magrittr)
+library(tibble)
+library(purrr)
+library(glue)
+```
+
+# {.sidebar}
+
+```{r}
+#| eval: true
+#| include: true
+sliderInput('N', 'Numero di test', 
+            min=100, max=2000,
+            value=200, 
+            step=100, round=0)
+sliderInput("alpha", "alpha", value=0.05, min=0.005, max=0.5, step=0.005)
+numericInput("mu0", "Media", 10.3)
+numericInput("sd", "Dev. standard", 2.7)
+numericInput("n1", "Dimensione campioni", value=15, min=5)
+sliderInput("k", "Disturbo k", value=0, min=-3, max = 3, step=0.25)
+numericInput("seed", "Seme", value=0, min=0)
+```
+
+
+# Plot
+
+$$
+\begin{eqnarray}
+H_0:~&\mu = \mu_0 + k\sigma \\
+H_1:~&\mu \neq \mu_0 + k\sigma
+\end{eqnarray}
+$$
+
+```{r}
+#| eval: true
+#| include: true
+plotOutput('plot')
+```
+
+```{r}
+#| context: server
+#| eval: true
+#| include: true
+
+dataset <- reactive({
+  set.seed(input$seed)
+  pop <- rnorm(input$N*10, mean=input$mu0, sd=input$sd)
+  tibble(
+    i = 1:input$N,
+    p = map_dbl(i, ~t.test(sample(pop, input$n1), mu=input$mu0 + input$k*input$sd, conf.level=1-input$alpha)$p.value),
+    hyp = ifelse(p<0.05, "H1", "H0")
+  )
+})
+ 
+output$plot <- renderPlot({
+  # dataset() %>% {
+  #   ggplot(data = .) +
+  #   geom_point(aes(x=i, y=p, color=hyp, shape=hyp))
+  # }
+  dataset() %>% {
+    ggplot(data = .) +
+    geom_point(aes(x=i, y=p, color=hyp, shape=hyp)) +
+    geom_hline(yintercept=input$alpha, color="red") +
+    scale_color_manual(values=c("H0"="darkgreen", "H1"="red"), name="Ipotesi") +
+    scale_shape_manual(values=c("H0"=19, "H1"=17), name="Ipotesi") +
+    geom_label(x=0, y=input$alpha, label=glue("{input$alpha*100}%")) +
+    labs(
+      title=glue("p-value di {input$N} T-test ({length(.$hyp[.$hyp == 'H1'])/input$N*100}% errori di tipo I)"), 
+      x="# Test", 
+      y="p-value")
+  }
+})
+
+```
