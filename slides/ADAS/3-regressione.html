@@ -180,7 +180,7 @@ Paolo Bosetti
     </div>
 </div>
 
-  <p class="date"><em>Ultimo aggiornamento:</em> 28/09/2026</p>
+  <p class="date"><em>Ultimo aggiornamento:</em> 30/09/2026</p>
 </section>
 <section id="link-alle-slide" class="title-slide slide level1 center">
 <h1>Link alle slide</h1>
@@ -1030,7 +1030,7 @@ y_i &amp;=  \hat y_i + g(\varepsilon_i) \\
         }
           var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
           var mailtoRegex = new RegExp(/^mailto:/);
-            var filterRegex = new RegExp('/' + window.location.host + '/');
+            var filterRegex = new RegExp("https:\/\/pbosetti\.github\.io");
           var isInternal = (href) => {
               return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
           }

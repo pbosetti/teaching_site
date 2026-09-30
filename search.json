@@ -74,7 +74,7 @@
     "href": "slides/ADAS/bilancia.html#dati-ordinati-regressione",
     "title": "Esperimenti di taratura",
     "section": "Dati ordinati, regressione",
-    "text": "Dati ordinati, regressione\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRisulta: \\(a = 0.9551407\\) e \\(F_M=28.4649355\\), \\(R^2=1-\\frac{SS_\\mathrm{res}}{SS_\\mathrm{tot}}=1-\\frac{\\sum (y_i - \\widehat y_i)}{\\sum (y_i - \\bar y)^2} = 0.9865372\\)"
+    "text": "Dati ordinati, regressione\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRisulta: \\(a = 0.9551407\\) e \\(F_M=28.4649367\\), \\(R^2=1-\\frac{SS_\\mathrm{res}}{SS_\\mathrm{tot}}=1-\\frac{\\sum (y_i - \\widehat y_i)}{\\sum (y_i - \\bar y)^2} = 0.9865372\\)"
   },
   {
     "objectID": "slides/ADAS/bilancia.html#dati-casualizzati-regressione",
@@ -312,7 +312,7 @@
     "href": "slides/ADAS/7-serie_temporali.html#ridondanza-1",
     "title": "Serie Temporali",
     "section": "Ridondanza",
-    "text": "Ridondanza\nAd esempio, consideriamo il processo \\(x_t=0.4x_{t-1}+0.45x_{t-2}+w_t + w_{t-1}+0.25w_{t-2}\\), che usando l’operatore \\(B\\) diventa:\n\\[\n(1-0.4B-0.45B^2)x_t = (1+B+0.25B^2)w_t.\n\\]\nIn questa forma il processo sembra \\(\\mathrm{ARMA}(2,2)\\), tuttavia possiamo scomporre i due polinomi in fattori, usando polyroot() per calcolare le radici:\n\n# per Phi:\n-1/polyroot(c(1, -0.4, -0.45))\n\n[1] -0.9-6.887768e-21i  0.5+2.125854e-21i\n\n# per Theta:\n-1/polyroot(c(1, 1, 0.25))\n\n[1] 0.5-5.551115e-17i 0.5+5.551115e-17i\n\n\n\n\nNota: se \\(z_i,~ i=1,\\dots,n\\) sono le radici del polinomio \\(p(z)\\) di grado \\(n\\), allora il polinomio può essere scomposto nei fattori \\((1-1/z_1 z)\\cdot(1-1/z_2 z)\\dots(1-1/z_n z)\\)."
+    "text": "Ridondanza\nAd esempio, consideriamo il processo \\(x_t=0.4x_{t-1}+0.45x_{t-2}+w_t + w_{t-1}+0.25w_{t-2}\\), che usando l’operatore \\(B\\) diventa:\n\\[\n(1-0.4B-0.45B^2)x_t = (1+B+0.25B^2)w_t.\n\\]\nIn questa forma il processo sembra \\(\\mathrm{ARMA}(2,2)\\), tuttavia possiamo scomporre i due polinomi in fattori, usando polyroot() per calcolare le radici:\n\n# per Phi:\n-1/polyroot(c(1, -0.4, -0.45))\n\n[1] -0.9-6.887768e-21i  0.5+2.125854e-21i\n\n# per Theta:\n-1/polyroot(c(1, 1, 0.25))\n\n[1] 0.5+0i 0.5+0i\n\n\n\n\nNota: se \\(z_i,~ i=1,\\dots,n\\) sono le radici del polinomio \\(p(z)\\) di grado \\(n\\), allora il polinomio può essere scomposto nei fattori \\((1-1/z_1 z)\\cdot(1-1/z_2 z)\\dots(1-1/z_n z)\\)."
   },
   {
     "objectID": "slides/ADAS/7-serie_temporali.html#ridondanza-2",
@@ -354,7 +354,7 @@
     "href": "slides/ADAS/7-serie_temporali.html#regressione",
     "title": "Serie Temporali",
     "section": "Regressione",
-    "text": "Regressione\nLa libreria R forecast fornisce la funzione auto.arima() che valuta gli indicatori su una griglia di combinazioni dei sette parametri e fornisce la regressione migliore:\n\n\n\nforecast::auto.arima(AirPassengers, lambda=\"auto\", trace=T)\n\n\n ARIMA(2,1,2)(1,1,1)[12]                    : Inf\n ARIMA(0,1,0)(0,1,0)[12]                    : -845.0766\n ARIMA(1,1,0)(1,1,0)[12]                    : -885.6939\n ARIMA(0,1,1)(0,1,1)[12]                    : -896.9901\n ARIMA(0,1,1)(0,1,0)[12]                    : -860.1426\n ARIMA(0,1,1)(1,1,1)[12]                    : -895.2944\n ARIMA(0,1,1)(0,1,2)[12]                    : -895.3558\n ARIMA(0,1,1)(1,1,0)[12]                    : -889.5331\n ARIMA(0,1,1)(1,1,2)[12]                    : Inf\n ARIMA(0,1,0)(0,1,1)[12]                    : -880.0685\n ARIMA(1,1,1)(0,1,1)[12]                    : -896.1031\n ARIMA(0,1,2)(0,1,1)[12]                    : -895.698\n ARIMA(1,1,0)(0,1,1)[12]                    : -893.2768\n ARIMA(1,1,2)(0,1,1)[12]                    : -894.0835\n\n Best model: ARIMA(0,1,1)(0,1,1)[12]                    \n\n\nSeries: AirPassengers \nARIMA(0,1,1)(0,1,1)[12] \nBox Cox transformation: lambda= -0.2947046 \n\nCoefficients:\n          ma1     sma1\n      -0.4355  -0.5847\ns.e.   0.0908   0.0725\n\nsigma^2 = 5.856e-05:  log likelihood = 451.59\nAIC=-897.18   AICc=-896.99   BIC=-888.55\n\n\n\n\nSerie temporaleStabilizzata"
+    "text": "Regressione\nLa libreria R forecast fornisce la funzione auto.arima() che valuta gli indicatori su una griglia di combinazioni dei sette parametri e fornisce la regressione migliore:\n\n\n\nforecast::auto.arima(AirPassengers, lambda=\"auto\", trace=T)\n\n\n ARIMA(2,1,2)(1,1,1)[12]                    : -890.0522\n ARIMA(0,1,0)(0,1,0)[12]                    : -845.0766\n ARIMA(1,1,0)(1,1,0)[12]                    : -885.6939\n ARIMA(0,1,1)(0,1,1)[12]                    : -896.9901\n ARIMA(0,1,1)(0,1,0)[12]                    : -860.1426\n ARIMA(0,1,1)(1,1,1)[12]                    : -895.2944\n ARIMA(0,1,1)(0,1,2)[12]                    : -895.3558\n ARIMA(0,1,1)(1,1,0)[12]                    : -889.5331\n ARIMA(0,1,1)(1,1,2)[12]                    : Inf\n ARIMA(0,1,0)(0,1,1)[12]                    : -880.0685\n ARIMA(1,1,1)(0,1,1)[12]                    : -896.1031\n ARIMA(0,1,2)(0,1,1)[12]                    : -895.698\n ARIMA(1,1,0)(0,1,1)[12]                    : -893.2768\n ARIMA(1,1,2)(0,1,1)[12]                    : -894.0835\n\n Best model: ARIMA(0,1,1)(0,1,1)[12]                    \n\n\nSeries: AirPassengers \nARIMA(0,1,1)(0,1,1)[12] \nBox Cox transformation: lambda= -0.2947046 \n\nCoefficients:\n          ma1     sma1\n      -0.4355  -0.5847\ns.e.   0.0908   0.0725\n\nsigma^2 = 5.856e-05:  log likelihood = 451.59\nAIC=-897.18   AICc=-896.99   BIC=-888.55\n\n\n\n\nSerie temporaleStabilizzata"
   },
   {
     "objectID": "slides/ADAS/7-serie_temporali.html#previsione",
@@ -1649,7 +1649,7 @@
     "href": "slides/ADAS/2-R-intro.html#differenza-tra---e",
     "title": "Introduzione al Linguaggio R",
     "section": "Differenza tra <- e =",
-    "text": "Differenza tra &lt;- e =\n\nL’operatore = come assegnazione è valido solo al top-level\nL’operatore &lt;- è valido ovunque, anche come argomento di funzione:\n\n\nsystem.time(m &lt;- mean(1:1E6))\n\n   user  system elapsed \n  0.007   0.000   0.007 \n\nm\n\n[1] 500000.5"
+    "text": "Differenza tra &lt;- e =\n\nL’operatore = come assegnazione è valido solo al top-level\nL’operatore &lt;- è valido ovunque, anche come argomento di funzione:\n\n\nsystem.time(m &lt;- mean(1:1E6))\n\n   user  system elapsed \n  0.001   0.000   0.001 \n\nm\n\n[1] 500000.5"
   },
   {
     "objectID": "slides/ADAS/2-R-intro.html#dataframe",
