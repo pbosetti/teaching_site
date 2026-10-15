@@ -180,7 +180,7 @@ Paolo Bosetti
     </div>
 </div>
 
-  <p class="date"><em>Ultimo aggiornamento:</em> 30/09/2026</p>
+  <p class="date"><em>Ultimo aggiornamento:</em> 15/10/2026</p>
 </section>
 <section id="link-alle-slide" class="title-slide slide level1 center">
 <h1>Link alle slide</h1>
@@ -272,7 +272,8 @@ x_N^{n-1} &amp; x_N^{n-2} &amp; \dots &amp; x_N &amp; 1 \\
 (\mathbf A^T \mathbf A)^{-1} \mathbf A^T \mathbf A\cdot \mathbf{k} &amp;= (\mathbf A^T \mathbf A)^{-1} \mathbf A^T \cdot \mathbf{y} \\
 \mathbf{k} &amp;= (\mathbf A^T \mathbf A)^{-1} \mathbf A^T \cdot \mathbf{y}
 \end{align}
-\]</span> Questa relazione rende evidente cosa si intende per <strong>regressione lineare</strong>: non ha nulla a che fare con il <strong>grado della funzione regredita</strong>, ma solo con l’equazione lineare nei parametri che rappresenta il modello</p>
+\]</span></p>
+<p>Questa relazione rende evidente cosa si intende per <strong>regressione lineare</strong>: non ha nulla a che fare con il <strong>grado della funzione regredita</strong>, ma solo con l’equazione lineare nei parametri che rappresenta il modello</p>
 <p><strong>NOTE</strong>:</p>
 <ul>
 <li>dalla equazione matriciale precedente è evidente che la regressione può essere eseguita se e solo se <span class="math inline">\(N\geq n+1\)</span>, cioè se il numero di osservazioni è almeno pari al numero di parametri</li>
@@ -322,10 +323,10 @@ y_N
 </section>
 <section id="regressione-ai-minimi-quadrati-1" class="slide level2">
 <h2>Regressione ai Minimi Quadrati</h2>
-<p>Si cerca cioè l’insieme di valori dei parametri che <strong>minimizza la distanza</strong> tra il modello e le osservazioni. Questa minimizzazione può essere realizzata definendo un <strong>indice di merito</strong> che rappresenta la distanza tra modello e osservazioni <strong>in funzione dei parametri</strong>: <span class="math display">\[
+<p>Si cerca cioè l’insieme di valori dei parametri che <strong>minimizza la distanza</strong> tra il modello e le osservazioni. Questa minimizzazione può essere realizzata definendo un <strong>indice di merito</strong> che rappresenta la distanza tra modello e osservazioni <strong>in funzione dei parametri</strong>:</p>
+<p><span class="math display">\[
 \Phi(c_1, c_2,\dots,c_m)=\sum_{i=1}^N \left(y_i - f(x_{1i},x_{2i},\dots,x_{ni}, c_1, c_2,\dots,c_m) \right)^2
-\]</span><br>
-</p>
+\]</span></p>
 <ul>
 <li><p>Se la <span class="math inline">\(f(\cdot)\)</span> è analitica e differenziabile, allora possiamo <strong>minimizzare</strong> <span class="math inline">\(\Phi(\cdot)\)</span> per derivazione, cioè risolvendo il sistema di <span class="math inline">\(m\)</span> equazioni <span class="math display">\[
 \frac{\partial\Phi}{\partial c_i}(c_1,c_2,\dots,c_m) = 0
