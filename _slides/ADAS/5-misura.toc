@@ -1,0 +1,50 @@
+\contentsline {section}{\numberline {1}Link alle slide}{2}{section.1}%
+\contentsline {section}{\numberline {2}Misura}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Incertezza}{3}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Norma UNI4546}{4}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Norma UNI4546}{5}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Norma UNI4546}{5}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Norma GUM (ISO/IEC 98-3:2008)}{6}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Norma GUM (ISO/IEC 98-3:2008)}{6}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.7}Incertezza standard}{7}{subsection.2.7}%
+\contentsline {subsection}{\numberline {2.8}Norma GUM (ISO/IEC 98-3:2008)}{7}{subsection.2.8}%
+\contentsline {subsection}{\numberline {2.9}Fattore di copertura}{8}{subsection.2.9}%
+\contentsline {subsection}{\numberline {2.10}Modello statico di uno strumento di misura}{9}{subsection.2.10}%
+\contentsline {subsection}{\numberline {2.11}Taratura}{9}{subsection.2.11}%
+\contentsline {subsubsection}{\numberline {2.11.1}Misurazione}{9}{subsubsection.2.11.1}%
+\contentsline {subsubsection}{\numberline {2.11.2}Taratura}{10}{subsubsection.2.11.2}%
+\contentsline {subsection}{\numberline {2.12}Taratura}{11}{subsection.2.12}%
+\contentsline {subsection}{\numberline {2.13}Ingressi di disturbo}{12}{subsection.2.13}%
+\contentsline {subsection}{\numberline {2.14}Esempio: dinamometro a mensola}{12}{subsection.2.14}%
+\contentsline {subsubsection}{\numberline {2.14.1}Dinamometro}{13}{subsubsection.2.14.1}%
+\contentsline {subsubsection}{\numberline {2.14.2}Amplificatore}{14}{subsubsection.2.14.2}%
+\contentsline {subsection}{\numberline {2.15}Esempio: dinamometro a mensola}{14}{subsection.2.15}%
+\contentsline {subsection}{\numberline {2.16}Casualizzazione della sequenza di taratura}{15}{subsection.2.16}%
+\contentsline {subsection}{\numberline {2.17}Taratura del dinamometro (senza casualizzazione)}{15}{subsection.2.17}%
+\contentsline {subsection}{\numberline {2.18}Taratura del dinamometro (senza casualizzazione)}{17}{subsection.2.18}%
+\contentsline {subsubsection}{\numberline {2.18.1}Regressione}{17}{subsubsection.2.18.1}%
+\contentsline {subsubsection}{\numberline {2.18.2}Residui}{18}{subsubsection.2.18.2}%
+\contentsline {subsection}{\numberline {2.19}Taratura del dinamometro (senza casualizzazione)}{18}{subsection.2.19}%
+\contentsline {subsubsection}{\numberline {2.19.1}Regressione}{19}{subsubsection.2.19.1}%
+\contentsline {subsubsection}{\numberline {2.19.2}Residui}{19}{subsubsection.2.19.2}%
+\contentsline {subsection}{\numberline {2.20}Taratura del dinamometro {(con casualizzazione)}}{20}{subsection.2.20}%
+\contentsline {subsubsection}{\numberline {2.20.1}Regressione}{20}{subsubsection.2.20.1}%
+\contentsline {subsubsection}{\numberline {2.20.2}Residui (F)}{21}{subsubsection.2.20.2}%
+\contentsline {subsubsection}{\numberline {2.20.3}Residui (t)}{22}{subsubsection.2.20.3}%
+\contentsline {subsection}{\numberline {2.21}Taratura del dinamometro {(con casualizzazione)}}{23}{subsection.2.21}%
+\contentsline {subsubsection}{\numberline {2.21.1}Regressione}{23}{subsubsection.2.21.1}%
+\contentsline {subsubsection}{\numberline {2.21.2}Regressione \(t<4~\mathrm {h}\)}{24}{subsubsection.2.21.2}%
+\contentsline {section}{\numberline {3}Propagazione dell'incertezza}{25}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Basi}{25}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Metodo analitico}{26}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Metodo analitico}{26}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Metodo analitico}{27}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Metodo analitico}{27}{subsection.3.5}%
+\contentsline {subsection}{\numberline {3.6}Esempio: volume di un cilindro}{28}{subsection.3.6}%
+\contentsline {subsection}{\numberline {3.7}Metodo Monte Carlo}{28}{subsection.3.7}%
+\contentsline {subsection}{\numberline {3.8}Esempio: volume di un cilindro}{29}{subsection.3.8}%
+\contentsline {subsubsection}{\numberline {3.8.1}Raggio}{29}{subsubsection.3.8.1}%
+\contentsline {subsubsection}{\numberline {3.8.2}Lunghezza}{30}{subsubsection.3.8.2}%
+\contentsline {subsection}{\numberline {3.9}Esempio: volume di un cilindro}{31}{subsection.3.9}%
+\contentsline {subsection}{\numberline {3.10}Esempio: volume di un cilindro}{32}{subsection.3.10}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

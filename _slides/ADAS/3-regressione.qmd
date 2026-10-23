@@ -140,6 +140,7 @@ $$
 \mathbf{k} &= (\mathbf A^T \mathbf A)^{-1} \mathbf A^T \cdot \mathbf{y} 
 \end{align}
 $$ 
+
 Questa relazione rende evidente cosa si intende per **regressione lineare**: non ha nulla a che fare con il **grado della funzione regredita**, ma solo con l'equazione lineare nei parametri che rappresenta il modello
 
 **NOTE**:
@@ -171,6 +172,7 @@ y_2 \\
 y_N
 \end{bmatrix}
 $$
+
 :::
 
 ::: column
@@ -198,9 +200,10 @@ Se il modello non è lineare nei parametri, è comunque possibile effettuarne la
 ## Regressione ai Minimi Quadrati
 
 Si cerca cioè l'insieme di valori dei parametri che **minimizza la distanza** tra il modello e le osservazioni. Questa minimizzazione può essere realizzata definendo un **indice di merito** che rappresenta la distanza tra modello e osservazioni **in funzione dei parametri**: 
+
 $$
 \Phi(c_1, c_2,\dots,c_m)=\sum_{i=1}^N \left(y_i - f(x_{1i},x_{2i},\dots,x_{ni}, c_1, c_2,\dots,c_m) \right)^2
-$$ \
+$$ 
 
 * Se la $f(\cdot)$ è analitica e differenziabile, allora possiamo **minimizzare** $\Phi(\cdot)$ per derivazione, cioè risolvendo il sistema di $m$ equazioni 
 $$
@@ -298,10 +301,11 @@ Dal numero di massimi e minimi presenti nell'eventuale *pattern* è possibile st
 df %>% ggplot(aes(x=x)) +
   geom_point(aes(y=y2)) + 
   geom_line(aes(y=y2_hat)) +
-  labs(x="predittore", y="osservazioni", title="modello di primo grado")
+  labs(x="predittore", y="osservazioni", title="modello di primo grado") + 
+  coord_cartesian(ylim=c(0,65))
 df %>% ggplot(aes(x=x)) +
   geom_point(aes(y=lm2$residuals)) + 
-  labs(x="predittore", y="residui")
+  labs(x="predittore", y="residui") 
 ```
 
 ### Adattamento corretto
@@ -312,10 +316,11 @@ df %>% ggplot(aes(x=x)) +
 df %>% ggplot(aes(x=x)) +
   geom_point(aes(y=y2)) + 
   geom_line(aes(y=y3_hat)) +
-  labs(x="predittore", y="osservazioni", title="modello di secondo grado")
+  labs(x="predittore", y="osservazioni", title="modello di secondo grado") + 
+  coord_cartesian(ylim=c(0,65))
 df %>% ggplot(aes(x=x)) +
   geom_point(aes(y=lm3$residuals)) + 
-  labs(x="predittore", y="residui")
+  labs(x="predittore", y="residui") 
 ```
 :::
 :::
@@ -346,14 +351,14 @@ df <- tibble(
 dfp <- tibble(x=seq(-1, N+2, length.out=101))
 lm1 <- lm(y~x, data=df)
 dfp <- add_predictions(dfp, lm1, var="pred.lm1")
-lm2 <- lm(y~poly(x, deg=6, raw=T), data=df)
+lm2 <- lm(y~poly(x, deg=7, raw=T), data=df)
 dfp <- add_predictions(dfp, lm2, var="pred.lm2")
 df %>% ggplot(aes(x=x)) +
   geom_point(aes(y=y)) +
   geom_point(aes(y=y2), color="red", shape=3) +
   geom_line(aes(x=x, y=pred.lm1, color="grado 1"), data=dfp) +
-  geom_line(aes(x=x, y=pred.lm2, color="grado 6"), data=dfp) +
-  coord_cartesian(ylim=c(5,27), xlim=c(0,9)) +
+  geom_line(aes(x=x, y=pred.lm2, color="grado 7"), data=dfp) +
+  coord_cartesian(ylim=c(5,30), xlim=c(0,9)) +
   labs(color="modello:", x="predittore", y="osservazioni") + 
   theme(legend.position = "bottom")
 ```
@@ -535,6 +540,7 @@ df %>% ggplot(aes(x=val,y=OKv)) +
   labs(x="valore", y="successo", color="successo:") +
   theme(legend.position = "bottom")
 ```
+
 ### Residui modello lineare
 ```{r}
 #| fig-width: 5

@@ -6,58 +6,23 @@ project:
 
 website:
   title: "Paolo Bosetti"
+  site-url: https://pbosetti.github.io
   reader-mode: true
-  google-analytics: "G-KV5S6RSHJ3"
+  # google-analytics: "G-KV5S6RSHJ3"
   cookie-consent:
     type: express
     style: simple
     palette: light
   navbar:
     left:
-      - text: ADAS
-        menu:
-          - href: slides/ADAS/index.qmd
-            text: Contenuti
-          - href: slides/ADAS/0-intro.qmd
-            text: Intro
-          - href: slides/ADAS/1-statistica.qmd
-            text: Statistica
-          - href: slides/ADAS/2-R-intro.qmd
-            text: Linguaggio R
-          - href: slides/ADAS/3-regressione.qmd
-            text: Regressione
-          - href: slides/ADAS/4-bootstrap.qmd
-            text: Bootstrap
-          - href: slides/ADAS/5-misura.qmd
-            text: Misura
-          - href: slides/ADAS/6-DoE.qmd
-            text: Design of Experiments
-          - href: slides/ADAS/7-serie_temporali.qmd
-            text: Serie temporali
-          - href: slides/ADAS/8-strumenti.qmd
-            text: Strumenti di misura
-      # - text: DESAnED
-      #   menu:
-      #     - href: desaned.qmd
-      #       text: Table of Contents
-      #     - href: /desaned/1-statistics.html
-      #       text: Statistics
-      #     - href: /desaned/2-R-intro.html
-      #       text: Intro to R language
-      #     - href: /desaned/3-regression.html
-      #       text: Regression
-      #     - href: /desaned/4-kfold.html
-      #       text: K-Fold validation
-      #     - href: /desaned/5-DoE.html
-      #       text: Design of Experiments
-      # - various.qmd
-      - data.qmd
+      - text: New site
+        href: https://pbosetti.github.io
       - text: "Blog"
         href: https://paolobosetti.quarto.pub/blog/index.html
       - about.qmd
     right:
-      - href: https://github.com/pbosetti/teaching_site
-        text: "This project on GitHub"
+      - href: https://github.com/pbosetti
+        text: "My GitHub"
         icon: github
   page-footer:
     background: light

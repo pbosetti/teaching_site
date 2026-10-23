@@ -1,5 +1,5 @@
 ---
-title: "Teaching Stuff"
+title: "This site has moved..."
 date-modified: "`{r} Sys.time()`"
 date-format: "YYYYMMDD"
 ---
@@ -7,31 +7,17 @@ date-format: "YYYYMMDD"
 ```{r}
 ```
 
-At the [Department of Industrial Engineering of the University of Trento](https://dii.unitn.it), I am teaching master courses (in English) and undergraduate courses (in Italian). Most of the teaching material used in these courses is available here.
 
-:::callout-note
-If you are a student of the University of Trento, note that this is NOT the main support site: look at the [Moodle platform](https://didatticaonline.unitn.it/dol/) instead.
+::: {.callout-warning}
+### Attenzione!
+
+Questa pagina è stata **spostata** in un nuovo sito web: [https://pbosetti.github.io](https://pbosetti.github.io)
+
 :::
 
+::: {.callout-warning}
+### Attention!
 
-## Design of Precision Systems (DPS) 🇬🇧
+This page has been **moved** to a new website: [https://pbosetti.github.io](https://pbosetti.github.io)
 
-Course for the Master Degree in Mechatronics Engineering, given in English
-  
-- Lesson on [K-Fold Cross Validation](slides/ADAS/kfold.html){target="_blank"} (also [as a document](kfold.html))
-
-
-## Analisi dei Dati e Statistica (ADAS) 🇮🇹
-
-Corso per la Laurea triennale in Ingegneria Industriale, tenuto in italiano
-
-- Indice con tutte le [slide del corso](slides/ADAS/index.html)
-- Esperimento virtuale: [taratura di una bilancia a due piatti](slides/ADAS/bilancia.html){target="_blank"}
-  
-
-:::callout-important
-## Continuous updates!
-
-Please note that the material is **constantly updated**. If you are interested in a specific topic, please check the last update (i.e., refresh your browser!)
 :::
-

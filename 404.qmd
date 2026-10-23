@@ -1,0 +1,13 @@
+---
+title: Page Not Found
+---
+
+The page you requested cannot be found.
+
+If you are following a link or a bookmark, please note that this site has been reorganized **moved** to a new website in October 2026: [https://pbosetti.github.io](https://pbosetti.github.io).
+
+---
+
+La pagina richiesta non può essere trovata.
+
+Se stai seguendo un link o un segnalibro, tieni presente che questo sito è stato **spostato** in un nuovo sito web a ottobre 2026: [https://pbosetti.github.io](https://pbosetti.github.io).
